@@ -1,0 +1,8 @@
+secrets.lua
+*.secret
+*.key
+.vscode/
+node_modules/
+*.tmp
+*.log
+build.rbxl

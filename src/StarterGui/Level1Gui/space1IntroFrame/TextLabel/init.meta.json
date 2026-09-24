@@ -1,0 +1,24 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.5, 0.0], [0.46, 0.0]],
+    "RichText": true,
+    "Size": [[0.8, 0.0], [0.7, 0.0]],
+    "Text": "Pada tahap ini, kamu akan mendengarkan sebuah narasi singkat yang berisi informasi dasar mengenai bidang Teknologi Informasi, khususnya tentang Sistem Informasi. Narasi ini dirancang untuk melatih kemampuanmu dalam memahami isi informasi yang disampaikan secara lisan.\n\nSelama audio diputar, perhatikan dengan saksama setiap informasi penting, seperti pengertian, fungsi, serta peran Sistem Informasi dalam kehidupan sehari-hari dan dunia kerja.\n\nSetelah selesai mendengarkan, kamu akan diminta untuk mengerjakan kuis yang menguji pemahamanmu terhadap isi narasi tersebut.\n\n🎧 Dengarkan dengan fokus, karena setiap detail informasi akan membantumu menjawab pertanyaan dengan tepat.\n\nTekan tombol Mulai untuk memutar audio dan memulai pembelajaran.",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true
+  }
+}

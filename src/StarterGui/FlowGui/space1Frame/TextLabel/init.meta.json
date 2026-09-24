@@ -1,0 +1,24 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.7, 0.0], [0.5, 0.0]],
+    "Size": [[0.45, 0.0], [0.7, 0.0]],
+    "Text": "Pada tahap pertama, kamu akan melatih keterampilan menyimak melalui audio narasi singkat yang membahas konsep dasar Sistem Informasi dalam bidang Teknologi Informasi.\n\nDengarkan dengan saksama setiap informasi yang disampaikan. Perhatikan istilah-istilah penting dan ide pokok yang muncul dalam narasi.\n\nSetelah audio selesai diputar, kamu akan mengerjakan kuis untuk menguji pemahaman terhadap isi yang telah disimak.\n\nSelesaikan evaluasi dengan baik untuk dapat melanjutkan ke tahap berikutnya.",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true,
+    "TextXAlignment": "Left"
+  }
+}

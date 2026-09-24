@@ -1,0 +1,27 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AutomaticSize": "Y",
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "LayoutOrder": 1,
+    "LineHeight": 1.5,
+    "Position": [[0.0855, 0.0], [0.094, 0.0]],
+    "RichText": true,
+    "Size": [[0.8, 0.0], [0.0, 0.0]],
+    "Text": "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak. Namun, sistem operasi dan model pemrograman tradisional memiliki inersia, sehingga antarmuka untuk perangkat keras baru cenderung mengikuti desain antarmuka yang telah ada sebelumnya. Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat. Oleh karena itu, abstraksi sistem operasi perlu berevolusi mengikuti perkembangan zaman, karena ketergantungan pada abstraksi lama yang berusia puluhan tahun serta perubahan yang bersifat inkremental berpotensi membatasi pemanfaatan perangkat keras modern hanya melalui antarmuka yang awalnya dirancang untuk media penyimpanan lama seperti pita magnetik dan spinning disk.\n\nSaat ini, terdapat peluang untuk mengkaji bagaimana pertemuan berbagai tren dapat menggeser model pemrograman dari sudut pandang tradisional yang berpusat pada proses (process-centric) menuju pendekatan yang berpusat pada data (data-centric), di mana data menjadi entitas utama dalam sistem. Peluang ini muncul seiring dengan perkembangan perangkat keras yang secara langsung memengaruhi cara pandang terhadap jalur akses data serta tanggung jawab sistem operasi dan kernel. Meningkatnya kecepatan teknologi interkoneksi memperkecil jarak latensi antar node komputasi, sehingga meningkatkan efisiensi dan kegunaan shared memory. Selain itu, penyimpanan persisten yang sebelumnya berada di lapisan bawah hierarki memori kini bergerak ke lapisan yang lebih tinggi seiring meningkatnya kecepatan akses perangkat persisten. Kondisi ini menyebabkan overhead jalur akses data berbasis kernel tradisional menjadi faktor dominan dalam biaya akses data persisten. Di sisi lain, meningkatnya heterogenitas serta pemisahan (disaggregation) antara perangkat komputasi dan memori menuntut mobilitas data dan komputasi yang lebih tinggi agar perangkat lunak tetap skalabel, terdistribusi, dan memiliki kinerja tinggi.\n\nDisertasi ini memperkenalkan sistem operasi dan model pemrograman baru yang berorientasi pada data (data-centric), yang dirancang berdasarkan tren-tren tersebut. Pendekatan ini merumuskan ulang tujuan sistem operasi dan memungkinkan peninjauan kembali teknik pemrograman sistem klasik ke dalam model yang memfasilitasi berbagi data, alih-alih menghambatnya. Model pemrograman sistem tradisional umumnya melibatkan kompleksitas dan overhead yang signifikan dalam pengelolaan persistensi dan berbagi data, seperti operasi persistensi berbutir kasar yang mahal, model data RPC yang kaku, serta kebutuhan serialisasi. Sebaliknya, pendekatan data-centric ini mengurangi keterlibatan kernel dalam jalur akses data, menjadikan data bersifat mobile melalui referensi invarian yang tidak bergantung pada ruang alamat atau mesin, serta menghilangkan kebutuhan akan serialisasi.\n\nPenelitian ini membahas motivasi dan tren perangkat keras yang melatarbelakangi perancangan sistem tersebut, mendefinisikan ruang desain berdasarkan tren tersebut, serta memperkenalkan Twizzler sebagai salah satu implementasi dalam ruang desain tersebut yang merepresentasikan prinsip-prinsip yang diusulkan. Evaluasi terhadap Twizzler dilakukan melalui studi kasus yang menunjukkan perilaku sistem, efektivitas, dan kegunaan model pemrograman yang dikembangkan, dengan membangun sejumlah perangkat lunak baru khusus untuk Twizzler. Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak.\n",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextSize": 18,
+    "TextWrapped": true,
+    "TextXAlignment": "Left",
+    "TextYAlignment": "Top"
+  }
+}

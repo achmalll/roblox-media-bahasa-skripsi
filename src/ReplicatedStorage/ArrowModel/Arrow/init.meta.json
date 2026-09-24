@@ -1,0 +1,13 @@
+{
+  "className": "UnionOperation",
+  "properties": {
+    "CanCollide": false,
+    "CFrame": [68.8397, 10.4, 414.8653, -0.7071, 0, 0.7071, 0, 1.0, 0, -0.7071, 0, -0.7071],
+    "Color": [255, 255, 0],
+    "Material": "Neon",
+    "Reflectance": 1,
+    "RenderFidelity": "Precise",
+    "Size": [2, 0.3, 2],
+    "UsePartColor": true
+  }
+}

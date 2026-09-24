@@ -1,0 +1,23 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.5, 0.0], [0.23, 0.0]],
+    "Size": [[0.6, 0.0], [0.11, 0.0]],
+    "Text": "Silakan pilih jenis suara narator yang kamu inginkan (laki-laki atau perempuan)",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true
+  }
+}

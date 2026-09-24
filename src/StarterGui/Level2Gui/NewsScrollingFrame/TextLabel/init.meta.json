@@ -1,0 +1,26 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AutomaticSize": "Y",
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "LineHeight": 1.5,
+    "Position": [[0.0855, 0.0], [0.094, 0.0]],
+    "RichText": true,
+    "Size": [[0.8, 0.0], [0.0, 0.0]],
+    "Text": "Perkembangan teknologi perangkat pintar terus menghadirkan inovasi yang semakin mengaburkan batas antara tablet dan komputer. Salah satu inovasi terbaru yang menarik perhatian dunia teknologi datang dari operator telekomunikasi asal China, China Unicom, yang meluncurkan tablet terbaru bernama Cloud AI Pad. Perangkat ini menghadirkan terobosan berupa penggunaan dua sistem operasi dalam satu perangkat sekaligus. Tablet ini menjalankan sistem operasi Android dan Windows secara bersamaan dengan pendekatan yang berbeda dan saling melengkapi. Peluncuran Cloud AI Pad menunjukkan perkembangan teknologi sistem operasi yang semakin adaptif terhadap kebutuhan produktivitas dan fleksibilitas pengguna di era modern.\r\n\r\nSecara teknis, kedua sistem operasi pada Cloud AI Pad dijalankan dengan cara yang berbeda. Sistem operasi Android dijalankan secara lokal langsung di perangkat tablet. Pendekatan ini memungkinkan pengguna mengakses berbagai aplikasi Android dengan respons yang cepat dan efisien, tanpa memerlukan koneksi internet yang stabil sebagai syarat utama. Di sisi lain, sistem operasi Windows dijalankan melalui teknologi komputasi awan atau cloud, sehingga pengguna dapat menikmati pengalaman kerja layaknya menggunakan komputer berbasis Windows tanpa harus menginstalnya secara langsung di perangkat. Perbedaan pendekatan ini mencerminkan strategi desain yang cermat dalam memaksimalkan kemampuan perangkat keras tablet sekaligus memanfaatkan infrastruktur cloud yang terus berkembang.\r\n\r\nDari sudut pandang pasar, pendekatan dual sistem operasi seperti yang diterapkan pada Cloud AI Pad masih tergolong jarang ditemui di pasar global. Umumnya, tablet hanya menggunakan satu sistem operasi utama, baik Android maupun Windows, secara native. Kehadiran dua sistem operasi dalam satu perangkat selama ini dianggap kompleks secara teknis dan berisiko menimbulkan konflik antarsistem. Namun, dengan konsep yang diterapkan oleh China Unicom ini, pengguna Cloud AI Pad dapat beralih antara platform Android yang fleksibel untuk kebutuhan sehari-hari dan Windows yang mendukung produktivitas kerja profesional, semuanya dalam satu perangkat yang sama. Hal ini menjadikan Cloud AI Pad sebagai perangkat yang berpotensi menjawab kebutuhan pengguna yang menginginkan fleksibilitas sekaligus produktivitas tinggi tanpa harus membawa dua perangkat berbeda.\r\n\r\nSelain keunggulan sistem operasi ganda, Cloud AI Pad juga dilengkapi dengan fitur kecerdasan buatan (artificial intelligence) yang terintegrasi langsung ke dalam perangkat melalui tombol khusus AI pada keyboard. Fitur ini terhubung dengan asisten cerdas berbasis model bahasa besar Yuanjing yang dikembangkan secara mandiri oleh China Unicom. Dengan adanya integrasi ini, pengguna dapat mengakses kemampuan kecerdasan buatan secara langsung dalam berbagai aktivitas kerja maupun belajar. Kehadiran Cloud AI Pad menegaskan bahwa inovasi sistem operasi tidak lagi hanya berfokus pada pengembangan perangkat lunak semata, tetapi telah berkembang ke arah integrasi menyeluruh antara teknologi cloud, kecerdasan buatan, dan perangkat keras untuk mendukung kebutuhan pengguna modern yang semakin beragam dan dinamis.\r\n",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextSize": 18,
+    "TextWrapped": true,
+    "TextXAlignment": "Left",
+    "TextYAlignment": "Top"
+  }
+}

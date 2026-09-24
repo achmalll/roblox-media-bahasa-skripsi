@@ -1,0 +1,24 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.5, 0.0], [0.46, 0.0]],
+    "RichText": true,
+    "Size": [[0.8, 0.0], [0.7, 0.0]],
+    "Text": "Pada level ini, Anda akan membaca sebuah teks eksposisi berita yang membahas inovasi teknologi terbaru dalam bidang sistem operasi dan komputasi awan.\n\nBacalah teks dengan saksama dan pahami informasi yang disampaikan, termasuk istilah-istilah baru yang telah diperkenalkan pada papan informasi sebelumnya.\n\nSetelah membaca teks, Anda akan menjawab 4 soal pilihan ganda untuk menguji pemahaman terhadap isi, gagasan utama, serta konsep teknologi yang dibahas dalam berita tersebut.\n\nGunakan kemampuan literasi dan analisis Anda untuk menentukan jawaban yang paling tepat.\n\nTekan tombol Mulai untuk melanjutkan ke teks eksposisi.",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true
+  }
+}

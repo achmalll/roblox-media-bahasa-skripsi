@@ -1,0 +1,11 @@
+{
+  "className": "Part",
+  "properties": {
+    "BottomSurface": "Smooth",
+    "CanCollide": false,
+    "CFrame": [-9.18, 28.6095, -0.0588, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    "Size": [1, 1, 1],
+    "TopSurface": "Smooth",
+    "Transparency": 1
+  }
+}

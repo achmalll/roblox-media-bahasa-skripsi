@@ -1,0 +1,24 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.239, 0.0], [0.392, 0.0]],
+    "Size": [[0.4, 0.0], [0.3, 0.0]],
+    "Text": "Tekan tombol “1” pada keyboard atau klik ikon dashboard di bagian bawah layar untuk mengakses hadiah yang telah diperoleh.",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true,
+    "TextXAlignment": "Left"
+  }
+}

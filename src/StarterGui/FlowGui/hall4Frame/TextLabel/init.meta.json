@@ -1,0 +1,24 @@
+{
+  "className": "TextLabel",
+  "properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "BackgroundColor3": [1, 1, 1],
+    "BackgroundTransparency": 1,
+    "BorderColor3": [0, 0, 0],
+    "BorderSizePixel": 0,
+    "FontFace": {
+      "cachedFaceId": null,
+      "family": "rbxasset://fonts/families/Roboto.json",
+      "style": "Normal",
+      "weight": "Regular"
+    },
+    "Position": [[0.7, 0.0], [0.5, 0.0]],
+    "Size": [[0.45, 0.0], [0.7, 0.0]],
+    "Text": "Pada tahap akhir pembelajaran, kamu akan memasuki Hall Apresiasi sebagai bentuk penyelesaian seluruh rangkaian level pembelajaran yang telah dilalui. ringkasan hasil belajar yang berisi skor yang diperoleh pada setiap level serta total skor keseluruhan akan ditampilkan.\n\nPada hall ini akan dieberikan reward berupa achievement medali berdasarkan total skor yang berhasil dicapai selama proses pembelajaran. ",
+    "TextColor3": [0.2784, 0.1255, 0.0118],
+    "TextScaled": true,
+    "TextSize": 14,
+    "TextWrapped": true,
+    "TextXAlignment": "Left"
+  }
+}

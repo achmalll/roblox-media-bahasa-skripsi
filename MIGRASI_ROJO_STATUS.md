@@ -8,6 +8,7 @@ Pemeriksaan 24 September 2026. Tujuan praktis: file kerja bisa dibuka dari lapto
 - `../RobloxLearningMedia-BACKUP.rbxl` tetap menjadi arsip penelitian Alif, tidak diedit atau diunggah.
 - `../RobloxLearningMedia-MIGRATION.rbxl` identik byte per byte dengan WORKING saat pemeriksaan 24 September; namanya tidak menandakan migrasi Rojo sudah berhasil.
 - Panduan perpindahan komputer ada di `ALUR_SINKRONISASI.md`. Sinkronisasi via Git harus diakhiri dengan `push` berhasil pada PC pertama dan `pull` pada PC berikutnya. Karena `.rbxl` bersifat binary, jangan menyunting dua clone secara bersamaan.
+- Percobaan *fresh clone* setelah commit `6f2d781` berhasil: `places/RobloxLearningMedia-WORKING.rbxl` pada clone dan workspace memiliki SHA-256 sama (`bce9e821bdf36c7dd9ef3d66787d7a088b98d33d9c3836d55a944b06171a5d41`); 512 berkas `src/` juga tersedia pada clone. Ini membuktikan transfer GitHub, **belum** membuktikan buka/Play di Studio pada PC lain. Folder clone uji sementara telah dibersihkan.
 
 ## Yang ditemukan pada percobaan Rojo/Argon
 

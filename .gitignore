@@ -6,3 +6,5 @@ node_modules/
 *.tmp
 *.log
 build.rbxl
+.tools/
+migration-v2/build/

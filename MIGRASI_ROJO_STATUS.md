@@ -2,6 +2,10 @@
 
 Pemeriksaan 24 September 2026. Tujuan praktis: file kerja bisa dibuka dari laptop atau PC warnet melalui repository GitHub private tanpa mengubah baseline Alif.
 
+## Pembaruan 25 September 2026
+
+Rojo 7.7.0 resmi menyediakan `syncback` untuk mengonversi place yang sudah ada. Migrasi ulang telah dibuat pada `migration-v2/` tanpa menimpa WORKING atau source lama. `rojo syncback` dan `rojo build` berhasil. Build pembanding berisi 22.790 instance, 1.093 script, dan 161 teks GUI; seluruh path/hash isi 1.093 script cocok dengan WORKING. Selisih instance terutama service internal Studio dan artefak lama `TestArgon`. GUI/aset kompleks disimpan sebagai `.rbxm`, sedangkan script utama menjadi `.luau` yang dapat diedit. Status belum final sampai build diuji Play dan siklus build–syncback diuji di Studio. Detail dan perintah ada di `MIGRASI_ROJO_V2.md`.
+
 ## Yang sudah menjadi sumber kerja
 
 - `places/RobloxLearningMedia-WORKING.rbxl` adalah **place kanonis**. File ini memuat game utuh dan sudah masuk GitHub private pada commit `9718c22`.

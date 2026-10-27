@@ -1,0 +1,1039 @@
+{
+  "snapshotDate": "2026-10-27",
+  "source": "Salinan file lokal docs/pengembangan; bukan pembacaan ulang live Google Docs",
+  "status": "Rancangan, bukan implementasi atau hasil Play",
+  "files": [
+    {
+      "source": "storyboard-pembuka-level1/00.png",
+      "destination": "storyboard-pembuka-level1/00.png",
+      "sha256": "D685B3B673B4B96E2ED9213CACF767E9114E5566BF1AD1EAFE105C08AAB7C7A8",
+      "bytes": 83031
+    },
+    {
+      "source": "storyboard-pembuka-level1/01A.png",
+      "destination": "storyboard-pembuka-level1/01A.png",
+      "sha256": "981A18CEED891B96510828C45B4C981F7F36CD1C2965A5D26CA8C9B2656D07D6",
+      "bytes": 64935
+    },
+    {
+      "source": "storyboard-pembuka-level1/01B.png",
+      "destination": "storyboard-pembuka-level1/01B.png",
+      "sha256": "DDF95F6A8369F89499C0177AACE6D86F7FCC9D534D63D4C4FCEF08580354221F",
+      "bytes": 75304
+    },
+    {
+      "source": "storyboard-pembuka-level1/02A.png",
+      "destination": "storyboard-pembuka-level1/02A.png",
+      "sha256": "EE58F9335E1EC81658185D20453628DC382E1AE3329B9B5CEE4FD4AAF3FC0754",
+      "bytes": 72168
+    },
+    {
+      "source": "storyboard-pembuka-level1/02B1.png",
+      "destination": "storyboard-pembuka-level1/02B1.png",
+      "sha256": "8EBF921297FD611724C6430714535D9F24EC8FC5924D0681DD8868E28402E8D7",
+      "bytes": 63953
+    },
+    {
+      "source": "storyboard-pembuka-level1/02B2.png",
+      "destination": "storyboard-pembuka-level1/02B2.png",
+      "sha256": "D5860085542E9B300840C500A1031EAE3EE6619CE542DB94FB02CE6ABEB9C673",
+      "bytes": 91077
+    },
+    {
+      "source": "storyboard-pembuka-level1/02B3.png",
+      "destination": "storyboard-pembuka-level1/02B3.png",
+      "sha256": "CE4F07294BAD85B94AAF9D5B054685F0A661BA00B362F4F58C4BFD11F70BAC6D",
+      "bytes": 84533
+    },
+    {
+      "source": "storyboard-pembuka-level1/02B4.png",
+      "destination": "storyboard-pembuka-level1/02B4.png",
+      "sha256": "66AF49342220E8EC5A25AF91B04C9A1171B3B4F8430627BD34AF2BE74E769A37",
+      "bytes": 85377
+    },
+    {
+      "source": "storyboard-pembuka-level1/02B5.png",
+      "destination": "storyboard-pembuka-level1/02B5.png",
+      "sha256": "1719703CFB33F205993BC7E564FAC579997803CD989C68AA2E5376B5F57D2BD7",
+      "bytes": 77878
+    },
+    {
+      "source": "storyboard-pembuka-level1/03A.png",
+      "destination": "storyboard-pembuka-level1/03A.png",
+      "sha256": "98BE7F67980FC2278BF6536824FD75A3374908A960E62457F37F97D6E215C6D6",
+      "bytes": 71243
+    },
+    {
+      "source": "storyboard-pembuka-level1/03B.png",
+      "destination": "storyboard-pembuka-level1/03B.png",
+      "sha256": "403A16EBF64F231D8C9E262F9CF147400723341CE6D4E4461B2CEC5D317EF3E8",
+      "bytes": 125829
+    },
+    {
+      "source": "storyboard-pembuka-level1/04B.png",
+      "destination": "storyboard-pembuka-level1/04B.png",
+      "sha256": "0FF1BEBD98C22DE8033BB5BFF26F69131414F4268E4A6481D8AC9C341AD3CBD6",
+      "bytes": 69389
+    },
+    {
+      "source": "storyboard-pembuka-level1/04C1.png",
+      "destination": "storyboard-pembuka-level1/04C1.png",
+      "sha256": "FF7FC85C01A379A1098BD740B4AF0294CFC1231FD435E4CE8D527D619A614319",
+      "bytes": 62198
+    },
+    {
+      "source": "storyboard-pembuka-level1/04C2.png",
+      "destination": "storyboard-pembuka-level1/04C2.png",
+      "sha256": "FF1C753B66F7A270F64F0702DA30B580F46B52D8AF9FC25075A37D9EDD5E0337",
+      "bytes": 57007
+    },
+    {
+      "source": "storyboard-pembuka-level1/05A.png",
+      "destination": "storyboard-pembuka-level1/05A.png",
+      "sha256": "D1B4EFB75B2758B545C4D56A195B849990F5B1519980E789B9CC92209B7C1164",
+      "bytes": 70986
+    },
+    {
+      "source": "storyboard-pembuka-level1/05B.png",
+      "destination": "storyboard-pembuka-level1/05B.png",
+      "sha256": "E14D4203DED1D7BE90F7A7AA36F4DA3770FA4B038D3A4C907AA0E8FBA7D4447D",
+      "bytes": 78982
+    },
+    {
+      "source": "storyboard-pembuka-level1/06A.png",
+      "destination": "storyboard-pembuka-level1/06A.png",
+      "sha256": "07746408701FA120ADBA8F8C739949CA00CCC2181B43C7D6CB231499457918AA",
+      "bytes": 71596
+    },
+    {
+      "source": "storyboard-pembuka-level1/06B1.png",
+      "destination": "storyboard-pembuka-level1/06B1.png",
+      "sha256": "710E57F16A45258BF44524036D88A2B6A96357E63C1D18D9AC0C4898A110E501",
+      "bytes": 70174
+    },
+    {
+      "source": "storyboard-pembuka-level1/06B2.png",
+      "destination": "storyboard-pembuka-level1/06B2.png",
+      "sha256": "A08DF76CB2B73CC4D01F050184A2683C05A9B23E6C1572C75D3A54D3048BC96A",
+      "bytes": 72450
+    },
+    {
+      "source": "storyboard-pembuka-level1/07A.png",
+      "destination": "storyboard-pembuka-level1/07A.png",
+      "sha256": "37AF09EA1C2406978D81AD62DA1009B6EE1841390A79B3CEE2C7D140CA689C05",
+      "bytes": 68963
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B1.png",
+      "destination": "storyboard-pembuka-level1/07B1.png",
+      "sha256": "0F19471110626AFC41955B22D22513D4BE8E83F97566C66F6664C5BB72CF0BFF",
+      "bytes": 120516
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B2.png",
+      "destination": "storyboard-pembuka-level1/07B2.png",
+      "sha256": "A9D113FBAE4B52297EF13984E8F3782F5E4C4B0991E2391A24318E01E5CDC369",
+      "bytes": 115793
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B3.png",
+      "destination": "storyboard-pembuka-level1/07B3.png",
+      "sha256": "043655D6A6E20D5D6E82DB2DF5F3E0C134B2F484A6226A45F7F6567FAA7D7F76",
+      "bytes": 137834
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B4.png",
+      "destination": "storyboard-pembuka-level1/07B4.png",
+      "sha256": "3D4194FEA96DA37D47111E04E189409227315E9E415F0FCEF7B173E2650BE025",
+      "bytes": 106409
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B5.png",
+      "destination": "storyboard-pembuka-level1/07B5.png",
+      "sha256": "9A60E7BFF709B26FF79191779AA2A6F1D9D0E9E9D4E4CE3AC2D577A57A11029B",
+      "bytes": 134716
+    },
+    {
+      "source": "storyboard-pembuka-level1/07B6.png",
+      "destination": "storyboard-pembuka-level1/07B6.png",
+      "sha256": "78770C43EE9990EF7E2BB71CD93C4765D42C659DF44DDA0A136DA2CCBF358CBC",
+      "bytes": 71861
+    },
+    {
+      "source": "storyboard-pembuka-level1/08A.png",
+      "destination": "storyboard-pembuka-level1/08A.png",
+      "sha256": "2F0B954C99DD4BEB6AE294312AC7A82A1FDA8714573E83DADBA4D2EAE594C308",
+      "bytes": 67032
+    },
+    {
+      "source": "storyboard-pembuka-level1/08B1.png",
+      "destination": "storyboard-pembuka-level1/08B1.png",
+      "sha256": "60F531C8555949E75C9950254F896557087F7DD000B493CF093A0636E9EF6058",
+      "bytes": 63284
+    },
+    {
+      "source": "storyboard-pembuka-level1/08B2.png",
+      "destination": "storyboard-pembuka-level1/08B2.png",
+      "sha256": "1242529078973158BBB5892E624222BAE4ECDF3703D21145D646276440420392",
+      "bytes": 102476
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q1A.png",
+      "destination": "storyboard-pembuka-level1/09Q1A.png",
+      "sha256": "B7CB0E770756DBE64797FCA5356DE803B6FC687F34018B9610C15C1AF3E9B14F",
+      "bytes": 102787
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q1B.png",
+      "destination": "storyboard-pembuka-level1/09Q1B.png",
+      "sha256": "739258550869AA098B307CAB697A5914C8703E7FDF6DC2F710DA458ABB83EBDA",
+      "bytes": 116681
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q2A.png",
+      "destination": "storyboard-pembuka-level1/09Q2A.png",
+      "sha256": "34FCE54B83CD99B66985D588522C271D3AFD1D68F5BA062C1ED0AFC506644B80",
+      "bytes": 91037
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q2B.png",
+      "destination": "storyboard-pembuka-level1/09Q2B.png",
+      "sha256": "0A14F36A121BA65638F6CDD02A002DA1DCADCD4FA1D7F0F67A9A668F53E11F8B",
+      "bytes": 114953
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q3A.png",
+      "destination": "storyboard-pembuka-level1/09Q3A.png",
+      "sha256": "D7AA90748982E87EF0CA000578B484A4A33A062AFFD4389FE735DB0DA133B23E",
+      "bytes": 134807
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q3B.png",
+      "destination": "storyboard-pembuka-level1/09Q3B.png",
+      "sha256": "FCE81A97EB1A4BC78C36BB5F59E6F94763E10A3ADC58884B3D23CE8959BC7460",
+      "bytes": 128421
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q4A.png",
+      "destination": "storyboard-pembuka-level1/09Q4A.png",
+      "sha256": "14239DDF2B7E774CDC10B64FD41CA409EFF7F6693D82A5978DD1B75EAA629C6E",
+      "bytes": 134441
+    },
+    {
+      "source": "storyboard-pembuka-level1/09Q4B.png",
+      "destination": "storyboard-pembuka-level1/09Q4B.png",
+      "sha256": "0889ACDAE27B18F208C9D3CDE85287086503D712DA015876BC09BA80780190B3",
+      "bytes": 124894
+    },
+    {
+      "source": "storyboard-pembuka-level1/10B1.png",
+      "destination": "storyboard-pembuka-level1/10B1.png",
+      "sha256": "DD73E2FC4935E20AC639ADC0BBEE8FD08E29C9050601E784CEC0E9356533F24A",
+      "bytes": 92971
+    },
+    {
+      "source": "storyboard-pembuka-level1/10B2.png",
+      "destination": "storyboard-pembuka-level1/10B2.png",
+      "sha256": "C3136FD6B192FAED411F6A4B69E76B2CD017ED8905F96A38DB4E56A15D330B88",
+      "bytes": 92264
+    },
+    {
+      "source": "storyboard-pembuka-level1/10B3.png",
+      "destination": "storyboard-pembuka-level1/10B3.png",
+      "sha256": "6D2DDFE235C12DEF6B0BE8C3CC32EA68A96DA2D91B81451E01DF104107320064",
+      "bytes": 96506
+    },
+    {
+      "source": "storyboard-pembuka-level1/10B4.png",
+      "destination": "storyboard-pembuka-level1/10B4.png",
+      "sha256": "37D81FA0D86705BC3CD78874B6AC691F0F412198A2EE5B8ECEFAC32DA3B194F5",
+      "bytes": 93934
+    },
+    {
+      "source": "storyboard-pembuka-level1/10B5.png",
+      "destination": "storyboard-pembuka-level1/10B5.png",
+      "sha256": "BC913AA64E502B67F74D0EF33E7B52EB1D1AAA81B423DB36E4ECD14C93096DDE",
+      "bytes": 69203
+    },
+    {
+      "source": "storyboard-pembuka-level1/11B1.png",
+      "destination": "storyboard-pembuka-level1/11B1.png",
+      "sha256": "D025802936EFF9B8EFE442F2251AAD22BDCFB8EB77C8AFBF29506EB1F4169504",
+      "bytes": 64557
+    },
+    {
+      "source": "storyboard-pembuka-level1/11B2.png",
+      "destination": "storyboard-pembuka-level1/11B2.png",
+      "sha256": "A0D658AC8E0675DA3408B53C1EF353A21B7BD8F33FB08DF0EACA37AE2D6F83B5",
+      "bytes": 64666
+    },
+    {
+      "source": "storyboard-pembuka-level1/12A.png",
+      "destination": "storyboard-pembuka-level1/12A.png",
+      "sha256": "0047B45E61F0AE84727BD184FC4A695F7D8A4B9E6EAAFF745D29186E167BDCAF",
+      "bytes": 62760
+    },
+    {
+      "source": "storyboard-pembuka-level1/STORYBOARD.md",
+      "destination": "storyboard-pembuka-level1/STORYBOARD.md",
+      "sha256": "BB4902E7ECB305FD4CFF0C0DB959EBBEAB0C5E9D641B94886A7D97CC33C08CBE",
+      "bytes": 31435
+    },
+    {
+      "source": "storyboard-pembuka-level1/storyboard.json",
+      "destination": "storyboard-pembuka-level1/storyboard.json",
+      "sha256": "6206771F0211F47C4AEB3751BBC7490168D9BEB6946C79563A88956F78FC5CF3",
+      "bytes": 41633
+    },
+    {
+      "source": "storyboard-pembuka-level1/isi-evaluasi.json",
+      "destination": "storyboard-pembuka-level1/isi-evaluasi.json",
+      "sha256": "AD8D8F834BC6789B56F7C853AB4D290124EA21919E844A437C999387101D688F",
+      "bytes": 10696
+    },
+    {
+      "source": "storyboard-level2/L2-00.png",
+      "destination": "storyboard-level2/L2-00.png",
+      "sha256": "BECC875A4A26ECE5FA941E2128E7A71CEED729411CA3EC81337257C2331CABEE",
+      "bytes": 155055
+    },
+    {
+      "source": "storyboard-level2/L2-01A.png",
+      "destination": "storyboard-level2/L2-01A.png",
+      "sha256": "18DC47BAEF6C145F780074594F4A6709152B233AA377F1F88DBB1A732546316B",
+      "bytes": 139945
+    },
+    {
+      "source": "storyboard-level2/L2-01B.png",
+      "destination": "storyboard-level2/L2-01B.png",
+      "sha256": "94D5976802C099E9C46EC29C817205AB4B303267266977F49F1D11700C78F8A1",
+      "bytes": 150388
+    },
+    {
+      "source": "storyboard-level2/L2-02A.png",
+      "destination": "storyboard-level2/L2-02A.png",
+      "sha256": "B3CE8BE084F455A609F724C4240415F95151780880E0397692315E948EC9B360",
+      "bytes": 143416
+    },
+    {
+      "source": "storyboard-level2/L2-02B1.png",
+      "destination": "storyboard-level2/L2-02B1.png",
+      "sha256": "0C380B915321E2E6B723DD7AAC3E45A0D0E84D4FF7CFC5CA07E5473710F788C6",
+      "bytes": 134890
+    },
+    {
+      "source": "storyboard-level2/L2-02B2.png",
+      "destination": "storyboard-level2/L2-02B2.png",
+      "sha256": "45BDAB7F7D1DB66453E6AF5FE28C349AB33E5BF61EF2F36CD5E35F0D6B52F023",
+      "bytes": 104605
+    },
+    {
+      "source": "storyboard-level2/L2-03A.png",
+      "destination": "storyboard-level2/L2-03A.png",
+      "sha256": "2617138A0F2F2DB5F481F99901BBC9413D4522E1A87FECA8C166D9B13D3AFC8C",
+      "bytes": 145281
+    },
+    {
+      "source": "storyboard-level2/L2-03B1.png",
+      "destination": "storyboard-level2/L2-03B1.png",
+      "sha256": "355696EB9EA8F89D9ACA9838AB5416491A1A7BE3A4AE38FC97EDE976630FB999",
+      "bytes": 174508
+    },
+    {
+      "source": "storyboard-level2/L2-03B2.png",
+      "destination": "storyboard-level2/L2-03B2.png",
+      "sha256": "98A25912FDDCCEF4DF8C152EE715A24F6C7AC52B43FA683FC6A99287716042AA",
+      "bytes": 186141
+    },
+    {
+      "source": "storyboard-level2/L2-03B3a.png",
+      "destination": "storyboard-level2/L2-03B3a.png",
+      "sha256": "2A4582254DFB8F30638E3F3E0416310B9B54A77CC2E70C085667D073D7C78C2E",
+      "bytes": 197166
+    },
+    {
+      "source": "storyboard-level2/L2-03B3b.png",
+      "destination": "storyboard-level2/L2-03B3b.png",
+      "sha256": "9D1BD858BE2DE840D108BB70ED6FC8289B17E7C91FE126E374B486770F2A2508",
+      "bytes": 192585
+    },
+    {
+      "source": "storyboard-level2/L2-04A.png",
+      "destination": "storyboard-level2/L2-04A.png",
+      "sha256": "8F52FB661422823D29F1160C7DFBCFC391E225B63E00EDF533A367A6D38FDD1F",
+      "bytes": 142422
+    },
+    {
+      "source": "storyboard-level2/L2-04B.png",
+      "destination": "storyboard-level2/L2-04B.png",
+      "sha256": "652BB24CA7ECD88832E0DAEDBA80A7FC247D957A12C81A67E243CB75B1A9ADAB",
+      "bytes": 217644
+    },
+    {
+      "source": "storyboard-level2/L2-04C.png",
+      "destination": "storyboard-level2/L2-04C.png",
+      "sha256": "E6FD8E73D2019EDD64F75C1586B2AE58DC72A77F2716B25A61A7D8FCB621C8B9",
+      "bytes": 219911
+    },
+    {
+      "source": "storyboard-level2/L2-04D.png",
+      "destination": "storyboard-level2/L2-04D.png",
+      "sha256": "933F9DC2AA830DC68E66740C8E49014FB8E6FC1158C40DD66C873787B1EFCDC3",
+      "bytes": 128304
+    },
+    {
+      "source": "storyboard-level2/L2-04E.png",
+      "destination": "storyboard-level2/L2-04E.png",
+      "sha256": "57EF4AC6FB485281ACE1399D2B555C8DD32AE3C59EE13371E40FE021EDF2AB1F",
+      "bytes": 108743
+    },
+    {
+      "source": "storyboard-level2/L2-05A.png",
+      "destination": "storyboard-level2/L2-05A.png",
+      "sha256": "A1BBD4AE3D95EAC2814FC803327E79EA15B08C49DFCA549E3FD3CD5B97BD8544",
+      "bytes": 145974
+    },
+    {
+      "source": "storyboard-level2/L2-05B.png",
+      "destination": "storyboard-level2/L2-05B.png",
+      "sha256": "6719C37F42B9DED1893D083D50B48036203D0C437917DED4E317A9140B3047BB",
+      "bytes": 220914
+    },
+    {
+      "source": "storyboard-level2/L2-05C.png",
+      "destination": "storyboard-level2/L2-05C.png",
+      "sha256": "FAC56FC03D3FB203042AEC43A3A434025C86B6FCD124C6C5D92997C38C3226A4",
+      "bytes": 226570
+    },
+    {
+      "source": "storyboard-level2/L2-05D.png",
+      "destination": "storyboard-level2/L2-05D.png",
+      "sha256": "D12EA4BD45C009D4FF083D409A82B613A1A351C45B621B213A50C02033CC032C",
+      "bytes": 224721
+    },
+    {
+      "source": "storyboard-level2/L2-06A.png",
+      "destination": "storyboard-level2/L2-06A.png",
+      "sha256": "F39658CF35EB671516F53B3ED1560FDF15F448AA6A7D235C076622B50BAA67A6",
+      "bytes": 144929
+    },
+    {
+      "source": "storyboard-level2/L2-06B1.png",
+      "destination": "storyboard-level2/L2-06B1.png",
+      "sha256": "9FD3C286241C7766579105FB3B01C2A7B34129D725B21EA042FFA3A0AC30DF9E",
+      "bytes": 96631
+    },
+    {
+      "source": "storyboard-level2/L2-06B2.png",
+      "destination": "storyboard-level2/L2-06B2.png",
+      "sha256": "F97D96A36FF40013267A31A1EB81963479DA172F51678A0086B196011FBEF0D3",
+      "bytes": 116022
+    },
+    {
+      "source": "storyboard-level2/L2-07Q1A.png",
+      "destination": "storyboard-level2/L2-07Q1A.png",
+      "sha256": "4D8347192DDB9C1C3494EA7D404417C9395815A01E1B0DEECAF8369D8079A20D",
+      "bytes": 145242
+    },
+    {
+      "source": "storyboard-level2/L2-07Q1B.png",
+      "destination": "storyboard-level2/L2-07Q1B.png",
+      "sha256": "4F209D1FFAF652A27B9434509491EDB6EB1D483A78E7D59D991C332214B95870",
+      "bytes": 154020
+    },
+    {
+      "source": "storyboard-level2/L2-07Q2A.png",
+      "destination": "storyboard-level2/L2-07Q2A.png",
+      "sha256": "F658E9A30DF58FDB9AB9EDD050932A24B142F06730DE24A57D4E6074DB575107",
+      "bytes": 189744
+    },
+    {
+      "source": "storyboard-level2/L2-07Q2B.png",
+      "destination": "storyboard-level2/L2-07Q2B.png",
+      "sha256": "82078158B784A9A70B1297EB622755F77B286AB05E2FDA20DFED5741AC39B5E5",
+      "bytes": 172610
+    },
+    {
+      "source": "storyboard-level2/L2-07Q3A.png",
+      "destination": "storyboard-level2/L2-07Q3A.png",
+      "sha256": "E36672E19DC0F36721D2078CF2FACE0CCA8FA487B28D4B21AA81CECE28CE19E7",
+      "bytes": 144023
+    },
+    {
+      "source": "storyboard-level2/L2-07Q3B.png",
+      "destination": "storyboard-level2/L2-07Q3B.png",
+      "sha256": "D544D17C16744BB059B7FD2D6E76F33AC0618CD975C67A4C74813BE2DA2045FA",
+      "bytes": 165538
+    },
+    {
+      "source": "storyboard-level2/L2-07Q4A.png",
+      "destination": "storyboard-level2/L2-07Q4A.png",
+      "sha256": "45B66AA26F2EF22D1F434A0C40F757557F1C21323886B9DA4F935A0F91065337",
+      "bytes": 188209
+    },
+    {
+      "source": "storyboard-level2/L2-07Q4B.png",
+      "destination": "storyboard-level2/L2-07Q4B.png",
+      "sha256": "CF88378CC103D31CA9E602597F0400E4AD50936EF056BE8F937F6CDA45959604",
+      "bytes": 178765
+    },
+    {
+      "source": "storyboard-level2/L2-08F1.png",
+      "destination": "storyboard-level2/L2-08F1.png",
+      "sha256": "CDF5770096F98339BC7F22FAADBCAF6CA939C9C4579CD779307AAD8FC22A6A99",
+      "bytes": 125068
+    },
+    {
+      "source": "storyboard-level2/L2-08F2.png",
+      "destination": "storyboard-level2/L2-08F2.png",
+      "sha256": "5AE72DECD49AB8A39BAD9FD62C7EA6B72E25067E0058040B9F5D9F3EB9E1ECE1",
+      "bytes": 127975
+    },
+    {
+      "source": "storyboard-level2/L2-08F3.png",
+      "destination": "storyboard-level2/L2-08F3.png",
+      "sha256": "4B6967BAD381D077A657747FE97085A715DA7870366882ABC4D78B745B169057",
+      "bytes": 127856
+    },
+    {
+      "source": "storyboard-level2/L2-08F4.png",
+      "destination": "storyboard-level2/L2-08F4.png",
+      "sha256": "347E564EF808152F4AC3CF932FDB3DE8B405A6761312A82792CEF03188462F1A",
+      "bytes": 130147
+    },
+    {
+      "source": "storyboard-level2/L2-08X.png",
+      "destination": "storyboard-level2/L2-08X.png",
+      "sha256": "71019D16D970AB3ECDE0E35AD5EFCE4752B6D66F6523D171C742E0950402DEB5",
+      "bytes": 105096
+    },
+    {
+      "source": "storyboard-level2/L2-09B1.png",
+      "destination": "storyboard-level2/L2-09B1.png",
+      "sha256": "43B7108CC2BE6D5ACB70783CAC1E14AF0DA2940CA803A6F319FA85F34ACA7047",
+      "bytes": 98915
+    },
+    {
+      "source": "storyboard-level2/L2-09B2.png",
+      "destination": "storyboard-level2/L2-09B2.png",
+      "sha256": "D8AF828B2E7EE1E0C9381DB9ACA13A46921F2BAA8A333E4D0C05CBEE43019DF5",
+      "bytes": 102829
+    },
+    {
+      "source": "storyboard-level2/L2-10A.png",
+      "destination": "storyboard-level2/L2-10A.png",
+      "sha256": "9115F290C709D32AC57D1BCD48DD07ADFF7AFF0443A338F6AA30051EA2022D76",
+      "bytes": 139983
+    },
+    {
+      "source": "storyboard-level2/STORYBOARD.md",
+      "destination": "storyboard-level2/STORYBOARD.md",
+      "sha256": "C94AE386AF197FA14052568F108FF89A52CA68CCFF3C87EA243568F76B93F20E",
+      "bytes": 39560
+    },
+    {
+      "source": "storyboard-level2/storyboard.json",
+      "destination": "storyboard-level2/storyboard.json",
+      "sha256": "05D6E3251234F64DEC950F95D849431785CD74CD683B90C3D7178ABDE7C16CF4",
+      "bytes": 47984
+    },
+    {
+      "source": "storyboard-level2/isi-sumber.json",
+      "destination": "storyboard-level2/isi-sumber.json",
+      "sha256": "1B9F56E39808385BAE4551B76632E3022E4EF06C23F77F93EB8A1E124A2E6E42",
+      "bytes": 15240
+    },
+    {
+      "source": "storyboard-level3/L3-00.png",
+      "destination": "storyboard-level3/L3-00.png",
+      "sha256": "04E795B7F37733AAE2856F96BC32429EF40A0149A91B71D30638D0FCAD535995",
+      "bytes": 153297
+    },
+    {
+      "source": "storyboard-level3/L3-01A.png",
+      "destination": "storyboard-level3/L3-01A.png",
+      "sha256": "4D555392DE6F5DEEB8D5110FE44D0A8318E09B1787902AFB5A3F65D041D97C83",
+      "bytes": 141878
+    },
+    {
+      "source": "storyboard-level3/L3-01B.png",
+      "destination": "storyboard-level3/L3-01B.png",
+      "sha256": "00AAA2A296600E3124AECAF3BFE7DEEA401563131D8D2AA647C5CAA8B1C0C40A",
+      "bytes": 133043
+    },
+    {
+      "source": "storyboard-level3/L3-02A.png",
+      "destination": "storyboard-level3/L3-02A.png",
+      "sha256": "C46DA811A8A5DBC0035D4B4E3B240AE07F9B381A2CD5D573101F297443EA469E",
+      "bytes": 143323
+    },
+    {
+      "source": "storyboard-level3/L3-02B1.png",
+      "destination": "storyboard-level3/L3-02B1.png",
+      "sha256": "E5BE000FE354DA8F1012CF54E93E19C9DE55D0FF5DA9097087B6D4A7FAE9E30E",
+      "bytes": 118892
+    },
+    {
+      "source": "storyboard-level3/L3-02B2.png",
+      "destination": "storyboard-level3/L3-02B2.png",
+      "sha256": "CD8635B9EC5116BFD74FBD92BFEBF9B0D4B7D73DF020B868142ECDBAD70EA4C5",
+      "bytes": 96192
+    },
+    {
+      "source": "storyboard-level3/L3-03A.png",
+      "destination": "storyboard-level3/L3-03A.png",
+      "sha256": "67B5A4A2E69C7E1DABCD53FE88B467AC7C06E5A8D823EABF34F3A4F7A669AA43",
+      "bytes": 144380
+    },
+    {
+      "source": "storyboard-level3/L3-03B1.png",
+      "destination": "storyboard-level3/L3-03B1.png",
+      "sha256": "1D27C580D8FBC49C445458A87B6FA28C6B9784BE41B734283E2B44BCB0071E8E",
+      "bytes": 195330
+    },
+    {
+      "source": "storyboard-level3/L3-03B2a.png",
+      "destination": "storyboard-level3/L3-03B2a.png",
+      "sha256": "CDDBC1673955D52CFE4801AFECE477746E8571ED36D98A9F466A9D097173ABC4",
+      "bytes": 232740
+    },
+    {
+      "source": "storyboard-level3/L3-03B2b.png",
+      "destination": "storyboard-level3/L3-03B2b.png",
+      "sha256": "DB41DB91348828336B1F2F22769D1D4C4429BCB7BE3DE26B07889FA9A80474EA",
+      "bytes": 184027
+    },
+    {
+      "source": "storyboard-level3/L3-03B3.png",
+      "destination": "storyboard-level3/L3-03B3.png",
+      "sha256": "194687E6FEA6FE10D2CE601CF4A0796EB3C81BB7BF72652DF634BEF76D01348A",
+      "bytes": 170991
+    },
+    {
+      "source": "storyboard-level3/L3-04A.png",
+      "destination": "storyboard-level3/L3-04A.png",
+      "sha256": "063A3F39799D43C704814B9875301F5FF7F7CA04272A59B38E3E8366181D7B70",
+      "bytes": 148798
+    },
+    {
+      "source": "storyboard-level3/L3-04B.png",
+      "destination": "storyboard-level3/L3-04B.png",
+      "sha256": "E2F1B72A0B8AD2B856146BB7CAFFD3A2BEB1D39BA61DA003D4A3806E336121AA",
+      "bytes": 145617
+    },
+    {
+      "source": "storyboard-level3/L3-04C.png",
+      "destination": "storyboard-level3/L3-04C.png",
+      "sha256": "1255F0683A7F3B084562D58C103DB2983D6666079CC54FA497F7234F10E57E1B",
+      "bytes": 151117
+    },
+    {
+      "source": "storyboard-level3/L3-04D.png",
+      "destination": "storyboard-level3/L3-04D.png",
+      "sha256": "36E8C199B69BEBE5F0B37CAF029BA0E0FE8CBB54CAF5ED7A0A3B5C6B42945141",
+      "bytes": 143892
+    },
+    {
+      "source": "storyboard-level3/L3-05A.png",
+      "destination": "storyboard-level3/L3-05A.png",
+      "sha256": "CCB3BB852AD9B68CD94CBA02F955C0282C1EF91938369C10FEC3021FBC0161D4",
+      "bytes": 146790
+    },
+    {
+      "source": "storyboard-level3/L3-05B.png",
+      "destination": "storyboard-level3/L3-05B.png",
+      "sha256": "4A37CBDB0DF6BE0D8E93D2467A3384CA3FA13DC5B93FD3380868EC5CA66FC5E0",
+      "bytes": 200429
+    },
+    {
+      "source": "storyboard-level3/L3-05C.png",
+      "destination": "storyboard-level3/L3-05C.png",
+      "sha256": "0076ED75264B62812B8931B1AB74EF0A4F29E9DD0B158D5F1A0BDDAFC14B7D3E",
+      "bytes": 211816
+    },
+    {
+      "source": "storyboard-level3/L3-05D.png",
+      "destination": "storyboard-level3/L3-05D.png",
+      "sha256": "4F42D11B5E45862E02C430EE41FA7DC237D6A1E92471CDA35203C8C8A256D8CE",
+      "bytes": 218103
+    },
+    {
+      "source": "storyboard-level3/L3-05R2A.png",
+      "destination": "storyboard-level3/L3-05R2A.png",
+      "sha256": "449FF331D636AC1846E979541AA3CA50125B22CE5F885A1E3F5AC65188AF4325",
+      "bytes": 208707
+    },
+    {
+      "source": "storyboard-level3/L3-05R2B.png",
+      "destination": "storyboard-level3/L3-05R2B.png",
+      "sha256": "92019E56F66E07AF851D4271AF7BCB005027D701C743386A6665ECB6A01EB971",
+      "bytes": 216491
+    },
+    {
+      "source": "storyboard-level3/L3-05R3A.png",
+      "destination": "storyboard-level3/L3-05R3A.png",
+      "sha256": "3133D6BB569BA0506FF247FB3C46DD66E071645EA1F1D1A5A067E5A3204E51A9",
+      "bytes": 204397
+    },
+    {
+      "source": "storyboard-level3/L3-05R3B.png",
+      "destination": "storyboard-level3/L3-05R3B.png",
+      "sha256": "EA3DAB4EA7CDD422FC7571AC6E4EE96A89D8537E7914F73D12FE9B645D6B7313",
+      "bytes": 217373
+    },
+    {
+      "source": "storyboard-level3/L3-05R4A.png",
+      "destination": "storyboard-level3/L3-05R4A.png",
+      "sha256": "BE5E88B6092BC5795CE99563D3E3E214ED8AB9B267B54B5A7EB2FEBD7F3F402F",
+      "bytes": 196585
+    },
+    {
+      "source": "storyboard-level3/L3-05R4B.png",
+      "destination": "storyboard-level3/L3-05R4B.png",
+      "sha256": "E628DDDF103D7DB55EA726A3933F68767E7E5DCE2C578A81E127F4C259E6F3C4",
+      "bytes": 200091
+    },
+    {
+      "source": "storyboard-level3/L3-05Z.png",
+      "destination": "storyboard-level3/L3-05Z.png",
+      "sha256": "CF42686985097DC7AD1C4DCD079A9A20417FCA2C4562A66D9992D9633445D438",
+      "bytes": 100478
+    },
+    {
+      "source": "storyboard-level3/L3-06A.png",
+      "destination": "storyboard-level3/L3-06A.png",
+      "sha256": "C9B5AF288460E856AB001528E445BA7116CED9E7BE6D143007E3600A29436E8E",
+      "bytes": 146239
+    },
+    {
+      "source": "storyboard-level3/L3-06B.png",
+      "destination": "storyboard-level3/L3-06B.png",
+      "sha256": "BEDF8D3C424E43AE6C108D027E06EC90BB3EE00122F8EAF3035C2A8AE2E9BE08",
+      "bytes": 87459
+    },
+    {
+      "source": "storyboard-level3/L3-06C.png",
+      "destination": "storyboard-level3/L3-06C.png",
+      "sha256": "6E806D52209728AB01BD28DE88410F64E1682E2B9E39E27B4E4C85BA1A2F7EFE",
+      "bytes": 102282
+    },
+    {
+      "source": "storyboard-level3/L3-07Q1A.png",
+      "destination": "storyboard-level3/L3-07Q1A.png",
+      "sha256": "71350CAFE919F3FD665EFD13FE0046674CFA2A5C49E79F046E60726B6CD67507",
+      "bytes": 125786
+    },
+    {
+      "source": "storyboard-level3/L3-07Q1B.png",
+      "destination": "storyboard-level3/L3-07Q1B.png",
+      "sha256": "15EB2224584B18583ADCAF67CAD459FAE4D4A22C88907E29472C77F65DB82A9C",
+      "bytes": 155188
+    },
+    {
+      "source": "storyboard-level3/L3-07Q2A.png",
+      "destination": "storyboard-level3/L3-07Q2A.png",
+      "sha256": "8879B76D93C3630BFA679082008215ABCEA646B8A133A683E62CD95800E45581",
+      "bytes": 126514
+    },
+    {
+      "source": "storyboard-level3/L3-07Q2B.png",
+      "destination": "storyboard-level3/L3-07Q2B.png",
+      "sha256": "F681D3B4FCEE490C01A43FDDAFA473C8726F3BB6F4735CDE08EDD954C23A50EE",
+      "bytes": 148300
+    },
+    {
+      "source": "storyboard-level3/L3-07Q3A.png",
+      "destination": "storyboard-level3/L3-07Q3A.png",
+      "sha256": "D8A056091C99871BAE74FBF2E73CD906A398480CFAF9EA00FDC3B996FC9287D9",
+      "bytes": 139696
+    },
+    {
+      "source": "storyboard-level3/L3-07Q3B.png",
+      "destination": "storyboard-level3/L3-07Q3B.png",
+      "sha256": "A2F837713076EE150F4F832D7F36C4D1FDBED1D8426105FE020F2EF0396B1091",
+      "bytes": 159484
+    },
+    {
+      "source": "storyboard-level3/L3-07Q4A.png",
+      "destination": "storyboard-level3/L3-07Q4A.png",
+      "sha256": "84133292173FF0849AC3FDC61EDD5E8C1D4A73E5AA5E5E81B185D978EE05881D",
+      "bytes": 124591
+    },
+    {
+      "source": "storyboard-level3/L3-07Q4B.png",
+      "destination": "storyboard-level3/L3-07Q4B.png",
+      "sha256": "DEECA7B2E4A811E8B38A168EB0A76CB5B42FC810CBB9BDF288B40F0A4CAB2B74",
+      "bytes": 146785
+    },
+    {
+      "source": "storyboard-level3/L3-08F1.png",
+      "destination": "storyboard-level3/L3-08F1.png",
+      "sha256": "08E6150F6235030A5E9FDEFF9CD9E8B276F0DF3BDDB1A413FCF7C1822001BEF8",
+      "bytes": 110090
+    },
+    {
+      "source": "storyboard-level3/L3-08F2.png",
+      "destination": "storyboard-level3/L3-08F2.png",
+      "sha256": "FD8010009CD851EC1EF46B11263FDF18621E8950EC307AB01E090F84258042E8",
+      "bytes": 114176
+    },
+    {
+      "source": "storyboard-level3/L3-08F3.png",
+      "destination": "storyboard-level3/L3-08F3.png",
+      "sha256": "F513180E9E25D966E686A6E5464BBCFF7EA5CF4524C6FDB43B8E541CE042C0E1",
+      "bytes": 109769
+    },
+    {
+      "source": "storyboard-level3/L3-08F4.png",
+      "destination": "storyboard-level3/L3-08F4.png",
+      "sha256": "1CA6AA3ED2AD116A422748E025CB32727314C99B8F32B056DCA85BDA1AE7D865",
+      "bytes": 110302
+    },
+    {
+      "source": "storyboard-level3/L3-08X.png",
+      "destination": "storyboard-level3/L3-08X.png",
+      "sha256": "274A1454610B616D45B9CF8A98522258ACE55AAF4DDCC7708EA2DD2FF81C1472",
+      "bytes": 88216
+    },
+    {
+      "source": "storyboard-level3/L3-09B1.png",
+      "destination": "storyboard-level3/L3-09B1.png",
+      "sha256": "798E5EA9AC4807870F0D3E2ED55B8014576EB87E49897F0C79CCE2E182A9B933",
+      "bytes": 82030
+    },
+    {
+      "source": "storyboard-level3/L3-09B2.png",
+      "destination": "storyboard-level3/L3-09B2.png",
+      "sha256": "AD07AD259C93ADCD8CC4A751E62B3F263EDFA02D85BE26FC806F0EE2B13AF420",
+      "bytes": 89030
+    },
+    {
+      "source": "storyboard-level3/L3-10A.png",
+      "destination": "storyboard-level3/L3-10A.png",
+      "sha256": "17DA154BF3F812AC4C593C83A8885673A5B824F832FF984B26898E89AA2AD8DD",
+      "bytes": 141283
+    },
+    {
+      "source": "storyboard-level3/STORYBOARD.md",
+      "destination": "storyboard-level3/STORYBOARD.md",
+      "sha256": "5D8FC167D20EA29AE92E9D00CB01B4E2F2A0213E26AF9EA37D29CDB29898084D",
+      "bytes": 43329
+    },
+    {
+      "source": "storyboard-level3/storyboard.json",
+      "destination": "storyboard-level3/storyboard.json",
+      "sha256": "A9ED504D5CF7FF6028A56B985BCED5EE6C0BD2286AAE89A4B9432135C23AE3BC",
+      "bytes": 57686
+    },
+    {
+      "source": "storyboard-level3/isi-sumber.json",
+      "destination": "storyboard-level3/isi-sumber.json",
+      "sha256": "88AF3BA6EAE54038C3F4B611C3F931B215C6493914C7171E587E0D3B66D558D7",
+      "bytes": 15472
+    },
+    {
+      "source": "storyboard-level3/bank-ronde-editor.cjs",
+      "destination": "storyboard-level3/bank-ronde-editor.cjs",
+      "sha256": "CCBE64F940D57255EC1AC7BDD39248625399BD0DA1BD712EB2C025C029445F9B",
+      "bytes": 4796
+    },
+    {
+      "source": "storyboard-level3/LATIHAN-2-SPESIFIKASI.md",
+      "destination": "storyboard-level3/LATIHAN-2-SPESIFIKASI.md",
+      "sha256": "B2F51B8AB0BF8985AEB4DAA31E9ECF803FA4AE92C8A82CD410116806EDDA139C",
+      "bytes": 9119
+    },
+    {
+      "source": "storyboard-aula/AU-00.png",
+      "destination": "storyboard-aula/AU-00.png",
+      "sha256": "3AD16CF06DEAE2335649DF4B63F65388A72CE5E7C40332EB9A90817EB344412F",
+      "bytes": 145221
+    },
+    {
+      "source": "storyboard-aula/AU-01A.png",
+      "destination": "storyboard-aula/AU-01A.png",
+      "sha256": "D7C26F7A4BC1D93B551CF173B141160F59A4B981A6BBCCEB79606DDD1142F683",
+      "bytes": 101012
+    },
+    {
+      "source": "storyboard-aula/AU-02A.png",
+      "destination": "storyboard-aula/AU-02A.png",
+      "sha256": "544E3A36CD856A743C1B7CA8FA650E8EC88C3A6D8D4963990185A262131B9BCA",
+      "bytes": 142393
+    },
+    {
+      "source": "storyboard-aula/AU-03.png",
+      "destination": "storyboard-aula/AU-03.png",
+      "sha256": "3D4CC2E80EE41B925EF381FE114BAA32110AA65ED2F63A4BF9D2BCFC7A9E9F04",
+      "bytes": 104103
+    },
+    {
+      "source": "storyboard-aula/AU-04.png",
+      "destination": "storyboard-aula/AU-04.png",
+      "sha256": "579ED66F22016A6876BD788D02F2E692C9004CB55D0EB8615D2E07E969EA08B7",
+      "bytes": 104444
+    },
+    {
+      "source": "storyboard-aula/AU-04B.png",
+      "destination": "storyboard-aula/AU-04B.png",
+      "sha256": "6973A5888AF8FB4A01C1A0E21F0E9AC1E7ACDD67B578274ACF7922D7F4D36139",
+      "bytes": 96124
+    },
+    {
+      "source": "storyboard-aula/AU-04C.png",
+      "destination": "storyboard-aula/AU-04C.png",
+      "sha256": "61B2959D81BE5300F95CE69CE2DCFD8B4AD7F2D9301C3A0A576628DC1A45A001",
+      "bytes": 79797
+    },
+    {
+      "source": "storyboard-aula/AU-05.png",
+      "destination": "storyboard-aula/AU-05.png",
+      "sha256": "39051D30C27F139AFC29BE97F0AC17CAE31A9B59E2828A1DBC490B73E2F09CAB",
+      "bytes": 96418
+    },
+    {
+      "source": "storyboard-aula/AU-06A.png",
+      "destination": "storyboard-aula/AU-06A.png",
+      "sha256": "274E8B28B5C2FF2A1D3C1070B969DFD5CCBE4A56014F6EBDC5B93327EB251FF6",
+      "bytes": 130911
+    },
+    {
+      "source": "storyboard-aula/AU-06B.png",
+      "destination": "storyboard-aula/AU-06B.png",
+      "sha256": "090DD3225B50E27F4FC15242F1BBD5ABA3880CA1606EA638C42C26B5EAADA958",
+      "bytes": 141539
+    },
+    {
+      "source": "storyboard-aula/STORYBOARD.md",
+      "destination": "storyboard-aula/STORYBOARD.md",
+      "sha256": "91EAC44A2D1FECF4AA13697E7880B5274BC23D778E06F7CB06E1D7F96F8D2199",
+      "bytes": 7339
+    },
+    {
+      "source": "storyboard-aula/storyboard.json",
+      "destination": "storyboard-aula/storyboard.json",
+      "sha256": "755B1144874A5E12A6FFABD97764915A64FB8DCCDBCFD051093EE942A935698F",
+      "bytes": 8684
+    },
+    {
+      "source": "storyboard-bonus/EX-00.png",
+      "destination": "storyboard-bonus/EX-00.png",
+      "sha256": "43BD16BDF42C503E109404F64B27CA93B29AEB8E19F7F8B6BE85B9B4F32CBB81",
+      "bytes": 123003
+    },
+    {
+      "source": "storyboard-bonus/EX-01A.png",
+      "destination": "storyboard-bonus/EX-01A.png",
+      "sha256": "A96F6F1FA84946998CC615C9AA1043604A01884E520C6F4B1C47FD3CB1196467",
+      "bytes": 106546
+    },
+    {
+      "source": "storyboard-bonus/EX-02A.png",
+      "destination": "storyboard-bonus/EX-02A.png",
+      "sha256": "4E0C9891F43FBCAB919FAD505F9702525599F83264B82A2314159E8648B7E5D7",
+      "bytes": 105443
+    },
+    {
+      "source": "storyboard-bonus/EX-02B.png",
+      "destination": "storyboard-bonus/EX-02B.png",
+      "sha256": "D38D1564CD227DDB4D45CFEF75CD2755321A061C264903C3EE35B14ADA83AF70",
+      "bytes": 114126
+    },
+    {
+      "source": "storyboard-bonus/EX-03A.png",
+      "destination": "storyboard-bonus/EX-03A.png",
+      "sha256": "B60419A6F691EA49FE2E34F335B3767B52DBB90E0DE6F60594019A5362410E2A",
+      "bytes": 109828
+    },
+    {
+      "source": "storyboard-bonus/EX-03B.png",
+      "destination": "storyboard-bonus/EX-03B.png",
+      "sha256": "D0FFD9B1351A5B65FC6317D6128704DD69A91FAF2D37EACF7F1E66704D5740E7",
+      "bytes": 119048
+    },
+    {
+      "source": "storyboard-bonus/EX-04A.png",
+      "destination": "storyboard-bonus/EX-04A.png",
+      "sha256": "F91A862944F6FEE00567977166959352887B2FBEDEF794AF68488179DF87F9C4",
+      "bytes": 113323
+    },
+    {
+      "source": "storyboard-bonus/EX-04B.png",
+      "destination": "storyboard-bonus/EX-04B.png",
+      "sha256": "510B5C8893F404870C94D18E1A03FA774C0482FAF6DA0084C0778331060B704B",
+      "bytes": 120420
+    },
+    {
+      "source": "storyboard-bonus/EX-05.png",
+      "destination": "storyboard-bonus/EX-05.png",
+      "sha256": "BB3974F89C4E10E6C65BF35A5CF76880507DF18366C6BFDAE59E6644C850F9E3",
+      "bytes": 114350
+    },
+    {
+      "source": "storyboard-bonus/STORYBOARD.md",
+      "destination": "storyboard-bonus/STORYBOARD.md",
+      "sha256": "47BB7CB088428B4C49A3366A228262CA16A79579A2A705DB9702B79D2B09EFD2",
+      "bytes": 4602
+    },
+    {
+      "source": "storyboard-bonus/storyboard.json",
+      "destination": "storyboard-bonus/storyboard.json",
+      "sha256": "C9CA5B05AF9083407597391F47A50D72A0A19830F6EAE03A142C5BA2BB49ABFF",
+      "bytes": 5454
+    },
+    {
+      "source": "akses-gedung/AKSES-01.png",
+      "destination": "akses-gedung/AKSES-01.png",
+      "sha256": "343C6C7C81635FA9AF4A70C92EFD6DE9E8A6DE9275C1D03ADC4A9EBED4B5EF6D",
+      "bytes": 117351
+    },
+    {
+      "source": "akses-gedung/ATURAN-AKSES.md",
+      "destination": "akses-gedung/ATURAN-AKSES.md",
+      "sha256": "006688C440F37A4C526930B11D66D112C87E675297C417F8F6812EF4BC3B6EAF",
+      "bytes": 2383
+    },
+    {
+      "source": "paket-implementasi-24okt/docs-27okt/ISI-DOCS.md",
+      "destination": "ringkasan-visual/ISI-DOCS.md",
+      "sha256": "B04AFCED8F2E741FCDB8C55CE0C07E9A3AAA2F88438628D0CD05E3BA007ADEFF",
+      "bytes": 4002
+    },
+    {
+      "source": "paket-implementasi-24okt/docs-27okt/userflow-01.png",
+      "destination": "ringkasan-visual/userflow-01.png",
+      "sha256": "63F1650A5827AD6757E39E9E5668C26AE1BF80DBF72BDDE89C95F1AB98B33053",
+      "bytes": 135257
+    },
+    {
+      "source": "paket-implementasi-24okt/docs-27okt/userflow-02.png",
+      "destination": "ringkasan-visual/userflow-02.png",
+      "sha256": "614B802947A5F5D5A6B0A964556E927FF9AF324282A80C05B7128D4267824689",
+      "bytes": 166706
+    },
+    {
+      "source": "paket-implementasi-24okt/docs-27okt/userflow-03.png",
+      "destination": "ringkasan-visual/userflow-03.png",
+      "sha256": "09EAA4ABF7C887CA8B0BEA5549ACB20F639A08A444C4F2D859631565E8D97232",
+      "bytes": 173004
+    },
+    {
+      "source": "paket-implementasi-24okt/hifi-audio-level1.png",
+      "destination": "ringkasan-visual/hifi-audio-level1.png",
+      "sha256": "5081BAE51F3114DDF3D9A913C790567B6C09026466D73004292CB2143AD2661B",
+      "bytes": 1498988
+    },
+    {
+      "source": "paket-implementasi-24okt/hifi-bukti-level2.png",
+      "destination": "ringkasan-visual/hifi-bukti-level2.png",
+      "sha256": "1BCFF72BDB509689CB52BEF8706347F3792BCB82D413A3ED314D9290B981AF12",
+      "bytes": 1683426
+    },
+    {
+      "source": "paket-implementasi-24okt/hifi-editor-level3.png",
+      "destination": "ringkasan-visual/hifi-editor-level3.png",
+      "sha256": "B39403507AB5A4083E01E9ED74933D61992F95F5FD2C6EAB38477365F55A7554",
+      "bytes": 1673449
+    }
+  ]
+}

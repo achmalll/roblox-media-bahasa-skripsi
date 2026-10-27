@@ -1,0 +1,948 @@
+[
+  {
+    "id": "L3-00",
+    "title": "Peta kegiatan Level 3",
+    "kind": "map",
+    "body": [],
+    "note": "Fokus hanya satu gedungLevel3. Pintu di tengah depan; kiri/kanan dilihat saat masuk. Kanan: NPC pembuka, papan istilah opsional, meja abstrak. Kiri: papan fungsi gagasan, papan batas simpulan, kios evaluasi dekat depan. Rute: masuk → NPC kanan → abstrak kanan → menyeberang melalui jalur tengah → gagasan kiri → simpulan kiri → kios kiri → setelah lulus pintu tengah. Ruang tetap terbuka tanpa sekat, tambahanNPC atau lantai. Enam titik kegiatan bukan enam ruangan. Posisi relatif, bukan CFrame terukur. Materi/latihan/soal dipertahankan. Aula dibahas terpisah setelahLevel3.",
+    "width": 1200,
+    "height": 1240,
+    "file": "L3-00.jpg"
+  },
+  {
+    "id": "L3-01A",
+    "title": "Masuk gedung dan temui NPC",
+    "kind": "world",
+    "body": [
+      "Tujuan: Temui pemandu Level 3.",
+      "Pemandu Level 3",
+      "Tahan E — Bicara"
+    ],
+    "note": "Akses gedung Level 3 terbuka setelah Level 2 lulus minimal 75. Jika belum, pemain tetap di luar dengan tulisan “Selesaikan Level 2 terlebih dahulu”; tidak ada modal atau tombol E di pintu. Setelah terbuka, masuk dari pintu tengah dan berjalan ke NPC lama di kanan. NPC langsung membuka pembuka, tanpa cabang penolakan akses. Tidak menambah tugas perjalanan; gedung sebelumnya tetap dapat dikunjungi. Posisi NPC dan isi pembelajaran dipertahankan.",
+    "object": "npc",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-01A.jpg"
+  },
+  {
+    "id": "L3-01B",
+    "title": "NPC — pembuka membaca lanjutan",
+    "kind": "panel",
+    "body": [
+      "Selamat datang di Level 3 — Keterampilan Membaca Lanjutan.",
+      "Pada level ini, Anda akan membaca sebuah teks abstrak ilmiah yang membahas evolusi sistem operasi modern serta pergeseran dari pendekatan process-centric menuju data-centric.",
+      "Bacalah dengan saksama dan perhatikan hubungan antargagasan dalam setiap paragraf. Papan istilah tersedia bila diperlukan.",
+      "Setelah membaca, susun fungsi gagasan dan tuntaskan empat ronde pemeriksaan simpulan berdasarkan bukti, lalu kerjakan empat soal evaluasi.",
+      "Tekan Mulai untuk menuju meja abstrak."
+    ],
+    "note": "Pembuka mengikuti versi sebelumnya. NPC tetap di kanan. Mulai menutup panel dan menunjuk meja abstrak di kanan; pemain berjalan lalu berinteraksi lagi. Isi tujuan membaca dan latihan dipertahankan.",
+    "buttons": [
+      "Mulai"
+    ],
+    "loc": "NPC • sisi kanan",
+    "next": "Mulai → tutup → berjalan ke meja abstrak03A.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-01B.jpg"
+  },
+  {
+    "id": "L3-02A",
+    "title": "Papan istilah di dekat NPC",
+    "kind": "world",
+    "body": [
+      "Bantuan opsional: istilah dalam abstrak.",
+      "Istilah dalam abstrak",
+      "Tahan E — Lihat istilah"
+    ],
+    "note": "Papan istilah dekatNPC di kanan. Bantuan opsional tanpa skor/prasyarat. Tutup kembali ke posisi dan tujuan belajar sebelumnya.",
+    "object": "glossary",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-02A.jpg"
+  },
+  {
+    "id": "L3-02B1",
+    "title": "Istilah — halaman 1/2",
+    "kind": "panel",
+    "body": [
+      "Inersia sistem operasi",
+      "Kecenderungan sistem operasi dan model pemrograman lama mempertahankan desain serta pendekatan tradisional meskipun teknologi perangkat keras berkembang.",
+      "Overhead",
+      "Beban tambahan untuk mendukung proses utama; pada bacaan muncul melalui lapisan kompatibilitas, pengelolaan kernel atau serialisasi.",
+      "Throughput dan latensi",
+      "Throughput: jumlah pekerjaan/data yang diproses per satuan waktu. Latensi: waktu untuk merespons permintaan."
+    ],
+    "note": "Mengacu isi foto44, diringkas untuk keterbacaan. Istilah tetap bantuan memahami teks, tidak menjadi jawaban latihan otomatis. Berikutnya mengganti halaman pada papan yang sama.",
+    "buttons": [
+      "Berikutnya"
+    ],
+    "small": true,
+    "loc": "Papan istilah • sisi kanan",
+    "next": "Panah = ganti halaman. × = tutup; tujuan belajar tetap.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-02B1.jpg"
+  },
+  {
+    "id": "L3-02B2",
+    "title": "Istilah — halaman 2/2",
+    "kind": "panel",
+    "body": [
+      "Kernel",
+      "Inti dari sistem operasi.",
+      "Persistensi data",
+      "Kemampuan data tetap tersimpan meskipun sistem dimatikan atau proses selesai.",
+      "Memori bersama",
+      "Mekanisme beberapa proses atau node mengakses area memori yang sama untuk pertukaran data."
+    ],
+    "note": "Mengacu foto45. Definisi kernel hanya memakai frasa yang terlihat pada baseline; tidak menebak lanjutan kalimat yang terpotong. Tidak menambah materi teknis yang diuji terpisah.",
+    "buttons": [
+      "Kembali"
+    ],
+    "loc": "Papan istilah • sisi kanan",
+    "next": "Kembali = halaman1. × = tutup dan lanjut tujuan sebelumnya.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-02B2.jpg"
+  },
+  {
+    "id": "L3-03A",
+    "title": "Menuju meja abstrak",
+    "kind": "world",
+    "body": [
+      "Tujuan: Baca abstrak di meja baca.",
+      "Abstrak Twizzler",
+      "Tahan E — Baca abstrak"
+    ],
+    "note": "Meja abstrak berada di kanan bersama kelompokNPC/papan istilah. Pemain berjalan pendek lalu tahanE. Satu pembaca tiga bagian; paragraf tidak dipindahkan menjadi tulisan kecil di permukaan meja. Setelah materi lengkap, tutup pembaca lalu menyeberang melalui jalur tengah ke papan gagasan kiri.",
+    "object": "news",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-03A.jpg"
+  },
+  {
+    "id": "L3-03B1",
+    "title": "Abstrak — bagian 1/3",
+    "kind": "reading",
+    "body": [
+      "Masalah dan motivasi",
+      "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak. Namun, sistem operasi dan model pemrograman tradisional memiliki inersia, sehingga antarmuka untuk perangkat keras baru cenderung mengikuti desain antarmuka yang telah ada sebelumnya. Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat. Oleh karena itu, abstraksi sistem operasi perlu berevolusi mengikuti perkembangan zaman, karena ketergantungan pada abstraksi lama yang berusia puluhan tahun serta perubahan yang bersifat inkremental berpotensi membatasi pemanfaatan perangkat keras modern hanya melalui antarmuka yang awalnya dirancang untuk media penyimpanan lama seperti pita magnetik dan spinning disk."
+    ],
+    "note": "Paragraf1 utuh dari tab peta. Baca satu bagian pada satu waktu, Lanjut/Kembali dalam panel yang sama. Posisi baca dan bagian terakhir disimpan selama sesi. Tidak menganggap klikLanjut sebagai bukti pemahaman. Papan istilah dapat dibuka lalu kembali.",
+    "part": "1/3",
+    "buttons": [
+      "Lanjut"
+    ],
+    "loc": "Meja abstrak • sisi kanan",
+    "next": "Lanjut = ganti bagian pada panel yang sama; tidak berjalan.",
+    "width": 1200,
+    "height": 1159,
+    "file": "L3-03B1.jpg"
+  },
+  {
+    "id": "L3-03B2a",
+    "title": "Abstrak — bagian 2/3, posisi awal",
+    "kind": "reading",
+    "body": [
+      "Tren perangkat keras dan pendekatan",
+      "Saat ini, terdapat peluang untuk mengkaji bagaimana pertemuan berbagai tren dapat menggeser model pemrograman dari sudut pandang tradisional yang berpusat pada proses (process-centric) menuju pendekatan yang berpusat pada data (data-centric), di mana data menjadi entitas utama dalam sistem. Peluang ini muncul seiring dengan perkembangan perangkat keras yang secara langsung memengaruhi cara pandang terhadap jalur akses data serta tanggung jawab sistem operasi dan kernel. Meningkatnya kecepatan teknologi interkoneksi memperkecil jarak latensi antar node komputasi, sehingga meningkatkan efisiensi dan kegunaan shared memory. Selain itu, penyimpanan persisten yang sebelumnya berada di lapisan bawah hierarki memori kini bergerak ke lapisan yang lebih tinggi seiring meningkatnya kecepatan akses perangkat persisten. Kondisi ini menyebabkan overhead jalur akses data berbasis kernel tradisional menjadi faktor dominan dalam biaya akses data persisten. Di sisi lain, meningkatnya heterogenitas serta pemisahan (disaggregation) antara perangkat komputasi dan memori menuntut mobilitas data dan komputasi yang lebih tinggi agar perangkat lunak tetap skalabel, terdistribusi, dan memiliki kinerja tinggi."
+    ],
+    "note": "Bagian2 mencakup paragraf2–3 utuh.03B2a menunjukkan posisi awal gulir paragraf2,03B2b posisi bawah paragraf3 pada panel yang SAMA. Tidak menambah bagian keempat atau menghapus isi panjang. Label2/3 tetap selama gulir.",
+    "part": "2/3",
+    "buttons": [
+      "Kembali"
+    ],
+    "scroll": "awal",
+    "loc": "Meja abstrak • sisi kanan",
+    "next": "Gulir untuk melanjutkan bagian2; karakter tetap di meja.",
+    "width": 1200,
+    "height": 1261,
+    "file": "L3-03B2a.jpg"
+  },
+  {
+    "id": "L3-03B2b",
+    "title": "Abstrak — bagian 2/3, posisi bawah",
+    "kind": "reading",
+    "body": [
+      "Tren perangkat keras dan pendekatan",
+      "Disertasi ini memperkenalkan sistem operasi dan model pemrograman baru yang berorientasi pada data (data-centric), yang dirancang berdasarkan tren-tren tersebut. Pendekatan ini merumuskan ulang tujuan sistem operasi dan memungkinkan peninjauan kembali teknik pemrograman sistem klasik ke dalam model yang memfasilitasi berbagi data, alih-alih menghambatnya. Model pemrograman sistem tradisional umumnya melibatkan kompleksitas dan overhead yang signifikan dalam pengelolaan persistensi dan berbagi data, seperti operasi persistensi berbutir kasar yang mahal, model data RPC yang kaku, serta kebutuhan serialisasi. Sebaliknya, pendekatan data-centric ini mengurangi keterlibatan kernel dalam jalur akses data, menjadikan data bersifat mobile melalui referensi invarian yang tidak bergantung pada ruang alamat atau mesin, serta menghilangkan kebutuhan akan serialisasi."
+    ],
+    "note": "Paragraf3 utuh, posisi bawah bagian2 yang sama. Lanjut membuka bagian3. Pembaca memakaiScrollingFrame baseline, bukan kamera/objek baru.",
+    "part": "2/3",
+    "buttons": [
+      "Kembali",
+      "Lanjut"
+    ],
+    "scroll": "bawah",
+    "loc": "Meja abstrak • sisi kanan",
+    "next": "Lanjut = bagian3, bukan berjalan ke meja lain.",
+    "width": 1200,
+    "height": 1091,
+    "file": "L3-03B2b.jpg"
+  },
+  {
+    "id": "L3-03B3",
+    "title": "Abstrak — bagian 3/3",
+    "kind": "reading",
+    "body": [
+      "Implementasi dan evaluasi",
+      "Penelitian ini membahas motivasi dan tren perangkat keras yang melatarbelakangi perancangan sistem tersebut, mendefinisikan ruang desain berdasarkan tren tersebut, serta memperkenalkan Twizzler sebagai salah satu implementasi dalam ruang desain tersebut yang merepresentasikan prinsip-prinsip yang diusulkan. Evaluasi terhadap Twizzler dilakukan melalui studi kasus yang menunjukkan perilaku sistem, efektivitas, dan kegunaan model pemrograman yang dikembangkan, dengan membangun sejumlah perangkat lunak baru khusus untuk Twizzler. Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak."
+    ],
+    "note": "Paragraf4 utuh dari tab peta. Ke papan gagasan menutup pembaca dan menunjuk objek04A; tidak langsung membuka latihan. Progres tiga bagian adalah kunjungan, bukan klaim sudah memahami. Materi baseline parafrase Bittman2023 tetap ditelaah ahli; metadata artefak seperti LogoVIAFID tidak disalin.",
+    "part": "3/3",
+    "buttons": [
+      "Kembali",
+      "Ke papan gagasan"
+    ],
+    "loc": "Meja abstrak • sisi kanan",
+    "next": "Ke papan gagasan → tutup → menyeberang ke04A di kiri.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-03B3.jpg"
+  },
+  {
+    "id": "L3-04A",
+    "title": "Mendekati papan fungsi gagasan",
+    "kind": "world",
+    "body": [
+      "Tujuan: Kenali fungsi gagasan dalam abstrak.",
+      "Latihan 1 — Fungsi gagasan",
+      "Tahan E — Buka latihan"
+    ],
+    "note": "Papan fungsi gagasan di kiri bagian dalam. Setelah membaca di kanan, tutup panel dan berjalan menyeberang melalui jalur tengah, lalu tahanE untuk latihan1. Bentuk meja/papan sederhana, mekanik drag2D dan isi latihan tetap. Jika materi belum lengkap, arahkan bagian yang belum dikunjungi.",
+    "object": "evidence",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-04A.jpg"
+  },
+  {
+    "id": "L3-04B",
+    "title": "Latihan 1 — susun fungsi gagasan",
+    "kind": "classify",
+    "body": [
+      "Baca potongan gagasan, lalu seret ke fungsi yang sesuai.",
+      "Lapisan kompatibilitas dan overhead membatasi pemanfaatan perangkat keras modern.",
+      "Pendekatan data-centric dirancang untuk memudahkan berbagi data dan mengurangi beban akses data.",
+      "Twizzler dievaluasi melalui studi kasus dan aplikasi yang di-porting."
+    ],
+    "note": "Tujuan membaca: mengenali fungsi gagasan dan membatasi simpulan pada bukti abstrak; bukan hafalan teori OS. Latihan tanpa skor kelulusan.  Tiga potongan ini ringkasan setia pada bagian1,2,3, bukan kutipan verbatim. Kunci internal: potongan kendala→Masalah, usulan data-centric→Pendekatan, studi kasus→Evaluasi. Tidak meminta definisiOS. Tiga kartu/tiga kotak terlihat bersamaan; tahan→seret→lepas. Lepas di luar/kotak terisi kembali ke posisi sah sebelumnya; ganti dengan mengembalikan kartu ke area kartu dulu. Penilaian hanya setelah Periksa; pasangan salah boleh ditempatkan. Contoh salah: kendala diberiEvaluasi, studi kasus diberiMasalah; pendekatan tetap tepat. Koreksi: kendala melatarbelakangi penelitian, usulan menjelaskan pendekatan, studi kasus menjelaskan cara menilai. Sesudah salah pertama beri petunjuk bagian terkait; jika masih salah pada pemeriksaan berikutnya, tampilkan cuplikan relevan, pengguna tetap menyusun tepat danPeriksa. Status bantuan dibedakan. Jumlah percobaan bantuan usulan telaah, bukanSOP final. Baca abstrak membuka pembaca dan kembali dengan susunan tersimpan.",
+    "state": "empty",
+    "buttons": [
+      "Baca abstrak",
+      "Periksa"
+    ],
+    "loc": "Papan gagasan • kiri dalam",
+    "next": "Seret → lepas → Periksa; koreksi tetap di papan yang sama.",
+    "width": 1600,
+    "height": 1235,
+    "file": "L3-04B.jpg"
+  },
+  {
+    "id": "L3-04C",
+    "title": "Latihan 1 — contoh label tertukar",
+    "kind": "classify",
+    "body": [
+      "Baca potongan gagasan, lalu seret ke fungsi yang sesuai.",
+      "Lapisan kompatibilitas dan overhead membatasi pemanfaatan perangkat keras modern.",
+      "Pendekatan data-centric dirancang untuk memudahkan berbagi data dan mengurangi beban akses data.",
+      "Twizzler dievaluasi melalui studi kasus dan aplikasi yang di-porting."
+    ],
+    "note": "Tujuan membaca: mengenali fungsi gagasan dan membatasi simpulan pada bukti abstrak; bukan hafalan teori OS. Latihan tanpa skor kelulusan.  Tiga potongan ini ringkasan setia pada bagian1,2,3, bukan kutipan verbatim. Kunci internal: potongan kendala→Masalah, usulan data-centric→Pendekatan, studi kasus→Evaluasi. Tidak meminta definisiOS. Tiga kartu/tiga kotak terlihat bersamaan; tahan→seret→lepas. Lepas di luar/kotak terisi kembali ke posisi sah sebelumnya; ganti dengan mengembalikan kartu ke area kartu dulu. Penilaian hanya setelah Periksa; pasangan salah boleh ditempatkan. Contoh salah: kendala diberiEvaluasi, studi kasus diberiMasalah; pendekatan tetap tepat. Koreksi: kendala melatarbelakangi penelitian, usulan menjelaskan pendekatan, studi kasus menjelaskan cara menilai. Sesudah salah pertama beri petunjuk bagian terkait; jika masih salah pada pemeriksaan berikutnya, tampilkan cuplikan relevan, pengguna tetap menyusun tepat danPeriksa. Status bantuan dibedakan. Jumlah percobaan bantuan usulan telaah, bukanSOP final. Baca abstrak membuka pembaca dan kembali dengan susunan tersimpan.",
+    "state": "wrong",
+    "buttons": [
+      "Baca abstrak",
+      "Coba lagi"
+    ],
+    "loc": "Papan gagasan • kiri dalam",
+    "next": "Seret → lepas → Periksa; koreksi tetap di papan yang sama.",
+    "width": 1600,
+    "height": 1235,
+    "file": "L3-04C.jpg"
+  },
+  {
+    "id": "L3-04D",
+    "title": "Latihan 1 — fungsi gagasan sesuai",
+    "kind": "classify",
+    "body": [
+      "Baca potongan gagasan, lalu seret ke fungsi yang sesuai.",
+      "Lapisan kompatibilitas dan overhead membatasi pemanfaatan perangkat keras modern.",
+      "Pendekatan data-centric dirancang untuk memudahkan berbagi data dan mengurangi beban akses data.",
+      "Twizzler dievaluasi melalui studi kasus dan aplikasi yang di-porting."
+    ],
+    "note": "Tujuan membaca: mengenali fungsi gagasan dan membatasi simpulan pada bukti abstrak; bukan hafalan teori OS. Latihan tanpa skor kelulusan.  Tiga potongan ini ringkasan setia pada bagian1,2,3, bukan kutipan verbatim. Kunci internal: potongan kendala→Masalah, usulan data-centric→Pendekatan, studi kasus→Evaluasi. Tidak meminta definisiOS. Tiga kartu/tiga kotak terlihat bersamaan; tahan→seret→lepas. Lepas di luar/kotak terisi kembali ke posisi sah sebelumnya; ganti dengan mengembalikan kartu ke area kartu dulu. Penilaian hanya setelah Periksa; pasangan salah boleh ditempatkan. Contoh salah: kendala diberiEvaluasi, studi kasus diberiMasalah; pendekatan tetap tepat. Koreksi: kendala melatarbelakangi penelitian, usulan menjelaskan pendekatan, studi kasus menjelaskan cara menilai. Sesudah salah pertama beri petunjuk bagian terkait; jika masih salah pada pemeriksaan berikutnya, tampilkan cuplikan relevan, pengguna tetap menyusun tepat danPeriksa. Status bantuan dibedakan. Jumlah percobaan bantuan usulan telaah, bukanSOP final. Ke papan simpulan menutup panel lalu pemain berjalan05A.",
+    "state": "correct",
+    "buttons": [
+      "Ke papan simpulan"
+    ],
+    "loc": "Papan gagasan • kiri dalam",
+    "next": "Tutup → jalan ke papan simpulan05A di kiri.",
+    "width": 1600,
+    "height": 1235,
+    "file": "L3-04D.jpg"
+  },
+  {
+    "id": "L3-05A",
+    "title": "Mendekati papan batas simpulan",
+    "kind": "world",
+    "body": [
+      "Tujuan: Batasi simpulan sesuai bukti abstrak.",
+      "Latihan 2 — Batas simpulan",
+      "Tahan E — Buka latihan"
+    ],
+    "note": "Papan simpulan tetap di kiri tengah. Setelah latihan1, tutup, berjalan pendek lalu tahanE. Satu interaksi membuka latihan2 empat ronde bertahap, bukan empat objek/NPC baru. Semua ronde memakai dua pilihanID, draf dan bukti berbeda. Setelah tiap ronde tepat, Ronde berikutnya mengganti isi panel tanpa berjalan. Ke kios hanya setelah4/4 selesai.",
+    "object": "pair",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-05A.jpg"
+  },
+  {
+    "id": "L3-05B",
+    "title": "Latihan 2 — ronde 1/4 — Kendala dalam bacaan",
+    "kind": "editor",
+    "body": [
+      "Coret akibat yang berlebihan. Tunjuk kalimat tentang keterbatasan programmer.",
+      "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak.",
+      "Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat.",
+      "Lapisan kompatibilitas dan overhead membatasi programmer dalam mengekspresikan bagian penting program,",
+      "meskipun tuntutan throughput lebih tinggi dan latensi lebih rendah meningkat;",
+      "akibatnya peningkatan perangkat keras tidak memberi manfaat apa pun."
+    ],
+    "note": "Ronde 1/4. Sasaran: Menemukan akibat yang dinyatakan teks dan membedakannya dari akibat yang dibesar-besarkan. Sumber: paragraf1, kalimat1 dan 3 utuh; draf parafrase. Kunci penelaah d3+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Bacaan menjelaskan keterbatasan, bukan ketiadaan seluruh manfaat perangkat keras. Petunjuk ini untuk penelaah/bantuan setelah salah, bukan kunci awalUI.",
+    "state": "empty",
+    "buttons": [
+      "Baca abstrak",
+      "Periksa revisi"
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "next": "Klik draf → klik bukti → Periksa; tetap pada ronde ini.",
+    "round": 1,
+    "width": 1200,
+    "height": 1244,
+    "file": "L3-05B.jpg"
+  },
+  {
+    "id": "L3-05C",
+    "title": "Latihan 2 — ronde 1/4 — tinjau bukti",
+    "kind": "editor",
+    "body": [
+      "Coret akibat yang berlebihan. Tunjuk kalimat tentang keterbatasan programmer.",
+      "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak.",
+      "Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat.",
+      "Lapisan kompatibilitas dan overhead membatasi programmer dalam mengekspresikan bagian penting program,",
+      "meskipun tuntutan throughput lebih tinggi dan latensi lebih rendah meningkat;",
+      "akibatnya peningkatan perangkat keras tidak memberi manfaat apa pun."
+    ],
+    "note": "Ronde 1/4. Sasaran: Menemukan akibat yang dinyatakan teks dan membedakannya dari akibat yang dibesar-besarkan. Sumber: paragraf1, kalimat1 dan 3 utuh; draf parafrase. Kunci penelaah d3+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Contoh: d3 tepat, bukti yang dipilih belum sesuai. Kalimat yang dipilih menjelaskan dasar perancangan sistem. Cari akibat lapisan kompatibilitas terhadap programmer.",
+    "state": "wrong",
+    "buttons": [
+      "Baca abstrak",
+      "Coba lagi"
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "next": "Klik draf → klik bukti → Periksa; tetap pada ronde ini.",
+    "round": 1,
+    "width": 1200,
+    "height": 1353,
+    "file": "L3-05C.jpg"
+  },
+  {
+    "id": "L3-05D",
+    "title": "Latihan 2 — ronde 1/4 — revisi sesuai",
+    "kind": "editor",
+    "body": [
+      "Coret akibat yang berlebihan. Tunjuk kalimat tentang keterbatasan programmer.",
+      "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak.",
+      "Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat.",
+      "Lapisan kompatibilitas dan overhead membatasi programmer dalam mengekspresikan bagian penting program,",
+      "meskipun tuntutan throughput lebih tinggi dan latensi lebih rendah meningkat;",
+      "akibatnya peningkatan perangkat keras tidak memberi manfaat apa pun."
+    ],
+    "note": "Ronde 1/4. Sasaran: Menemukan akibat yang dinyatakan teks dan membedakannya dari akibat yang dibesar-besarkan. Sumber: paragraf1, kalimat1 dan 3 utuh; draf parafrase. Kunci penelaah d3+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Ronde selesai menambah progres satu kali, bukan menuntaskan seluruh latihan. Berikutnya mengganti isi panel dengan kasus baru.",
+    "state": "correct",
+    "buttons": [
+      "Ronde berikutnya"
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "next": "Tetap di panel → ronde 2/4; tidak berjalan atau E lagi.",
+    "round": 1,
+    "width": 1200,
+    "height": 1385,
+    "file": "L3-05D.jpg"
+  },
+  {
+    "id": "L3-05R2A",
+    "title": "Latihan 2 — ronde 2/4 — Peluang bukan hasil yang sudah terjadi",
+    "kind": "editor",
+    "state": "empty",
+    "round": 2,
+    "body": [
+      "Coret klaim perubahan yang sudah pasti terjadi. Tunjuk kalimat tentang peluang pergeseran model.",
+      "Saat ini, terdapat peluang untuk mengkaji bagaimana pertemuan berbagai tren dapat menggeser model pemrograman dari sudut pandang tradisional yang berpusat pada proses (process-centric) menuju pendekatan yang berpusat pada data (data-centric), di mana data menjadi entitas utama dalam sistem.",
+      "Peluang ini muncul seiring dengan perkembangan perangkat keras yang secara langsung memengaruhi cara pandang terhadap jalur akses data serta tanggung jawab sistem operasi dan kernel.",
+      "Peralihan ke data-centric telah terjadi pada seluruh sistem operasi;",
+      "abstrak menyebut peluang mengkaji pergeseran model pemrograman",
+      "seiring pertemuan berbagai tren perangkat keras."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Baca abstrak",
+      "Periksa revisi"
+    ],
+    "next": "Klik draf → klik bukti → Periksa; tetap pada ronde ini.",
+    "note": "Ronde 2/4. Sasaran: Membedakan status peluang kajian dari klaim bahwa perubahan telah berlaku menyeluruh. Sumber: paragraf2, kalimat1 dan 2 utuh; draf parafrase. Kunci penelaah d1+b1; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Perhatikan status pernyataan: peluang untuk mengkaji tidak sama dengan perubahan menyeluruh yang telah selesai. Petunjuk ini untuk penelaah/bantuan setelah salah, bukan kunci awalUI.",
+    "width": 1200,
+    "height": 1276,
+    "file": "L3-05R2A.jpg"
+  },
+  {
+    "id": "L3-05R2B",
+    "title": "Latihan 2 — ronde 2/4 — revisi sesuai",
+    "kind": "editor",
+    "state": "correct",
+    "round": 2,
+    "body": [
+      "Coret klaim perubahan yang sudah pasti terjadi. Tunjuk kalimat tentang peluang pergeseran model.",
+      "Saat ini, terdapat peluang untuk mengkaji bagaimana pertemuan berbagai tren dapat menggeser model pemrograman dari sudut pandang tradisional yang berpusat pada proses (process-centric) menuju pendekatan yang berpusat pada data (data-centric), di mana data menjadi entitas utama dalam sistem.",
+      "Peluang ini muncul seiring dengan perkembangan perangkat keras yang secara langsung memengaruhi cara pandang terhadap jalur akses data serta tanggung jawab sistem operasi dan kernel.",
+      "Peralihan ke data-centric telah terjadi pada seluruh sistem operasi;",
+      "abstrak menyebut peluang mengkaji pergeseran model pemrograman",
+      "seiring pertemuan berbagai tren perangkat keras."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Ronde berikutnya"
+    ],
+    "next": "Tetap di panel → ronde 3/4; tidak berjalan atau E lagi.",
+    "note": "Ronde 2/4. Sasaran: Membedakan status peluang kajian dari klaim bahwa perubahan telah berlaku menyeluruh. Sumber: paragraf2, kalimat1 dan 2 utuh; draf parafrase. Kunci penelaah d1+b1; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Ronde selesai menambah progres satu kali, bukan menuntaskan seluruh latihan. Berikutnya mengganti isi panel dengan kasus baru.",
+    "width": 1200,
+    "height": 1385,
+    "file": "L3-05R2B.jpg"
+  },
+  {
+    "id": "L3-05R3A",
+    "title": "Latihan 2 — ronde 3/4 — Batas perubahan yang diusulkan",
+    "kind": "editor",
+    "state": "empty",
+    "round": 3,
+    "body": [
+      "Coret perubahan yang tidak didukung. Tunjuk kalimat yang menyebut kernel dan serialisasi.",
+      "Pendekatan ini merumuskan ulang tujuan sistem operasi dan memungkinkan peninjauan kembali teknik pemrograman sistem klasik ke dalam model yang memfasilitasi berbagi data, alih-alih menghambatnya.",
+      "Sebaliknya, pendekatan data-centric ini mengurangi keterlibatan kernel dalam jalur akses data, menjadikan data bersifat mobile melalui referensi invarian yang tidak bergantung pada ruang alamat atau mesin, serta menghilangkan kebutuhan akan serialisasi.",
+      "Pendekatan data-centric mengurangi keterlibatan kernel dalam jalur akses data,",
+      "menghilangkan seluruh kompleksitas dan biaya dalam setiap sistem operasi,",
+      "serta menghilangkan kebutuhan serialisasi pada model yang dijelaskan."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Baca abstrak",
+      "Periksa revisi"
+    ],
+    "next": "Klik draf → klik bukti → Periksa; tetap pada ronde ini.",
+    "note": "Ronde 3/4. Sasaran: Menghubungkan dua perubahan yang disebut teks dan menolak generalisasi di luar cakupannya. Sumber: paragraf3, kalimat2 dan 4 utuh; draf parafrase. Kunci penelaah d2+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Teks menyebut perubahan tertentu, bukan penghapusan seluruh kompleksitas dan biaya pada setiap sistem. Petunjuk ini untuk penelaah/bantuan setelah salah, bukan kunci awalUI.",
+    "width": 1200,
+    "height": 1276,
+    "file": "L3-05R3A.jpg"
+  },
+  {
+    "id": "L3-05R3B",
+    "title": "Latihan 2 — ronde 3/4 — revisi sesuai",
+    "kind": "editor",
+    "state": "correct",
+    "round": 3,
+    "body": [
+      "Coret perubahan yang tidak didukung. Tunjuk kalimat yang menyebut kernel dan serialisasi.",
+      "Pendekatan ini merumuskan ulang tujuan sistem operasi dan memungkinkan peninjauan kembali teknik pemrograman sistem klasik ke dalam model yang memfasilitasi berbagi data, alih-alih menghambatnya.",
+      "Sebaliknya, pendekatan data-centric ini mengurangi keterlibatan kernel dalam jalur akses data, menjadikan data bersifat mobile melalui referensi invarian yang tidak bergantung pada ruang alamat atau mesin, serta menghilangkan kebutuhan akan serialisasi.",
+      "Pendekatan data-centric mengurangi keterlibatan kernel dalam jalur akses data,",
+      "menghilangkan seluruh kompleksitas dan biaya dalam setiap sistem operasi,",
+      "serta menghilangkan kebutuhan serialisasi pada model yang dijelaskan."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Ronde berikutnya"
+    ],
+    "next": "Tetap di panel → ronde 4/4; tidak berjalan atau E lagi.",
+    "note": "Ronde 3/4. Sasaran: Menghubungkan dua perubahan yang disebut teks dan menolak generalisasi di luar cakupannya. Sumber: paragraf3, kalimat2 dan 4 utuh; draf parafrase. Kunci penelaah d2+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Ronde selesai menambah progres satu kali, bukan menuntaskan seluruh latihan. Berikutnya mengganti isi panel dengan kasus baru.",
+    "width": 1200,
+    "height": 1417,
+    "file": "L3-05R3B.jpg"
+  },
+  {
+    "id": "L3-05R4A",
+    "title": "Latihan 2 — ronde 4/4 — Hasil penelitian dan batas simpulan",
+    "kind": "editor",
+    "state": "empty",
+    "round": 4,
+    "body": [
+      "Coret rekomendasi yang melampaui bukti. Tunjuk kalimat yang mendukung hasil kinerja.",
+      "Evaluasi terhadap Twizzler dilakukan melalui studi kasus yang menunjukkan perilaku sistem, efektivitas, dan kegunaan model pemrograman yang dikembangkan, dengan membangun sejumlah perangkat lunak baru khusus untuk Twizzler.",
+      "Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak.",
+      "Pada banyak kasus yang dilaporkan,",
+      "Twizzler menunjukkan peningkatan performa;",
+      "karena itu seluruh sistem operasi wajib diganti."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Baca abstrak",
+      "Periksa revisi"
+    ],
+    "next": "Klik draf → klik bukti → Periksa; tetap pada ronde ini.",
+    "note": "Ronde 4/4. Sasaran: Membedakan hasil kinerja yang dilaporkan dari rekomendasi universal yang tidak didukung. Sumber: paragraf4, kalimat2 dan 3 utuh; draf parafrase. Kunci penelaah d3+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Hasil pada banyak kasus tidak menetapkan kewajiban mengganti seluruh sistem operasi. Petunjuk ini untuk penelaah/bantuan setelah salah, bukan kunci awalUI.",
+    "width": 1200,
+    "height": 1276,
+    "file": "L3-05R4A.jpg"
+  },
+  {
+    "id": "L3-05R4B",
+    "title": "Latihan 2 — ronde 4/4 — revisi sesuai",
+    "kind": "editor",
+    "state": "correct",
+    "round": 4,
+    "body": [
+      "Coret rekomendasi yang melampaui bukti. Tunjuk kalimat yang mendukung hasil kinerja.",
+      "Evaluasi terhadap Twizzler dilakukan melalui studi kasus yang menunjukkan perilaku sistem, efektivitas, dan kegunaan model pemrograman yang dikembangkan, dengan membangun sejumlah perangkat lunak baru khusus untuk Twizzler.",
+      "Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak.",
+      "Pada banyak kasus yang dilaporkan,",
+      "Twizzler menunjukkan peningkatan performa;",
+      "karena itu seluruh sistem operasi wajib diganti."
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "buttons": [
+      "Lihat rangkuman"
+    ],
+    "next": "Tetap di panel → rangkuman empat ronde05Z.",
+    "note": "Ronde 4/4. Sasaran: Membedakan hasil kinerja yang dilaporkan dari rekomendasi universal yang tidak didukung. Sumber: paragraf4, kalimat2 dan 3 utuh; draf parafrase. Kunci penelaah d3+b2; ID tidak ditampilkan diUI. Klik satu rentang draf untuk coret dan satu kalimat sumber sebagai bukti; dapat dibatalkan/diganti. Periksa aktif setelah duaID terisi. Selesai ronde hanya jika keduanya cocok kunci. Empat kondisi revisi/bukti memberi koreksi sesuai komponen yang belum tepat; Coba lagi mempertahankan pilihan. Salah/bantuan tidak menuntaskan ronde. Tanpa mengetik, drag, timer atau poin latihan. Baca abstrak/Tutup kembali dengan ronde dan pilihan tersimpan. Ronde4 selesai→rangkuman; akses ke kios memerlukan empat ronde selesai.",
+    "width": 1200,
+    "height": 1385,
+    "file": "L3-05R4B.jpg"
+  },
+  {
+    "id": "L3-05Z",
+    "title": "Latihan 2 — empat ronde selesai",
+    "kind": "panel",
+    "body": [
+      "Latihan simpulan selesai — 4/4 ronde.",
+      "✓ Kendala dalam bacaan.",
+      "✓ Peluang dan status usulan.",
+      "✓ Batas perubahan pendekatan.",
+      "✓ Hasil penelitian dan batas simpulan.",
+      "Kamu telah memeriksa empat draf dengan kalimat bukti yang sesuai. Lanjutkan ke kios evaluasi."
+    ],
+    "note": "Contoh keadaan semua ronde selesai. Ringkasan membaca status empat ronde aktual, bukan sekadar telah membuka layar. Tombol Ke kios hanya aktif jika r1–r4 selesai; menutup panel tidak menghapusnya. Jumlah percobaan dan bantuan dicatat terpisah, bukan nilai kelulusan. Ini progres latihan, bukan bukti keterampilan telah meningkat. Ke kios menutup panel lalu pemain berjalan06A di kiri depan. Salah/tutup di ronde sebelumnya tidak boleh menampilkan4/4.",
+    "buttons": [
+      "Ke kios evaluasi"
+    ],
+    "loc": "Papan simpulan • kiri tengah",
+    "next": "Tutup → jalan ke kios06A di kiri depan.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-05Z.jpg"
+  },
+  {
+    "id": "L3-06A",
+    "title": "Mendekati kios evaluasi Level 3",
+    "kind": "world",
+    "body": [
+      "Tujuan: Kerjakan evaluasi membaca Level 3.",
+      "Evaluasi Level 3",
+      "Tahan E — Buka evaluasi"
+    ],
+    "note": "Kios evaluasi di kiri depan, dekat jalur ke pintu tengah tanpa menghalangi akses. Setelah dua latihan selesai, berjalan dari papan simpulan kiri lalu tahanE. Soal/alasan/feedback/hasil tetap dalam satu rangkaian panel di kios. Sesudah lulus, tutup lalu berjalan ke pintu tengah. Isi dan prasyarat tetap.",
+    "object": "quiz",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-06A.jpg"
+  },
+  {
+    "id": "L3-06B",
+    "title": "Kios — contoh prasyarat belum lengkap",
+    "kind": "panel",
+    "body": [
+      "Evaluasi belum dapat dimulai.",
+      "Materi: 3/3 bagian dikunjungi.",
+      "Fungsi gagasan: selesai.",
+      "Latihan simpulan: 2/4 ronde selesai."
+    ],
+    "note": "Contoh prasyarat belum lengkap, bukan angka tetap. Kios memerlukan tiga bagian materi, latihan1, dan empat ronde latihan2 selesai. Kembali belajar menutup panel dan menunjuk papan simpulan jika ronde belum lengkap; lanjutkan ronde pertama yang belum selesai dengan pilihan tersimpan. Papan istilah tetap opsional. Empat soal evaluasi dan aturan skor tidak diubah.",
+    "buttons": [
+      "Kembali belajar"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Tutup → berjalan ke kegiatan pertama yang belum selesai.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-06B.jpg"
+  },
+  {
+    "id": "L3-06C",
+    "title": "Kios — petunjuk sebelum evaluasi",
+    "kind": "panel",
+    "body": [
+      "Siap mengikuti evaluasi Level 3?",
+      "Ada empat soal. Pilih jawaban, kunci, lalu pilih alasan. Penjelasan tampil setelah keduanya dikirim.",
+      "Jawaban tepat bernilai25; nilai minimal75. Ketepatan alasan ditampilkan terpisah.",
+      "Nanti dulu untuk membaca kembali sebelum mulai."
+    ],
+    "note": "Pola samaLevel1/2. Nanti dulu menutup, Mulai evaluasi membuka soal1 di kios yang sama. Selama evaluasi materi/bantuan tidak dibuka. Durasi, percobaan ulang dan skor penelitian harus mengikutiSOP A/B yang belumfinal; jangan menambah aturan baru.",
+    "buttons": [
+      "Nanti dulu",
+      "Mulai evaluasi"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Mulai → soal1 pada panel ini; tidak berjalan/interaksiE lagi.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-06C.jpg"
+  },
+  {
+    "id": "L3-07Q1A",
+    "title": "Evaluasi 1/4 — jawaban",
+    "kind": "question",
+    "body": [
+      "Menurut abstrak, faktor utama yang mendorong pergeseran dari model process-centric menuju data-centric adalah …",
+      "A. Meningkatnya kebutuhan antarmuka grafis pada sistem operasi",
+      "B. Perkembangan bahasa pemrograman tingkat tinggi",
+      "C. Tuntutan kompatibilitas perangkat lunak lintas platform",
+      "D. Tren perangkat keras seperti peningkatan kecepatan interkoneksi dan penyimpanan persisten",
+      "E. Dominasi sistem operasi berbasis mobile"
+    ],
+    "note": "Kunci tier 1: D. Batang, opsi, dan kunci mengikuti baseline Sanubari. Isi sesuai tab peta aktif. Kunci khusus penelaah; tidak ditunjukkan diUI. Pilihan dapat diganti sebelum Kunci jawaban; nonaktif bila belum memilih. Setelah dikunci buka alasan tanpa membocorkan benar/salah.",
+    "buttons": [
+      "Kunci jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 1/4 • Jawaban",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kunci → alasan pada panel yang sama.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-07Q1A.jpg"
+  },
+  {
+    "id": "L3-07Q1B",
+    "title": "Evaluasi 1/4 — alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Abstrak menekankan perubahan antarmuka grafis sebagai pendorong perubahan model sistem operasi.",
+      "B. Abstrak menekankan kemunculan bahasa pemrograman baru sebagai pendorong perubahan model sistem operasi.",
+      "C. Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten.",
+      "D. Abstrak menekankan penggantian seluruh server oleh perangkat mobile sebagai pendorong perubahan model."
+    ],
+    "note": "Kunci tier 2: C. Bukti penjelas: Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten. Opsi persis tab peta. Ringkasan jawaban adalah ilustrasi pilihanUI, bukan jawaban otomatis. Kirim aktif setelah memilih alasan; penjelasan setelah kedua tier dikirim.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 1/4 • Alasan",
+    "locked": "A. Meningkatnya kebutuhan antarmuka grafis pada sistem operasi",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kirim → feedback di panel yang sama; bukan pindah lokasi.",
+    "width": 1200,
+    "height": 1184,
+    "file": "L3-07Q1B.jpg"
+  },
+  {
+    "id": "L3-07Q2A",
+    "title": "Evaluasi 2/4 — jawaban",
+    "kind": "question",
+    "body": [
+      "Keunggulan utama pendekatan data-centric yang diperkenalkan melalui sistem Twizzler dibandingkan pendekatan tradisional adalah …",
+      "A. Penggunaan kernel yang lebih kompleks untuk mengatur data",
+      "B. Penggunaan model RPC yang lebih ketat dan terstruktur",
+      "C. Penghapusan sepenuhnya peran kernel dalam sistem operasi",
+      "D. Ketergantungan penuh pada teknologi virtualisasi",
+      "E. Penyederhanaan jalur akses data dan pengurangan kebutuhan serialisasi"
+    ],
+    "note": "Kunci tier 1: E. Batang, opsi, dan kunci mengikuti baseline Sanubari. Isi sesuai tab peta aktif. Kunci khusus penelaah; tidak ditunjukkan diUI. Pilihan dapat diganti sebelum Kunci jawaban; nonaktif bila belum memilih. Setelah dikunci buka alasan tanpa membocorkan benar/salah.",
+    "buttons": [
+      "Kunci jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 2/4 • Jawaban",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kunci → alasan pada panel yang sama.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-07Q2A.jpg"
+  },
+  {
+    "id": "L3-07Q2B",
+    "title": "Evaluasi 2/4 — alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Abstrak menjelaskan penyederhanaan akses data dan penghilangan kebutuhan serialisasi.",
+      "B. Abstrak menjelaskan penghapusan seluruh peran kernel dalam pengelolaan sistem komputer.",
+      "C. Abstrak menjelaskan pengetatan mekanisme RPC dalam pertukaran data antarprogram komputer.",
+      "D. Abstrak menjelaskan kewajiban virtualisasi untuk menjalankan setiap aplikasi dalam sistem."
+    ],
+    "note": "Kunci tier 2: A. Bukti penjelas: Abstrak menjelaskan penyederhanaan jalur akses data dan hilangnya kebutuhan serialisasi dalam pendekatan yang dibahas. Opsi persis tab peta. Ringkasan jawaban adalah ilustrasi pilihanUI, bukan jawaban otomatis. Kirim aktif setelah memilih alasan; penjelasan setelah kedua tier dikirim.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 2/4 • Alasan",
+    "locked": "A. Penggunaan kernel yang lebih kompleks untuk mengatur data",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kirim → feedback di panel yang sama; bukan pindah lokasi.",
+    "width": 1200,
+    "height": 1184,
+    "file": "L3-07Q2B.jpg"
+  },
+  {
+    "id": "L3-07Q3A",
+    "title": "Evaluasi 3/4 — jawaban",
+    "kind": "question",
+    "body": [
+      "Mengapa model pemrograman tradisional dianggap kurang sesuai dengan perkembangan perangkat keras modern?",
+      "A. Karena model tradisional menimbulkan overhead dan keterbatasan yang menghambat pemanfaatan perangkat keras modern secara optimal",
+      "B. Karena perangkat keras modern tidak lagi membutuhkan sistem operasi",
+      "C. Karena perangkat keras modern hanya mendukung sistem operasi berbasis cloud",
+      "D. Karena semua aplikasi modern menggunakan bahasa pemrograman baru",
+      "E. Karena sistem operasi modern tidak memerlukan kernel"
+    ],
+    "note": "Kunci tier 1: A. Batang, opsi, dan kunci mengikuti baseline Sanubari. Isi sesuai tab peta aktif. Kunci khusus penelaah; tidak ditunjukkan diUI. Pilihan dapat diganti sebelum Kunci jawaban; nonaktif bila belum memilih. Setelah dikunci buka alasan tanpa membocorkan benar/salah.",
+    "buttons": [
+      "Kunci jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 3/4 • Jawaban",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kunci → alasan pada panel yang sama.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-07Q3A.jpg"
+  },
+  {
+    "id": "L3-07Q3B",
+    "title": "Evaluasi 3/4 — alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Abstrak menyatakan perangkat modern dapat bekerja tanpa menggunakan sistem operasi.",
+      "B. Abstrak mengaitkan lapisan kompatibilitas dan overhead dengan keterbatasan perangkat baru.",
+      "C. Abstrak menyatakan perangkat modern hanya dapat bekerja melalui layanan berbasis cloud.",
+      "D. Abstrak menyatakan antarmuka lama selalu optimal untuk memanfaatkan kemampuan perangkat modern."
+    ],
+    "note": "Kunci tier 2: B. Bukti penjelas: Abstrak mengaitkan lapisan kompatibilitas dan overhead model lama dengan keterbatasan pemanfaatan perangkat baru. Opsi persis tab peta. Ringkasan jawaban adalah ilustrasi pilihanUI, bukan jawaban otomatis. Kirim aktif setelah memilih alasan; penjelasan setelah kedua tier dikirim.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 3/4 • Alasan",
+    "locked": "A. Karena model tradisional menimbulkan overhead dan keterbatasan yang menghambat pemanfaatan perangkat keras modern secara optimal",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kirim → feedback di panel yang sama; bukan pindah lokasi.",
+    "width": 1200,
+    "height": 1216,
+    "file": "L3-07Q3B.jpg"
+  },
+  {
+    "id": "L3-07Q4A",
+    "title": "Evaluasi 4/4 — jawaban",
+    "kind": "question",
+    "body": [
+      "Berdasarkan evaluasi yang dijelaskan dalam abstrak, kesimpulan manakah yang paling dapat dipertanggungjawabkan?",
+      "A. Twizzler harus mengganti semua OS modern.",
+      "B. Kinerja Twizzler selalu unggul pada seluruh aplikasi.",
+      "C. Studi kasus dan beberapa aplikasi menunjukkan kegunaan serta peningkatan kinerja pada konteks yang diuji.",
+      "D. Seluruh peran kernel sudah tidak diperlukan.",
+      "E. Semua komputer telah memakai Twizzler."
+    ],
+    "note": "Kunci tier 1: C. Soal dan kunci merupakan usulan pengganti baseline untuk ditelaah ahli. Isi sesuai tab peta aktif. Soal4 merupakan usulan pengganti baseline yang sudah tercatat, belumACC ahli. Kunci khusus penelaah; tidak ditunjukkan diUI. Pilihan dapat diganti sebelum Kunci jawaban; nonaktif bila belum memilih. Setelah dikunci buka alasan tanpa membocorkan benar/salah.",
+    "buttons": [
+      "Kunci jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 4/4 • Jawaban",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kunci → alasan pada panel yang sama.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-07Q4A.jpg"
+  },
+  {
+    "id": "L3-07Q4B",
+    "title": "Evaluasi 4/4 — alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Abstrak melaporkan pengujian seluruh aplikasi dan mesin sehingga hasilnya dapat digeneralisasikan.",
+      "B. Abstrak menetapkan Twizzler sebagai standar wajib yang harus diterapkan pada seluruh komputer.",
+      "C. Abstrak membuktikan seluruh OS komersial lebih lambat daripada Twizzler dalam setiap kondisi.",
+      "D. Abstrak melaporkan kasus dan aplikasi tertentu sehingga kesimpulannya belum berlaku universal."
+    ],
+    "note": "Kunci tier 2: D. Bukti penjelas: Abstrak melaporkan studi kasus dan aplikasi tertentu sehingga generalisasi universal belum dapat disimpulkan. Opsi persis tab peta. Ringkasan jawaban adalah ilustrasi pilihanUI, bukan jawaban otomatis. Kirim aktif setelah memilih alasan; penjelasan setelah kedua tier dikirim.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "step": "Soal 4/4 • Alasan",
+    "locked": "A. Twizzler harus mengganti semua OS modern.",
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Kirim → feedback di panel yang sama; bukan pindah lokasi.",
+    "width": 1200,
+    "height": 1152,
+    "file": "L3-07Q4B.jpg"
+  },
+  {
+    "id": "L3-08F1",
+    "title": "Umpan balik — Jawaban tepat • alasan tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban tepat • alasan tepat",
+      "Contoh soal1 • Jawaban D • Alasan C",
+      "Benar. Interkoneksi cepat dan penyimpanan persisten termasuk tren yang dibahas.",
+      "Alasan C tepat: perubahan model dikaitkan dengan interkoneksi dan penyimpanan persisten.",
+      "Nilai jawaban soal ini: 25/25. Alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI bukan data penelitian. Gunakan36pesan per pilihanLevel3 pada tab peta untuk kombinasi yang benar-benar dikirim. Empat keadaan ditangani tanpa mengubah skor tier1. Tombol pada soal1–3 Soal berikutnya, soal4 Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Lanjut soal/hasil di panel yang sama; karakter tetap di kios.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-08F1.jpg"
+  },
+  {
+    "id": "L3-08F2",
+    "title": "Umpan balik — Jawaban belum tepat • alasan tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban belum tepat • alasan tepat",
+      "Contoh soal1 • Jawaban A • Alasan C",
+      "Pendorong yang disebut abstrak adalah tren perangkat keras, bukan kebutuhan tampilan grafis.",
+      "Alasan C tepat: perubahan model dikaitkan dengan interkoneksi dan penyimpanan persisten.",
+      "Nilai jawaban soal ini: 0/25. Alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI bukan data penelitian. Gunakan36pesan per pilihanLevel3 pada tab peta untuk kombinasi yang benar-benar dikirim. Empat keadaan ditangani tanpa mengubah skor tier1. Tombol pada soal1–3 Soal berikutnya, soal4 Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Lanjut soal/hasil di panel yang sama; karakter tetap di kios.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-08F2.jpg"
+  },
+  {
+    "id": "L3-08F3",
+    "title": "Umpan balik — Jawaban tepat • alasan belum tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban tepat • alasan belum tepat",
+      "Contoh soal1 • Jawaban D • Alasan A",
+      "Benar. Interkoneksi cepat dan penyimpanan persisten termasuk tren yang dibahas.",
+      "Alasan A berfokus pada grafis yang tidak menjadi motivasi utama abstrak.",
+      "Nilai jawaban soal ini: 25/25. Alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI bukan data penelitian. Gunakan36pesan per pilihanLevel3 pada tab peta untuk kombinasi yang benar-benar dikirim. Empat keadaan ditangani tanpa mengubah skor tier1. Tombol pada soal1–3 Soal berikutnya, soal4 Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Lanjut soal/hasil di panel yang sama; karakter tetap di kios.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-08F3.jpg"
+  },
+  {
+    "id": "L3-08F4",
+    "title": "Umpan balik — Jawaban dan alasan belum tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban dan alasan belum tepat",
+      "Contoh soal1 • Jawaban A • Alasan A",
+      "Pendorong yang disebut abstrak adalah tren perangkat keras, bukan kebutuhan tampilan grafis.",
+      "Alasan A berfokus pada grafis yang tidak menjadi motivasi utama abstrak.",
+      "Nilai jawaban soal ini: 0/25. Alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI bukan data penelitian. Gunakan36pesan per pilihanLevel3 pada tab peta untuk kombinasi yang benar-benar dikirim. Empat keadaan ditangani tanpa mengubah skor tier1. Tombol pada soal1–3 Soal berikutnya, soal4 Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Lanjut soal/hasil di panel yang sama; karakter tetap di kios.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-08F4.jpg"
+  },
+  {
+    "id": "L3-08X",
+    "title": "Konfirmasi keluar evaluasi",
+    "kind": "panel",
+    "body": [
+      "Keluar dari evaluasi?",
+      "Percobaan ini belum selesai. Jawaban percobaan ini dibatalkan dan belum ada nilai akhir.",
+      "Progres materi dan latihan tetap tersimpan selama sesi."
+    ],
+    "note": "Tetap kembali ke soal/pilihan sama. Ya keluar membatalkan percobaan belum selesai, bukan hasilgagal0; kembali ke kios untuk belajar. Tidak mengubah aturan retryLevel1/2.",
+    "buttons": [
+      "Tetap mengerjakan",
+      "Ya, keluar"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Tetap = kembali soal. Ya keluar = tutup panel.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-08X.jpg"
+  },
+  {
+    "id": "L3-09B1",
+    "title": "Hasil Level 3 — lulus",
+    "kind": "panel",
+    "body": [
+      "Level 3 selesai.",
+      "Nilai jawaban:75/100",
+      "Jawaban tepat:3/4 • Alasan tepat:2/4",
+      "Nilai minimal75 terpenuhi. Tutup panel, lalu keluar melalui pintu tengah."
+    ],
+    "note": "Angka ilustrasi. Skor tier1 benar×25, alasan0–4 terpisah. Keluar Level3 menutup panel, membuka akses melanjutkan dan menunjuk pintu tengah. Pemain berjalan dari kios kiri depan; tidak teleportasi. Pembahasan rancangan saat ini berakhir di pintu keluar, tanpa merinci aula.",
+    "buttons": [
+      "Keluar Level 3"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Tutup → berjalan dari kios kiri ke pintu tengah10A.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-09B1.jpg"
+  },
+  {
+    "id": "L3-09B2",
+    "title": "Hasil Level 3 — belum lulus",
+    "kind": "panel",
+    "body": [
+      "Level 3 belum tuntas.",
+      "Nilai jawaban:50/100",
+      "Jawaban tepat:2/4 • Alasan tepat:3/4",
+      "Nilai minimal75. Baca kembali bagian yang diperlukan, kemudian kembali ke kios untuk mencoba lagi."
+    ],
+    "note": "Angka ilustrasi. Belajar kembali menutup panel dan menunjuk meja abstrak kanan; pemain berjalan dari kios kiri melalui jalur tengah. Materi/latihan dapat dibaca ulang tanpa reset seluruhprogres. Kebijakan percobaan/skor penelitian mengikutiSOP, belum dikunci.",
+    "buttons": [
+      "Belajar kembali"
+    ],
+    "loc": "Kios evaluasi • kiri depan",
+    "next": "Tutup → kembali ke meja abstrak kanan.",
+    "width": 1200,
+    "height": 1065,
+    "file": "L3-09B2.jpg"
+  },
+  {
+    "id": "L3-10A",
+    "title": "Keluar gedung — Level 3 selesai",
+    "kind": "world",
+    "body": [
+      "Tujuan: Keluar melalui pintu tengah.",
+      "Pintu keluar Level 3",
+      "Langsung berjalan keluar."
+    ],
+    "note": "Setelah lulus, dari kios kiri depan berjalan menuju pintu tengah yang sama dengan saat masuk. Tidak perluE dan tidak membuka modal baru di pintu. RancanganLevel3 selesai pada tahap ini; desain gedung berikutnya ditunda untuk pembahasan selanjutnya.",
+    "object": "exit",
+    "width": 1200,
+    "height": 1250,
+    "file": "L3-10A.jpg"
+  }
+]

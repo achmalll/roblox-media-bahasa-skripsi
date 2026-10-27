@@ -1,0 +1,242 @@
+{
+  "questions": [
+    {
+      "number": 1,
+      "stem": "Berdasarkan teks, bagaimana perbedaan cara kerja sistem operasi Android dan Windows pada Cloud AI Pad?",
+      "options": [
+        "A. Android dijalankan secara lokal, sedangkan Windows dijalankan melalui cloud",
+        "B. Android dan Windows sama-sama dijalankan melalui cloud",
+        "C. Windows dijalankan secara lokal, sedangkan Android melalui cloud",
+        "D. Keduanya dijalankan secara native di perangkat tablet",
+        "E. Android dan Windows hanya dapat digunakan secara bergantian melalui restart"
+      ],
+      "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "reasons": [
+        "A. Teks menghubungkan tombol AI dengan lokasi eksekusi kedua sistem operasi.",
+        "B. Teks menyebut Windows dijalankan lokal dan Android diakses melalui cloud.",
+        "C. Teks menyebut Android dijalankan lokal dan Windows diakses melalui cloud.",
+        "D. Teks menyebut Android dan Windows dijalankan langsung pada perangkat tablet."
+      ],
+      "key1": "Kunci tier 1: A. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+      "key2": "Kunci tier 2: C. Bukti penjelas: Teks menyebut Android lokal dan Windows melalui cloud.",
+      "feedback": [
+        {
+          "label": "Tier 1 pilihan A",
+          "message": "Benar. Android lokal dan Windows melalui cloud sesuai informasi teks."
+        },
+        {
+          "label": "Tier 1 pilihan B",
+          "message": "Hanya Windows yang dinyatakan melalui cloud; Android dinyatakan lokal."
+        },
+        {
+          "label": "Tier 1 pilihan C",
+          "message": "Letak kedua sistem tertukar: Android lokal, Windows melalui cloud."
+        },
+        {
+          "label": "Tier 1 pilihan D",
+          "message": "Teks tidak menyatakan keduanya native di tablet; Windows diakses melalui cloud."
+        },
+        {
+          "label": "Tier 1 pilihan E",
+          "message": "Teks tidak menyebut restart sebagai syarat perpindahan kedua sistem."
+        },
+        {
+          "label": "Tier 2 pilihan A",
+          "message": "Alasan A memakai tombol AI, padahal soal menanyakan lokasi eksekusi OS."
+        },
+        {
+          "label": "Tier 2 pilihan B",
+          "message": "Alasan B menukar posisi Android dan Windows dalam teks."
+        },
+        {
+          "label": "Tier 2 pilihan C",
+          "message": "Alasan C tepat: teks membedakan Android lokal dan Windows cloud."
+        },
+        {
+          "label": "Tier 2 pilihan D",
+          "message": "Alasan D mengabaikan bahwa Windows diakses melalui cloud."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "stem": "Berdasarkan teks, mengapa pendekatan dual sistem operasi yang diterapkan pada Cloud AI Pad dianggap sebagai inovasi yang signifikan dalam industri tablet saat ini?",
+      "options": [
+        "A. Karena tablet Cloud AI Pad merupakan satu-satunya perangkat yang pernah menggunakan sistem operasi Android",
+        "B. Karena penggunaan dua sistem operasi dalam satu perangkat masih jarang ditemui dan mampu menjawab kebutuhan fleksibilitas sekaligus produktivitas pengguna",
+        "C. Karena Cloud AI Pad menggantikan sistem operasi Windows dengan sistem operasi buatan China secara penuh",
+        "D. Karena tablet ini menggunakan satu sistem operasi dengan dua antarmuka yang berbeda secara tampilan",
+        "E. Karena Cloud AI Pad menjalankan Linux dan Windows secara bersamaan untuk pertama kalinya"
+      ],
+      "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "reasons": [
+        "A. Teks menekankan fleksibilitas Android dan produktivitas Windows dalam pendekatan ganda.",
+        "B. Teks menekankan penggunaan Android pada tablet untuk pertama kalinya dalam industri.",
+        "C. Teks menekankan dua antarmuka sebagai bukti adanya dua sistem operasi berbeda.",
+        "D. Teks menekankan penggantian Windows dengan Linux sebagai pembaruan utama perangkat tablet."
+      ],
+      "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+      "key2": "Kunci tier 2: A. Bukti penjelas: Teks menyebut satu perangkat memberi fleksibilitas Android dan produktivitas Windows dengan pendekatan ganda yang jarang ditemui.",
+      "feedback": [
+        {
+          "label": "Tier 1 pilihan A",
+          "message": "Teks tidak mengatakan Cloud AI Pad satu-satunya perangkat yang pernah memakai Android."
+        },
+        {
+          "label": "Tier 1 pilihan B",
+          "message": "Benar. Alasan dalam teks adalah pendekatan ganda yang jarang ditemui serta fleksibilitas dan produktivitas."
+        },
+        {
+          "label": "Tier 1 pilihan C",
+          "message": "Teks menyebut Windows melalui cloud, bukan penggantian Windows oleh OS China."
+        },
+        {
+          "label": "Tier 1 pilihan D",
+          "message": "Dua antarmuka dari satu OS tidak sama dengan dua sistem yang dijelaskan teks."
+        },
+        {
+          "label": "Tier 1 pilihan E",
+          "message": "Pasangan yang dibahas adalah Android dan Windows, bukan Linux dan Windows."
+        },
+        {
+          "label": "Tier 2 pilihan A",
+          "message": "Alasan A tepat: bukti mencakup dua lingkungan, fleksibilitas, produktivitas, dan kelangkaan pendekatan ganda."
+        },
+        {
+          "label": "Tier 2 pilihan B",
+          "message": "Alasan B mengklaim pemakaian Android pertama kali, yang tidak dinyatakan teks."
+        },
+        {
+          "label": "Tier 2 pilihan C",
+          "message": "Alasan C menyamakan tampilan antarmuka dengan jumlah OS tanpa bukti."
+        },
+        {
+          "label": "Tier 2 pilihan D",
+          "message": "Alasan D mengganti Windows dengan Linux, berbeda dari isi teks."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "stem": "Apa keunggulan penggunaan konsep dual sistem operasi pada Cloud AI Pad dibandingkan tablet pada umumnya?",
+      "options": [
+        "A. Tablet dapat menjalankan semua sistem operasi",
+        "B. Pengguna dapat memanfaatkan fleksibilitas Android dan produktivitas Windows dalam satu perangkat",
+        "C. Tablet dapat berfungsi tanpa perangkat keras tambahan",
+        "D. Sistem operasi tidak lagi memerlukan pembaruan perangkat lunak",
+        "E. Semua aplikasi dapat berjalan tanpa koneksi internet"
+      ],
+      "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "reasons": [
+        "A. Teks menjelaskan seluruh aplikasi kedua sistem dapat digunakan tanpa koneksi internet.",
+        "B. Teks mengaitkan dua sistem dalam satu perangkat dengan kebutuhan harian dan produktivitas.",
+        "C. Teks menjelaskan kedua sistem dapat berfungsi tanpa komponen fisik pada perangkat tablet.",
+        "D. Teks menjelaskan pembaruan kedua sistem tidak lagi diperlukan untuk mendukung produktivitas pengguna."
+      ],
+      "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+      "key2": "Kunci tier 2: B. Bukti penjelas: Teks mengaitkan Android dan Windows dalam satu perangkat dengan kebutuhan sehari-hari dan produktivitas.",
+      "feedback": [
+        {
+          "label": "Tier 1 pilihan A",
+          "message": "Teks hanya menyebut Android dan Windows; kemampuan menjalankan semua OS tidak dinyatakan."
+        },
+        {
+          "label": "Tier 1 pilihan B",
+          "message": "Benar. Kedua lingkungan dalam satu perangkat mendukung fleksibilitas dan produktivitas."
+        },
+        {
+          "label": "Tier 1 pilihan C",
+          "message": "Teks tidak menyimpulkan perangkat dapat berfungsi tanpa perangkat keras tambahan."
+        },
+        {
+          "label": "Tier 1 pilihan D",
+          "message": "Tidak ada pernyataan bahwa dua OS menghapus kebutuhan pembaruan."
+        },
+        {
+          "label": "Tier 1 pilihan E",
+          "message": "Windows melalui cloud bergantung koneksi; klaim semua aplikasi tanpa internet terlalu luas."
+        },
+        {
+          "label": "Tier 2 pilihan A",
+          "message": "Alasan A menjanjikan semua aplikasi offline, melebihi informasi teks."
+        },
+        {
+          "label": "Tier 2 pilihan B",
+          "message": "Alasan B tepat: fungsi kedua lingkungan dihubungkan dengan kebutuhan sehari-hari dan produktivitas."
+        },
+        {
+          "label": "Tier 2 pilihan C",
+          "message": "Alasan C menyatakan perangkat tidak membutuhkan komponen fisik, yang tidak dijelaskan teks."
+        },
+        {
+          "label": "Tier 2 pilihan D",
+          "message": "Alasan D menghapus kebutuhan pembaruan tanpa dukungan teks."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "stem": "Berdasarkan teks, Cloud AI Pad menjalankan Android secara lokal dan Windows melalui cloud. Analisislah implikasi dari pendekatan ini terhadap ketergantungan pengguna pada koneksi internet dalam penggunaan perangkat!",
+      "options": [
+        "A. Pengguna tidak membutuhkan koneksi internet sama sekali karena kedua sistem berjalan secara lokal",
+        "B. Pengguna sepenuhnya bergantung pada internet karena kedua sistem berjalan melalui cloud",
+        "C. Android berjalan lokal tanpa bergantung cloud untuk menjalankan OS, sedangkan akses Windows cloud bergantung koneksi; aplikasi Android tertentu tetap dapat memerlukan internet",
+        "D. Koneksi internet hanya diperlukan saat memperbarui sistem operasi Android",
+        "E. Ketergantungan pada internet tidak relevan karena fitur AI menggantikan fungsi koneksi"
+      ],
+      "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "reasons": [
+        "A. Teks menyebut eksekusi Android lokal menjamin semua aplikasinya selalu dapat berjalan offline.",
+        "B. Teks menyebut tombol AI menggantikan kebutuhan koneksi saat pengguna mengakses layanan Windows cloud.",
+        "C. Teks menyebut Android dan Windows sama-sama berjalan lokal tanpa bergantung pada layanan cloud.",
+        "D. Teks membedakan Android lokal dari Windows cloud, tanpa menjamin semua aplikasi Android offline."
+      ],
+      "key1": "Kunci tier 1: C. Opsi C merupakan usulan koreksi baseline untuk ditelaah ahli.",
+      "key2": "Kunci tier 2: D. Bukti penjelas: Eksekusi Android lokal dibedakan dari akses Windows cloud yang bergantung koneksi, tanpa menjamin semua aplikasi Android offline.",
+      "feedback": [
+        {
+          "label": "Tier 1 pilihan A",
+          "message": "Windows melalui cloud sehingga kedua sistem tidak sepenuhnya lokal atau bebas internet."
+        },
+        {
+          "label": "Tier 1 pilihan B",
+          "message": "Android dinyatakan lokal sehingga tidak benar bahwa kedua OS berjalan melalui cloud."
+        },
+        {
+          "label": "Tier 1 pilihan C",
+          "message": "Benar. OS Android berjalan lokal, sementara Windows cloud bergantung koneksi. Aplikasi Android tertentu tetap dapat memerlukan internet."
+        },
+        {
+          "label": "Tier 1 pilihan D",
+          "message": "Kebutuhan koneksi Windows cloud tidak terbatas pada pembaruan Android."
+        },
+        {
+          "label": "Tier 1 pilihan E",
+          "message": "Tombol AI tidak dinyatakan menggantikan koneksi untuk layanan cloud."
+        },
+        {
+          "label": "Tier 2 pilihan A",
+          "message": "Alasan A menyamakan OS lokal dengan seluruh layanan selalu offline."
+        },
+        {
+          "label": "Tier 2 pilihan B",
+          "message": "Alasan B memberi fungsi pengganti internet kepada tombol AI tanpa dukungan teks."
+        },
+        {
+          "label": "Tier 2 pilihan C",
+          "message": "Alasan C menempatkan Windows secara lokal, padahal teks menyebut cloud."
+        },
+        {
+          "label": "Tier 2 pilihan D",
+          "message": "Alasan D tepat: kebutuhan koneksi dibedakan menurut lokasi eksekusi, tanpa menggeneralisasikan semua aplikasi Android."
+        }
+      ]
+    }
+  ],
+  "material": [
+    "Perkembangan teknologi perangkat pintar terus menghadirkan inovasi yang semakin mengaburkan batas antara tablet dan komputer. Salah satu inovasi terbaru yang menarik perhatian dunia teknologi datang dari operator telekomunikasi asal China, China Unicom, yang meluncurkan tablet terbaru bernama Cloud AI Pad. Perangkat ini menghadirkan terobosan berupa penggunaan dua sistem operasi dalam satu perangkat sekaligus. Tablet ini menjalankan sistem operasi Android dan Windows secara bersamaan dengan pendekatan yang berbeda dan saling melengkapi. Peluncuran Cloud AI Pad menunjukkan perkembangan teknologi sistem operasi yang semakin adaptif terhadap kebutuhan produktivitas dan fleksibilitas pengguna di era modern.",
+    "Secara teknis, kedua sistem operasi pada Cloud AI Pad dijalankan dengan cara yang berbeda. Sistem operasi Android dijalankan secara lokal langsung di perangkat tablet. Pendekatan ini memungkinkan pengguna mengakses berbagai aplikasi Android dengan respons yang cepat dan efisien, tanpa memerlukan koneksi internet yang stabil sebagai syarat utama. Di sisi lain, sistem operasi Windows dijalankan melalui teknologi komputasi awan atau cloud, sehingga pengguna dapat menikmati pengalaman kerja layaknya menggunakan komputer berbasis Windows tanpa harus menginstalnya secara langsung di perangkat. Perbedaan pendekatan ini mencerminkan strategi desain yang cermat dalam memaksimalkan kemampuan perangkat keras tablet sekaligus memanfaatkan infrastruktur cloud yang terus berkembang.",
+    "Dari sudut pandang pasar, pendekatan dual sistem operasi seperti yang diterapkan pada Cloud AI Pad masih tergolong jarang ditemui di pasar global. Umumnya, tablet hanya menggunakan satu sistem operasi utama, baik Android maupun Windows, secara native. Kehadiran dua sistem operasi dalam satu perangkat selama ini dianggap kompleks secara teknis dan berisiko menimbulkan konflik antarsistem. Namun, dengan konsep yang diterapkan oleh China Unicom ini, pengguna Cloud AI Pad dapat beralih antara platform Android yang fleksibel untuk kebutuhan sehari-hari dan Windows yang mendukung produktivitas kerja profesional, semuanya dalam satu perangkat yang sama. Hal ini menjadikan Cloud AI Pad sebagai perangkat yang berpotensi menjawab kebutuhan pengguna yang menginginkan fleksibilitas sekaligus produktivitas tinggi tanpa harus membawa dua perangkat berbeda.",
+    "Selain keunggulan sistem operasi ganda, Cloud AI Pad juga dilengkapi dengan fitur kecerdasan buatan (artificial intelligence) yang terintegrasi langsung ke dalam perangkat melalui tombol khusus AI pada keyboard. Fitur ini terhubung dengan asisten cerdas berbasis model bahasa besar Yuanjing yang dikembangkan secara mandiri oleh China Unicom. Dengan adanya integrasi ini, pengguna dapat mengakses kemampuan kecerdasan buatan secara langsung dalam berbagai aktivitas kerja maupun belajar. Kehadiran Cloud AI Pad menegaskan bahwa inovasi sistem operasi tidak lagi hanya berfokus pada pengembangan perangkat lunak semata, tetapi telah berkembang ke arah integrasi menyeluruh antara teknologi cloud, kecerdasan buatan, dan perangkat keras untuk mendukung kebutuhan pengguna modern yang semakin beragam dan dinamis."
+  ]
+}

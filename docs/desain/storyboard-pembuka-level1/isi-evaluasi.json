@@ -1,0 +1,234 @@
+[
+  {
+    "number": 1,
+    "stem": "Berdasarkan narasi audio yang disampaikan, sistem operasi dapat diartikan sebagai …",
+    "options": [
+      "A. Perangkat keras utama yang berfungsi menjalankan aplikasi",
+      "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer",
+      "C. Program tambahan yang digunakan untuk mempercepat kinerja komputer",
+      "D. Sistem jaringan yang menghubungkan komputer dengan internet",
+      "E. Media penyimpanan data yang digunakan oleh pengguna"
+    ],
+    "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+    "reasons": [
+      "A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.",
+      "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.",
+      "C. Narasi membatasi tugas OS pada pengaturan jaringan dan akses internet.",
+      "D. Narasi menyamakan OS dengan perangkat penyimpanan data milik pengguna."
+    ],
+    "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+    "key2": "Kunci tier 2: B. Bukti penjelas: Narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan I/O oleh perangkat lunak.",
+    "feedback": [
+      {
+        "label": "Tier 1 pilihan A",
+        "message": "OS disebut perangkat lunak, bukan perangkat keras utama."
+      },
+      {
+        "label": "Tier 1 pilihan B",
+        "message": "Benar. OS adalah perangkat lunak yang mengelola sumber daya komputer."
+      },
+      {
+        "label": "Tier 1 pilihan C",
+        "message": "Narasi menjelaskan pengelolaan sumber daya, bukan program tambahan untuk mempercepat komputer."
+      },
+      {
+        "label": "Tier 1 pilihan D",
+        "message": "Jaringan internet tidak sama dengan OS yang dimaksud narasi."
+      },
+      {
+        "label": "Tier 1 pilihan E",
+        "message": "Penyimpanan adalah salah satu sumber daya yang dikelola, bukan pengertian OS."
+      },
+      {
+        "label": "Tier 2 pilihan A",
+        "message": "Alasan A mengubah OS menjadi perangkat keras; narasi menyebut perangkat lunak."
+      },
+      {
+        "label": "Tier 2 pilihan B",
+        "message": "Alasan B tepat: narasi merinci sumber daya yang dikelola perangkat lunak."
+      },
+      {
+        "label": "Tier 2 pilihan C",
+        "message": "Alasan C mempersempit isi menjadi internet, padahal narasi membahas berbagai sumber daya."
+      },
+      {
+        "label": "Tier 2 pilihan D",
+        "message": "Alasan D menyamakan pengelola dengan penyimpanan yang dikelola."
+      }
+    ]
+  },
+  {
+    "number": 2,
+    "stem": "Salah satu peran utama sistem operasi menurut narasi audio adalah …",
+    "options": [
+      "A. Menggantikan fungsi perangkat keras komputer",
+      "B. Menyimpan seluruh data pengguna secara permanen",
+      "C. Menjadi penghubung antara pengguna dan aplikasi",
+      "D. Mengendalikan jaringan internet secara langsung",
+      "E. Menjalankan aplikasi tanpa bantuan perangkat keras"
+    ],
+    "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+    "reasons": [
+      "A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.",
+      "B. Narasi menyebut OS sebagai pengganti seluruh perangkat keras komputer.",
+      "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.",
+      "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."
+    ],
+    "key1": "Kunci tier 1: C. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+    "key2": "Kunci tier 2: A. Bukti penjelas: Narasi menyatakan OS menghubungkan pengguna dan aplikasi.",
+    "feedback": [
+      {
+        "label": "Tier 1 pilihan A",
+        "message": "Penghubung tidak berarti menggantikan perangkat keras."
+      },
+      {
+        "label": "Tier 1 pilihan B",
+        "message": "Menyimpan seluruh data secara permanen bukan peran yang ditanyakan dalam narasi."
+      },
+      {
+        "label": "Tier 1 pilihan C",
+        "message": "Benar. Narasi menyebut OS sebagai penghubung pengguna dan aplikasi."
+      },
+      {
+        "label": "Tier 1 pilihan D",
+        "message": "Mengendalikan internet bukan peran penghubung yang dijelaskan narasi."
+      },
+      {
+        "label": "Tier 1 pilihan E",
+        "message": "Narasi tidak menyatakan aplikasi berjalan tanpa perangkat keras."
+      },
+      {
+        "label": "Tier 2 pilihan A",
+        "message": "Alasan A tepat: hubungan pengguna dan aplikasi dinyatakan dalam narasi."
+      },
+      {
+        "label": "Tier 2 pilihan B",
+        "message": "Alasan B tidak tepat karena menjadi penghubung tidak menghapus kebutuhan perangkat keras."
+      },
+      {
+        "label": "Tier 2 pilihan C",
+        "message": "Alasan C tidak menunjukkan hubungan pengguna dan aplikasi yang ditanyakan."
+      },
+      {
+        "label": "Tier 2 pilihan D",
+        "message": "Alasan D membatasi OS pada internet, berbeda dari peran yang dijelaskan."
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "stem": "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah...",
+    "options": [
+      "A. Mendesain ulang perangkat keras komputer agar seluruh aplikasi berjalan tanpa sistem operasi",
+      "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu",
+      "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis",
+      "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna",
+      "E. Menginstal sebanyak mungkin aplikasi agar kinerja komputer meningkat secara maksimal"
+    ],
+    "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+    "reasons": [
+      "A. Audio mengaitkan penambahan jumlah aplikasi dengan peningkatan kinerja komputer.",
+      "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.",
+      "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.",
+      "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."
+    ],
+    "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+    "key2": "Kunci tier 2: C. Bukti penjelas: Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.",
+    "feedback": [
+      {
+        "label": "Tier 1 pilihan A",
+        "message": "Merancang ulang perangkat keras bukan contoh pengelolaan sumber daya dalam audio."
+      },
+      {
+        "label": "Tier 1 pilihan B",
+        "message": "Benar. Pengelolaan prosesor dan memori sesuai peran OS yang dibahas."
+      },
+      {
+        "label": "Tier 1 pilihan C",
+        "message": "Pembaruan melalui internet berbeda dari alokasi sumber daya yang ditanyakan."
+      },
+      {
+        "label": "Tier 1 pilihan D",
+        "message": "Menambah kapasitas penyimpanan berbeda dari mengatur prosesor dan memori."
+      },
+      {
+        "label": "Tier 1 pilihan E",
+        "message": "Narasi tidak menyatakan semakin banyak aplikasi selalu meningkatkan kinerja."
+      },
+      {
+        "label": "Tier 2 pilihan A",
+        "message": "Alasan A tidak didukung: audio tidak menghubungkan banyaknya aplikasi dengan peningkatan kinerja."
+      },
+      {
+        "label": "Tier 2 pilihan B",
+        "message": "Alasan B menambah klaim bahwa perangkat tambahan otomatis mempercepat seluruh aplikasi."
+      },
+      {
+        "label": "Tier 2 pilihan C",
+        "message": "Alasan C tepat: pengelolaan sumber daya dihubungkan dengan kerja terpadu aplikasi dan sistem."
+      },
+      {
+        "label": "Tier 2 pilihan D",
+        "message": "Alasan D mengganti pengelolaan memori dengan internet, yang tidak dijelaskan audio."
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "stem": "Dalam narasi audio disebutkan bahwa sistem operasi berperan sebagai penghubung antara pengguna dan aplikasi. Apa yang akan terjadi pada sebuah sistem komputer apabila sistem operasi tidak mampu menjalankan peran tersebut dengan baik! …",
+    "options": [
+      "A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara",
+      "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan",
+      "C. Perangkat keras akan meningkatkan kinerjanya secara mandiri",
+      "D. Sistem operasi akan digantikan secara otomatis oleh aplikasi lain",
+      "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu"
+    ],
+    "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+    "reasons": [
+      "A. Audio menyebut aplikasi mengambil alih seluruh tugas OS secara otomatis.",
+      "B. Audio menyebut perangkat keras menambah kemampuannya sendiri saat OS terganggu.",
+      "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.",
+      "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."
+    ],
+    "key1": "Kunci tier 1: E. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+    "key2": "Kunci tier 2: D. Bukti penjelas: Audio menghubungkan kegagalan peran OS dengan aplikasi yang tidak berjalan baik.",
+    "feedback": [
+      {
+        "label": "Tier 1 pilihan A",
+        "message": "Kegagalan penghubung dalam narasi mengganggu aplikasi, bukan mempercepatnya."
+      },
+      {
+        "label": "Tier 1 pilihan B",
+        "message": "Narasi tidak menyatakan kegagalan OS membuat akses perangkat keras menjadi tanpa hambatan."
+      },
+      {
+        "label": "Tier 1 pilihan C",
+        "message": "Kenaikan kemampuan perangkat keras secara mandiri tidak dinyatakan dalam audio."
+      },
+      {
+        "label": "Tier 1 pilihan D",
+        "message": "Pergantian OS oleh aplikasi secara otomatis tidak dinyatakan dalam audio."
+      },
+      {
+        "label": "Tier 1 pilihan E",
+        "message": "Benar. Akibat yang dinyatakan adalah aplikasi tidak dapat berjalan dengan baik."
+      },
+      {
+        "label": "Tier 2 pilihan A",
+        "message": "Alasan A tidak didukung: aplikasi tidak disebut mengambil alih seluruh tugas OS."
+      },
+      {
+        "label": "Tier 2 pilihan B",
+        "message": "Alasan B menambahkan kenaikan kemampuan perangkat keras yang tidak dinyatakan."
+      },
+      {
+        "label": "Tier 2 pilihan C",
+        "message": "Alasan C membalik akibat: kegagalan penghubung mengganggu, bukan mempercepat aplikasi."
+      },
+      {
+        "label": "Tier 2 pilihan D",
+        "message": "Alasan D tepat: kegagalan peran OS dikaitkan dengan aplikasi yang tidak berjalan baik."
+      }
+    ]
+  }
+]

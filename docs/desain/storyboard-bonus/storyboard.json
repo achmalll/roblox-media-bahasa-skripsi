@@ -1,0 +1,92 @@
+[
+  {
+    "id": "EX-00",
+    "title": "Denah bonus di luar aula",
+    "scene": "map",
+    "count": 0,
+    "note": "Usulan satu kantong area luar dekat aula, bukan denah seluruh map atau koordinat Studio. Gedung aula tetap terpisah dari Level 2/3. A: buku di sisi bangku; B: buku di dekat pohon; C: buku di sudut taman rahasia. Ketiganya dapat ditemukan dalam urutan bebas. A/B/C adalah kode desain, bukan label wajib di game. Sudut rahasia hanya ruang terbuka dengan bangku dan tanaman, tanpa pintu, kunci, teleport atau bangunan baru. Cocokkan area kosong dan aset taman aktual di Studio; jalur pintu aula harus tetap lapang.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-00.jpg"
+  },
+  {
+    "id": "EX-01A",
+    "title": "Sesudah medali — bebas memilih aktivitas",
+    "scene": "exit",
+    "count": 0,
+    "note": "Setelah medali diterima dan panduan ditutup, bonus koleksi aktif untuk pemain tersebut. HUD kecil menampilkan Bonus opsional • Buku 0/3. Pemain boleh foto di kanan dalam aula, langsung berjalan keluar dan mencari buku, atau melewati keduanya. Tidak harus foto dahulu dan tidak ada tombol Mulai atau modal baru. Contoh gambar sudah di luar pintu aula; HUD mulai aktif dari penutupan panduan, tanpa menambah trigger keluar gedung. Tujuan utama pembelajaran sudah selesai.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-01A.jpg"
+  },
+  {
+    "id": "EX-02A",
+    "title": "Buku A — dekati bangku",
+    "scene": "bench",
+    "count": 0,
+    "note": "Contoh urutan dimulai dari A. Berjalan ke bangku di area luar; buku tetap terlihat di sisi bangku dan tidak menutup jalur. Saat dekat, muncul prompt bawaan Tahan E — Temukan buku. Tidak membuka bacaan, pertanyaan atau inventori. Prompt hanya aktif jika bonus tersedia dan buku A belum ditemukan pemain ini. Medali tidak harus sedang dipegang.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-02A.jpg"
+  },
+  {
+    "id": "EX-02B",
+    "title": "Buku A ditemukan — progres 1/3",
+    "scene": "bench",
+    "count": 1,
+    "note": "Sesudah interaksi sah, ID A ditandai ditemukan untuk pemain ini; HUD menjadi 1/3 dan pesan Buku ditemukan! 1/3 muncul singkat, sekitar tiga detik. Tidak ada modal dan gerak tetap aktif. Buku fisik tetap sebagai dekorasi; prompt hilang untuk pemain yang sudah menemukannya, sementara pemain lain masih dapat berinteraksi. Mengulang interaksi tidak menambah hitungan.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-02B.jpg"
+  },
+  {
+    "id": "EX-03A",
+    "title": "Buku B — periksa sisi pohon",
+    "scene": "tree",
+    "count": 1,
+    "note": "Contoh melanjutkan dari A ke B, tetapi urutan bebas. Buku B diletakkan di atas batu rendah di dekat pohon agar terlihat, tanpa memanjat, melompat atau obby. Saat dekat, Tahan E — Temukan buku muncul dengan pola yang sama. HUD tetap 1/3 sebelum interaksi; berjalan ke lokasi tidak otomatis menghitung penemuan.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-03A.jpg"
+  },
+  {
+    "id": "EX-03B",
+    "title": "Buku B ditemukan — progres 2/3",
+    "scene": "tree",
+    "count": 2,
+    "note": "Interaksi buku B menambahkan ID baru, memperbarui HUD menjadi 2/3 dan menampilkan Buku ditemukan! 2/3 selama sekitar tiga detik. Prompt buku B hilang hanya untuk pemain ini; buku dan pohon tidak perlu animasi atau menghilang. Tidak memberi poin atau hadiah. Apabila buku B ditemukan pertama, angka menjadi 1/3; angka pada gambar hanyalah contoh urutan A–B–C.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-03B.jpg"
+  },
+  {
+    "id": "EX-04A",
+    "title": "Sudut rahasia — buku C di taman",
+    "scene": "corner",
+    "count": 2,
+    "note": "Sudut rahasia berupa ceruk taman terbuka di sisi area luar aula: bangku, tanaman yang sudah ada, dan jalur masuk pendek. Boleh dikunjungi tanpa mencari buku lain dahulu; tidak ada pagar terbuka, ruangan tersembunyi atau teka-teki kunci. Buku C ada di atas alas rendah dekat bangku, bukan tertutup tanaman. Saat dekat, gunakan prompt yang sama. Contoh HUD 2/3 mengikuti A–B lebih dahulu.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-04A.jpg"
+  },
+  {
+    "id": "EX-04B",
+    "title": "Buku C ditemukan — koleksi lengkap",
+    "scene": "corner",
+    "count": 3,
+    "note": "Contoh C adalah buku ketiga. HUD menjadi Buku 3/3 • Lengkap; satu pesan Semua buku ditemukan! Terima kasih sudah menjelajah. tampil singkat, sekitar tiga detik, lalu hilang. Tidak ada tombol klaim, panel hasil, skor, medali atau hadiah tambahan. Apabila buku terakhir sebenarnya A atau B, pesan selesai muncul di lokasi itu, tanpa teleport ke sudut rahasia. Prompt semua buku yang sudah ditemukan tetap nonaktif untuk pemain ini.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-04B.jpg"
+  },
+  {
+    "id": "EX-05",
+    "title": "Akhir bonus — taman tetap bebas dikunjungi",
+    "scene": "rest",
+    "count": 3,
+    "note": "Sesudah pesan selesai hilang, dunia tetap aktif dan pemain boleh berjalan di taman, kembali ke spot foto medali, atau mengakhiri sesi. Tidak perlu tombol Duduk atau mekanik pose baru; bangku cukup dekorasi, fungsi Seat yang sudah ada boleh dipakai jika tersedia. Progres bonus sederhana hanya tiga ID per pemain selama sesi; keluar dan masuk kembali boleh mengulang bonus tanpa mengubah skor, medali atau akses gedung utama. Bonus bukan syarat kelulusan atau penanda pascates/kuesioner penelitian selesai.",
+    "width": 1200,
+    "height": 1210,
+    "file": "EX-05.jpg"
+  }
+]

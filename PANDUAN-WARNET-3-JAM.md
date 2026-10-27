@@ -139,6 +139,8 @@ Target minimum yang realistis: **proyek bisa dibuka pada PC baru, alur penyimpan
 
 Prompt serah-terima untuk AI di PC warnet:
 
+Siapkan [brief konteks](KONTEKS-AI.md), [peta sumber dan link Docs](docs/ACUAN-DESAIN.md), [indeks snapshot desain](docs/desain/README.md) dan [log sesi](docs/LOG-PENGEMBANGAN.md). AI perlu membaca storyboard aktivitas yang akan diubah, bukan hanya prompt ringkas. Bila browser Docs meminta akses, login akun Google yang memiliki izin; akses konektor AI berbeda dari login browser. Snapshot repo dapat dipakai bila Docs belum dapat dibaca.
+
 > Saya melanjutkan skripsi Roblox menuju bimbingan3November; 2November fokusBabIV. Baca PANDUAN-WARNET-3-JAM.md dan konteks/handoff pada kit. File utama places/RobloxLearningMedia-WORKING.rbxl. Pertahankan snapshot terbaru dan baselineA; jangan build migration menimpa place. Mulai dari verifikasi sesiStudio dan inventaris baca-saja. Setelah baseline dicek, kerjakan satu papan informasi Level1 menurut denah00/05A–05B, lalu uji jalur. Dua tutor tetap berdampingan depan air mancur. Materi, skor25/0,maks100,lulus75 tidak diubah; tier2 terpisah. Jangan menambahkan DataStore atau membuat audio baru. Bedakan source disiapkan, terpasang diWORKING dan sudahPlay. Simpan gambar/log untukBabIV/V. Hentikan fitur baru pada menit150 dan bantu Save/commit/push/cadangan.
 
 Detail pekerjaan pertama: buat Folder `Level1Development` di Workspace, Part `L1_PapanInformasi`, Anchored aktif. Letakkan di tepi rute dekatTutor1 sesuai denah, bukan menutup jalur atau memindah duaTutor. Bedakan dari papan panduan existing `Halaman depan.papanInformasi`.
@@ -163,6 +165,6 @@ Panel opsional memakai isi05B yang sudah disepakati: “Kenali sistem operasi”
    ```
 
 5. Pastikan push berhasil, WORKING tidak berubah lagi, dan ZIP/gambar benar-benar dapat dibuka pada flashdisk. Jika push gagal, catat belum sinkron; pertahankan clone bila ada commit yang belum terkirim. ZIPWORKING bukan cadangan seluruh riwayatGit.
-6. Catat: apa berubah, lokasi objek, Play/hasilaktual, bug, nama gambar, hash/commit dan statuspush. Jangan menulis uji lulus dari screenshot rancangan. Logout Roblox, aplikasiAI, GitHub browser dan akunGit yang disimpan di PC umum sesudah hasil aman.
+6. Wajib perbarui `KONTEKS-AI.md` dan `docs/LOG-PENGEMBANGAN.md` untuk setiap perubahan: apa/kenapa berubah, acuan layar, lokasi objek, Play/hasilaktual, bug, nama gambar, hash/commit, statuspush dan langkah berikutnya. Commit pembaruan konteks/log bersama perubahan yang terkait; helperWORKING tidak otomatis mengirim dokumen. Jangan menulis uji lulus dari screenshot rancangan. Logout Roblox, aplikasiAI, GitHub browser dan akunGit yang disimpan di PC umum sesudah hasil aman.
 
 Status saat panduan dibuat: koneksiMCP **belum diuji pada PCwarnet**, WORKING tidak diedit, belum ada Play/screenshotStudio baru. Scriptcek hanya pemeriksaanlokal. Jangan menyebut setupAI selesai sampai permintaanbaca Studio berhasil.

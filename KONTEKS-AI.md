@@ -17,6 +17,7 @@ Tahap aktif ialah skripsi P1, melanjutkan P0 yang sudah dikumpulkan. Pekerjaan a
 - Jangan meminta pengguna mengulang informasi yang sudah ada dalam brief/file yang benar-benar bisa dibaca.
 - Untuk pekerjaan teknis, jelaskan bagian yang dikerjakan, yang bisa dilakukan AI, langkah Studio pengguna, cara uji, hasil aktual dan sisa pekerjaan.
 - Gunakan Bahasa Indonesia yang jelas. Keputusan rancangan yang sudah disepakati dipertahankan kecuali ada masalah konkret.
+- Setiap perubahan wajib dicatat sebelum sesi berakhir atau commit: perbarui keadaan terbaru di file ini dan rincian di `docs/LOG-PENGEMBANGAN.md`. Catat apa/mengapa berubah, acuan layar, file/objek, status pemasangan, hasil uji aktual, bukti, masalah, versi/sinkronisasi dan langkah berikutnya. Jangan menunggu perubahan dianggap besar.
 
 ## 3. Target dan prioritas terkini
 
@@ -69,6 +70,10 @@ MCP bawaan Studio menjadi pilihan koneksi AI; koneksi aktual belum terverifikasi
 
 ## 7. Sumber pendamping bila tersedia
 
+**Peta sumber untuk AI:** [docs/ACUAN-DESAIN.md](docs/ACUAN-DESAIN.md). **Snapshot flow/gambar/bank isi:** [docs/desain/README.md](docs/desain/README.md). **Rincian setiap sesi:** [docs/LOG-PENGEMBANGAN.md](docs/LOG-PENGEMBANGAN.md). Paket rancangan bertanggal27Oktober berisi155gambar dan narasi rinci, sehingga clone warnet dapat membaca acuan tanpa harus memiliki folder akademik di laptop. Ini snapshot lokal, bukan sinkronisasi otomatis Docs atau bukti implementasi.
+
+**[Docs rancangan aktif — Desain layar dan kerangka ahli media](https://docs.google.com/document/d/1H6V69of2Y9FzAiecZ2L3JSsL21gK5BqmLlzJRbtZKb8/edit?tab=t.838lhhvpqegp#heading=h.y17deuhuu7oj).** Bila Docs meminta akses, pengguna login dengan akun Google yang memiliki izin. AI membutuhkan akses konektornya sendiri atau lampiran/snapshot; login browser pengguna saja belum membuktikan AI bisa membacanya. Jangan memberikan kredensial ke chat. Tidak mengubah izin sharing untuk menyelesaikan akses tanpa instruksi.
+
 Pada workspace skripsi lengkap (dua tingkat di atas root clone): `docs/CONTEXT.md`, `docs/AGENTS.md`, `docs/ROADMAP_OKTOBER_NOVEMBER_2026.md`, `docs/pengembangan/HANDOFF-DEVELOPMENT.md` dan folder storyboard aktif. Naskah akademik resmi berada pada Google Docs tab Production sesuai konteks akademik; bukan otomatis file Word lokal.
 
 Mulai saat duduk di PC warnet dari [PANDUAN-WARNET-3-JAM.md](PANDUAN-WARNET-3-JAM.md). Panduan, catatan tahap 0 dan script cadangan/cek PC disertakan dalam commit setup pendamping setelah `e3360cb`. Kit ZIP offline tetap merupakan artefak lokal di luar clone, tidak otomatis tersedia melalui GitHub. Brief ini dapat dipakai mandiri untuk diskusi awal.
@@ -77,7 +82,7 @@ Mulai saat duduk di PC warnet dari [PANDUAN-WARNET-3-JAM.md](PANDUAN-WARNET-3-JA
 
 **AI yang dapat membuka folder proyek:** buka root clone sebagai proyek lalu kirim:
 
-> Baca AGENTS.md dan KONTEKS-AI.md terlebih dahulu. Ringkas posisi terakhir dan batas kepastianmu. Untuk chat ini saya ingin [brief/diskusi/rencana/persiapan bimbingan], belum meminta implementasi game. Pertanyaan saya: [...].
+> Baca AGENTS.md, KONTEKS-AI.md dan entri terakhir docs/LOG-PENGEMBANGAN.md terlebih dahulu. Jika membahas flow Roblox, baca docs/ACUAN-DESAIN.md, docs/desain/README.md dan storyboard bagian yang relevan. Ringkas posisi terakhir dan batas kepastianmu. Untuk chat ini saya ingin [brief/diskusi/rencana/persiapan bimbingan], belum meminta implementasi game. Pertanyaan saya: [...]. Catat setiap perubahan dalam konteks dan log.
 
 **AI tanpa akses file atau repository private:** lampirkan `KONTEKS-AI.md` atau tempel isinya, lalu tulis tujuan chat dan perubahan terbaru sejak snapshot. Link GitHub saja belum tentu dapat dibaca; login pada browser pengguna tidak otomatis memberi AI akses repo.
 
@@ -87,4 +92,6 @@ GitHub menyimpan konteks; bukan memori otomatis untuk semua AI. File AGENTS memb
 
 Terakhir 27 Oktober: perubahan game telah dicatat pada `e3360cb`; tahap 0, inventaris file, cadangan dan panduan warnet tersedia. Play baru belum dilakukan. Langkah development berikut: clone/pull versi tersimpan → Play baseline → satu `L1_PapanInformasi` dan uji rute → panel/interaksi → segmentasi sesuai aset → latihan/evaluasi. Untuk diskusi, mulai dari tujuan terbaru pengguna, bukan langsung menjalankan daftar implementasi.
 
-Setiap perubahan material, perbarui bagianstatus dan serah-terima file ini dengan tanggal, hasil aktual, bukti/versi, masalah dan langkahberikutnya. Pada workspace lengkap, selaraskan dengan CONTEXT akademik; jangan membuat dua riwayat yang saling bertentangan.
+Pembaruan dokumentasi berikutnya: kewajiban update setiap perubahan dipertegas; petaDocs/akses, snapshot149low-fi+6visualringkasan dan bankisi tersedia dalamrepo; logpengembangan mulai digunakan. WORKING tetap hash a4e910… dan belum ada Playbaru pada sesi dokumentasi ini. Baca indeks dan sumber relevan agar AI mengetahui flow, bukan hanya daftar fitur.
+
+Pada **setiap perubahan**, perbarui status/serah-terima file ini dan logpengembangan dengan tanggal, perubahan dan alasannya, hasil aktual, bukti/versi, masalah serta langkah berikutnya. Pada workspace lengkap, selaraskan dengan CONTEXT akademik; jangan membuat dua riwayat yang saling bertentangan. Detail boleh panjang bila diperlukan untuk serah-terima, tetapi jangan mengarang fakta atau menduplikasi seluruh naskah.

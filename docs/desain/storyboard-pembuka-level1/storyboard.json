@@ -1,0 +1,871 @@
+[
+  {
+    "id": "00",
+    "title": "Denah pembuka dan Level 1",
+    "kind": "map",
+    "body": [],
+    "note": "Posisi mengikuti foto10–11: dua NPC berdampingan di depan air mancur dari arah masuk, Tutor1 kiri pemain dan Tutor2 kanan. Keduanya dekat garis tengah jalur. Label objek tambahan di tepi adalah usulan penempatan, belum koordinat Studio. Alur tetap: panduan → Tutor1/audio1 → papan informasi → Tutor2/audio2 lalu audio3 pada NPC yang sama → papan latihan → kios → Level2. Audio tetap tiga klip pendek.",
+    "width": 1200,
+    "height": 890,
+    "file": "00.jpg"
+  },
+  {
+    "id": "01A",
+    "title": "Spawn — lingkungan awal",
+    "kind": "world",
+    "body": [
+      "Tujuan: Baca sambutan, lalu kunjungi papan panduan.",
+      "PAPAN PANDUAN PERMAINAN",
+      "Peta • Cara belajar • Tujuan perjalanan"
+    ],
+    "note": "Pemain muncul menghadap jalur masuk kampus. Sambutan terbuka otomatis setelah UI siap. Ini tampilan lingkungan acuan; saat sambutan terbuka, gerak pemain dinonaktifkan sementara.",
+    "scene": "spawn",
+    "width": 1100,
+    "height": 850,
+    "file": "01A.jpg"
+  },
+  {
+    "id": "01B",
+    "title": "Spawn — modal sambutan",
+    "kind": "panel",
+    "body": [
+      "Selamat Datang di Petualangan Bahasa!",
+      "Dalam permainan ini, kamu akan menjelajahi lingkungan kampus virtual dan mengikuti tiga tingkat pembelajaran yang dirancang untuk meningkatkan keterampilan mendengarkan dan membaca dalam bidang Teknologi Informasi."
+    ],
+    "note": "Wording judul, isi dan tombol Lanjut dipertahankan dari foto 01 tab [23 April] REVIEW ROBLOX. Sambutan otomatis satu halaman; Lanjut menutup modal dan mengaktifkan gerak. Tujuan berikutnya pada HUD adalah mengunjungi papan panduan. Tidak menambah uraian materi/latihan pada sambutan.",
+    "buttons": [
+      "Lanjut"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "01B.jpg"
+  },
+  {
+    "id": "02A",
+    "title": "Berjalan dan mendekati papan panduan",
+    "kind": "world",
+    "body": [
+      "Tujuan: Kunjungi papan panduan di depan jalur masuk.",
+      "PANDUAN PERMAINAN",
+      "Peta kampus dan urutan belajar",
+      "Tahan E — Baca panduan"
+    ],
+    "note": "Setelah sambutan ditutup, tampilkan satu tujuan pada HUD dan penanda di papan. Pemain berjalan sendiri. Prompt hanya muncul saat dekat; modal terbuka setelah interaksi selesai. Pada perangkat sentuh, gunakan prompt sentuh yang setara.",
+    "scene": "guide",
+    "width": 1100,
+    "height": 850,
+    "file": "02A.jpg"
+  },
+  {
+    "id": "02B1",
+    "title": "Panduan 1/5 — peta kampus",
+    "kind": "guide-map",
+    "body": [
+      "Detail Peta",
+      "Kamu berada di pintu masuk. Ikuti urutan Level 1 → Level 2 → Level 3 → Aula."
+    ],
+    "note": "Peta orientasi global disederhanakan menjadi pintu masuk, Level 1 di area tengah/air mancur, Level 2 di gedung kiri, Level 3 di gedung kanan dan Aula/Hall Akhir di belakang. Tidak menampilkan tutor, papan informasi, latihan atau kios Level 1. Rincian tersebut hanya pada denah perancangan 00. Berikutnya membuka panduan 2/5; Tutup kembali ke map. Panduan dapat dibuka ulang.",
+    "buttons": [
+      "Berikutnya",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "02B1.jpg"
+  },
+  {
+    "id": "02B2",
+    "title": "Panduan 2/5 — Level 1",
+    "kind": "panel",
+    "body": [
+      "Ruang 1: Keterampilan Menyimak",
+      "Pada tahap pertama, kamu akan menyimak narasi tentang sistem operasi di area air mancur.",
+      "Dengarkan informasi dengan saksama. Kamu dapat menjeda dan memutar ulang audio.",
+      "Setelah menyimak, kerjakan latihan pesan utama dan informasi pendukung, lalu evaluasi sebelum melanjutkan ke tahap berikutnya."
+    ],
+    "note": "Layout mengikuti foto 06: gambar lokasi di kiri, penjelasan di kanan, panah kembali/berikut di bawah dan tombol tutup di kanan atas. Wording disesuaikan dengan alur baru; tidak wajib identik dengan foto. Gambar kiri adalah low-fi area air mancur, bukan denah rinci aktivitas.",
+    "buttons": [
+      "Kembali",
+      "Berikutnya",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "02B2.jpg"
+  },
+  {
+    "id": "02B3",
+    "title": "Panduan 3/5 — Level 2",
+    "kind": "panel",
+    "body": [
+      "Ruang 2: Keterampilan Membaca",
+      "Pada tahap kedua, kamu akan membaca berita Cloud AI Pad di gedung Level 2.",
+      "Bacalah dengan teliti. Temukan gagasan utama, informasi penting dan bukti yang mendukung isi berita.",
+      "Gunakan papan istilah bila diperlukan, lalu kerjakan latihan dan evaluasi sebelum melanjutkan ke Level 3."
+    ],
+    "note": "Layout mengikuti foto 07: gambar gedung Level 2 di kiri dan teks di kanan. Latihan dan evaluasi disebut sebagai bagian Level 2, bukan hanya Level 1. Bentuk rinci latihan Level 2 masih ditelaah pada tahap berikutnya. Papan istilah bantuan, bukan gerbang wajib.",
+    "buttons": [
+      "Kembali",
+      "Berikutnya",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "02B3.jpg"
+  },
+  {
+    "id": "02B4",
+    "title": "Panduan 4/5 — Level 3",
+    "kind": "panel",
+    "body": [
+      "Ruang 3: Membaca Lanjutan",
+      "Pada tahap terakhir, kamu akan membaca teks akademik berupa abstrak tentang Twizzler di gedung Level 3.",
+      "Perhatikan masalah, pendekatan, bukti evaluasi, dan kesimpulan yang didukung bacaan.",
+      "Kerjakan latihan dan evaluasi, kemudian lanjutkan ke aula untuk melihat hasil pembelajaran."
+    ],
+    "note": "Layout mengikuti foto 08: gambar gedung Level 3 di kiri dan teks di kanan; panah di bawah, tutup di atas. Membaca lanjutan di sini adalah membaca teks akademik. Halaman hanya orientasi; tidak mengunci bentuk latihan Level 3.",
+    "buttons": [
+      "Kembali",
+      "Berikutnya",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "02B4.jpg"
+  },
+  {
+    "id": "02B5",
+    "title": "Panduan 5/5 — aula",
+    "kind": "panel",
+    "body": [
+      "Aula",
+      "Setelah menyelesaikan ketiga level, kamu akan memasuki aula sebagai penutup perjalanan belajar.",
+      "Di sini, kamu dapat melihat nilai tiap level dan rekap nilai keseluruhan.",
+      "Kamu juga akan memperoleh penghargaan medali berdasarkan nilai yang dicapai selama pembelajaran."
+    ],
+    "note": "Layout mengikuti foto 09: gambar aula di kiri dan teks di kanan, panah kembali di kiri bawah serta tutup di kanan atas. Tidak ada panah berikut pada halaman terakhir. Tutup kembali ke map; untuk pemain yang baru mulai, tujuan HUD tetap Tutor 1 di air mancur. Jenis/ambang medali belum disimpulkan dari contoh foto. Wording panduan boleh disesuaikan, layout menjadi acuan.",
+    "buttons": [
+      "Kembali",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 850,
+    "file": "02B5.jpg"
+  },
+  {
+    "id": "03A",
+    "title": "Perjalanan ke Tutor 1",
+    "kind": "world",
+    "body": [
+      "Tujuan: Temui Tutor 1 di depan air mancur.",
+      "Tutor 1",
+      "Tahan E — Bicara"
+    ],
+    "note": "Dua NPC lama berdampingan di depan air mancur. Tutor1 adalah NPC di kiri dari arah pemain; Tutor2 di kanan. Penanda tujuan aktif menunjuk Tutor1. Tahan E membuka03B. Tidak memindahkan NPC ke taman samping atau memutar audio otomatis dari jauh.",
+    "scene": "tutor1",
+    "width": 1200,
+    "height": 890,
+    "file": "03A.jpg"
+  },
+  {
+    "id": "03B",
+    "title": "Tutor 1 — orientasi menyimak",
+    "kind": "panel",
+    "body": [
+      "Selamat datang di Level 1 — Keterampilan Menyimak.",
+      "Pada tahap ini, kamu akan mendengarkan sebuah narasi singkat yang berisi informasi dasar mengenai bidang Teknologi Informasi, khususnya tentang sistem operasi. Narasi ini dirancang untuk melatih kemampuanmu dalam memahami isi informasi yang disampaikan secara lisan.",
+      "Selama audio diputar, perhatikan dengan saksama setiap informasi penting, seperti pengertian, fungsi, serta peran sistem operasi dalam kehidupan sehari-hari dan dunia kerja.",
+      "Setelah selesai mendengarkan, kamu akan diminta mengerjakan latihan dan kuis yang menguji pemahamanmu terhadap isi narasi tersebut.",
+      "Dengarkan dengan fokus, karena setiap detail informasi akan membantumu menjawab pertanyaan dengan tepat."
+    ],
+    "note": "Pembuka mengikuti foto12 baseline. Penyesuaian terbatas: Sistem Informasi menjadi sistem operasi sesuai naskah/soal, serta latihan sebelum kuis. Mulai membuka audio1, bukan keseluruhan narasi sekaligus. Tiga bagian tetap mengikuti rancangan penelitian. Tutup kembali ke map.",
+    "buttons": [
+      "Mulai"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "03B.jpg"
+  },
+  {
+    "id": "04B",
+    "title": "Tutor 1 — audio 1/3",
+    "kind": "audio",
+    "body": [
+      "Pengertian dan sumber daya"
+    ],
+    "note": "Audio1 mencakup kalimat1–2 naskah awal. Panel mengikuti pola pemutar baseline dengan judul singkat, putar/jeda, satu bar penuh sepanjang jalur, dan satu CTA berikutnya. Bar0–100% serta waktu hanya untuk klip audio1, bukan sepertiga durasi seluruh narasi. Tampilan awal0%; setelah klip selesai100%. Ke papan informasi nonaktif sampai akhir normal audio1. Tombol putar berubah menjadi jeda saat berjalan dan putar ulang setelah selesai, tanpa menambah tombol navigasi. Tutup menjeda dan membuka kembali melanjutkan posisi klip. Titik potong/durasi/SoundId perlu dicocokkan di Studio.",
+    "buttons": [
+      "Putar / Jeda",
+      "Ke papan informasi"
+    ],
+    "audio": "1/3",
+    "width": 1200,
+    "height": 890,
+    "file": "04B.jpg"
+  },
+  {
+    "id": "04C1",
+    "title": "Audio 1 — selesai",
+    "kind": "panel",
+    "body": [
+      "Audio 1 selesai.",
+      "Selanjutnya, lihat papan informasi."
+    ],
+    "note": "Keadaan selesai audio1: bar milik klip ini100%, bukan sepertiga bar gabungan. Pemberitahuan singkat dan satu tombol ke papan informasi. Tombol menutup panel lalu mengarahkan pemain berjalan ke05A. Audio2 dan3 tetap menunggu di Tutor2; tidak digabung ke audio1.",
+    "buttons": [
+      "Ke papan informasi"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "04C1.jpg"
+  },
+  {
+    "id": "04C2",
+    "title": "Audio — gagal dimuat",
+    "kind": "panel",
+    "body": [
+      "Audio belum dapat diputar.",
+      "Coba muat ulang."
+    ],
+    "note": "Hanya muncul saat pemuatan klip aktif gagal dan pemeriksaan status memastikan belum siap setelah batas tunggu; periksa lagi status sebelum menampilkan. Jeda pengguna, tutup panel, akhir normal, atau audio yang sudah berhasil dimuat tidak boleh memunculkan error. Timeout saja bukan bukti pasti gagal. Coba lagi memuat ulang klip aktif dan membersihkan pesan setelah berhasil. Klip belum ditandai selesai. Kondisi teknis ini masih perlu diuji di Studio.",
+    "buttons": [
+      "Coba lagi"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "04C2.jpg"
+  },
+  {
+    "id": "05A",
+    "title": "Mendekati papan informasi",
+    "kind": "world",
+    "body": [
+      "Tujuan: Lihat papan informasi di dekat Tutor 1.",
+      "KENALI SISTEM OPERASI",
+      "Perangkat lunak • Pengelola sumber daya",
+      "Tahan E — Lihat informasi"
+    ],
+    "note": "Bentuk papan yang telah diterima dipertahankan. Papan tambahan di dekat Tutor1 menguatkan isi audio1. Letak tepi jalur masih usulan; dua NPC tetap di depan air mancur. Jika audio1 belum selesai, arahkan kembali ke Tutor1. Tidak mengubah isi materi awal.",
+    "scene": "info",
+    "width": 1100,
+    "height": 850,
+    "file": "05A.jpg"
+  },
+  {
+    "id": "05B",
+    "title": "Papan informasi — penguatan singkat",
+    "kind": "panel",
+    "body": [
+      "Kenali sistem operasi",
+      "Sistem operasi adalah perangkat lunak.",
+      "Mengelola sumber daya komputer:",
+      "Prosesor • Memori • Penyimpanan • Perangkat input dan output",
+      "Selanjutnya, temui Tutor 2."
+    ],
+    "note": "Papan ini tambahan rancangan, tidak ada padanannya pada foto baseline Level1. Isinya tetap dari naskah awal audio1: OS perangkat lunak dan sumber daya yang dikelola; tidak menambah konsep baru. Ke Tutor2 menutup panel dan menunjuk NPC kanan yang berdampingan dengan Tutor1. Tutor2 melanjutkan audio2 dan3, bukan sekadar pemberi arahan. Jika audio1 belum selesai, arahkan kembali ke Tutor1.",
+    "buttons": [
+      "Ke Tutor 2"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "05B.jpg"
+  },
+  {
+    "id": "06A",
+    "title": "Mendekati Tutor 2",
+    "kind": "world",
+    "body": [
+      "Tujuan: Temui Tutor 2 di depan air mancur.",
+      "Tutor 2",
+      "Tahan E — Bicara"
+    ],
+    "note": "NPC kanan di depan air mancur, berdampingan dengan Tutor1. Setelah papan informasi, penanda aktif menunjuk NPC ini untuk audio2 dan3. Tahan E membuka06B1. Jika audio1 belum selesai, arahkan ke Tutor1. Tidak membuat lokasi/NPC baru.",
+    "scene": "tutor2",
+    "width": 1200,
+    "height": 890,
+    "file": "06A.jpg"
+  },
+  {
+    "id": "06B1",
+    "title": "Tutor 2 — audio 2/3",
+    "kind": "audio",
+    "body": [
+      "Peran dan contoh sistem operasi"
+    ],
+    "note": "Tetap konsep sebelumnya: Tutor2 memutar audio2, kalimat3–6. Bar dan waktu0–100% milik klip audio2 sendiri. Tidak dimulai pada sepertiga bar narasi panjang dan tidak dipotong di tengah klip. Putar/jeda satu kontrol; satu CTA Lanjut ke audio3 aktif setelah akhir normal klip. Tombol tersebut mengganti halaman pemutar pada Tutor2 yang sama, bukan menyuruh pemain pindah NPC. Tutup menjeda; akses ulang memulihkan posisi. Tidak menambah empat tombol navigasi.",
+    "buttons": [
+      "Putar / Jeda",
+      "Lanjut ke audio 3"
+    ],
+    "audio": "2/3",
+    "width": 1200,
+    "height": 890,
+    "file": "06B1.jpg"
+  },
+  {
+    "id": "06B2",
+    "title": "Tutor 2 — audio 3/3",
+    "kind": "audio",
+    "body": [
+      "Tujuan dan manfaat pemahaman"
+    ],
+    "note": "Masih NPC Tutor2 yang sama. Ini halaman kedua pemutar pada NPC tersebut: audio3, kalimat7–9. Bar dan waktu0–100% berlaku untuk klip audio3 sendiri. Ke papan latihan aktif setelah akhir normal audio3, lalu menutup panel dan memberi arah berjalan ke07A. Tautan Kembali ke audio2 kecil tersedia untuk mengulang bagian sebelumnya; tidak mereset status selesai audio2. Tidak ada audio panjang gabungan.",
+    "buttons": [
+      "Putar / Jeda",
+      "Ke papan latihan"
+    ],
+    "audio": "3/3",
+    "width": 1200,
+    "height": 890,
+    "file": "06B2.jpg"
+  },
+  {
+    "id": "07A",
+    "title": "Mendekati papan latihan",
+    "kind": "world",
+    "body": [
+      "Tujuan: Lengkapi papan informasi dari audio.",
+      "LATIHAN MENYIMAK",
+      "Pesan utama dan informasi pendukung",
+      "Tahan E — Buka latihan"
+    ],
+    "note": "Latihan yang telah diterima dipertahankan. Akses aktif setelah tiga klip audio1–3 selesai. Jika belum, tampilkan bagian yang tersisa dan arahkan ke Tutor1 atau Tutor2 sesuai bagian. Papan di tepi jalur adalah usulan penempatan untuk diperiksa di Studio.",
+    "scene": "practice",
+    "width": 1100,
+    "height": 850,
+    "file": "07A.jpg"
+  },
+  {
+    "id": "07B1",
+    "title": "Latihan — papan kosong",
+    "kind": "practice",
+    "body": [
+      "Lengkapi informasi dari audio",
+      "Pilih kartu, lalu klik tempatnya. Isi satu pesan utama dan satu informasi pendukung. Dua kartu tidak digunakan."
+    ],
+    "note": "Bentuk latihan yang sudah diterima dipertahankan. Satu kartu hanya satu tempat. Klik kartu memberi seleksi, bukan status benar. Klik tempat terisi mengganti kartu; kartu lama kembali ke pilihan. Kartu boleh dipindahkan tanpa duplikasi. Periksa aktif setelah dua tempat terisi. Huruf kartu untuk rujukan, tidak menandai kunci.",
+    "cards": [
+      "A. Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer.",
+      "B. Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output.",
+      "C. Rekaman menjelaskan langkah memasang sistem operasi.",
+      "D. Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer."
+    ],
+    "slots": [
+      "Pesan utama: belum diisi",
+      "Informasi pendukung: belum diisi"
+    ],
+    "buttons": [
+      "Dengar ulang",
+      "Periksa — belum aktif",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 1037,
+    "file": "07B1.jpg"
+  },
+  {
+    "id": "07B2",
+    "title": "Latihan — satu tempat terisi",
+    "kind": "practice",
+    "body": [
+      "Lengkapi informasi dari audio",
+      "Isi kedua tempat terlebih dahulu."
+    ],
+    "note": "Kartu A sudah di Pesan utama; pendukung belum diisi, jadi Periksa belum aktif. Tutup mempertahankan susunan selama sesi. Dengar ulang menawarkan audio1,2,3 secara terpisah. Kembali ke papan mempertahankan kartu; pemutar lain berhenti sebelum klip baru diputar.",
+    "cards": [
+      "A. Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer.",
+      "B. Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output.",
+      "C. Rekaman menjelaskan langkah memasang sistem operasi.",
+      "D. Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer."
+    ],
+    "slots": [
+      "Pesan utama: kartu A",
+      "Informasi pendukung: belum diisi"
+    ],
+    "buttons": [
+      "Dengar ulang",
+      "Periksa — belum aktif",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 1001,
+    "file": "07B2.jpg"
+  },
+  {
+    "id": "07B3",
+    "title": "Latihan — contoh kartu tertukar",
+    "kind": "practice",
+    "body": [
+      "Periksa kembali penempatannya",
+      "Kedua informasi sesuai narasi. Mana yang merangkum seluruh pembahasan, dan mana yang memberi rincian khusus?"
+    ],
+    "note": "Contoh ini muncul setelah Periksa: A/B terbalik. Beri label Perlu diperbaiki pada masing-masing tempat, tidak hanya warna. Jika C dipilih: Apakah narasi menjelaskan langkah memasang sistem operasi? Jika D dipilih: Dengarkan bagaimana narasi menjelaskan OS: perangkat lunak atau perangkat keras? Tempat tepat dipertahankan; hanya yang salah diperbaiki.",
+    "cards": [
+      "A. Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer.",
+      "B. Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output.",
+      "C. Rekaman menjelaskan langkah memasang sistem operasi.",
+      "D. Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer."
+    ],
+    "slots": [
+      "Pesan utama: kartu B — perbaiki",
+      "Informasi pendukung: kartu A — perbaiki"
+    ],
+    "buttons": [
+      "Dengar ulang",
+      "Coba lagi",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 1107,
+    "file": "07B3.jpg"
+  },
+  {
+    "id": "07B4",
+    "title": "Latihan — pembahasan berbantuan",
+    "kind": "panel",
+    "body": [
+      "Pembahasan papan informasi",
+      "Pesan utama: Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer.",
+      "Informasi pendukung: Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output.",
+      "Pesan utama mencakup peran sistem operasi secara umum. Informasi pendukung merinci sumber daya yang dikelola.",
+      "Langkah memasang OS tidak dibahas. OS disebut perangkat lunak, bukan perangkat keras."
+    ],
+    "note": "Setelah pemeriksaan kedua masih salah, tawarkan Lihat pembahasan atau Coba lagi. Membuka pembahasan belum menyelesaikan aktivitas sampai Saya memahami pembahasan dipilih. Setelah konfirmasi, status Selesai dengan bantuan. Ambang dua pemeriksaan adalah aturan desain awal untuk ditelaah, bukan aturan final eksperimen.",
+    "buttons": [
+      "Saya memahami pembahasan",
+      "Kembali mencoba"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "07B4.jpg"
+  },
+  {
+    "id": "07B5",
+    "title": "Latihan — selesai dan tujuan berikutnya",
+    "kind": "practice",
+    "body": [
+      "Latihan selesai",
+      "Tepat. Pesan utama merangkum peran sistem operasi; rincian pendukung menyebut sumber daya yang dikelolanya."
+    ],
+    "note": "A/B tepat menampilkan Selesai; setelah pembahasan dikonfirmasi gunakan Selesai dengan bantuan. Latihan tidak menambah nilai kelulusan. Ke kios evaluasi menutup papan dan memberi arah berjalan; tidak langsung membuka soal. Susunan dan status selesai bertahan selama sesi.",
+    "cards": [
+      "A. Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer.",
+      "B. Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output.",
+      "C. Rekaman menjelaskan langkah memasang sistem operasi.",
+      "D. Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer."
+    ],
+    "slots": [
+      "Pesan utama: kartu A — tepat",
+      "Informasi pendukung: kartu B — tepat"
+    ],
+    "buttons": [
+      "Dengar ulang",
+      "Ke kios evaluasi",
+      "Tutup"
+    ],
+    "width": 1100,
+    "height": 1072,
+    "file": "07B5.jpg"
+  },
+  {
+    "id": "07B6",
+    "title": "Latihan — pilih audio untuk didengar ulang",
+    "kind": "panel",
+    "body": [
+      "Dengar ulang narasi",
+      "Audio 1 — Pengertian dan sumber daya",
+      "Audio 2 — Peran dan contoh",
+      "Audio 3 — Tujuan dan manfaat pemahaman"
+    ],
+    "note": "Dengar ulang tetap tiga klip terpisah, bukan satu narasi panjang. Memilih satu klip membuka pemutar sederhana dengan bar0–100% untuk klip tersebut dan Kembali ke papan. Susunan/seleksi kartu tetap. Tidak memindahkan avatar, membuat rekaman baru, atau menumpuk dua pemutar. Status selesai materi yang sah tetap tersimpan selama sesi.",
+    "buttons": [
+      "Audio 1",
+      "Audio 2",
+      "Audio 3",
+      "Kembali ke papan"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "07B6.jpg"
+  },
+  {
+    "id": "08A",
+    "title": "Mendekati kios evaluasi",
+    "kind": "world",
+    "body": [
+      "Tujuan: Kerjakan evaluasi Level 1 di kios.",
+      "EVALUASI LEVEL 1",
+      "4 soal • Jawaban dan alasan",
+      "Tahan E — Buka evaluasi"
+    ],
+    "note": "Objek baru berupa kios/papan tegak sederhana di tepi jalur ke gedung Level 2. Penanda tujuan mengarah ke kios setelah latihan selesai. Pemain berjalan ke kios; kedekatan saja tidak membuka soal.",
+    "scene": "kiosk",
+    "width": 1100,
+    "height": 850,
+    "file": "08A.jpg"
+  },
+  {
+    "id": "08B1",
+    "title": "Kios — contoh akses belum siap",
+    "kind": "panel",
+    "body": [
+      "Evaluasi belum dapat dimulai.",
+      "Audio: 2 dari 3 bagian selesai.",
+      "Latihan: belum selesai."
+    ],
+    "note": "Contoh akses terlalu awal; status berasal dari progres aktual tiga klip audio dan latihan. Jika audio belum lengkap, arahkan ke NPC/klip pertama yang belum selesai; jika seluruh audio selesai tetapi latihan belum, arahkan ke papan latihan. Tidak lagi memakai syarat satu audio utuh. Tutup kembali ke map.",
+    "buttons": [
+      "Kembali belajar"
+    ],
+    "width": 1200,
+    "height": 890,
+    "file": "08B1.jpg"
+  },
+  {
+    "id": "08B2",
+    "title": "Kios — petunjuk dan konfirmasi",
+    "kind": "panel",
+    "body": [
+      "Siap mengikuti evaluasi Level 1?",
+      "Ada empat soal. Pada setiap soal, pilih satu jawaban, kunci jawaban tersebut, lalu pilih satu alasan.",
+      "Penjelasan ditampilkan setelah jawaban dan alasan dikirim. Jawaban yang sudah dikirim tidak dapat diganti pada percobaan ini.",
+      "Jawaban benar bernilai 25; nilai minimal 75 untuk melanjutkan. Ketepatan alasan dicatat terpisah dari nilai jawaban.",
+      "Selama evaluasi, akses materi dan bantuan latihan ditutup. Jika ingin belajar lagi, pilih Nanti dulu sebelum mulai."
+    ],
+    "note": "Terbuka setelah ketiga klip audio selesai dan latihan selesai, sesuai rancangan semula. Soal, opsi, kunci, feedback, skor dan batas perlakuan tidak diubah. Mulai evaluasi memulai percobaan; Nanti dulu kembali ke map. Keluar memakai konfirmasi. Aturan percobaan/durasi tetap perlu diselaraskan dengan SOP A/B.",
+    "buttons": [
+      "Nanti dulu",
+      "Mulai evaluasi"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "08B2.jpg"
+  },
+  {
+    "id": "09Q1A",
+    "title": "Evaluasi 1/4 — pilih jawaban",
+    "kind": "question",
+    "body": [
+      "Berdasarkan narasi audio yang disampaikan, sistem operasi dapat diartikan sebagai …",
+      "A. Perangkat keras utama yang berfungsi menjalankan aplikasi",
+      "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer",
+      "C. Program tambahan yang digunakan untuk mempercepat kinerja komputer",
+      "D. Sistem jaringan yang menghubungkan komputer dengan internet",
+      "E. Media penyimpanan data yang digunakan oleh pengguna"
+    ],
+    "note": "Soal mengikuti tab Peta tujuan pembelajaran tiga level tanpa perubahan isi. Sebelum memilih, Kunci jawaban belum aktif. Pilihan boleh diganti sebelum dikunci. Setelah dikunci, tampilkan tier 2 tanpa warna benar/salah atau penjelasan. Kunci penelaah: Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari. Kunci tidak ditampilkan pada UI mahasiswa.",
+    "buttons": [
+      "Kunci jawaban dan lanjut",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 1 dari 4 • Tingkat 1: Jawaban",
+    "width": 1100,
+    "height": 800,
+    "file": "09Q1A.jpg"
+  },
+  {
+    "id": "09Q1B",
+    "title": "Evaluasi 1/4 — pilih alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.",
+      "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.",
+      "C. Narasi membatasi tugas OS pada pengaturan jaringan dan akses internet.",
+      "D. Narasi menyamakan OS dengan perangkat penyimpanan data milik pengguna."
+    ],
+    "note": "Ringkasan jawaban tier 1 yang dipilih terlihat di kotak atas dengan teks pilihan aktual; jawaban sudah terkunci. Pilihan pada low-fi adalah contoh tampilan, bukan penanda kunci bagi pemain. Kirim jawaban aktif setelah satu alasan dipilih. Tidak memberi petunjuk benar/salah sebelum dikirim. Kunci penelaah: Kunci tier 2: B. Bukti penjelas: Narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan I/O oleh perangkat lunak. Setelah Kirim, kedua jawaban tidak dapat diganti dan feedback sesuai pilihan tampil.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 1 dari 4 • Tingkat 2: Alasan",
+    "locked": "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer",
+    "width": 1100,
+    "height": 955,
+    "file": "09Q1B.jpg"
+  },
+  {
+    "id": "09Q2A",
+    "title": "Evaluasi 2/4 — pilih jawaban",
+    "kind": "question",
+    "body": [
+      "Salah satu peran utama sistem operasi menurut narasi audio adalah …",
+      "A. Menggantikan fungsi perangkat keras komputer",
+      "B. Menyimpan seluruh data pengguna secara permanen",
+      "C. Menjadi penghubung antara pengguna dan aplikasi",
+      "D. Mengendalikan jaringan internet secara langsung",
+      "E. Menjalankan aplikasi tanpa bantuan perangkat keras"
+    ],
+    "note": "Soal mengikuti tab Peta tujuan pembelajaran tiga level tanpa perubahan isi. Sebelum memilih, Kunci jawaban belum aktif. Pilihan boleh diganti sebelum dikunci. Setelah dikunci, tampilkan tier 2 tanpa warna benar/salah atau penjelasan. Kunci penelaah: Kunci tier 1: C. Batang, opsi, dan kunci mengikuti baseline Sanubari. Kunci tidak ditampilkan pada UI mahasiswa.",
+    "buttons": [
+      "Kunci jawaban dan lanjut",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 2 dari 4 • Tingkat 1: Jawaban",
+    "width": 1100,
+    "height": 800,
+    "file": "09Q2A.jpg"
+  },
+  {
+    "id": "09Q2B",
+    "title": "Evaluasi 2/4 — pilih alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.",
+      "B. Narasi menyebut OS sebagai pengganti seluruh perangkat keras komputer.",
+      "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.",
+      "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."
+    ],
+    "note": "Ringkasan jawaban tier 1 yang dipilih terlihat di kotak atas dengan teks pilihan aktual; jawaban sudah terkunci. Pilihan pada low-fi adalah contoh tampilan, bukan penanda kunci bagi pemain. Kirim jawaban aktif setelah satu alasan dipilih. Tidak memberi petunjuk benar/salah sebelum dikirim. Kunci penelaah: Kunci tier 2: A. Bukti penjelas: Narasi menyatakan OS menghubungkan pengguna dan aplikasi. Setelah Kirim, kedua jawaban tidak dapat diganti dan feedback sesuai pilihan tampil.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 2 dari 4 • Tingkat 2: Alasan",
+    "locked": "C. Menjadi penghubung antara pengguna dan aplikasi",
+    "width": 1100,
+    "height": 955,
+    "file": "09Q2B.jpg"
+  },
+  {
+    "id": "09Q3A",
+    "title": "Evaluasi 3/4 — pilih jawaban",
+    "kind": "question",
+    "body": [
+      "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah...",
+      "A. Mendesain ulang perangkat keras komputer agar seluruh aplikasi berjalan tanpa sistem operasi",
+      "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu",
+      "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis",
+      "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna",
+      "E. Menginstal sebanyak mungkin aplikasi agar kinerja komputer meningkat secara maksimal"
+    ],
+    "note": "Soal mengikuti tab Peta tujuan pembelajaran tiga level tanpa perubahan isi. Sebelum memilih, Kunci jawaban belum aktif. Pilihan boleh diganti sebelum dikunci. Setelah dikunci, tampilkan tier 2 tanpa warna benar/salah atau penjelasan. Kunci penelaah: Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari. Kunci tidak ditampilkan pada UI mahasiswa.",
+    "buttons": [
+      "Kunci jawaban dan lanjut",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 3 dari 4 • Tingkat 1: Jawaban",
+    "width": 1100,
+    "height": 912,
+    "file": "09Q3A.jpg"
+  },
+  {
+    "id": "09Q3B",
+    "title": "Evaluasi 3/4 — pilih alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Audio mengaitkan penambahan jumlah aplikasi dengan peningkatan kinerja komputer.",
+      "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.",
+      "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.",
+      "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."
+    ],
+    "note": "Ringkasan jawaban tier 1 yang dipilih terlihat di kotak atas dengan teks pilihan aktual; jawaban sudah terkunci. Pilihan pada low-fi adalah contoh tampilan, bukan penanda kunci bagi pemain. Kirim jawaban aktif setelah satu alasan dipilih. Tidak memberi petunjuk benar/salah sebelum dikirim. Kunci penelaah: Kunci tier 2: C. Bukti penjelas: Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem. Setelah Kirim, kedua jawaban tidak dapat diganti dan feedback sesuai pilihan tampil.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 3 dari 4 • Tingkat 2: Alasan",
+    "locked": "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu",
+    "width": 1100,
+    "height": 955,
+    "file": "09Q3B.jpg"
+  },
+  {
+    "id": "09Q4A",
+    "title": "Evaluasi 4/4 — pilih jawaban",
+    "kind": "question",
+    "body": [
+      "Dalam narasi audio disebutkan bahwa sistem operasi berperan sebagai penghubung antara pengguna dan aplikasi. Apa yang akan terjadi pada sebuah sistem komputer apabila sistem operasi tidak mampu menjalankan peran tersebut dengan baik! …",
+      "A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara",
+      "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan",
+      "C. Perangkat keras akan meningkatkan kinerjanya secara mandiri",
+      "D. Sistem operasi akan digantikan secara otomatis oleh aplikasi lain",
+      "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu"
+    ],
+    "note": "Soal mengikuti tab Peta tujuan pembelajaran tiga level tanpa perubahan isi. Sebelum memilih, Kunci jawaban belum aktif. Pilihan boleh diganti sebelum dikunci. Setelah dikunci, tampilkan tier 2 tanpa warna benar/salah atau penjelasan. Kunci penelaah: Kunci tier 1: E. Batang, opsi, dan kunci mengikuti baseline Sanubari. Kunci tidak ditampilkan pada UI mahasiswa.",
+    "buttons": [
+      "Kunci jawaban dan lanjut",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 4 dari 4 • Tingkat 1: Jawaban",
+    "width": 1100,
+    "height": 912,
+    "file": "09Q4A.jpg"
+  },
+  {
+    "id": "09Q4B",
+    "title": "Evaluasi 4/4 — pilih alasan",
+    "kind": "question",
+    "body": [
+      "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+      "A. Audio menyebut aplikasi mengambil alih seluruh tugas OS secara otomatis.",
+      "B. Audio menyebut perangkat keras menambah kemampuannya sendiri saat OS terganggu.",
+      "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.",
+      "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."
+    ],
+    "note": "Ringkasan jawaban tier 1 yang dipilih terlihat di kotak atas dengan teks pilihan aktual; jawaban sudah terkunci. Pilihan pada low-fi adalah contoh tampilan, bukan penanda kunci bagi pemain. Kirim jawaban aktif setelah satu alasan dipilih. Tidak memberi petunjuk benar/salah sebelum dikirim. Kunci penelaah: Kunci tier 2: D. Bukti penjelas: Audio menghubungkan kegagalan peran OS dengan aplikasi yang tidak berjalan baik. Setelah Kirim, kedua jawaban tidak dapat diganti dan feedback sesuai pilihan tampil.",
+    "buttons": [
+      "Kirim jawaban",
+      "Keluar evaluasi"
+    ],
+    "progress": "Soal 4 dari 4 • Tingkat 2: Alasan",
+    "locked": "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu",
+    "width": 1100,
+    "height": 955,
+    "file": "09Q4B.jpg"
+  },
+  {
+    "id": "10B5",
+    "title": "Evaluasi — konfirmasi keluar",
+    "kind": "panel",
+    "body": [
+      "Keluar dari evaluasi?",
+      "Percobaan ini belum selesai. Jika keluar, jawaban pada percobaan ini dibatalkan dan belum ada nilai akhir.",
+      "Progres materi dan latihan tetap tersimpan selama sesi. Kamu dapat belajar kembali lalu memulai evaluasi baru dari kios."
+    ],
+    "note": "Muncul setelah Keluar evaluasi dipilih pada tier 1/2. Tetap mengerjakan kembali ke soal yang sama dengan pilihan tetap. Ya, keluar menutup evaluasi dan mengarahkan ke pilihan belajar; bukan hasil gagal bernilai nol. Ini usulan perilaku keluar yang perlu diselaraskan dengan SOP eksperimen.",
+    "buttons": [
+      "Tetap mengerjakan",
+      "Ya, keluar"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "10B5.jpg"
+  },
+  {
+    "id": "10B1",
+    "title": "Umpan balik — jawaban dan alasan tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban tepat • Alasan tepat",
+      "Contoh soal 1 • Pilihan jawaban B • Pilihan alasan B",
+      "Benar. OS adalah perangkat lunak yang mengelola sumber daya komputer.",
+      "Alasan B tepat: narasi merinci sumber daya yang dikelola perangkat lunak.",
+      "Bukti audio: narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan input/output oleh perangkat lunak.",
+      "Nilai jawaban soal ini: 25 dari 25. Ketepatan alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI, bukan data peserta. Pesan dirakit dari pilihan yang benar-benar dikirim pada tiap soal; gunakan 36 pesan khusus Level 1 pada sumber. Feedback tampil setelah kedua tier dikirim. Tidak otomatis berganti soal. Tombol Soal berikutnya pada soal 1–3; pada soal 4 menjadi Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "10B1.jpg"
+  },
+  {
+    "id": "10B2",
+    "title": "Umpan balik — jawaban salah, alasan tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban belum tepat • Alasan tepat",
+      "Contoh soal 1 • Pilihan jawaban A • Pilihan alasan B",
+      "OS disebut perangkat lunak, bukan perangkat keras utama.",
+      "Alasan B tepat: narasi merinci sumber daya yang dikelola perangkat lunak.",
+      "Bukti audio: narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan input/output oleh perangkat lunak.",
+      "Nilai jawaban soal ini: 0 dari 25. Ketepatan alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI, bukan data peserta. Pesan dirakit dari pilihan yang benar-benar dikirim pada tiap soal; gunakan 36 pesan khusus Level 1 pada sumber. Feedback tampil setelah kedua tier dikirim. Tidak otomatis berganti soal. Tombol Soal berikutnya pada soal 1–3; pada soal 4 menjadi Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "10B2.jpg"
+  },
+  {
+    "id": "10B3",
+    "title": "Umpan balik — jawaban tepat, alasan salah",
+    "kind": "panel",
+    "body": [
+      "Jawaban tepat • Alasan belum tepat",
+      "Contoh soal 1 • Pilihan jawaban B • Pilihan alasan A",
+      "Benar. OS adalah perangkat lunak yang mengelola sumber daya komputer.",
+      "Alasan A mengubah OS menjadi perangkat keras; narasi menyebut perangkat lunak.",
+      "Bukti audio: narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan input/output oleh perangkat lunak.",
+      "Nilai jawaban soal ini: 25 dari 25. Ketepatan alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI, bukan data peserta. Pesan dirakit dari pilihan yang benar-benar dikirim pada tiap soal; gunakan 36 pesan khusus Level 1 pada sumber. Feedback tampil setelah kedua tier dikirim. Tidak otomatis berganti soal. Tombol Soal berikutnya pada soal 1–3; pada soal 4 menjadi Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "10B3.jpg"
+  },
+  {
+    "id": "10B4",
+    "title": "Umpan balik — keduanya belum tepat",
+    "kind": "panel",
+    "body": [
+      "Jawaban belum tepat • Alasan belum tepat",
+      "Contoh soal 1 • Pilihan jawaban A • Pilihan alasan A",
+      "OS disebut perangkat lunak, bukan perangkat keras utama.",
+      "Alasan A mengubah OS menjadi perangkat keras; narasi menyebut perangkat lunak.",
+      "Bukti audio: narasi menyebut pengelolaan prosesor, memori, penyimpanan, dan input/output oleh perangkat lunak.",
+      "Nilai jawaban soal ini: 0 dari 25. Ketepatan alasan dicatat terpisah."
+    ],
+    "note": "Contoh UI, bukan data peserta. Pesan dirakit dari pilihan yang benar-benar dikirim pada tiap soal; gunakan 36 pesan khusus Level 1 pada sumber. Feedback tampil setelah kedua tier dikirim. Tidak otomatis berganti soal. Tombol Soal berikutnya pada soal 1–3; pada soal 4 menjadi Lihat hasil.",
+    "buttons": [
+      "Soal berikutnya"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "10B4.jpg"
+  },
+  {
+    "id": "11B1",
+    "title": "Hasil Level 1 — lulus",
+    "kind": "panel",
+    "body": [
+      "Level 1 selesai",
+      "Nilai jawaban: 75 / 100",
+      "Jawaban tepat: 3 dari 4 • Alasan tepat: 2 dari 4",
+      "Kamu memenuhi nilai minimal 75 untuk melanjutkan.",
+      "Selanjutnya, berjalanlah ke gedung Level 2 di sisi kiri dari arah masuk kampus. Ikuti penunjuk menuju pintunya."
+    ],
+    "note": "Angka merupakan contoh tampilan. Nilai jawaban = jumlah tier 1 tepat ×25; alasan dihitung terpisah 0–4 dan tidak membatalkan kelulusan tier 1. Lanjut ke Level 2 menutup panel, membuka akses belajar Level 2, dan mengaktifkan penunjuk rute. Tidak teleportasi.",
+    "buttons": [
+      "Lanjut ke Level 2"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "11B1.jpg"
+  },
+  {
+    "id": "11B2",
+    "title": "Hasil Level 1 — belum lulus",
+    "kind": "panel",
+    "body": [
+      "Level 1 belum tuntas",
+      "Nilai jawaban: 50 / 100",
+      "Jawaban tepat: 2 dari 4 • Alasan tepat: 3 dari 4",
+      "Nilai minimal untuk melanjutkan adalah 75.",
+      "Pelajari kembali bagian yang belum kamu pahami, lalu kembali ke kios untuk mencoba evaluasi lagi."
+    ],
+    "note": "Angka hanya ilustrasi. Belajar kembali menutup panel dan membuka pilihan lokasi audio/latihan, sehingga pemain tidak terjebak modal. Status belajar tetap, akses Level 2 belum dibuka. Kembali ke kios memungkinkan percobaan baru setelah memilih siap; tidak mewajibkan memutar semua audio dari awal. Batas waktu/jumlah percobaan serta skor percobaan yang dipakai penelitian perlu ditetapkan dalam SOP; bukan diputuskan oleh low-fi.",
+    "buttons": [
+      "Belajar kembali"
+    ],
+    "width": 1100,
+    "height": 800,
+    "file": "11B2.jpg"
+  },
+  {
+    "id": "12A",
+    "title": "Keluar Level 1 — menuju gedung Level 2",
+    "kind": "world",
+    "body": [
+      "Tujuan: Masuk ke gedung Level 2.",
+      "LEVEL 2 — MEMBACA BERITA",
+      "Ikuti penunjuk menuju pintu masuk gedung."
+    ],
+    "note": "Setelah Lanjut ke Level 2, pemain melihat lingkungan lagi dan berjalan dari area air mancur menuju gedung kiri. Penunjuk mengarah ke pintu, lalu tujuan berikutnya adalah orientasi di dalam Level 2. Paket ini berhenti di ambang gedung; rincian interaksi Level 2 dibuat pada tahap berikutnya.",
+    "scene": "exit",
+    "width": 1100,
+    "height": 850,
+    "file": "12A.jpg"
+  }
+]

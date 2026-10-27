@@ -1,0 +1,91 @@
+{
+  "experimentalProgressGuiPresent": false,
+  "level1GuiChildren": [
+    {
+      "class": "Frame",
+      "name": "space1IntroFrame"
+    },
+    {
+      "class": "Frame",
+      "name": "quizFrame"
+    },
+    {
+      "class": "Frame",
+      "name": "audioPlayerMale"
+    },
+    {
+      "class": "Frame",
+      "name": "audioPlayerFemale"
+    },
+    {
+      "class": "Frame",
+      "name": "audioChoose"
+    },
+    {
+      "class": "Frame",
+      "name": "BackgroundOverlay"
+    }
+  ],
+  "limitation": "Lune 0.11.1 memperingatkan properti Terrain tipe 0x23 tidak didukung; tidak dipakai menyimpan ulang place",
+  "prompts": [
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.SummaryProximity.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Space2Answers.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Space1Answers.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Space3Answers.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Space 2.Infoboard.Surface.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Space 3.Infoboard.Surface.ProximityPrompt"
+    },
+    {
+      "actionText": "Tahan \"E\"",
+      "objectText": "",
+      "path": "Workspace.Halaman depan.papanInformasi.Animation 2.ProximityPrompt"
+    }
+  ],
+  "scope": "Pembacaan parsial file, bukan Play atau verifikasi audio/izin aset",
+  "sounds": [
+    {
+      "path": "StarterGui.Level1Gui.audioPlayerFemale.NarationSound",
+      "soundId": "Tidak terbaca oleh alat; periksa di Studio"
+    },
+    {
+      "path": "StarterGui.Level1Gui.audioPlayerMale.NarationSound",
+      "soundId": "Tidak terbaca oleh alat; periksa di Studio"
+    }
+  ],
+  "sourceMatches": {
+    "migration-v2/src/ServerScriptService/Level1ScoreHandler.server.luau": true,
+    "migration-v2/src/ServerScriptService/LevelProgressHandler.server.luau": true,
+    "migration-v2/src/StarterPlayer/StarterPlayerScripts/FlowController.client.luau": true,
+    "migration-v2/src/StarterPlayer/StarterPlayerScripts/Level1Handler.client.luau": true,
+    "migration-v2/src/StarterPlayer/StarterPlayerScripts/Level1QuizHandler.client.luau": true
+  },
+  "spawns": [
+    {
+      "cframe": "67.98873, 8.502981, 449.00137, 1, 0, -0.00004298899, 0, 1, 0.00008396897, 0.00004298971, -0.000083968596, 1",
+      "path": "Workspace.SpawnLocation"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+
+
+ProjectDirectory               : C:\Users\Hp\OneDrive\Desktop\skripsi\roblox\roblox-media-bahasa-skripsi
+GitFound                       : True
+StudioDetectedInStandardFolder : False
+StudioRunning                  : False
+CodexCliFound                  : True
+StudioMcpLauncherFound         : False
+RobloxStudioEntryInUserConfig  : False
+WorkingSha256                  : A4E910246C70993A0FB90CFB9E73150412664A88D14D79F25DC0626A380C9EEF
+Connection                     : Belum diuji; konfigurasi terdaftar bukan bukti MCP terhubung
+
+
+
+
+## main...origin/main
+ M README.md
+ M default.project.json
+ D migration-v2/src/StarterGui/LevelProgressGui.rbxm
+ M places/RobloxLearningMedia-WORKING.rbxl
+?? PANDUAN-WARNET-3-JAM.md
+?? docs/development/
+?? scripts/cadangkan-sesi.ps1
+?? scripts/cek-warnet.ps1
+?? scripts/inventaris-baca-saja.luau
+Jika Studio tidak terdeteksi, periksa Start Menu; lokasi instalasi lain mungkin tidak tercakup.
+CodexCliFound=False tidak membuktikan aplikasi desktop tidak terpasang. Periksa Start Menu.
+Langkah berikut: buka WORKING di Studio, aktifkan MCP, lalu minta AI membaca Workspace tanpa mengubahnya.
+Login akun, internet, izin aset audio dan Play perlu diperiksa langsung. Script ini tidak menguji hal tersebut.

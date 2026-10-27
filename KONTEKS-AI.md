@@ -46,9 +46,9 @@ Root clone adalah folder yang berisi `.git`, `places`, `scripts` dan file ini. P
 | WORKING kanonis | `places/RobloxLearningMedia-WORKING.rbxl` dalam clone |
 | Hash file lokal terbaru yang diperiksa | `a4e910246c70993a0fb90cfb9e73150412664a88d14d79f25dc0626a380c9eef`,2.691.974 byte |
 | Progress bar percobaan kanan atas | Sudah dihapus lokal; pengguna mengonfirmasi place bisa dibuka dan panel hilang |
-| Commit perubahan game tersebut | **Belum commit/push** pada snapshot ini; model `migration-v2/src/StarterGui/LevelProgressGui.rbxm` juga terhapus lokal |
+| Commit perubahan game tersebut | **`e3360cb`** mencatat WORKING terbaru dan penghapusan `migration-v2/src/StarterGui/LevelProgressGui.rbxm`; commit bukan bukti Play lengkap |
 | `default.project.json` | Perubahan lokal lama milik pengguna, pertahankan dan jangan ikutkan tanpa alasan |
-| Commit dasar game sebelum brief ini | `4fbc41b`; penambahan dokumen konteks tidak berarti WORKING lokal sudah ikut terkirim |
+| Riwayat commit | `4fbc41b` dasar sebelumnya; `58d231f` brief awal; `e3360cb` penyimpanan perubahan game. Pastikan clone PC tujuan memuat commit game tersebut |
 | Baseline | File BACKUP pendahulu di luar clone tetap utuh; salinan tambahan lokal telah diverifikasi. Build eksperimenAfinal belum dinyatakan dibekukan/diuji |
 | Rancangan | Userflow, contoh hi-fi dan149 low-fi rinci tersedia; total 155 gambar pada dokumen rancangan menurut verifikasi sebelumnya |
 | Implementasi fiturbaru | Masih tahapawal; rancangan/prototipe bukan fitur yang sudah terpasang |
@@ -71,7 +71,7 @@ MCP bawaan Studio menjadi pilihan koneksi AI; koneksi aktual belum terverifikasi
 
 Pada workspace skripsi lengkap (dua tingkat di atas root clone): `docs/CONTEXT.md`, `docs/AGENTS.md`, `docs/ROADMAP_OKTOBER_NOVEMBER_2026.md`, `docs/pengembangan/HANDOFF-DEVELOPMENT.md` dan folder storyboard aktif. Naskah akademik resmi berada pada Google Docs tab Production sesuai konteks akademik; bukan otomatis file Word lokal.
 
-Panduan warnet 3 jam, catatan tahap 0, script cadangan/cek PC dan kit offline juga telah disiapkan lokal. Pada saat brief ini disusun, file-file pendamping itu belum seluruhnya commit/push. Jangan menyatakan dapat membacanya dari clone GitHub bila memang belum ada. Brief ini sengaja bisa dipakai mandiri untuk diskusi awal.
+Mulai saat duduk di PC warnet dari [PANDUAN-WARNET-3-JAM.md](PANDUAN-WARNET-3-JAM.md). Panduan, catatan tahap 0 dan script cadangan/cek PC disertakan dalam commit setup pendamping setelah `e3360cb`. Kit ZIP offline tetap merupakan artefak lokal di luar clone, tidak otomatis tersedia melalui GitHub. Brief ini dapat dipakai mandiri untuk diskusi awal.
 
 ## 8. Cara memakai brief di chat baru
 
@@ -85,6 +85,6 @@ GitHub menyimpan konteks; bukan memori otomatis untuk semua AI. File AGENTS memb
 
 ## 9. Serah-terima singkat untuk diperbarui
 
-Terakhir27 Oktober: tahap0/inventarisfile dan cadangan telah disiapkan; Play barubelum dilakukan. Langkahdevelopment berikut: amankan versi → Play baseline → satuL1_PapanInformasi dan uji rute → panel/interaksi → segmentasi sesuai aset → latihan/evaluasi. Untuk diskusi, mulai dari tujuan terbaru pengguna, bukan langsung menjalankan daftar implementasi.
+Terakhir 27 Oktober: perubahan game telah dicatat pada `e3360cb`; tahap 0, inventaris file, cadangan dan panduan warnet tersedia. Play baru belum dilakukan. Langkah development berikut: clone/pull versi tersimpan → Play baseline → satu `L1_PapanInformasi` dan uji rute → panel/interaksi → segmentasi sesuai aset → latihan/evaluasi. Untuk diskusi, mulai dari tujuan terbaru pengguna, bukan langsung menjalankan daftar implementasi.
 
 Setiap perubahan material, perbarui bagianstatus dan serah-terima file ini dengan tanggal, hasil aktual, bukti/versi, masalah dan langkahberikutnya. Pada workspace lengkap, selaraskan dengan CONTEXT akademik; jangan membuat dua riwayat yang saling bertentangan.

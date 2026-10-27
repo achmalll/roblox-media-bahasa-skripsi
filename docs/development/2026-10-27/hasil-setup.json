@@ -1,0 +1,12 @@
+{
+  "workingSha256": "A4E910246C70993A0FB90CFB9E73150412664A88D14D79F25DC0626A380C9EEF",
+  "archive": "C:\\Users\\Hp\\OneDrive\\Desktop\\skripsi\\roblox\\session-backups\\roblox-session-20261027T141954Z-6af6a3d1.zip",
+  "restoredHashMatches": true,
+  "zipFileCount": 2,
+  "backupScriptParsePassed": true,
+  "baselineOriginalSha256": "072BD774477DC20A50550CAEE6922B2E2729F2E3AA3A5DCBC1A4B4C42C01A25E",
+  "baselineCopy": "C:\\Users\\Hp\\OneDrive\\Desktop\\skripsi\\roblox\\session-backups\\baseline-pendahulu\\RobloxLearningMedia-BACKUP.rbxl",
+  "baselineCopyMatches": true,
+  "studioPlay": "Belum dijalankan",
+  "remoteSync": "ls-remote berhasil: GitHub main = HEAD lokal 4fbc41bf33b06d6a93675b871f9c2322571cf4d2; WORKING lokal belum commit/push"
+}

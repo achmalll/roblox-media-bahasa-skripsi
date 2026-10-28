@@ -1,5 +1,16 @@
 # Petunjuk untuk AI pada repository ini
 
+## Bootstrap wajib untuk pekerjaan Roblox
+
+Setelah membaca konteks, jika permintaan pengguna menyentuh implementasi, inspeksi, sinkronisasi, atau pengujian game Roblox, lakukan bootstrap berikut sebelum mengubah game:
+
+1. Jalankan `CONNECT-STUDIO.cmd` dari root clone. Helper ini memasang/memperbarui plugin lokal dan menyalakan bridge untuk clone aktif; jangan menganggap clone saja sudah memasang plugin pada PC baru.
+2. Buka `places/RobloxLearningMedia-WORKING.rbxl` di Roblox Studio bila belum terbuka, lalu verifikasi bridge menunjukkan clone/workspace yang sama, status online, mode Edit, dan source terkelola sinkron. Ikuti `studio-sync/README.md` sebagai prosedur operasional dan batas keamanan.
+3. Jika plugin baru dipasang/diperbarui, muat ulang Studio. Jika Node/izin/plugin belum tersedia, laporkan hambatan yang tepat; jangan beralih ke patch biner WORKING atau mengklaim sinkronisasi aktif.
+4. Jangan otomatis menjalankan Play, Save, publish, atau mengubah objek hanya karena bootstrap berhasil. Tindakan tersebut tetap mengikuti cakupan permintaan pengguna dan harus diverifikasi terpisah.
+
+Bootstrap ini berlaku per PC/sesi untuk pekerjaan Roblox. Untuk diskusi, brief, rencana, atau pekerjaan dokumen yang tidak memerlukan Studio, jangan menyalakan bridge/Studio tanpa kebutuhan.
+
 ## Baca sebelum menjawab atau bekerja
 
 1. Baca `KONTEKS-AI.md` di root repository untuk tujuan penelitian, keputusan tetap, status terakhir dan cara membantu pengguna.

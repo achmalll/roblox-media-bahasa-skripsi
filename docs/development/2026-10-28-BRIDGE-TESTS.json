@@ -1,0 +1,71 @@
+{
+  "dateJakarta": "2026-10-28",
+  "pc": "PC-27",
+  "scope": "Bridge v1 satu script Level1Handler dan HoldDuration prompt terdaftar; bukan validasi seluruh game",
+  "initialWorkingSha256": "b64a9d970d55289d7eed0ec6521ae2345e777206909766e241edb5be08804245",
+  "studioSnapshotBeforeBridgeSha256": "235bd8fa7713089a752fa4086562d1b617e7e4abf8b6f5aa4af030fbf8253b0d",
+  "savedWorkingSha256": "57eb2fbae3c18d7574837d856758d09299ba56eb764746345c959dfbc06666f2",
+  "savedWorkingBytes": 2698703,
+  "propertyTest": {
+    "id": "hold-l1-20261028",
+    "target": ["Workspace", "Level1Development", "L1_PapanLatihan", "Animation 2", "ProximityPrompt"],
+    "property": "HoldDuration",
+    "before": 0,
+    "after": 1,
+    "receiptOk": true,
+    "receivedAtUtc": "2026-10-28T15:38:06.631Z"
+  },
+  "sourceRoundtrip": {
+    "temporaryCommentApplyReceipt": "source-ec69914e-e32d-4397-8dda-fe1793896391",
+    "restoreReceipt": "source-1f8ce680-be3c-4047-bacb-4ffac3fc085f",
+    "bothAppliedReadback": true,
+    "savedManagedSourceMatchesLocal": true,
+    "temporaryCommentRetained": false
+  },
+  "play": {
+    "mode": "Play Solo",
+    "testMethod": "Runtime-only positioning/camera and native ProximityPrompt InputHoldBegin/End; physical E key timing not separately measured",
+    "modalOpened": true,
+    "closeButtonWorked": true,
+    "observedLog": "[CODEX HOLD TEST] elapsed=1.3162221000002319 visible=true",
+    "logIncludesObservationDelaySeconds": 0.3,
+    "note": "First attempt approached board from side and did not open modal. Its earlier Once listener fired during successful second attempt and logged ~44 seconds; that is not prompt duration. Runtime test/camera changes discarded on Stop."
+  },
+  "playGuard": {
+    "initialIsRunningOnlyCheckInsufficient": true,
+    "fix": "StudioTestService.EditModeActive plus RunService",
+    "retestedRunningTrueDuringPlay": true,
+    "requestQueuedDuringPlay": "play-guard-readback",
+    "processedAfterStop": true,
+    "readbackValue": 1,
+    "receiptAtUtc": "2026-10-28T15:47:04.085Z"
+  },
+  "savedFile": {
+    "writer": "Roblox Studio Save As to canonical WORKING, after backup",
+    "managedSourceMatches": true,
+    "allNinePromptDurationsOneSecond": true,
+    "reopenedCanonicalWorking": true,
+    "playStartedAfterReopen": true
+  },
+  "finalChecks": {
+    "controllerFixturePassed": true,
+    "studioOnlyImportFixturePassed": true,
+    "launcherRerunDetectedExistingServer": true,
+    "jsonArtifactsParsed": true,
+    "liveOnline": true,
+    "liveRunning": false,
+    "liveManagedSourceStatus": "synced_in_editor"
+  },
+  "evidenceLocalIgnored": [
+    "local-rbxl/bridge/WORKING-before-live-sync.rbxl",
+    "local-rbxl/bridge/Studio-before-bridge.rbxl",
+    "local-rbxl/bridge/receipts/hold-l1-20261028.json",
+    "local-rbxl/bridge/receipts/source-ec69914e-e32d-4397-8dda-fe1793896391.json",
+    "local-rbxl/bridge/receipts/source-1f8ce680-be3c-4047-bacb-4ffac3fc085f.json",
+    "local-rbxl/bridge/play-guard-paused.json",
+    "local-rbxl/bridge/receipts/play-guard-readback.json",
+    "local-rbxl/bridge/saved-verification.json"
+  ],
+  "limitations": ["PC kedua belum diuji", "Compiler Luau belum terpasang", "Save otomatis belum tersedia", "Operasi objek/UI generik belum tersedia", "Audio/kuis/skor/akses seluruh level belum diuji"],
+  "git": { "referenceHead": "3892b14", "committed": false, "pushed": false }
+}

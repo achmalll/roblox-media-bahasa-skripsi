@@ -1,0 +1,23 @@
+{
+  "projectKey": "roblox-media-bahasa-skripsi",
+  "port": 34873,
+  "scripts": [
+    {
+      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "Level1Handler"],
+      "className": "LocalScript",
+      "file": "studio-sync/src/Level1Handler.client.luau"
+    }
+  ],
+  "properties": [
+    {
+      "instancePath": ["Workspace", "Level1Development", "L1_PapanLatihan", "Animation 2", "ProximityPrompt"],
+      "className": "ProximityPrompt",
+      "property": "HoldDuration"
+    },
+    {
+      "instancePath": ["Workspace", "Space1Answers", "ProximityPrompt"],
+      "className": "ProximityPrompt",
+      "property": "HoldDuration"
+    }
+  ]
+}

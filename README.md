@@ -1,6 +1,10 @@
 # Media pembelajaran Roblox untuk skripsi Achmal
 
+> **Mulai di PC/clone baru:** AI atau pengembang yang akan mengerjakan Roblox harus membaca `AGENTS.md` dan `KONTEKS-AI.md`, lalu menjalankan `CONNECT-STUDIO.cmd`. Setelah Roblox Studio membuka `places/RobloxLearningMedia-WORKING.rbxl`, pastikan bridge online dan source sinkron sesuai `studio-sync/README.md`. Clone saja belum memasang plugin Studio; helper memasangnya secara lokal. Jangan menjalankan Play/Save/publish tanpa kebutuhan tugas.
+
 File utama pengembangan: `places/RobloxLearningMedia-WORKING.rbxl`. Buka dan simpan file ini langsung di Roblox Studio. `RobloxLearningMedia-BACKUP.rbxl` milik penelitian pendahulu tetap berada di folder lokal induk dan tidak dimasukkan ke repository.
+
+**Bridge Codex ↔ Studio (28 Oktober 2026):** jalankan `CONNECT-STUDIO.cmd` untuk setup/aktivasi lokal dari repo. [Panduan dan batas cakupan](studio-sync/README.md). Source `Level1Handler` dapat disinkronkan ke editor tanpa patch biner yang terbuka; Studio tetap menyimpan WORKING. Clone saja belum memuat plugin di PC baru.
 
 Untuk sprint menuju 3 November, baca [pemeriksaan tahap 0 dan setup pindah warnet](docs/development/2026-10-27/TAHAP-0.md). Cadangan tambahan WORKING dapat dibuat dengan `scripts/cadangkan-sesi.ps1`; cadangan tidak menggantikan Save di Studio atau push Git.
 

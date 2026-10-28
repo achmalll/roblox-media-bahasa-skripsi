@@ -1,0 +1,60 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { createBridge } = require('./studio-bridge.cjs');
+async function main() {
+  const repo = path.resolve(__dirname, '..');
+  const fixture = fs.mkdtempSync(path.join(repo, 'local-rbxl/bridge-tests-'));
+  fs.mkdirSync(path.join(fixture, 'studio-sync')); fs.mkdirSync(path.join(fixture, 'places'));
+  fs.copyFileSync(path.join(repo, 'studio-sync/project.json'), path.join(fixture, 'studio-sync/project.json'));
+  fs.copyFileSync(path.join(repo, 'places/RobloxLearningMedia-WORKING.rbxl'), path.join(fixture, 'places/RobloxLearningMedia-WORKING.rbxl'));
+  const bridge = createBridge(fixture, { port: 34874 });
+  await bridge.start();
+  const headers = { 'Content-Type': 'application/json', 'X-Codex-Bridge': 'rbxl-v1' };
+  async function post(route, body, override) {
+    const r = await fetch('http://127.0.0.1:34874' + route, { method: 'POST', headers: { ...headers, ...override }, body: JSON.stringify(body) });
+    return { status: r.status, body: await r.json() };
+  }
+  try {
+    assert.equal((await post('/pair', { projectKey: 'wrong', sessionId: 'test' })).status, 409);
+    assert.equal((await post('/pair', {}, { Origin: 'https://example.com' })).status, 403);
+    const paired = await post('/pair', { projectKey: bridge.config.projectKey, sessionId: 'fixture' });
+    assert.equal(paired.status, 200);
+    headers['X-Bridge-Token'] = paired.body.token; headers['X-Studio-Session'] = paired.body.sessionId;
+    assert.equal((await post('/pair', { projectKey: bridge.config.projectKey, sessionId: 'second' })).status, 409);
+    assert.equal((await post('/poll', {}, { 'X-Bridge-Token': 'wrong' })).status, 403);
+    const item = bridge.config.scripts[0], sourceFile = path.join(fixture, item.file), base = fs.readFileSync(sourceFile, 'utf8');
+    const snapshot = { running: false, gameName: 'Fixture only', scripts: [{ ...item, source: base }], properties: [] };
+    await post('/snapshot', snapshot);
+    const local = base + '\n-- Bridge transport fixture\n'; fs.writeFileSync(sourceFile, local);
+    await post('/snapshot', snapshot);
+    const polled = await post('/poll', {});
+    assert.equal(polled.body.command.op, 'update_source');
+    assert.equal(polled.body.command.beforeSource, base);
+    assert.equal(polled.body.command.source, local);
+    assert.equal((await post('/poll', {})).body.command.id, polled.body.command.id);
+    const receipt = { id: polled.body.command.id, ok: true, result: { status: 'applied', source: local } };
+    assert.equal((await post('/result', receipt)).status, 200);
+    assert.equal((await post('/result', receipt)).status, 200);
+    await new Promise(r => setTimeout(r, 650));
+    assert.equal(fs.readFileSync(sourceFile, 'utf8'), local, 'old snapshot must not overwrite acknowledged source');
+    snapshot.scripts[0].source = local; await post('/snapshot', snapshot);
+    assert.equal(bridge.status().scripts[0].status, 'synced_in_editor');
+    const prop = bridge.config.properties[0];
+    bridge.enqueue({ id: 'hold-fixture', op: 'set_property', ...prop, before: 0, value: 1 });
+    snapshot.running = true; await post('/snapshot', snapshot);
+    assert.equal((await post('/poll', {})).body.command, undefined, 'no mutations during Play');
+    snapshot.running = false; await post('/snapshot', snapshot);
+    assert.equal((await post('/poll', {})).body.command.id, 'hold-fixture');
+    assert.throws(() => bridge.enqueue({ id: 'forbidden', op: 'set_property', className: 'Part', instancePath: ['Workspace'], property: 'Name', before: 0, value: 1 }));
+    const studioOnly = local + '-- Studio-only edit\n'; snapshot.scripts[0].source = studioOnly; await post('/snapshot', snapshot);
+    assert.equal(fs.readFileSync(sourceFile, 'utf8'), studioOnly, 'Studio-only change should import when local is unchanged');
+    fs.writeFileSync(sourceFile, studioOnly + '-- local branch\n');
+    snapshot.scripts[0].source = studioOnly + '-- Studio branch\n'; await post('/snapshot', snapshot);
+    assert.equal(bridge.status().scripts[0].status, 'conflict');
+    assert.equal(fs.readFileSync(sourceFile, 'utf8'), studioOnly + '-- local branch\n');
+    assert.ok(fs.existsSync(path.join(bridge.stateDir, path.basename(sourceFile) + '.studio-conflict.luau')));
+    console.log(JSON.stringify({ passed: true, scope: 'Local HTTP controller fixtures; not Studio/Play', checks: ['project identity', 'origin rejection', 'session exclusivity', 'authentication', 'source compare-and-set payload', 'idempotent delivery and receipts', 'no stale import after receipt', 'Play pause', 'scope allowlist', 'Studio-only source import', 'two-sided conflict preserves local source'] }));
+  } finally { await bridge.close(); }
+}
+main().catch(e => { console.error(e); process.exitCode = 1; });

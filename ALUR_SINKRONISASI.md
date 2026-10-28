@@ -1,5 +1,7 @@
 # Alur sinkronisasi laptop dan warnet
 
+Untuk pembagian objek di Studio dan kode melalui file lokal, baca [panduan bridge](studio-sync/README.md) dan [skema sinkronisasi lokal](docs/development/SKEMA-SINKRONISASI-LOKAL.md). Status 28 Oktober 2026: bridge v1 terpasang dan diuji pada PC sesi ini untuk Level1Handler dan HoldDuration prompt yang didaftarkan. Di PC lain jalankan CONNECT-STUDIO.cmd, lalu buka WORKING; clone saja tidak memuat plugin Studio. Jangan menimpa biner yang sedang terbuka; bridge memperbarui objek editor, lalu Studio menyimpan file.
+
 Panduan operasional utama ada di **[WARNET-CEPAT.md](WARNET-CEPAT.md)**. Dokumen itu mencakup persiapan PC baru, posisi terminal, pembaruan sebelum edit, pengujian dan penyimpanan Studio, commit/push sebelum pindah PC, arti SHA256, serta penanganan gangguan. Ikuti satu panduan tersebut agar instruksi tidak berbeda antarberkas.
 
 Alur ringkas: **clone sekali → jalankan script mulai → buka WORKING → edit dan uji → Stop dan Save to File → jalankan script selesai → pastikan push berhasil → pindah PC**.

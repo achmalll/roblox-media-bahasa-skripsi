@@ -5,6 +5,7 @@
 Setelah membaca konteks, jika permintaan pengguna menyentuh implementasi, inspeksi, sinkronisasi, atau pengujian game Roblox, lakukan bootstrap berikut sebelum mengubah game:
 
 1. Jalankan `CONNECT-STUDIO.cmd` dari root clone. Helper ini memasang/memperbarui plugin lokal dan menyalakan bridge untuk clone aktif; jangan menganggap clone saja sudah memasang plugin pada PC baru.
+   Pada paketflashdisk, `MULAI.cmd` di folderinduk atau `MULAI-PORTABLE.cmd` di rootrepo menyiapkan PATH portable dan bootstrap yang sama; baca `PAKAI-FLASHDISK.md`. Pada FAT32 gunakan terminalportable atau dot-source `scripts/portable-runtime.ps1` pada shell yang sama sebelum Git; pengecualianownership hanya untuk clone ini, bukan trustglobal `*`.
 2. Buka `places/RobloxLearningMedia-WORKING.rbxl` di Roblox Studio bila belum terbuka, lalu verifikasi bridge menunjukkan clone/workspace yang sama, status online, mode Edit, dan source terkelola sinkron. Ikuti `studio-sync/README.md` sebagai prosedur operasional dan batas keamanan.
 3. Jika plugin baru dipasang/diperbarui, muat ulang Studio. Jika Node/izin/plugin belum tersedia, laporkan hambatan yang tepat; jangan beralih ke patch biner WORKING atau mengklaim sinkronisasi aktif.
 4. Jangan otomatis menjalankan Play, Save, publish, atau mengubah objek hanya karena bootstrap berhasil. Tindakan tersebut tetap mengikuti cakupan permintaan pengguna dan harus diverifikasi terpisah.

@@ -2,6 +2,7 @@ param([string]$ProjectDirectory = (Join-Path $PSScriptRoot '..'))
 
 # Pemeriksaan lokal saja: tidak install, login, pull, menulis config, atau membuka Studio.
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'portable-runtime.ps1')
 $taskProject = [System.IO.Path]::GetFullPath($ProjectDirectory)
 $taskGit = Get-Command git -ErrorAction SilentlyContinue
 $taskPortable = Join-Path $taskProject '../tools/PortableGit/cmd/git.exe'

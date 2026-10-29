@@ -1,14 +1,8 @@
 param([switch]$Foreground)
 $ErrorActionPreference = 'Stop'
 $repoPath = Split-Path -Parent $PSScriptRoot
-$nodeCommand = Get-Command node -ErrorAction SilentlyContinue
-$nodePath = if ($nodeCommand) { $nodeCommand.Source } else { $null }
-if (-not $nodePath) {
-    $runtimeRoot = Join-Path $env:LOCALAPPDATA 'OpenAI/Codex/runtimes/cua_node'
-    $nodeCandidate = Get-ChildItem -LiteralPath $runtimeRoot -Filter node.exe -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-    if ($nodeCandidate) { $nodePath = $nodeCandidate.FullName }
-}
-if (-not $nodePath) { throw 'Node.js tidak ditemukan. Pasang Node.js LTS atau jalankan sekali Computer Use di Codex untuk menyiapkan runtime. Tidak perlu mengedit kode game.' }
+. (Join-Path $PSScriptRoot 'portable-runtime.ps1')
+$nodePath = Get-ProjectNode
 $bridgeFile = Join-Path $repoPath 'scripts/studio-bridge.cjs'
 if ($Foreground) { & $nodePath $bridgeFile; exit $LASTEXITCODE }
 try {
@@ -27,4 +21,6 @@ try {
     $health = Invoke-RestMethod -Uri 'http://127.0.0.1:34873/health' -Method Post -Headers @{ 'X-Codex-Bridge' = 'rbxl-v1' } -ContentType 'application/json' -Body '{}' -TimeoutSec 3
     if ($health.workspaceRoot -ne $repoPath) { throw 'Port dipakai proses/clone lain.' }
 } catch { throw "Bridge gagal start. Periksa local-rbxl/bridge/server.stderr.log. $($_.Exception.Message)" }
+$record = [ordered]@{ pid=$bridgeProcess.Id; workspaceRoot=$repoPath; nodePath=$nodePath; startTimeUtc=$bridgeProcess.StartTime.ToUniversalTime().ToString('o') }
+$record | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $outputDir 'process.json') -Encoding UTF8
 Write-Output "Bridge PID $($bridgeProcess.Id) sudah merespons. Status: local-rbxl/bridge/status.json."

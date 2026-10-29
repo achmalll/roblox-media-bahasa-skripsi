@@ -1,4 +1,5 @@
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'portable-runtime.ps1')
 $script:RepoRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $script:PlaceRelative = 'places/RobloxLearningMedia-WORKING.rbxl'
 $script:PlacePath = Join-Path $script:RepoRoot $script:PlaceRelative

@@ -4,6 +4,7 @@ const path = require('node:path');
 const { createBridge } = require('./studio-bridge.cjs');
 async function main() {
   const repo = path.resolve(__dirname, '..');
+  fs.mkdirSync(path.join(repo, 'local-rbxl'), { recursive: true });
   const fixture = fs.mkdtempSync(path.join(repo, 'local-rbxl/bridge-tests-'));
   fs.mkdirSync(path.join(fixture, 'studio-sync')); fs.mkdirSync(path.join(fixture, 'places'));
   fs.copyFileSync(path.join(repo, 'studio-sync/project.json'), path.join(fixture, 'studio-sync/project.json'));

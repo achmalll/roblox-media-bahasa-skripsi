@@ -1,5 +1,7 @@
 # Media pembelajaran Roblox untuk skripsi Achmal
 
+**Kerja langsung dari flashdisk:** baca [PAKAI-FLASHDISK.md](PAKAI-FLASHDISK.md). Jalankan `MULAI.cmd` pada folderinduk paket, atau `MULAI-PORTABLE.cmd` pada repo. Proyek dan Git dibawa terus; runtime portable di foldertools tidak ikut cloneGitHub. Studio/Codex tetap tersedia pada PC.
+
 > **Mulai di PC/clone baru:** AI atau pengembang yang akan mengerjakan Roblox harus membaca `AGENTS.md` dan `KONTEKS-AI.md`, lalu menjalankan `CONNECT-STUDIO.cmd`. Setelah Roblox Studio membuka `places/RobloxLearningMedia-WORKING.rbxl`, pastikan bridge online dan source sinkron sesuai `studio-sync/README.md`. Clone saja belum memasang plugin Studio; helper memasangnya secara lokal. Jangan menjalankan Play/Save/publish tanpa kebutuhan tugas.
 
 File utama pengembangan: `places/RobloxLearningMedia-WORKING.rbxl`. Buka dan simpan file ini langsung di Roblox Studio. `RobloxLearningMedia-BACKUP.rbxl` milik penelitian pendahulu tetap berada di folder lokal induk dan tidak dimasukkan ke repository.

@@ -1,5 +1,7 @@
 # Codex ↔ Studio lokal, versi 1
 
+Untuk paketflashdisk, [PAKAI-FLASHDISK.md](../PAKAI-FLASHDISK.md) dan `MULAI-PORTABLE.cmd` menyiapkan Git/Node dari `../tools`. Resolver menolak Node tanpa ZSTD dan memilih runtimeportable lebih dahulu. Bridge tetap berjalan perPC; helper memasangplugin dan memeriksa identitasclone, tidak otomatis Play/Save/publish. `SELESAI-PORTABLE.cmd` memverifikasiSave, cadangan, reviewcommit/push dan penghentianPID terverifikasi.
+
 ## Instruksi untuk AI pada sesi baru
 
 Untuk tugas Roblox, jangan berhenti setelah membaca status proyek. Dari root clone, jalankan `CONNECT-STUDIO.cmd`, pastikan Studio membuka `places/RobloxLearningMedia-WORKING.rbxl`, lalu verifikasi bridge online, mode Edit, dan source terkelola sinkron sebelum mengedit. Pada PC baru, helper memasang atau memperbarui plugin lokal; clone Git sendiri tidak dapat memasang plugin ke profil Roblox Studio.

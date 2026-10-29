@@ -1,5 +1,14 @@
 # Log perubahan dan serah-terima development
 
+## 29 Oktober 2026 — konfirmasi pengguna dan verifikasi Save WORKING flashdisk
+
+- **Permintaan:** pengguna ingin mencoba sendiri progress terakhir pada Studio lokal, lalu bila clear mengamankan hasil sebelum eject. AI sempat mencoba launchStudio dan dikoreksi pengguna; setelah itu tidak ada input/operasiUIStudio olehAI. Pengguna kemudian menyatakan perubahanterbaru clear/aman. Tidak mengartikan ini sebagai pengujiansemuaskenario.
+- **Kondisi awal:** repoD2906ec5 bersih sebelum pengecekan; WORKING awal57eb2… belummemuatsourcedesainaudio terbaru. Bridgebootstrap dijalankan dariD dengan Node/Gitportable, pluginversisama, sourcejob applied_readback0d4c6c8e4ee278449ac3884338716fa94e77ac2adf7020edd3c4bfa35e3bf5cd.
+- **Hasil aktual:** saat pengguna menyatakan clear, Git menunjukkan hanyaWORKINGberubah. FileSHA2562b590468c0754b23ac7a83a5c1cb427e4159214f9afb7346a0918fd541063029,2.707.026byte. VerifikasiSave membaca filedisk: managedSourceMatches=true,promptCount9,allPromptsOneSecond=true. Snapshotstatus terakhir running=false/synced_in_editor/applied_readback, online=false saatdibaca (timestamp tidakdijadikan buktikoneksi segar).
+- **Perubahan sesi:** hanya menyimpan hasilSavepengguna keGit serta memperbarui brief/log/buktiverifikasi. Tidak mengubah kodegame, materi/kunci/skor/tujuan atau menjalankanPlay ulang olehAI. WORKINGbaru mencatat sourcedesainaudio yang sebelumnya hanya ada di repo/editor.
+- **Batas:** belum ada laporan rinci seluruhgate/tutupbuka/pause/ulang/evaluasi/retry atau buktiunlockLevel2. IntegrasiaksesLevel2 masih tugasberikut. Tidakmenyatakan Level1lengkap atau siapvalidasi/eksperimen.
+- **Penutupan:** buatbackupWORKING di folder session-backups, commit/push empatberkas terkait, verifikasiHEADremote dan kebersihanrepo, hentikanhanya bridgecloneini; pengguna menutupaplikasi lalu ejectWindows. Hashcommitfinal danhasilpush dilaporkan setelahverifikasi. Bukti docs/development/2026-10-29-SAVE-FLASHDISK.json.
+
 ## 29 Oktober 2026 — persiapan repository kerja portable di flashdisk
 
 - **Penutupan verifikasi:** commit446196b sudah di-push, remoteHEADcocok; repoDdifast-forward dan status bersih. Runtime/hashWORKINGterverifikasi, tiga launcherroot danpetunjuk tersedia. Setelah itu dokumentasipendamping memperjelas bahwa AI perlu mengaktifkan portable-runtime pada tiap shelltoolbaru karena environmentlauncher tidakmasuk keCodex yangsudahberjalan. Tidak ada perubahan helper/game tambahan pada penjelasanini; sinkronisasi dokumentasiakhir diverifikasi setelahpush.

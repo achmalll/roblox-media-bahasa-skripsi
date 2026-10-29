@@ -1,0 +1,92 @@
+{
+  "sha256": "2b590468c0754b23ac7a83a5c1cb427e4159214f9afb7346a0918fd541063029",
+  "bytes": 2707026,
+  "managedSourceMatches": true,
+  "prompts": [
+    {
+      "instancePath": [
+        "Workspace",
+        "Space3Answers",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Halaman depan",
+        "papanInformasi",
+        "Animation 2",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Space 3",
+        "Infoboard",
+        "Surface",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Space 2",
+        "Infoboard",
+        "Surface",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Space1Answers",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Space2Answers",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "SummaryProximity",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Level1Development",
+        "L1_PapanInformasi",
+        "Animation 2",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    },
+    {
+      "instancePath": [
+        "Workspace",
+        "Level1Development",
+        "L1_PapanLatihan",
+        "Animation 2",
+        "ProximityPrompt"
+      ],
+      "holdDuration": 1
+    }
+  ],
+  "playEvidence": "See session report; this command only verifies saved file",
+  "userConfirmedLatestChanges": true,
+  "limitation": "Konfirmasi umum pengguna; bukan audit Play seluruh cabang atau integrasi akses Level 2"
+}

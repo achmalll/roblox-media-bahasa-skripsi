@@ -1,175 +1,281 @@
 local Players = game:GetService("Players")
-
+local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
-
-local PlayerControl = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerControlHandler"))
-
-local GuiAnimation = require(
-	game.Players.LocalPlayer.PlayerScripts:WaitForChild("GuiAnimationHandler")
-)
-
--- Ambil GUI
+local PlayerControl = require(player.PlayerScripts:WaitForChild("PlayerControlHandler"))
+local GuiAnimation = require(player.PlayerScripts:WaitForChild("GuiAnimationHandler"))
 local level1Gui = playerGui:WaitForChild("Level1Gui")
 local introFrame = level1Gui:WaitForChild("space1IntroFrame")
 local audiochoose = level1Gui:WaitForChild("audioChoose")
 local audioPlayerMale = level1Gui:WaitForChild("audioPlayerMale")
 local audioPlayerFemale = level1Gui:WaitForChild("audioPlayerFemale")
 local quizFrame = level1Gui:WaitForChild("quizFrame")
+local overlay = level1Gui:WaitForChild("BackgroundOverlay")
 local latihanCompleted = false
-
--- Ambil part Space1Answers
 local spacePart = workspace:WaitForChild("Space1Answers")
 local prompt = spacePart:WaitForChild("ProximityPrompt")
 
+-- 04B / 06B1 / 06B2: male dahulu; female menyusul.
+local clips = {
+	{ id = "101781033507422", title = "Pengertian dan sumber daya" },
+	{ id = "95164082214235", title = "Peran dan contoh sistem operasi" },
+	{ id = "134699797461072", title = "Tujuan dan manfaat pemahaman" },
+}
+local completed = {false, false, false}
+local positions = {0, 0, 0}
+local activeClip = 1
+local infoVisited = false
+local loadVersion = 0
+local pendingPlay = false
+local loaded = false
+local paused = false
+local sound = audioPlayerMale:WaitForChild("NarationSound")
+sound:Stop()
+sound.Looped = false
+sound.SoundId = "rbxassetid://" .. clips[1].id
+audioPlayerFemale:WaitForChild("NarationSound"):Stop()
+audiochoose.Visible = false
+audioPlayerFemale.Visible = false
+-- Existing panel/frame/border retained; controls replace the old quiz/audio choice UI at runtime.
+for _, child in ipairs(audioPlayerMale:GetChildren()) do
+	if child:IsA("GuiObject") then child.Visible = false end
+end
+local root = Instance.new("Frame")
+root.Name = "L1SegmentedAudio"
+root.Size = UDim2.fromScale(1, 1)
+root.BackgroundTransparency = 1
+root.ZIndex = 30
+root.Parent = audioPlayerMale
+-- Keep the baseline cream/brown shell; constrain the wide audio panel on desktop.
+audioPlayerMale.AnchorPoint = Vector2.new(.5,.5)
+audioPlayerMale.Position = UDim2.fromScale(.5,.5)
+audioPlayerMale.Size = UDim2.fromScale(.86,.72)
+local panelBounds = Instance.new("UISizeConstraint")
+panelBounds.MaxSize = Vector2.new(860,560)
+panelBounds.MinSize = Vector2.new(280,240)
+panelBounds.Parent = audioPlayerMale
+local function control(class, name, text, x, y, w, h)
+	local item = Instance.new(class)
+	item.Name = name
+	item.Position = UDim2.fromScale(x, y)
+	item.Size = UDim2.fromScale(w, h)
+	item.BackgroundColor3 = Color3.fromRGB(155, 72, 48)
+	item.BackgroundTransparency = class == "TextLabel" and 1 or 0
+	item.TextColor3 = class == "TextLabel" and Color3.fromRGB(71, 32, 3) or Color3.new(1,1,1)
+	item.Font = Enum.Font.GothamBold
+	item.TextSize = 20
+	item.TextWrapped = true
+	item.Text = text
+	item.ZIndex = 31
+	item.Parent = root
+	if class == "TextButton" then
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(0, 8)
+		corner.Parent = item
+	end
+	return item
+end
+local badge = control("TextLabel", "Segment", "", .08,.07,.72,.06)
+badge.TextSize = 16
+badge.TextXAlignment = Enum.TextXAlignment.Left
+badge.TextColor3 = Color3.fromRGB(155,72,48)
+local heading = control("TextLabel", "Heading", "", .08,.15,.76,.14)
+heading.TextSize = 26
+heading.TextXAlignment = Enum.TextXAlignment.Left
+local status = control("TextLabel", "Status", "", .08,.32,.84,.13)
+status.Font = Enum.Font.Gotham
+status.TextSize = 18
+status.TextXAlignment = Enum.TextXAlignment.Left
+local bar = Instance.new("Frame")
+bar.Name = "ClipProgress"
+bar.Position = UDim2.fromScale(.08,.50)
+bar.Size = UDim2.fromScale(.84,.022)
+bar.BorderSizePixel = 0
+bar.BackgroundColor3 = Color3.fromRGB(209,156,116)
+bar.ZIndex = 31
+bar.Parent = root
+local fill = Instance.new("Frame")
+fill.Size = UDim2.fromScale(0,1)
+fill.BackgroundColor3 = Color3.fromRGB(155,72,48)
+fill.BorderSizePixel = 0
+fill.ZIndex = 32
+fill.Parent = bar
+for _, target in ipairs({bar,fill}) do
+	local rounded = Instance.new("UICorner")
+	rounded.CornerRadius = UDim.new(1,0)
+	rounded.Parent = target
+end
+local timeLabel = control("TextLabel", "Time", "0:00 / 0:00", .08,.54,.84,.06)
+timeLabel.TextSize = 16
+timeLabel.TextXAlignment = Enum.TextXAlignment.Right
+local play = control("TextButton", "PlayPause", "Putar", .30,.63,.40,.11)
+local nextButton = control("TextButton", "Next", "", .20,.79,.60,.11)
+local back = control("TextButton", "Previous", "Kembali ke audio 2", .20,.915,.60,.055)
+back.TextSize = 16
+back.BackgroundTransparency = 1
+back.TextColor3 = Color3.fromRGB(71,32,3)
+local close = control("TextButton", "Close", "×", .88,.04,.065,.085)
+close.TextSize = 22
 local function hideAll()
+	if audioPlayerMale.Visible then
+		positions[activeClip] = sound.TimePosition
+		sound:Pause()
+		paused = true
+	end
+	pendingPlay = false
 	introFrame.Visible = false
 	audiochoose.Visible = false
 	audioPlayerMale.Visible = false
 	audioPlayerFemale.Visible = false
 end
-
--- Ketika E ditekan
-prompt.Triggered:Connect(function(triggeredPlayer)
-	if triggeredPlayer == player then
-		level1Gui.Enabled = true
-		GuiAnimation.Show(introFrame)
-		PlayerControl.Lock()
-	end
-end)
-
--- Tombol Close
-local closeButton = introFrame:WaitForChild("close")
-
-closeButton.MouseButton1Click:Connect(function()
-	level1Gui.Enabled = false
-	introFrame.Visible = false
-	PlayerControl.Unlock()
-end)
-
-introFrame.mulaibtn.MouseButton1Click:Connect(function()
+local function closeAudio()
 	hideAll()
-	audiochoose.Visible = true
-	PlayerControl.Lock()
-end)
-
-audiochoose.malebtn.MouseButton1Click:Connect(function()
-	hideAll()
-	audioPlayerMale.Visible = true
-	PlayerControl.Lock() 
-end)
-
-audiochoose.femalebtn.MouseButton1Click:Connect(function()
-	hideAll()
-	audioPlayerFemale.Visible = true
-	PlayerControl.Lock()
-end)
-
-
-local function setupAudioPlayer(audioFrame)
-
-	local RunService = game:GetService("RunService")
-
-	local playButton = audioFrame:WaitForChild("PlayButton")
-	local pauseButton = audioFrame:WaitForChild("PauseButton")
-	local quizButton = audioFrame:WaitForChild("StartQuizButton")
-
-	local progressFill = audioFrame
-		:WaitForChild("ProgressBackground")
-		:WaitForChild("ProgressFill")
-
-	local confirmModal = audioFrame:WaitForChild("ConfirmModal")
-	local yesButton = confirmModal:WaitForChild("YesButton")
-	local noButton = confirmModal:WaitForChild("NoButton")
-
-	local sound = audioFrame:WaitForChild("NarationSound")
-
-	-- Evaluasi dipindahkan ke kios; audio tidak lagi membuka kuis langsung.
-	quizButton.Visible = false
-	quizButton.Active = false
-	quizButton.AutoButtonColor = false
-	quizButton.ImageTransparency = 0.7
-
-	local connection
-
-	local function startProgress()
-		if connection then
-			connection:Disconnect()
-		end
-
-		connection = RunService.RenderStepped:Connect(function()
-			if sound.TimeLength > 0 then
-				local progress = sound.TimePosition / sound.TimeLength
-				progressFill.Size = UDim2.new(progress, 0, 1, 0)
-			end
-		end)
-	end
-
-	local function enableQuiz()
-		quizButton.Active = true
-		quizButton.AutoButtonColor = true
-		quizButton.BackgroundColor3 = Color3.fromRGB(0,170,255)
-		quizButton.ImageTransparency = 0
-	end
-
-	playButton.MouseButton1Click:Connect(function()
-		sound:Play()
-		startProgress()
-	end)
-
-	pauseButton.MouseButton1Click:Connect(function()
-		sound:Pause()
-	end)
-
-	sound.Ended:Connect(function()
-		enableQuiz()
-	end)
-
-	quizButton.MouseButton1Click:Connect(function()
-		if quizButton.Active then
-			confirmModal.Visible = true
-			
-			PlayerControl.Lock()
-		end
-	end)
-
-	noButton.MouseButton1Click:Connect(function()
-		confirmModal.Visible = false
-	end)
-
-	yesButton.MouseButton1Click:Connect(function()
-
-		confirmModal.Visible = false
-		audioFrame.Visible = false
-
-		-- Tampilkan quiz
-		quizFrame.Visible = true
-		PlayerControl.Lock()
-
-	end)
-end
-
-setupAudioPlayer(audioPlayerMale)
-setupAudioPlayer(audioPlayerFemale)
-
--- Overlay
-local overlay = level1Gui:WaitForChild("BackgroundOverlay")
-
-prompt.Triggered:Connect(function(triggeredPlayer)
-	if triggeredPlayer == player then
-		level1Gui.Enabled = true
-		overlay.Visible = true
-		introFrame.Visible = true
-		PlayerControl.Lock()
-	end
-end)
-
-closeButton.MouseButton1Click:Connect(function()
 	level1Gui.Enabled = false
 	overlay.Visible = false
 	PlayerControl.Unlock()
+end
+local function refresh()
+	badge.Text = "LEVEL 1  /  AUDIO " .. activeClip .. " DARI 3"
+	heading.Text = clips[activeClip].title
+	play.Text = sound.IsPlaying and "Jeda" or (completed[activeClip] and "Putar ulang" or "Putar")
+	nextButton.Text = ({"Ke papan informasi", "Lanjut ke audio 3", "Ke papan latihan"})[activeClip]
+	nextButton.Active = completed[activeClip]
+	nextButton.AutoButtonColor = completed[activeClip]
+	nextButton.BackgroundTransparency = completed[activeClip] and 0 or .55
+	back.Visible = activeClip == 3
+end
+local function openAudio(index)
 	hideAll()
+	activeClip = index
+	loadVersion += 1
+	local version = loadVersion
+	sound:Stop()
+	loaded = false
+	paused = false
+	sound.SoundId = "rbxassetid://" .. clips[index].id
+	fill.Size = UDim2.fromScale(completed[index] and 1 or 0, 1)
+	status.Text = "Memuat audio…"
+	audioPlayerMale.Visible = true
+	level1Gui.Enabled = true
+	overlay.Visible = true
+	PlayerControl.Lock()
+	refresh()
+	task.spawn(function()
+		local deadline = os.clock() + 20
+		repeat task.wait(.1) until version ~= loadVersion or sound.IsLoaded or os.clock() >= deadline
+		if version ~= loadVersion then return end
+		loaded = sound.IsLoaded
+		if loaded then
+			sound.TimePosition = completed[index] and 0 or positions[index]
+			status.Text = completed[index] and "Audio ini sudah selesai. Bisa diputar ulang." or "Tekan Putar untuk mendengarkan."
+			if pendingPlay and audioPlayerMale.Visible then
+				sound:Play()
+				sound.TimePosition = completed[index] and 0 or positions[index]
+				pendingPlay = false
+			end
+		else
+			status.Text = "Audio belum siap. Tekan Coba lagi; periksa koneksi atau izin audio jika tetap gagal."
+			play.Text = "Coba lagi"
+		end
+	end)
+end
+play.MouseButton1Click:Connect(function()
+	if not sound.IsLoaded then openAudio(activeClip); pendingPlay = true; return end
+	loaded = true
+	if sound.IsPlaying then
+		positions[activeClip] = sound.TimePosition
+		sound:Pause(); paused = true
+	elseif completed[activeClip] then
+		sound.TimePosition = 0; sound:Play(); paused = false
+	elseif paused then sound:Resume(); paused = false
+	else sound:Play(); sound.TimePosition = positions[activeClip] end
+	status.Text = sound.IsPlaying and "Dengarkan sampai selesai untuk melanjutkan." or "Dijeda. Tekan Putar untuk melanjutkan."
+	refresh()
 end)
+sound.Ended:Connect(function()
+	completed[activeClip] = true
+	positions[activeClip] = 0
+	paused = false
+	status.Text = "Audio " .. activeClip .. " selesai. Silakan lanjut."
+	fill.Size = UDim2.fromScale(1,1)
+	refresh()
+end)
+RunService.RenderStepped:Connect(function()
+	if not audioPlayerMale.Visible then return end
+	local duration = sound.TimeLength
+	local position = sound.TimePosition
+	if completed[activeClip] and not sound.IsPlaying and not paused then position = duration end
+	local function clock(seconds) return string.format("%d:%02d", math.floor(seconds / 60), math.floor(seconds % 60)) end
+	timeLabel.Text = clock(position) .. " / " .. clock(duration)
+	if duration > 0 then fill.Size = UDim2.fromScale(completed[activeClip] and not sound.IsPlaying and not paused and 1 or math.clamp(position / duration,0,1),1) end
+end)
+close.MouseButton1Click:Connect(closeAudio)
+back.MouseButton1Click:Connect(function() openAudio(2) end)
+nextButton.MouseButton1Click:Connect(function()
+	if not completed[activeClip] then return end
+	if activeClip == 2 then openAudio(3) else closeAudio() end
+end)
+introFrame.mulaibtn.MouseButton1Click:Connect(function() openAudio(1) end)
+introFrame:WaitForChild("close").MouseButton1Click:Connect(closeAudio)
+local function tutor1()
+	hideAll()
+	level1Gui.Enabled = true
+	overlay.Visible = true
+	GuiAnimation.Show(introFrame)
+	PlayerControl.Lock()
+end
+local function tutor2()
+	if not completed[1] or not infoVisited then
+		openAudio(1)
+		status.Text = completed[1] and "Kunjungi papan informasi sebelum Tutor 2." or "Selesaikan audio 1 di Tutor 1 dahulu."
+		return
+	end
+	openAudio(completed[2] and 3 or 2)
+end
+-- Resolve only the two nearby humanoids, using entrance-to-tutors direction for left/right.
+-- No permanent NPC names/positions are changed. Ambiguous discovery leaves the baseline prompt available.
+local candidates = {}
+for _, item in ipairs(workspace:GetDescendants()) do
+	if item:IsA("Humanoid") and item.Parent:IsA("Model") and not Players:GetPlayerFromCharacter(item.Parent) then
+		local part = item.Parent:FindFirstChild("HumanoidRootPart") or item.Parent:FindFirstChild("Head")
+		if part and part:IsA("BasePart") and (part.Position - spacePart.Position).Magnitude < 25 then
+			table.insert(candidates, {model=item.Parent, part=part})
+		end
+	end
+end
+if #candidates == 2 then
+	local midpoint = (candidates[1].part.Position + candidates[2].part.Position) / 2
+	local spawn, distance
+	for _, item in ipairs(workspace:GetDescendants()) do
+		if item:IsA("SpawnLocation") then
+			local d = (item.Position - midpoint).Magnitude
+			if not distance or d < distance then spawn = item; distance = d end
+		end
+	end
+	if spawn then
+		local forward = midpoint - spawn.Position
+		forward = Vector3.new(forward.X,0,forward.Z)
+		if forward.Magnitude > .1 then
+			local right = forward.Unit:Cross(Vector3.yAxis)
+			table.sort(candidates, function(a,b) return a.part.Position:Dot(right) < b.part.Position:Dot(right) end)
+			for index, npc in ipairs(candidates) do
+				local npcPrompt = Instance.new("ProximityPrompt")
+				npcPrompt.Name = "L1TutorAudioPrompt"
+				npcPrompt.ActionText = "Bicara"
+				npcPrompt.ObjectText = "Tutor " .. index
+				npcPrompt.HoldDuration = 1
+				npcPrompt.MaxActivationDistance = 10
+				npcPrompt.RequiresLineOfSight = false
+				npcPrompt.Parent = npc.part
+				local openTutor = index == 1 and tutor1 or tutor2
+				npcPrompt.Triggered:Connect(function(who) if who == player then openTutor() end end)
+				print("L1 audio Tutor", index, npc.model:GetFullName(), npc.part.Position)
+			end
+			prompt.Enabled = false
+		end
+	end
+else warn("L1 audio: expected two NPCs near Space1Answers; found", #candidates) end
+prompt.Triggered:Connect(function(who) if who == player then tutor1() end end)
 
 -- ===== Papan Informasi (L1_PapanInformasi) =====
 local papanInfoFrame = level1Gui:WaitForChild("papanInfoFrame")
@@ -177,6 +283,13 @@ local papanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1
 
 papanPrompt.Triggered:Connect(function(triggeredPlayer)
 	if triggeredPlayer == player then
+		if not completed[1] then
+			openAudio(1)
+			status.Text = "Selesaikan audio 1 dahulu sebelum membuka papan informasi."
+			return
+		end
+		hideAll()
+		infoVisited = true
 		level1Gui.Enabled = true
 		overlay.Visible = true
 		GuiAnimation.Show(papanInfoFrame)
@@ -392,6 +505,18 @@ end
 
 latihanPrompt.Triggered:Connect(function(triggeredPlayer)
 	if triggeredPlayer == player then
+		if not (completed[1] and completed[2] and completed[3]) then
+			local remaining = not completed[1] and 1 or (not completed[2] and 2 or 3)
+			if remaining > 1 and not infoVisited then
+				openAudio(1)
+				status.Text = "Kunjungi papan informasi setelah audio 1, lalu temui Tutor 2."
+			else
+				openAudio(remaining)
+				status.Text = "Latihan terbuka setelah ketiga audio selesai. Selesaikan audio " .. remaining .. " dahulu."
+			end
+			return
+		end
+		hideAll()
 		resetLatihan()
 		level1Gui.Enabled = true
 		overlay.Visible = true

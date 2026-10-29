@@ -51,7 +51,7 @@ $taskTracked = @(Invoke-PortableGit -Arguments @('diff','--name-only')) | Where-
 $taskNew = @(Invoke-PortableGit -Arguments @('ls-files','--others','--exclude-standard')) | Where-Object { $_ -match '^(docs/|scripts/|studio-sync/|places/)|^[^/]+\.(md|cmd|mp3|aup4)$' }
 $taskFiles = @(@($taskTracked) + @($taskNew) | Select-Object -Unique)
 if ($taskFiles.Count) {
-    if ('KONTEKS-AI.md' -notin $taskFiles -or 'docs/LOG-PENGEMBANGAN.md' -notin $taskFiles) { throw 'Perbarui KONTEKS-AI.md dan docs/LOG-PENGEMBANGAN.md untuk perubahan sesi ini sebelum commit.' }
+    if ('KONTEKS-AI.md' -notin $taskFiles -or 'docs/LOG-PENGEMBANGAN.md' -notin $taskFiles -or 'LANJUTKAN.md' -notin $taskFiles) { throw 'AI perlu memperbarui KONTEKS-AI.md, docs/LOG-PENGEMBANGAN.md dan LANJUTKAN.md untuk perubahan sesi ini sebelum commit.' }
     Write-Output 'File yang akan di-commit (default.project.json dikecualikan):'
     $taskFiles | Write-Output
     if ([string]::IsNullOrWhiteSpace($Message)) { $Message = Read-Host 'Ringkasan perubahan untuk pesan commit' }

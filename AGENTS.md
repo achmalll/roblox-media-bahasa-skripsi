@@ -12,6 +12,10 @@ Setelah membaca konteks, jika permintaan pengguna menyentuh implementasi, inspek
 
 Bootstrap ini berlaku per PC/sesi untuk pekerjaan Roblox. Untuk diskusi, brief, rencana, atau pekerjaan dokumen yang tidak memerlukan Studio, jangan menyalakan bridge/Studio tanpa kebutuhan.
 
+## Sesi warnet dan handoff harian
+
+Baca LANJUTKAN.md terlebih dahulu untuk alur pengguna/AI, kondisi aman dan satu target berikut. AI harus mencari acuan sendiri dari repo, menjelaskan selesai/belum/target secara singkat, lalu memberi langkahStudio konkret. Pengguna mengendalikan Play/Stop/Save; jangan mengambilalih UI tanpa permintaan. Sebelum selesai, AI wajib menulis konteks, entri log bertanggal hariitu dan memperbarui LANJUTKAN.md, termasuk sesi tanpa fiturbaru. Jangan membiarkan pengguna harus merakit ulang brief sendiri. Kartu langkah/prompt otomatis dari MULAI berada di local-rbxl/portable/SESI-MULAI.txt dan tidak dibawaGit sebagai hasiluji.
+
 ## Baca sebelum menjawab atau bekerja
 
 1. Baca `KONTEKS-AI.md` di root repository untuk tujuan penelitian, keputusan tetap, status terakhir dan cara membantu pengguna.

@@ -1,5 +1,8 @@
 # Masuk warnet dari nol: Studio + AI + proyek, sesi 3 jam
 
+**Sesi terbaru:** mulai dari [LANJUTKAN.md](LANJUTKAN.md) dan prompt yang ditampilkan MULAI. Setup dan papan/audio sudah berkembang dari sesi pertama; target saat ini integrasi hasilLevel1→aksesLevel2, bukan mengulang pembuatanpapan. Rincian setup di bawah tetap rujukan jika dibutuhkan. AI wajib mengurus konteks/loghariitu/handoff sebelum pengguna menjalankan SELESAI.
+
+
 Disiapkan 27 Oktober 2026 untuk sprint menuju bimbingan 3 November. Target setup 30 menit, batas maksimum 60 menit. Durasi bergantung unduhan, izin instalasi, dan login PC; bukan janji setup otomatis selesai. Senin 2 November tetap untuk Bab IV.
 
 **Pilihan malam ini: Roblox Studio + Codex yang biasa dipakai + Git, dengan flashdisk sebagai cadangan.** Pakai satu aplikasi AI dahulu. VS Code, Claude, OpenCode, Script Sync, Rojo dan plugin MCP tambahan tidak masuk daftar instalasi wajib sesi ini. Ini pembatasan cakupan supaya waktu tersisa untuk game.

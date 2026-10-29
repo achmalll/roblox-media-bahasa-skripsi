@@ -1,5 +1,14 @@
 # Log perubahan dan serah-terima development
 
+## 29 Oktober 2026 — alur masuk warnet dan pencatatan harian
+
+- Pengguna mengonfirmasi Studioclear dan meminta alur setelahcolokflashdisk yang jelas, AI langsungpaham tugas tanpa pengguna mencari sumber/manualbrief, serta catatanprogress/konteks setiap harikerja.
+- Dibuat LANJUTKAN.md sebagaihandoffaktif: empatlangkahuser, urutanbacaAI, statusSavecea89a6/hash2b5904…, targetunlockLevel2, kriteriauji dan blok3jam. AI mengendalikan pengerjaansource/pencatatan, userPlay/Stop/Save; tidakmengambilalihUI.
+- MULAI menampilkan/membuat local-rbxl/portable/SESI-MULAI.txt berisipathdynamis/waktuPC/prompt; BriefOnly untukmemeriksakartutanpabootstrap. TidakautorunUSB, loginatauStudiootomatis. SELESAI menuntutpembaruanLANJUTKAN bersamaKONTEKS-AI/log. README/AGENTS/brief/petunjukroot diselaraskan.
+- Ujiaktual: parse duahelper lulus, BriefOnly membuatkartu denganpathDaktual/prompttetap dan tidakstartbridge. Fixturemenolak ketikaLANJUTKANbelumdiupdate, lalu tiga filehandoff lengkap berhasilcommit/push ke remotetiruanlokal. Bukti docs/development/2026-10-29-HANDOFF-HARIAN.json. WORKINGhash2b5904… tetap, tidakPlaybaru. IntegrasiaksesL2 danujiL1menyeluruh tetappekerjaanberikut; tidakmenganggapclearuser sebagaibuktisemua cabang.
+- Sesi nyata wajibberentritanggalhariitu bahkan jika hanyaaudit/terhambat; tidakmembuatlaporan kegiatanfiktif pada haritidakbekerja. Statuspush/HEADfinal dilaporkan setelahverifikasi.
+
+
 ## 29 Oktober 2026 — konfirmasi pengguna dan verifikasi Save WORKING flashdisk
 
 - **Permintaan:** pengguna ingin mencoba sendiri progress terakhir pada Studio lokal, lalu bila clear mengamankan hasil sebelum eject. AI sempat mencoba launchStudio dan dikoreksi pengguna; setelah itu tidak ada input/operasiUIStudio olehAI. Pengguna kemudian menyatakan perubahanterbaru clear/aman. Tidak mengartikan ini sebagai pengujiansemuaskenario.

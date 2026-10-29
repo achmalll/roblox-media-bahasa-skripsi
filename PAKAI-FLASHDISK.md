@@ -26,6 +26,10 @@ roblox/                             ← folder di flashdisk, huruf drive boleh b
 
 Path awal pengguna adalah `D:\roblox`. Launcher memakai lokasi dirinya, bukan hurufD yang ditulis tetap di kode. Simpan folder `tools` berdampingan dengan repository. GitHub membawa source helper/panduan; paket runtime portable tetap di flashdisk, tidak otomatis ikut clone dari GitHub.
 
+## Satu pintu untuk sesi berikutnya
+
+Baca LANJUTKAN.md. MULAI menampilkan pathaktual dan satu promptsiapsalin; AI membaca sumber, memandu targetberikut dan mengurus catatanharian. Jadwal/tugas terbaru ada pada handoff itu. SELESAI mewajibkan KONTEKS-AI.md, docs/LOG-PENGEMBANGAN.md dan LANJUTKAN.md diperbarui bersama perubahan.
+
 ## Saat tiba di PC baru
 
 1. Colok flashdisk, buka folder `roblox`, klik **MULAI.cmd**. Launcher memilih Node/Git portable, memeriksa status/hash, memasang/memperbarui plugin bridge bila perlu dan menyalakan server localhost. Tidak otomatis pull, Play, Save atau publish.
@@ -41,7 +45,7 @@ Jika ada edit dari laptop/PC lain: pada repo bersih dan sebelum membuka place, j
 ## Sebelum pulang atau pindah PC
 
 1. **Stop Play → Save to File WORKING → tutup place di Studio**. Source editor tersinkron belum otomatis menjadi isi filebiner di disk.
-2. Wajib perbarui `KONTEKS-AI.md` dan `docs/LOG-PENGEMBANGAN.md`: perubahan, alasan, ujiaktual, bukti, bug dan langkahberikut.
+2. AI wajib memperbarui `KONTEKS-AI.md`, `docs/LOG-PENGEMBANGAN.md` dan `LANJUTKAN.md`: perubahan, alasan, ujiaktual, bukti, bug dan targetsesiberikut. Pengguna tidak perlu merakitulang brief.
 3. Klik **SELESAI.cmd**. Helper memeriksa source terkelola terhadap WORKING; bila berbeda, berhenti dan meminta SaveStudio. Ia tidak melakukan patch/buildbiner untuk memaksa cocok.
 4. Jika verifikasi cocok, helper membuat cadangan WORKING. Ia memperlihatkan daftar perubahan untuk ditinjau, meminta pesancommit dan konfirmasi `YA`, lalu commit/push dan membandingkan HEADremote. `default.project.json` dikecualikan. Jika ada stagedchanges sebelumnya atau konteks/log belum diperbarui, selesaikan lewat terminal.
 5. Berkasbaru yang dimasukkan otomatis terbatas pada area proyek/panduan yang didaftar helper. Periksa `git status`; berkas di luar scope perlu ditangani secara terarah. File yang masih berada di PC lokal/screenshot belum disalin ke flashdisk tidak dibawa otomatis.
@@ -52,7 +56,7 @@ Tidak ada pemformatan drive atau instalasi Studio/Codex otomatis. Bila PC memblo
 
 ## Kondisi game saat paket ini disiapkan
 
-Source audio terakhir ada pada checkpoint `488d266`, tetapi desain audio terakhir belum disimpan ke WORKING menurut catatan sesi sebelumnya. WORKING terkomit masih hash `57eb2fbae3c18d7574837d856758d09299ba56eb764746345c959dfbc06666f2`. Karena itu, verifikasiSave pada SELESAI dapat menolak sampai bridge tersambung, source diterapkan pada Editor dan pengguna benar-benar SaveStudio. Ini pengaman yang diharapkan, bukan alasan mengganti place dengan buildlama.
+Source audio terakhir berasal dari checkpoint `488d266`; keadaan sebelum Save pada catatan awal di bawah adalah riwayat, bukan statusterbaru. Pada checkpoint awal, WORKING terkomit masih hash57eb2… dan verifikasiSave menolak. **Pembaruan:** pengguna sudah mengecek dan Save; commitcea89a6 memuat WORKING hash2b590468c0754b23ac7a83a5c1cb427e4159214f9afb7346a0918fd541063029 yang cocok dengan source. Tugas Save awal sudah selesai, jangan diulang sebagai hambatanaktif. Guard tetap dipakai untuk perubahan sesiberikutnya; jangan mengganti place dengan buildlama.
 
 Tidak ada perubahan gameplay dalam penyiapan portable ini. Tetap perlu Play desain/pause/tutup-buka/ulang/gating/evaluasi dan integrasi unlockLevel2. Pembacaan bridge/editor tidak menggantikan Play atau validasi ahli.
 

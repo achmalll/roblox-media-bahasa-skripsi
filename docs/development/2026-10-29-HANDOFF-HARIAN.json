@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-29",
+  "scope": "Workflow masuk dan handoff harian, tanpa Studio atau perubahan game",
+  "powershellParsePassed": true,
+  "briefOnlyCardWritten": true,
+  "cardHasActualRepoAndWorkingPaths": true,
+  "cardHasFixedAiPrompt": true,
+  "briefOnlyStartsBridge": false,
+  "missingResumeGuardRejected": true,
+  "completeThreeFileHandoffCommitPushPassed": true,
+  "fixtureRemoteOnly": true,
+  "workingSha256": "2B590468C0754B23AC7A83A5C1CB427E4159214F9AFB7346A0918FD541063029"
+}

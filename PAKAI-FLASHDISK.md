@@ -34,7 +34,7 @@ Path awal pengguna adalah `D:\roblox`. Launcher memakai lokasi dirinya, bukan hu
 4. Di Codex, buka folder `roblox-media-bahasa-skripsi` pada flashdisk. Baca `AGENTS.md`, `KONTEKS-AI.md`, log dan acuan desain. AI perlu verifikasi bridge online, timestamp baru, WORKING yang benar, mode Edit dan source `synced_in_editor` sebelum mengubah game.
 5. Gunakan **TERMINAL.cmd** untuk Git pada flashdisk. Terminal tersebut membawa PATH portable dan pengecualian `safe.directory` hanya untuk folder repo pada prosesitu. Tidak menambahkan trustglobal `*` atau menyimpan credential akun di flashdisk.
 
-Untuk AI yang menjalankan Git di shell baru pada FAT32: dot-source `scripts/portable-runtime.ps1` dan lakukan perintahGit pada shell yang sama, atau gunakan opsi `git -c safe.directory=<root-clone-absolut>` untuk repoini saja. Jangan mengubah konfigurasi keamanan global untuk menghilangkan errorownership.
+Untuk AI yang menjalankan Git/Node di setiap shelltool baru: dot-source `scripts/portable-runtime.ps1` dan jalankan perintah pada shell yang sama. Ini memilih runtimeportable sekaligus menangani FAT32. Alternatif Git ialah `git -c safe.directory=<root-clone-absolut>` untuk repoini saja; Node dapat dipanggil langsung dari `../tools/node/node.exe`. Launcher tidak mengubah environment aplikasiCodex yang sudah berjalan. Jangan mengubah konfigurasi keamanan global untuk menghilangkan errorownership.
 
 Jika ada edit dari laptop/PC lain: pada repo bersih dan sebelum membuka place, jalankan `git pull --ff-only` dari terminalportable. Bila ada perubahanlokal, amankan dahulu; jangan reset/forcepush. Saat hanya satu folderflashdisk yang terus dipakai, tidak perlu clone ulang atau pull yang menimpa edit sendiri.
 

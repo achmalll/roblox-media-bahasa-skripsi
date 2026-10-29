@@ -2,6 +2,8 @@
 
 ## 29 Oktober 2026 — persiapan repository kerja portable di flashdisk
 
+- **Penutupan verifikasi:** commit446196b sudah di-push, remoteHEADcocok; repoDdifast-forward dan status bersih. Runtime/hashWORKINGterverifikasi, tiga launcherroot danpetunjuk tersedia. Setelah itu dokumentasipendamping memperjelas bahwa AI perlu mengaktifkan portable-runtime pada tiap shelltoolbaru karena environmentlauncher tidakmasuk keCodex yangsudahberjalan. Tidak ada perubahan helper/game tambahan pada penjelasanini; sinkronisasi dokumentasiakhir diverifikasi setelahpush.
+
 - **Permintaan:** satu project beserta .git dibawa di flashdisk, tetap commit/pushkeGitHub, mengurangi clone/setupulang. Targetpengguna D:\roblox; bolehreplaceisi, tetapi repoGit yang masihberguna dipertahankan.
 - **Kondisi awal:** laptop43b0a8d behind3, hanya default.project.jsonlokallama berubah. Remote488d266. FlashdiskACHMAL/KingstonDataTravelerUSB/FAT32 sekitar7,7GB, ruangawal7,1GB. RepoDlama fa6911c dengan configberubah dan src/src copytak terlacak; bukanversikerjaterbaru. GitPortable2.55.0.windows.3 sudahada.
 - **Pengamanan:** konfigurasilaptop dicadangkan danhash tetap f2fceb19e590685da9356d22a49f691d9259eb5b05e89089d0653045af77b3a9. Laptopfast-forward488d266 tanpa overwriteconfig. Repolama dipindahkan secara native dalam targetD:\roblox\cadangan\repo-lama-20261029T105142Z, tanpa menghapus data sumber. FilearsipRBXLfolderinduk bukanfilekerjabaru.

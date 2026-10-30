@@ -1,3 +1,10 @@
+# Checkpoint terbaru — 30 Oktober 2026, objek dan shell interaksi Level 2 tersimpan
+
+Save pengguna sudah diverifikasi: WORKING SHA256 37cb91cd3f77e9021402bb58082eb06e113f0fc5bbea21f924080efc347d2389, 2.801.679 byte. Lima source terkelola cocok dengan disk. Kelima Model tambahan berada di Workspace/Level2Development dan ketiga label benar (Latihan 1/Bukti Teks, Latihan 2/Simpulan dan Bukti, Evaluasi Level 2).
+
+Tiga prompt E hold1detik membuka modal kosong dibuat client saat Play oleh prefix Level2FlowHandler existing; flow baseline dipertahankan. Server Level1ScoreHandler juga mengunci meja pasangan saat Play, mengikuti pola kios L1; properti Anchored di Edit dapat tetap false. Belum ada hasil Play untuk prompt/modal atau fisik meja. Disk masih9prompt baseline, bukan bukti3promptruntime sudah diuji.
+
+Langkah berikut: pengguna Play, dekati setiap titik dan tahan E → periksa judul/modal kosong → Tutup → gerak pulih → buka ulang; cek meja/kursi tidak jatuh dan Output [L2 Shell] Ready3 serta [L2 Server] anchored22. Pengguna tetap mengendalikan Play/Stop/Save. Jangan menambah materi/skor sebelum shell stabil. Commit checkpoint mencakup objek, bridge, shell dan dokumentasi; push tidak diminta. Riwayat lama di bawah tunduk checkpoint ini.
 # Checkpoint Level 1 — 30 Oktober 2026
 
 Pengguna menyatakan Level1 aman/clear sejauh uji hariini dan menunjukkan screenshot sudah berada di dalam gedungLevel2. Ini checkpoint implementasi untuk mulai Level2, bukan klaim semua cabang eksperimen/validasi ahli selesai. Save terverifikasi cocok keempat source: WORKING SHA256 ce4106a9f1ecdecfffd1e850a9b1c3ee191222d457317a823b65149d6ec0aef3, 2710457byte,9prompt1detik.
@@ -107,3 +114,23 @@ Instruksi terbaru menggantikan penundaan female di atas. Pengguna akan menambahk
 **Koreksi kecil terbaru:** feedbackbenar/salah latihan sekarang25pxbold, tinggiauto minimal110px. PenggunaSave/Play cek keterbacaan dan scroll; belumhasilPlay/Save.
 
 **Koreksi keterbacaan terbaru:** evaluasi/hasil diperbesar (soal26, opsi24, hasil34) dan dipindah keareascr oll/listtinggiauto; sourcea0aecd74... terpasangeditor. Save/verifylaluPlayceksoalterpanjang,feedback,hasil. BelumPlay/Saveversiini.
+
+**Target pembukaan Level 2 (30 Oktober):** tata objek dahulu sesuai L2-00; kiri pertahankan NPC/istilah/berita, kanan meja bukti→panel pasangan→kios evaluasi, tengah bebas. Langkah pertama lihat gedung dari pintu dalam Edit dan inventaris Explorer sebelum tambah objek. Belum pemasangan. WORKING modified terhadap HEAD bdf3069, jangan ditimpa. Pengguna Play/Stop/Save.
+
+**Langkah langsung terbaru:** pengguna Ctrl+S lalu buka ulang Roblox Studio dan WORKING untuk memuat plugin bridge terbaru. Setelah itu AI inventaris duplikat Level 2, buat Workspace/Level2Development, pindahkan hanya objek tambahan dan ubah papan menjadi Latihan 1 — Bukti Teks. Dukungan bridge sudah terpasang lokal/tes controller lulus; objek game belum diubah. Jangan kirim op baru sebelum reload.
+
+**Hambatan target terbaru:** folder Level2Development sudah ada di editor. Dua Papan Petunjuk Kios bernama sama di Level1Development, sehingga perlu user F2 khusus papan duplikat di gedung L2 menjadi L2_PapanBukti; meja tambahan menjadi L2_MejaBukti. AI lalu inventaris ulang dan lanjut via bridge; belum teks/move/Save baru.
+
+**Langkah langsung:** user klik tombol Connect pada toolbar Codex Local dua kali untuk off/on (bukan Play). Server PID20512 menunggu reconnect. Nama objek sudah benar; teks/move belum selesai. Request teks diparkir, config kembali tanpa teks; setelah online inventaris ulang lalu lanjut.
+
+**Langkah terbaru setelah reconnect:** folder dan kedua objek sudah rapi dalam Workspace/Level2Development, belum Save. Teks tertahan Ambiguous path: Sign; perlu rename Part Sign pemilik SurfaceGui/Frame/TextLabel menjadi L2_PermukaanTeks. Bridge online/Edit, jangan reopen. Setelah rename AI lanjut teks via bridge, lalu user Save.
+
+**Daftar penataan sekaligus L2:** dua set tersisa: meja+papan pasangan (L2_MejaPasangan/L2_PapanPasangan) kanan tengah, kios+papan evaluasi (L2_KiosEvaluasi/L2_PapanEvaluasi) dekat keluar. Tambahan masuk Level2Development; unikkan Part teks menjadi L2_PermukaanTeks. Inventaris e masih membaca Sign ambigu dan teks L1 pada papan bukti. Prompt/alur belum dipasang; papan berita pakai existing kiri setelah identifikasi. Belum Save baru.
+
+**Langkah langsung paling baru:** user Ctrl+S lalu tutup/buka ulang Studio/WORKING untuk memuat perbaikan resolver Sign dan dukungan rename. AI kemudian jalankan rencana local-rbxl/bridge/l2-object-plan.json: tiga teks, Meja Kursi latihan→L2_MejaPasangan, papan latihan→L2_PapanPasangan, kios→L2_KiosEvaluasi, semuanya keLevel2Development. Belum diterapkan. Inventarisf tersedia; pluginbaru menyediakan objectSummaries untuk cekAnchored/script bawaan. Tidak perlu renameSignmanuallagi.
+
+**Posisi terbaru setelah penerapan:** teks ketigatitik dan nama/folderkelimaModelL2 sudah applied/readback. Tidakperlu renameSign/reopenlagi. Langkahlangsung: pilih Workspace/Level2Development/L2_MejaPasangan→Anchor (22bagianmasihunanchored), laluCtrl+S. AIinspectulangharus0danverifySave. InteraksiEbelumdipasang; berikutnyapapanberita/prompt/alurL2sesuaistoryboard. Janganmengulang3teks/3moves; requestssuksessudahdiarsipcompleted.
+
+**Langkah langsung terbaru:** pilih L2_MejaPasangan→Anchor→Ctrl+S. AIverifikasiSave5source+5objek/3teks lalucommitcheckpointL2. SourcepromptE→modal kosong sudah applied/readback melaluiLevel2FlowHandlerexisting, belumPlay/Save, baselineutuh. Promptbaru munculclientruntime saatPlay. Berikut userPlayuji3titik/tutup/gerakpulih/bukaulang/respawn. Tidakreopen/pushotomatis.
+
+**Menggantikan langkahAnchor manual:** fixruntimeSERVERuntukL2_MejaPasangan sudah applied lewatbridge, hashbe3be043... TidakperluAnchor/reopen. LangkahuserCtrl+S, AIverifySave5source+objekbaru/commit, laluuserPlayuji3modal danmejastabil/Outputanchored22. Editpropertymasihmungkin22unanchored; bedakanruntimefixdaripropertypermanen. BelumujiPlay.

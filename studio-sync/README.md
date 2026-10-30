@@ -69,3 +69,10 @@ Kuis, audio, seluruh logic latihan dan level lain belum diuji pada sesi bridge. 
 Target source terkelola kini dua: Level1Handler dan ArrowGuideScript existing. ArrowModel existing tetap digunakan, tujuan Level1 dibagikan melalui atribut client L1GuideTarget/Label/Stage. verify-studio-save.cjs mengikuti project.json dan memeriksa kedua source; receipt editor tetap harus diikuti Save/Play terpisah.
 
 Pembaruan lanjutan30Oktober: empat targetexisting dikelola (duaLocalScript diatas, ServerScriptService/Level1ScoreHandler danLevelProgressHandler). PengujianSave mengikuti keempattarget; sourceScoreL1 juga menstabilkan kios saat startupserver. Tetap butuh ujiPlay terpisah.
+
+## Dukungan objek Level 2 (30 Oktober 2026, perlu reload plugin)
+Plugin kini menyediakan inspect_workspace (inventaris model/folder/teks/prompt, maksimum 5000), create_folder khusus Workspace/Level2Development, move_instance ke folder itu dengan objectMoves allowlist pada project.json, serta Text pada TextLabel/TextButton di Workspace dengan properties allowlist dan compare-and-set. Target harus diinventarisasi sebelum mengisi allowlist; jangan memindahkan objek Level 1 asli. Perubahan project.json memerlukan restart server/re-pair; perubahan plugin perlu Save/reload Studio. Dukungan baru baru lulus fixture controller, belum uji Studio. Batas v1 lama di atas adalah riwayat.
+
+Perbaikan berikut30Oktober (perlu reloadplugin): resolve memeriksa keunikan endpoint seluruhpath, sehingga sibling Sign yang berbeda keturunannya dapat dibedakan. move_instance mendukung newName hanya nilaiyang disetujui objectMoves, menolak namatujuanbertabrakan. inspect_workspace memberi objectSummaries terbatas objekL2/targetmoves (parts/unanchored/script/prompt/pivot). Baru tescontroller, bukan bukti ujiStudio.
+
+Targetsourcekelima: Level2FlowHandler existing, menambahkan3prompt/modal kosongruntime sambilmempertahankanflowbaseline. Saveverification mengikuti5target project.json. Promptruntime bukan instancepermanenEdit; Playperluujiuser.

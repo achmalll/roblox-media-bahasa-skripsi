@@ -1,4 +1,20 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+-- Shared environment initialization; does not change either level's score rules.
+task.spawn(function()
+	local folder = workspace:WaitForChild("Level2Development", 30)
+	local tableModel = folder and folder:WaitForChild("L2_MejaPasangan", 15)
+	if not tableModel then warn("[L2 Server] Missing L2_MejaPasangan"); return end
+	local function anchor(part)
+		if part:IsA("BasePart") then part.Anchored = true end
+	end
+	tableModel.DescendantAdded:Connect(anchor)
+	local count = 0
+	for _, part in ipairs(tableModel:GetDescendants()) do
+		anchor(part)
+		if part:IsA("BasePart") then count += 1 end
+	end
+	print("[L2 Server] Meja pasangan anchored on server:", count)
+end)
 -- Level 1 server initialization: stabilize the decorative kiosk before physics runs.
 local kiosk = workspace:WaitForChild("Level1Development"):WaitForChild("L1_KiosEvaluasi")
 local function stabilizePart(part)

@@ -3,36 +3,95 @@
   "port": 34873,
   "scripts": [
     {
-      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "Level1Handler"],
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level1Handler"
+      ],
       "className": "LocalScript",
       "file": "studio-sync/src/Level1Handler.client.luau"
     },
     {
-      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "ArrowGuideScript"],
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "ArrowGuideScript"
+      ],
       "className": "LocalScript",
       "file": "studio-sync/src/ArrowGuideScript.client.luau"
     },
     {
-      "instancePath": ["ServerScriptService", "Level1ScoreHandler"],
+      "instancePath": [
+        "ServerScriptService",
+        "Level1ScoreHandler"
+      ],
       "className": "Script",
       "file": "studio-sync/src/Level1ScoreHandler.server.luau"
     },
     {
-      "instancePath": ["ServerScriptService", "LevelProgressHandler"],
+      "instancePath": [
+        "ServerScriptService",
+        "LevelProgressHandler"
+      ],
       "className": "Script",
       "file": "studio-sync/src/LevelProgressHandler.server.luau"
+    },
+    {
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2FlowHandler"
+      ],
+      "className": "LocalScript",
+      "file": "studio-sync/src/Level2FlowHandler.client.luau"
     }
   ],
   "properties": [
     {
-      "instancePath": ["Workspace", "Level1Development", "L1_PapanLatihan", "Animation 2", "ProximityPrompt"],
+      "instancePath": [
+        "Workspace",
+        "Level1Development",
+        "L1_PapanLatihan",
+        "Animation 2",
+        "ProximityPrompt"
+      ],
       "className": "ProximityPrompt",
       "property": "HoldDuration"
     },
     {
-      "instancePath": ["Workspace", "Space1Answers", "ProximityPrompt"],
+      "instancePath": [
+        "Workspace",
+        "Space1Answers",
+        "ProximityPrompt"
+      ],
       "className": "ProximityPrompt",
       "property": "HoldDuration"
+    }
+  ],
+  "objectMoves": [
+    {
+      "newName": "L2_MejaPasangan",
+      "instancePath": [
+        "Workspace",
+        "Meja Kursi latihan"
+      ],
+      "className": "Model"
+    },
+    {
+      "newName": "L2_PapanPasangan",
+      "instancePath": [
+        "Workspace",
+        "papan latihan"
+      ],
+      "className": "Model"
+    },
+    {
+      "newName": "L2_KiosEvaluasi",
+      "instancePath": [
+        "Workspace",
+        "kios"
+      ],
+      "className": "Model"
     }
   ]
 }

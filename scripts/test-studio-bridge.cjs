@@ -7,7 +7,11 @@ async function main() {
   fs.mkdirSync(path.join(repo, 'local-rbxl'), { recursive: true });
   const fixture = fs.mkdtempSync(path.join(repo, 'local-rbxl/bridge-tests-'));
   fs.mkdirSync(path.join(fixture, 'studio-sync')); fs.mkdirSync(path.join(fixture, 'places'));
-  fs.copyFileSync(path.join(repo, 'studio-sync/project.json'), path.join(fixture, 'studio-sync/project.json'));
+  const fixtureConfig = JSON.parse(fs.readFileSync(path.join(repo, 'studio-sync/project.json'), 'utf8'));
+  const sign = { instancePath: ['Workspace', 'FixtureSign', 'SurfaceGui', 'TextLabel'], className: 'TextLabel', property: 'Text' };
+  fixtureConfig.properties.push(sign);
+  fixtureConfig.objectMoves = [{ instancePath: ['Workspace', 'FixtureSign'], className: 'Model', newName: 'L2_FixtureSign' }];
+  fs.writeFileSync(path.join(fixture, 'studio-sync/project.json'), JSON.stringify(fixtureConfig));
   fs.copyFileSync(path.join(repo, 'places/RobloxLearningMedia-WORKING.rbxl'), path.join(fixture, 'places/RobloxLearningMedia-WORKING.rbxl'));
   const bridge = createBridge(fixture, { port: 34874 });
   await bridge.start();
@@ -48,6 +52,15 @@ async function main() {
     snapshot.running = false; await post('/snapshot', snapshot);
     assert.equal((await post('/poll', {})).body.command.id, 'hold-fixture');
     assert.throws(() => bridge.enqueue({ id: 'forbidden', op: 'set_property', className: 'Part', instancePath: ['Workspace'], property: 'Name', before: 0, value: 1 }));
+    bridge.enqueue({ id: 'inspect-fixture', op: 'inspect_workspace' });
+    bridge.enqueue({ id: 'folder-fixture', op: 'create_folder', name: 'Level2Development' });
+    assert.throws(() => bridge.enqueue({ id: 'wrong-folder', op: 'create_folder', name: 'OtherFolder' }));
+    bridge.enqueue({ id: 'move-fixture', op: 'move_instance', ...fixtureConfig.objectMoves[0] });
+    assert.throws(() => bridge.enqueue({ id: 'wrong-rename', op: 'move_instance', ...fixtureConfig.objectMoves[0], newName: 'L2_OtherName' }));
+    assert.throws(() => bridge.enqueue({ id: 'wrong-move', op: 'move_instance', className: 'Model', instancePath: ['Workspace', 'Other'] }));
+    bridge.enqueue({ id: 'text-fixture', op: 'set_property', ...sign, before: 'Old sign', value: 'Latihan 1 — Bukti Teks' });
+    assert.throws(() => bridge.enqueue({ id: 'long-text', op: 'set_property', ...sign, before: 'Old sign', value: 'x'.repeat(4097) }));
+    assert.throws(() => bridge.enqueue({ id: 'wrong-text-target', op: 'set_property', ...sign, instancePath: ['Workspace', 'Other'], before: 'Old', value: 'New' }));
     const studioOnly = local + '-- Studio-only edit\n'; snapshot.scripts[0].source = studioOnly; await post('/snapshot', snapshot);
     assert.equal(fs.readFileSync(sourceFile, 'utf8'), studioOnly, 'Studio-only change should import when local is unchanged');
     fs.writeFileSync(sourceFile, studioOnly + '-- local branch\n');

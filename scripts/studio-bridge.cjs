@@ -44,10 +44,23 @@ function createBridge(root, options = {}) {
   function persist() { writeJson(path.join(stateDir, 'status.json'), publicStatus()); }
   function checkCommand(command) {
     if (!command || typeof command.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(command.id)) throw Error('Invalid command ID');
+    if (command.op === 'inspect_workspace') return;
+    if (command.op === 'create_folder') {
+      if (command.name !== 'Level2Development') throw Error('Folder outside project scope');
+      return;
+    }
+    if (command.op === 'move_instance') {
+      if (!(config.objectMoves || []).some(v => keyOf(v) === keyOf(command) && v.className === command.className && (!command.newName || (v.newName === command.newName && /^L2_[A-Za-z0-9_]{1,80}$/.test(command.newName))))) throw Error('Move outside project scope');
+      return;
+    }
     if (!['set_property', 'read_property', 'update_source'].includes(command.op)) throw Error('Unsupported command');
     const list = command.op === 'update_source' ? config.scripts : config.properties;
     if (!list.some(v => keyOf(v) === keyOf(command) && v.className === command.className)) throw Error('Target outside project scope');
-    if (command.op === 'set_property' && (command.property !== 'HoldDuration' || !Number.isFinite(command.value) || command.value < 0 || command.value > 10 || !Number.isFinite(command.before))) throw Error('Invalid property write');
+    if (command.op === 'set_property') {
+      const duration = command.className === 'ProximityPrompt' && command.property === 'HoldDuration' && Number.isFinite(command.value) && command.value >= 0 && command.value <= 10 && Number.isFinite(command.before);
+      const text = ['TextLabel', 'TextButton'].includes(command.className) && command.instancePath[0] === 'Workspace' && command.property === 'Text' && typeof command.value === 'string' && Buffer.byteLength(command.value) <= 4096 && typeof command.before === 'string';
+      if (!duration && !text) throw Error('Invalid property write');
+    }
     if (command.op === 'update_source' && (typeof command.source !== 'string' || typeof command.beforeSource !== 'string')) throw Error('Missing compare-and-set source');
   }
   function enqueue(command) {

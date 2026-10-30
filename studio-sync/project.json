@@ -6,6 +6,21 @@
       "instancePath": ["StarterPlayer", "StarterPlayerScripts", "Level1Handler"],
       "className": "LocalScript",
       "file": "studio-sync/src/Level1Handler.client.luau"
+    },
+    {
+      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "ArrowGuideScript"],
+      "className": "LocalScript",
+      "file": "studio-sync/src/ArrowGuideScript.client.luau"
+    },
+    {
+      "instancePath": ["ServerScriptService", "Level1ScoreHandler"],
+      "className": "Script",
+      "file": "studio-sync/src/Level1ScoreHandler.server.luau"
+    },
+    {
+      "instancePath": ["ServerScriptService", "LevelProgressHandler"],
+      "className": "Script",
+      "file": "studio-sync/src/LevelProgressHandler.server.luau"
     }
   ],
   "properties": [

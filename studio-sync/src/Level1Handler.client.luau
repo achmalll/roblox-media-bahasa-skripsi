@@ -14,17 +14,83 @@ local overlay = level1Gui:WaitForChild("BackgroundOverlay")
 local latihanCompleted = false
 local spacePart = workspace:WaitForChild("Space1Answers")
 local prompt = spacePart:WaitForChild("ProximityPrompt")
+-- Retire the shared interaction; only the two tutor prompts may open L1 audio.
+prompt.Enabled = false
+-- LevelAccessHandler still toggles the legacy prompt when progress changes.
+-- Keep that shared prompt retired without touching access rules for other levels.
+prompt:GetPropertyChangedSignal("Enabled"):Connect(function()
+	if prompt.Enabled then prompt.Enabled = false end
+end)
 
--- 04B / 06B1 / 06B2: male dahulu; female menyusul.
+-- 04B / 06B1 / 06B2: audio 1 male; audio 2 dan 3 female.
 local clips = {
 	{ id = "101781033507422", title = "Pengertian dan sumber daya" },
-	{ id = "95164082214235", title = "Peran dan contoh sistem operasi" },
-	{ id = "134699797461072", title = "Tujuan dan manfaat pemahaman" },
+	{ id = "123696295721871", title = "Peran dan contoh sistem operasi" },
+	{ id = "92723692760063", title = "Tujuan dan manfaat pemahaman" },
 }
 local completed = {false, false, false}
 local positions = {0, 0, 0}
 local activeClip = 1
 local infoVisited = false
+local guideVisited = false
+local evaluationPassed = false
+local reviewingInfo = false
+local guideTargets = { tutor1 = spacePart }
+local flowGui = playerGui:WaitForChild("FlowGui")
+local guideBoard = workspace:WaitForChild("Halaman depan"):WaitForChild("papanInformasi")
+local guidePrompt = guideBoard:FindFirstChildWhichIsA("ProximityPrompt", true)
+guideTargets.guide = guidePrompt and guidePrompt.Parent or (guideBoard:IsA("BasePart") and guideBoard or guideBoard:FindFirstChildWhichIsA("BasePart", true))
+local function currentStage()
+	if reviewingInfo then return "info", "Baca kembali papan informasi Level 1" end
+	if not guideVisited then return "guide", "Baca papan panduan permainan" end
+	if not completed[1] then return "tutor1", "Temui Tutor 1 — dengarkan audio 1" end
+	if not infoVisited then return "info", "Baca papan informasi Level 1" end
+	if not completed[2] then return "tutor2", "Temui Tutor 2 — dengarkan audio 2" end
+	if not completed[3] then return "tutor2", "Lanjutkan audio 3 di Tutor 2" end
+	if not latihanCompleted then return "latihan", "Selesaikan latihan dua kartu" end
+	return "kiosk", evaluationPassed and "Evaluasi lulus — akses Level 2 menunggu verifikasi" or "Kerjakan evaluasi di kios Level 1"
+end
+local noticeGui = Instance.new("ScreenGui")
+noticeGui.Name = "L1StageNotice"
+noticeGui.ResetOnSpawn = false
+noticeGui.DisplayOrder = 50
+noticeGui.Parent = playerGui
+local notice = Instance.new("TextLabel")
+notice.AnchorPoint = Vector2.new(.5, 0)
+notice.Position = UDim2.fromScale(.5, .12)
+notice.Size = UDim2.new(.8, 0, 0, 72)
+notice.BackgroundColor3 = Color3.fromRGB(246, 224, 207)
+notice.TextColor3 = Color3.fromRGB(71, 32, 3)
+notice.TextWrapped = true
+notice.Font = Enum.Font.GothamBold
+notice.TextSize = 19
+notice.Visible = false
+notice.Parent = noticeGui
+Instance.new("UICorner", notice).CornerRadius = UDim.new(0, 12)
+local noticeVersion = 0
+local function explainPrerequisite(message)
+	noticeVersion += 1
+	local version = noticeVersion
+	local _, destination = currentStage()
+	notice.Text = message .. "\nTujuanmu: " .. destination
+	notice.Visible = true
+	task.delay(5, function() if noticeVersion == version then notice.Visible = false end end)
+end
+-- Visiting a guide page and closing it completes orientation, without forcing all five pages.
+for _, pageName in ipairs({"mapsFrame", "space1Frame", "space2Frame", "space3Frame", "hall4Frame"}) do
+	local page = flowGui:WaitForChild(pageName)
+	page:WaitForChild("close").MouseButton1Click:Connect(function() guideVisited = true end)
+end
+RunService.Heartbeat:Connect(function()
+	local stage, label = currentStage()
+	local target = guideTargets[stage]
+	local position
+	if target and target:IsA("BasePart") then position = target.Position
+	elseif target and target:IsA("Model") then position = target:GetPivot().Position end
+	player:SetAttribute("L1GuideTarget", position)
+	player:SetAttribute("L1GuideLabel", label)
+	player:SetAttribute("L1GuideStage", stage)
+end)
 local loadVersion = 0
 local pendingPlay = false
 local loaded = false
@@ -153,6 +219,7 @@ local function openAudio(index)
 	loaded = false
 	paused = false
 	sound.SoundId = "rbxassetid://" .. clips[index].id
+	print("[L1 Audio] Segmen", index, "SoundId", sound.SoundId)
 	fill.Size = UDim2.fromScale(completed[index] and 1 or 0, 1)
 	status.Text = "Memuat audio…"
 	audioPlayerMale.Visible = true
@@ -218,6 +285,10 @@ end)
 introFrame.mulaibtn.MouseButton1Click:Connect(function() openAudio(1) end)
 introFrame:WaitForChild("close").MouseButton1Click:Connect(closeAudio)
 local function tutor1()
+	if not guideVisited then
+		explainPrerequisite("Baca papan panduan dahulu sebelum mulai belajar.")
+		return
+	end
 	hideAll()
 	level1Gui.Enabled = true
 	overlay.Visible = true
@@ -225,9 +296,8 @@ local function tutor1()
 	PlayerControl.Lock()
 end
 local function tutor2()
-	if not completed[1] or not infoVisited then
-		openAudio(1)
-		status.Text = completed[1] and "Kunjungi papan informasi sebelum Tutor 2." or "Selesaikan audio 1 di Tutor 1 dahulu."
+	if not guideVisited or not completed[1] or not infoVisited then
+		explainPrerequisite(completed[1] and "Baca papan informasi dahulu sebelum audio 2." or "Selesaikan audio 1 bersama Tutor 1 dahulu.")
 		return
 	end
 	openAudio(completed[2] and 3 or 2)
@@ -259,6 +329,7 @@ if #candidates == 2 then
 			local right = forward.Unit:Cross(Vector3.yAxis)
 			table.sort(candidates, function(a,b) return a.part.Position:Dot(right) < b.part.Position:Dot(right) end)
 			for index, npc in ipairs(candidates) do
+				guideTargets[index == 1 and "tutor1" or "tutor2"] = npc.part
 				local npcPrompt = Instance.new("ProximityPrompt")
 				npcPrompt.Name = "L1TutorAudioPrompt"
 				npcPrompt.ActionText = "Bicara"
@@ -275,21 +346,78 @@ if #candidates == 2 then
 		end
 	end
 else warn("L1 audio: expected two NPCs near Space1Answers; found", #candidates) end
-prompt.Triggered:Connect(function(who) if who == player then tutor1() end end)
 
 -- ===== Papan Informasi (L1_PapanInformasi) =====
 local papanInfoFrame = level1Gui:WaitForChild("papanInfoFrame")
 local papanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1_PapanInformasi"):WaitForChild("Animation 2"):WaitForChild("ProximityPrompt")
+guideTargets.info = papanPrompt.Parent
+local infoOpened = false
+-- A compact reading panel; preserve the source material and existing close handler.
+do
+	papanInfoFrame.AnchorPoint = Vector2.new(.5, .5)
+	papanInfoFrame.Position = UDim2.fromScale(.5, .5)
+	papanInfoFrame.Size = UDim2.fromScale(.86, .78)
+	local bounds = Instance.new("UISizeConstraint", papanInfoFrame)
+	bounds.MaxSize = Vector2.new(1000, 580)
+	for _, child in ipairs(papanInfoFrame:GetChildren()) do
+		if child:IsA("GuiObject") and child.Name ~= "TutupBtn" then child.Visible = false end
+	end
+	local body = Instance.new("ScrollingFrame")
+	body.Name = "L1InfoCards"
+	body.BackgroundTransparency = 1
+	body.BorderSizePixel = 0
+	body.Position = UDim2.fromScale(.06, .06)
+	body.Size = UDim2.fromScale(.88, .76)
+	body.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	body.CanvasSize = UDim2.new()
+	body.ScrollBarThickness = 4
+	body.Parent = papanInfoFrame
+	local function text(parent, value, y, height, size, bold)
+		local label = Instance.new("TextLabel")
+		label.BackgroundTransparency = 1
+		label.Position = UDim2.new(0, 0, 0, y)
+		label.Size = UDim2.new(1, 0, 0, height)
+		label.Text = value
+		label.TextSize = size
+		label.TextWrapped = true
+		label.Font = bold and Enum.Font.GothamBold or Enum.Font.Gotham
+		label.TextColor3 = Color3.fromRGB(71, 42, 28)
+		label.TextXAlignment = Enum.TextXAlignment.Left
+		label.Parent = parent
+		return label
+	end
+	text(body, "LEVEL 1  /  PAHAMI MATERI", 0, 26, 16, true)
+	text(body, "Kenali Sistem Operasi", 34, 48, 32, true)
+	text(body, "Sistem operasi adalah perangkat lunak yang mengelola sumber daya komputer.", 92, 78, 24, false)
+	text(body, "SUMBER DAYA YANG DIKELOLA", 184, 28, 17, true)
+	for i, label in ipairs({"Prosesor", "Memori", "Penyimpanan", "Input dan output"}) do
+		local card = Instance.new("Frame")
+		card.Position = UDim2.new((i - 1) % 2 * .51, 0, 0, 228 + math.floor((i - 1) / 2) * 84)
+		card.Size = UDim2.new(.49, 0, 0, 72)
+		card.BackgroundColor3 = Color3.fromRGB(255, 247, 237)
+		card.BorderSizePixel = 0
+		card.Parent = body
+		Instance.new("UICorner", card).CornerRadius = UDim.new(0, 12)
+		local item = text(card, string.format("%02d  %s", i, label), 0, 72, 22, true)
+		item.Position = UDim2.new(0, 16, 0, 0)
+		item.Size = UDim2.new(1, -32, 1, 0)
+	end
+	local closeInfo = papanInfoFrame.TutupBtn
+	closeInfo.AnchorPoint = Vector2.new(.5, .5)
+	closeInfo.Position = UDim2.fromScale(.5, .91)
+	closeInfo.Size = UDim2.fromScale(.86, .10)
+	closeInfo.TextSize = 20
+	closeInfo.Text = "Selesai membaca → Temui Tutor 2"
+end
 
 papanPrompt.Triggered:Connect(function(triggeredPlayer)
 	if triggeredPlayer == player then
-		if not completed[1] then
-			openAudio(1)
-			status.Text = "Selesaikan audio 1 dahulu sebelum membuka papan informasi."
+		if not guideVisited or not completed[1] then
+			explainPrerequisite("Selesaikan audio 1 dahulu sebelum membuka papan informasi.")
 			return
 		end
 		hideAll()
-		infoVisited = true
+		infoOpened = true
 		level1Gui.Enabled = true
 		overlay.Visible = true
 		GuiAnimation.Show(papanInfoFrame)
@@ -298,6 +426,8 @@ papanPrompt.Triggered:Connect(function(triggeredPlayer)
 end)
 
 papanInfoFrame.TutupBtn.MouseButton1Click:Connect(function()
+	reviewingInfo = false
+	if infoOpened then infoVisited = true end
 	GuiAnimation.Hide(papanInfoFrame)
 	overlay.Visible = false
 	level1Gui.Enabled = false
@@ -306,7 +436,11 @@ end)
 
 -- ===== Papan Latihan (L1_PapanLatihan) =====
 local latihanFrame = level1Gui:WaitForChild("latihanFrame")
+latihanFrame.AnchorPoint = Vector2.new(.5, .5)
+latihanFrame.Position = UDim2.fromScale(.5, .5)
+latihanFrame.Size = UDim2.fromScale(.94, .92)
 local latihanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1_PapanLatihan"):WaitForChild("Animation 2"):WaitForChild("ProximityPrompt")
+guideTargets.latihan = latihanPrompt.Parent
 
 -- Latihan 07B: pilih dua dari empat kartu dan tempatkan ke dua slot.
 -- UI dibuat runtime agar tidak mengubah/menggandakan objek permanen di place.
@@ -315,8 +449,8 @@ if oldActivity then oldActivity:Destroy() end
 local activity = Instance.new("Frame")
 activity.Name = "L1TwoSlotActivity"
 activity.BackgroundTransparency = 1
-activity.Size = UDim2.new(1, -28, 1, -110)
-activity.Position = UDim2.new(0, 14, 0, 70)
+activity.Size = UDim2.new(1, -48, 1, -112)
+activity.Position = UDim2.new(0, 24, 0, 24)
 activity.Parent = latihanFrame
 
 -- Pastikan UI latihan lama tidak menumpuk di bawah/di atas activity baru.
@@ -331,17 +465,18 @@ local title = Instance.new("TextLabel")
 title.BackgroundTransparency = 1
 title.Size = UDim2.new(1, 0, 0, 30)
 title.Font = Enum.Font.GothamBold
-title.TextSize = 24
+title.TextSize = 28
 title.TextColor3 = Color3.fromRGB(70, 48, 38)
 title.Text = "Lengkapi informasi dari audio"
 title.Parent = activity
 
 local hint = Instance.new("TextLabel")
 hint.BackgroundTransparency = 1
-hint.Size = UDim2.new(1, 0, 0, 28)
-hint.Position = UDim2.new(0, 0, 0, 30)
+hint.Size = UDim2.new(1, 0, 0, 42)
+hint.Position = UDim2.new(0, 0, 0, 36)
+hint.TextWrapped = true
 hint.Font = Enum.Font.Gotham
-hint.TextSize = 16
+hint.TextSize = 19
 hint.TextColor3 = Color3.fromRGB(85, 65, 55)
 hint.Text = "Pilih kartu, lalu klik tempatnya. Dua kartu tidak digunakan."
 hint.Parent = activity
@@ -362,8 +497,8 @@ local cardPanel = Instance.new("ScrollingFrame")
 cardPanel.Name = "Cards"
 cardPanel.BackgroundTransparency = 1
 cardPanel.BorderSizePixel = 0
-cardPanel.Size = UDim2.new(0.58, -8, 1, -78)
-cardPanel.Position = UDim2.new(0, 0, 0, 68)
+cardPanel.Size = UDim2.new(0.52, -12, 1, -90)
+cardPanel.Position = UDim2.new(0, 0, 0, 90)
 cardPanel.CanvasSize = UDim2.new(0, 0, 0, 0)
 cardPanel.AutomaticCanvasSize = Enum.AutomaticSize.Y
 cardPanel.ScrollBarThickness = 5
@@ -372,21 +507,28 @@ local cardLayout = Instance.new("UIListLayout")
 cardLayout.Padding = UDim.new(0, 9)
 cardLayout.Parent = cardPanel
 
-local slotPanel = Instance.new("Frame")
+local slotPanel = Instance.new("ScrollingFrame")
 slotPanel.Name = "Slots"
 slotPanel.BackgroundTransparency = 1
-slotPanel.Size = UDim2.new(0.42, -8, 1, -78)
-slotPanel.Position = UDim2.new(0.58, 8, 0, 68)
+slotPanel.BorderSizePixel = 0
+slotPanel.CanvasSize = UDim2.new()
+slotPanel.AutomaticCanvasSize = Enum.AutomaticSize.Y
+slotPanel.ScrollBarThickness = 4
+slotPanel.Size = UDim2.new(0.48, -12, 1, -90)
+slotPanel.Position = UDim2.new(0.52, 12, 0, 90)
 slotPanel.Parent = activity
 
 local feedback = Instance.new("TextLabel")
 feedback.Name = "Feedback"
 feedback.BackgroundTransparency = 1
-feedback.Size = UDim2.new(1, 0, 0, 60)
-feedback.Position = UDim2.new(0, 0, 0, 286)
-feedback.Font = Enum.Font.Gotham
+feedback.Size = UDim2.new(1, -12, 0, 110)
+feedback.AutomaticSize = Enum.AutomaticSize.Y
+feedback.Position = UDim2.new(0, 0, 0, 376)
+feedback.Font = Enum.Font.GothamBold
 feedback.TextWrapped = true
-feedback.TextSize = 16
+feedback.TextSize = 25
+feedback.TextXAlignment = Enum.TextXAlignment.Left
+feedback.TextYAlignment = Enum.TextYAlignment.Top
 feedback.TextColor3 = Color3.fromRGB(90, 55, 40)
 feedback.Text = ""
 feedback.Parent = slotPanel
@@ -394,7 +536,8 @@ feedback.Parent = slotPanel
 local checkButton = Instance.new("TextButton")
 checkButton.Name = "Periksa"
 checkButton.Size = UDim2.new(0.72, 0, 0, 46)
-checkButton.Position = UDim2.new(0.14, 0, 0, 226)
+checkButton.Position = UDim2.new(0.04, 0, 0, 314)
+checkButton.Size = UDim2.new(.92, 0, 0, 50)
 checkButton.BackgroundColor3 = Color3.fromRGB(190, 105, 70)
 checkButton.TextColor3 = Color3.new(1, 1, 1)
 checkButton.Font = Enum.Font.GothamBold
@@ -402,14 +545,18 @@ checkButton.TextSize = 18
 checkButton.Text = "Periksa"
 checkButton.AutoButtonColor = true
 checkButton.Parent = slotPanel
+Instance.new("UICorner", checkButton).CornerRadius = UDim.new(0, 12)
+local mainSlot
+local supportingSlot
 
 local function refreshCards()
 	for id, button in pairs(cardButtons) do
 		local used = slots.main == id or slots.supporting == id
 		local destination = slots.main == id and "PESAN UTAMA" or (slots.supporting == id and "INFORMASI PENDUKUNG" or nil)
-		button.BackgroundColor3 = used and Color3.fromRGB(150, 150, 150)
-			or (selectedCard == id and Color3.fromRGB(80, 145, 205) or Color3.fromRGB(226, 157, 103))
-		button.TextColor3 = Color3.new(1, 1, 1)
+		button.BackgroundColor3 = used and Color3.fromRGB(226, 237, 224)
+			or (selectedCard == id and Color3.fromRGB(245, 219, 187) or Color3.fromRGB(255, 247, 237))
+		button.TextColor3 = Color3.fromRGB(71, 42, 28)
+		button.SelectionStroke.Transparency = selectedCard == id and 0 or .8
 		if destination then
 			button.Text = id .. ". DITEMPATKAN → " .. destination .. "\n" .. cardById[id].text
 		elseif selectedCard == id then
@@ -423,24 +570,29 @@ local function refreshCards()
 	checkButton.AutoButtonColor = ready
 	checkButton.BackgroundColor3 = ready and Color3.fromRGB(190, 105, 70) or Color3.fromRGB(150, 140, 135)
 	checkButton.Text = ready and "Periksa jawaban" or "Isi kedua slot untuk memeriksa"
+	if mainSlot then mainSlot.Text = "1. Pesan utama\n" .. (slots.main and ("Kartu " .. slots.main .. " • " .. cardById[slots.main].text) or "Pilih kartu, lalu klik tempat ini") end
+	if supportingSlot then supportingSlot.Text = "2. Informasi pendukung\n" .. (slots.supporting and ("Kartu " .. slots.supporting .. " • " .. cardById[slots.supporting].text) or "Pilih kartu, lalu klik tempat ini") end
 end
 
 -- Deklarasikan lebih dahulu agar callback slot merujuk objek lokal yang benar.
-local mainSlot
-local supportingSlot
 
 local function makeSlot(name, label, key)
 	local slot = Instance.new("TextButton")
 	slot.Name = name
-	slot.Size = UDim2.new(1, 0, 0, 100)
-	slot.Position = key == "main" and UDim2.new(0, 0, 0, 0) or UDim2.new(0, 0, 0, 110)
+	slot.Size = UDim2.new(1, -6, 0, 144)
+	slot.Position = key == "main" and UDim2.new(0, 0, 0, 0) or UDim2.new(0, 0, 0, 156)
 	slot.BackgroundColor3 = Color3.fromRGB(245, 226, 207)
 	slot.TextColor3 = Color3.fromRGB(75, 52, 42)
 	slot.Font = Enum.Font.Gotham
-	slot.TextSize = 16
+	slot.TextSize = 21
 	slot.TextWrapped = true
 	slot.Text = label .. "\nBelum terisi — pilih kartu di kiri, lalu klik tempat ini"
 	slot.Parent = slotPanel
+	slot.BorderSizePixel = 0
+	Instance.new("UICorner", slot).CornerRadius = UDim.new(0, 12)
+	local padding = Instance.new("UIPadding", slot)
+	padding.PaddingLeft = UDim.new(0, 14)
+	padding.PaddingRight = UDim.new(0, 14)
 	slot.MouseButton1Click:Connect(function()
 		if selectedCard then
 			-- Satu kartu hanya boleh berada pada satu slot.
@@ -459,7 +611,9 @@ local function makeSlot(name, label, key)
 				supportingSlot.Text = "Informasi pendukung\nBelum terisi — pilih kartu di kiri, lalu klik tempat ini"
 			end
 			feedback.TextColor3 = Color3.fromRGB(40, 115, 65)
-			feedback.Text = "Kartu berhasil ditempatkan. Isi slot lainnya, lalu tekan Periksa."
+			feedback.Text = slots.main and slots.supporting and "Kedua slot terisi. Tekan Periksa jawaban." or "Kartu ditempatkan. Isi satu slot lagi."
+			slot.BackgroundColor3 = Color3.fromRGB(213, 235, 209)
+			game:GetService("TweenService"):Create(slot, TweenInfo.new(.3), {BackgroundColor3 = Color3.fromRGB(245, 226, 207)}):Play()
 			refreshCards()
 		else
 			feedback.TextColor3 = Color3.fromRGB(170, 90, 50)
@@ -474,14 +628,25 @@ supportingSlot = makeSlot("InformasiPendukung", "Informasi pendukung", "supporti
 for _, card in ipairs(cards) do
 	local button = Instance.new("TextButton")
 	button.Name = "Kartu" .. card.id
-	button.Size = UDim2.new(1, -6, 0, 78)
+	button.Size = UDim2.new(1, -6, 0, 126)
 	button.BackgroundColor3 = Color3.fromRGB(226, 157, 103)
 	button.TextColor3 = Color3.new(1, 1, 1)
 	button.Font = Enum.Font.Gotham
-	button.TextSize = 16
+	button.TextSize = 21
+	button.TextXAlignment = Enum.TextXAlignment.Left
 	button.TextWrapped = true
 	button.Text = card.id .. ". " .. card.text
 	button.Parent = cardPanel
+	button.BorderSizePixel = 0
+	Instance.new("UICorner", button).CornerRadius = UDim.new(0, 12)
+	local padding = Instance.new("UIPadding", button)
+	padding.PaddingLeft = UDim.new(0, 16)
+	padding.PaddingRight = UDim.new(0, 16)
+	local stroke = Instance.new("UIStroke", button)
+	stroke.Name = "SelectionStroke"
+	stroke.Color = Color3.fromRGB(169, 90, 47)
+	stroke.Thickness = 2
+	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	cardButtons[card.id] = button
 	button.MouseButton1Click:Connect(function()
 		if slots.main == card.id then slots.main = nil end
@@ -505,15 +670,8 @@ end
 
 latihanPrompt.Triggered:Connect(function(triggeredPlayer)
 	if triggeredPlayer == player then
-		if not (completed[1] and completed[2] and completed[3]) then
-			local remaining = not completed[1] and 1 or (not completed[2] and 2 or 3)
-			if remaining > 1 and not infoVisited then
-				openAudio(1)
-				status.Text = "Kunjungi papan informasi setelah audio 1, lalu temui Tutor 2."
-			else
-				openAudio(remaining)
-				status.Text = "Latihan terbuka setelah ketiga audio selesai. Selesaikan audio " .. remaining .. " dahulu."
-			end
+		if not (guideVisited and infoVisited and completed[1] and completed[2] and completed[3]) then
+			explainPrerequisite("Latihan terbuka setelah papan informasi dan ketiga audio selesai.")
 			return
 		end
 		hideAll()
@@ -576,6 +734,7 @@ if not kioskPromptPart then
 	kioskPromptPart.CFrame = kioskCFrame * CFrame.new(0, math.max(1.5, kioskSize.Y * 0.2), 0)
 	kioskPromptPart.Parent = kioskModel
 end
+guideTargets.kiosk = kioskPromptPart
 do
 	local kioskPrompt = kioskPromptPart:FindFirstChild("L1KioskPrompt")
 	if not kioskPrompt then
@@ -676,7 +835,7 @@ do
 	evaluationFrame.Name = "L1TwoTierEvaluation"
 	evaluationFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	evaluationFrame.Position = UDim2.fromScale(0.5, 0.5)
-	evaluationFrame.Size = UDim2.fromScale(0.78, 0.84)
+	evaluationFrame.Size = UDim2.fromScale(0.88, 0.92)
 	evaluationFrame.BackgroundColor3 = Color3.fromRGB(246, 224, 207)
 	evaluationFrame.Visible = false
 	evaluationFrame.ZIndex = 30
@@ -704,25 +863,46 @@ do
 		return label
 	end
 
-	local evaluationTitle = makeText(evaluationFrame, "Title", UDim2.new(0.06, 0, 0.04, 0), UDim2.new(0.88, 0, 0.07, 0), 28, true)
-	local evaluationStem = makeText(evaluationFrame, "Stem", UDim2.new(0.07, 0, 0.12, 0), UDim2.new(0.86, 0, 0.13, 0), 19, false)
-	local selectedSummary = makeText(evaluationFrame, "SelectedSummary", UDim2.new(0.07, 0, 0.25, 0), UDim2.new(0.86, 0, 0.08, 0), 17, false)
+	local evaluationTitle = makeText(evaluationFrame, "Title", UDim2.new(0.06, 0, 0.025, 0), UDim2.new(0.88, 0, 0.10, 0), 32, true)
+	-- One reading area grows with wrapped text; the action buttons stay outside it.
+	local readingArea = Instance.new("ScrollingFrame")
+	readingArea.Name = "EvaluationReadingArea"
+	readingArea.BackgroundTransparency = 1
+	readingArea.BorderSizePixel = 0
+	readingArea.Position = UDim2.fromScale(.07, .15)
+	readingArea.Size = UDim2.fromScale(.86, .57)
+	readingArea.CanvasSize = UDim2.new()
+	readingArea.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	readingArea.ScrollBarThickness = 6
+	readingArea.ZIndex = 31
+	readingArea.Parent = evaluationFrame
+	local readingLayout = Instance.new("UIListLayout", readingArea)
+	readingLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	readingLayout.Padding = UDim.new(0, 20)
+	local evaluationStem = makeText(readingArea, "Stem", UDim2.new(), UDim2.new(1, -14, 0, 0), 26, true)
+	evaluationStem.AutomaticSize = Enum.AutomaticSize.Y
+	evaluationStem.TextXAlignment = Enum.TextXAlignment.Left
+	evaluationStem.TextYAlignment = Enum.TextYAlignment.Top
+	evaluationStem.LayoutOrder = 1
+	local selectedSummary = makeText(readingArea, "SelectedSummary", UDim2.new(), UDim2.new(1, -14, 0, 0), 23, false)
+	selectedSummary.AutomaticSize = Enum.AutomaticSize.Y
+	selectedSummary.TextXAlignment = Enum.TextXAlignment.Left
+	selectedSummary.LayoutOrder = 2
 	selectedSummary.Visible = false
-	local options = Instance.new("ScrollingFrame")
+	local options = Instance.new("Frame")
 	options.Name = "Options"
 	options.BackgroundTransparency = 1
 	options.BorderSizePixel = 0
-	options.Position = UDim2.new(0.07, 0, 0.34, 0)
-	options.Size = UDim2.new(0.86, 0, 0.42, 0)
-	options.CanvasSize = UDim2.new(0, 0, 0, 0)
-	options.AutomaticCanvasSize = Enum.AutomaticSize.Y
-	options.ScrollBarThickness = 6
+	options.Size = UDim2.new(1, -14, 0, 0)
+	options.AutomaticSize = Enum.AutomaticSize.Y
+	options.LayoutOrder = 3
 	options.ZIndex = 31
-	options.Parent = evaluationFrame
+	options.Parent = readingArea
 	local optionLayout = Instance.new("UIListLayout")
-	optionLayout.Padding = UDim.new(0, 7)
+	optionLayout.Padding = UDim.new(0, 12)
+	optionLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	optionLayout.Parent = options
-	local status = makeText(evaluationFrame, "Status", UDim2.new(0.07, 0, 0.76, 0), UDim2.new(0.86, 0, 0.09, 0), 18, false)
+	local status = makeText(evaluationFrame, "Status", UDim2.new(0.07, 0, 0.74, 0), UDim2.new(0.86, 0, 0.11, 0), 24, false)
 	status.TextColor3 = Color3.fromRGB(100, 70, 55)
 	local submit = Instance.new("TextButton")
 	submit.Name = "Submit"
@@ -732,7 +912,8 @@ do
 	submit.BackgroundColor3 = Color3.fromRGB(150, 140, 135)
 	submit.TextColor3 = Color3.new(1, 1, 1)
 	submit.Font = Enum.Font.GothamBold
-	submit.TextSize = 20
+	submit.TextSize = 24
+	submit.TextWrapped = true
 	submit.Text = "Pilih jawaban terlebih dahulu"
 	submit.Active = false
 	submit.AutoButtonColor = false
@@ -759,20 +940,53 @@ do
 		submit.Text = text
 	end
 	local renderEvaluation
-	local function showResult()
+	local resultProgressConnection
+	local lastResult
+	local retry = submit:Clone()
+	retry.Name = "RetryEvaluation"
+	retry.Text = "Coba lagi"
+	retry.Visible = false
+	retry.Parent = evaluationFrame
+	local function showResult(review)
+		readingArea.CanvasPosition = Vector2.zero
+		evaluationStem.TextSize = 34
+		evaluationStem.TextXAlignment = Enum.TextXAlignment.Center
+		if resultProgressConnection then resultProgressConnection:Disconnect(); resultProgressConnection = nil end
+		if not review then lastResult = { answers = answerCorrect, reasons = reasonCorrect } end
 		evaluationMode = "result"
 		for _, child in ipairs(options:GetChildren()) do if child:IsA("TextButton") then child:Destroy() end end
 		selectedSummary.Visible = false
 		evaluationTitle.Text = answerCorrect >= 3 and "Level 1 selesai" or "Level 1 belum tuntas"
 		evaluationStem.Text = "Nilai jawaban: " .. (answerCorrect * 25) .. " / 100\nJawaban tepat: " .. answerCorrect .. " dari 4 • Alasan tepat: " .. reasonCorrect .. " dari 4"
+		if not review then game:GetService("ReplicatedStorage"):WaitForChild("UpdateLevel1Score"):FireServer(answerCorrect * 25) end
+		retry.Visible = answerCorrect < 3
+		retry.Active = true
+		retry.AutoButtonColor = true
+		retry.BackgroundColor3 = Color3.fromRGB(190, 99, 66)
+		retry.Position = UDim2.new(.73, 0, .87, 0)
+		submit.Position = UDim2.new(answerCorrect < 3 and .27 or .5, 0, .87, 0)
 		if answerCorrect >= 3 then
-			status.Text = "Kamu memenuhi nilai minimal 75 untuk melanjutkan. Tutup panel lalu ikuti jalur ke Level 2."
+			evaluationPassed = true
+			status.Text = "Nilai memenuhi syarat. Menunggu konfirmasi akses Level 2 dari server…"
+			local progress = player:WaitForChild("leaderstats"):WaitForChild("LevelProgress")
+			local function confirmAccess()
+				if progress.Value >= 2 and evaluationMode == "result" then
+					status.Text = "Level 2 terbuka. Tutup hasil dan ikuti panah menuju gedung Level 2."
+				end
+			end
+			resultProgressConnection = progress:GetPropertyChangedSignal("Value"):Connect(confirmAccess)
+			confirmAccess()
 		else
 			status.Text = "Nilai minimal untuk melanjutkan adalah 75. Pelajari kembali bagian yang belum dipahami, lalu kembali ke kios untuk mencoba evaluasi lagi."
 		end
-		setSubmit(true, "Tutup hasil")
+		setSubmit(true, answerCorrect >= 3 and "Lanjut ke Level 2" or "Belajar lagi")
 	end
 	renderEvaluation = function()
+		readingArea.CanvasPosition = Vector2.zero
+		evaluationStem.TextSize = 26
+		evaluationStem.TextXAlignment = Enum.TextXAlignment.Left
+		retry.Visible = false
+		submit.Position = UDim2.new(.5, 0, .87, 0)
 		evaluationMode = "tier"
 		for _, child in ipairs(options:GetChildren()) do if child:IsA("TextButton") then child:Destroy() end end
 		optionButtons = {}
@@ -794,15 +1008,25 @@ do
 		local entries = currentTier == 1 and q.options or q.reasons
 		for index, text in ipairs(entries) do
 			local button = Instance.new("TextButton")
-			button.Size = UDim2.new(1, -8, 0, 50)
+			button.Size = UDim2.new(1, -8, 0, 76)
+			button.AutomaticSize = Enum.AutomaticSize.Y
+			button.LayoutOrder = index
 			button.BackgroundColor3 = Color3.fromRGB(232, 210, 196)
 			button.TextColor3 = Color3.fromRGB(70, 47, 37)
 			button.Font = Enum.Font.Gotham
-			button.TextSize = 17
+			button.TextSize = 24
+			button.TextXAlignment = Enum.TextXAlignment.Left
 			button.TextWrapped = true
 			button.Text = text
 			button.ZIndex = 32
 			button.Parent = options
+			button.BorderSizePixel = 0
+			Instance.new("UICorner", button).CornerRadius = UDim.new(0, 10)
+			local padding = Instance.new("UIPadding", button)
+			padding.PaddingLeft = UDim.new(0, 16)
+			padding.PaddingRight = UDim.new(0, 16)
+			padding.PaddingTop = UDim.new(0, 12)
+			padding.PaddingBottom = UDim.new(0, 12)
 			optionButtons[index] = button
 			button.MouseButton1Click:Connect(function()
 				if currentTier == 1 then selectedAnswer = index else selectedReason = index end
@@ -813,6 +1037,7 @@ do
 	end
 	submit.MouseButton1Click:Connect(function()
 		if evaluationMode == "result" then
+			if lastResult and lastResult.answers < 3 then reviewingInfo = true end
 			evaluationFrame.Visible = false
 			overlay.Visible = false
 			level1Gui.Enabled = false
@@ -833,6 +1058,7 @@ do
 			currentTier = 2
 			renderEvaluation()
 		elseif currentTier == 2 and selectedReason then
+			readingArea.CanvasPosition = Vector2.zero
 			local q = evaluationQuestions[currentQuestion]
 			local answerOK, reasonOK = selectedAnswer == q.answer, selectedReason == q.reason
 			if answerOK then answerCorrect += 1 end
@@ -848,6 +1074,7 @@ do
 		end
 	end)
 	local function openEvaluation()
+		if resultProgressConnection then resultProgressConnection:Disconnect(); resultProgressConnection = nil end
 		currentQuestion, currentTier, selectedAnswer, selectedReason = 1, 1, nil, nil
 		answerCorrect, reasonCorrect = 0, 0
 		evaluationMode = "tier"
@@ -855,9 +1082,23 @@ do
 		evaluationFrame.Visible = true
 		renderEvaluation()
 	end
+	retry.MouseButton1Click:Connect(function()
+		if evaluationMode == "result" and lastResult and lastResult.answers < 3 then openEvaluation() end
+	end)
 
 	kioskPrompt.Triggered:Connect(function(triggeredPlayer)
 		if triggeredPlayer ~= player then return end
+		if lastResult then
+			answerCorrect, reasonCorrect = lastResult.answers, lastResult.reasons
+			hideAll()
+			kioskFrame.Visible = false
+			evaluationFrame.Visible = true
+			level1Gui.Enabled = true
+			overlay.Visible = true
+			PlayerControl.Lock()
+			showResult(true)
+			return
+		end
 		level1Gui.Enabled = true
 		overlay.Visible = true
 		kioskFrame.Visible = true

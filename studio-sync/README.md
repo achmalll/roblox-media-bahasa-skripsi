@@ -64,3 +64,8 @@ Untuk perubahan HoldDuration, AI menaruh JSON perintah pada `local-rbxl/bridge/r
 - Save melalui Studio ke WORKING, ekstraksi ulang source cocok, semua sembilan prompt1detik; buka ulang WORKING dan Play berhasil. SHA256 hasil Save: 57eb2fbae3c18d7574837d856758d09299ba56eb764746345c959dfbc06666f2, 2.698.703 byte.
 
 Kuis, audio, seluruh logic latihan dan level lain belum diuji pada sesi bridge. Bentuk latihan existing masih berbeda dari storyboard; pemasangan bridge tidak memperbaiki ketidaksesuaian itu.
+
+## Pembaruan 30 Oktober 2026
+Target source terkelola kini dua: Level1Handler dan ArrowGuideScript existing. ArrowModel existing tetap digunakan, tujuan Level1 dibagikan melalui atribut client L1GuideTarget/Label/Stage. verify-studio-save.cjs mengikuti project.json dan memeriksa kedua source; receipt editor tetap harus diikuti Save/Play terpisah.
+
+Pembaruan lanjutan30Oktober: empat targetexisting dikelola (duaLocalScript diatas, ServerScriptService/Level1ScoreHandler danLevelProgressHandler). PengujianSave mengikuti keempattarget; sourceScoreL1 juga menstabilkan kios saat startupserver. Tetap butuh ujiPlay terpisah.

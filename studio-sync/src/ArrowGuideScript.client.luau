@@ -6,17 +6,18 @@ local ArrowModel = ReplicatedStorage:WaitForChild("ArrowModel")
 
 local hideArrowEvent = ReplicatedStorage:WaitForChild("HideArrowEvent")
 
-local targets = {
-	[1] = workspace:WaitForChild("Space1Answers"),
-	[2] = workspace:WaitForChild("Space2Answers"),
-	[3] = workspace:WaitForChild("Space3Answers"),
-	[4] = workspace:WaitForChild("SummaryProximity")
+local targetNames = {
+	[1] = "Space1Answers",
+	[2] = "Space2Answers",
+	[3] = "Space3Answers",
+	[4] = "SummaryProximity"
 }
 
 local character
 local arrow
 local currentTarget
 local function panelOpen()
+	if player:GetAttribute("L2LearningOpen") then return true end
 	for _, name in ipairs({"Level1Gui", "FlowGui", "Welcome GUI"}) do
 		local gui = player.PlayerGui:FindFirstChild(name)
 		if gui and gui.Enabled then
@@ -83,7 +84,8 @@ local progress = leaderstats:WaitForChild("LevelProgress")
 -- update target berdasarkan progress
 local function updateTarget()
 
-	currentTarget = targets[progress.Value]
+	local name = targetNames[progress.Value]
+	currentTarget = name and workspace:FindFirstChild(name)
 
 end
 
@@ -106,10 +108,13 @@ RunService.RenderStepped:Connect(function()
 
 	-- Preserve the original follow position at the character root.
 	local position = root.Position
+	updateTarget() -- Resolve again after streaming; never wait for distant levels.
 	local targetPosition = currentTarget and currentTarget.Position
 	local isLevel1 = progress.Value == 1
 	if isLevel1 then
 		targetPosition = player:GetAttribute("L1GuideTarget")
+	elseif progress.Value == 2 then
+		targetPosition = player:GetAttribute("L2GuideTarget")
 	end
 	local hidden = panelOpen() or not targetPosition
 	setArrowVisible(not hidden)
@@ -124,7 +129,7 @@ RunService.RenderStepped:Connect(function()
 	
 	local distance = (root.Position - targetPosition).Magnitude
 
-	if distance < (isLevel1 and 3 or 30) then
+	if distance < ((isLevel1 or progress.Value == 2) and 3 or 30) then
 		arrow.Arrow.Transparency = 1
 	else
 		arrow.Arrow.Transparency = 0

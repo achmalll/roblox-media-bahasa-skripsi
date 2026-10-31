@@ -1,0 +1,2 @@
+-- L2-06..09 is owned by Level2FlowHandler; server calculates score from choices.
+-- Original quiz GUI/assets retained in WORKING; no legacy score/progress submissions.

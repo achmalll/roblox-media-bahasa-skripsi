@@ -41,7 +41,13 @@ local function request(route, body, pairing)
 	local headers = { ["Content-Type"] = "application/json", ["X-Codex-Bridge"] = "rbxl-v1" }
 	if token then headers["X-Bridge-Token"] = token end
 	if session then headers["X-Studio-Session"] = session end
-	local response = Http:RequestAsync({ Url = BASE .. route, Method = "POST", Headers = headers, Body = Http:JSONEncode(body) })
+	local success, response = pcall(function()
+		return Http:RequestAsync({ Url = BASE .. route, Method = "POST", Headers = headers, Body = Http:JSONEncode(body) })
+	end)
+	if not success then
+		token = nil; session = nil; config = nil; connected = false
+		error(response)
+	end
 	if response.StatusCode == 403 then token = nil; session = nil; config = nil; connected = false end
 	assert(response.Success, "Bridge HTTP " .. tostring(response.StatusCode) .. ": " .. response.Body)
 	return Http:JSONDecode(response.Body)
@@ -189,12 +195,13 @@ end
 
 if plugin then
 	local toolbar = plugin:CreateToolbar("Codex Local")
-	local button = toolbar:CreateButton("CodexConnect", "Connect/pause local Codex bridge", "", "Connect")
+	local button = toolbar:CreateButton("CodexConnect", "Automatic connection enabled; click to reconnect", "", "Reconnect")
 	button.ClickableWhenViewportHidden = true
+	button:SetActive(true)
 	button.Click:Connect(function()
-		enabled = not enabled
-		button:SetActive(enabled)
-		if not enabled then connected = false; token = nil; session = nil; config = nil end
+		enabled = true
+		button:SetActive(true)
+		connected = false; token = nil; session = nil; config = nil
 	end)
 	plugin.Unloading:Connect(function() stopped = true end)
 end

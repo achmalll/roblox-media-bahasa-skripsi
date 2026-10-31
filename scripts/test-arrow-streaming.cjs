@@ -1,0 +1,38 @@
+// Run the actual arrow script with every legacy Workspace target streamed out.
+const fs = require('node:fs'), cp = require('node:child_process'), path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const mock = `
+local frame, change, spawn, pointed
+local vmt={}
+vmt.__index=function(t,k) if k=="Magnitude" then return math.sqrt(t.X*t.X+t.Y*t.Y+t.Z*t.Z) end end
+vmt.__sub=function(a,b) return Vector3.new(a.X-b.X,a.Y-b.Y,a.Z-b.Z) end
+Vector3={new=function(x,y,z) return setmetatable({X=x,Y=y,Z=z},vmt) end}
+CFrame={new=function(a,b) return {a,b} end}
+local progress={Value=2,Changed={Connect=function(_,f) change=f end}}
+local attrs={L2GuideTarget=Vector3.new(20,0,0)}
+local char={FindFirstChild=function() return {Position=Vector3.new(0,0,0)} end}
+local player={Character=char,CharacterAdded={Connect=function(_,f) spawn=f end},PlayerGui={FindFirstChild=function() return nil end}}
+function player:GetAttribute(k) return attrs[k] end
+function player:WaitForChild(n) assert(n=="leaderstats"); return {WaitForChild=function(_,k) assert(k=="LevelProgress"); return progress end} end
+local arrow={Arrow={}}
+function arrow:GetDescendants() return {} end
+function arrow:SetPrimaryPartCFrame(cf) pointed=cf[2] end
+function arrow:Destroy() end
+local rs={RenderStepped={Connect=function(_,f) frame=f end}}
+local rep={WaitForChild=function(_,n) if n=="ArrowModel" then return {Clone=function() return arrow end} end; assert(n=="HideArrowEvent"); return {Event={Connect=function() end}} end}
+workspace={FindFirstChild=function() return nil end,WaitForChild=function() error("Must not wait for distant Workspace targets") end}
+game={Players={LocalPlayer=player},GetService=function(_,n) if n=="RunService" then return rs end; assert(n=="ReplicatedStorage"); return rep end}
+`;
+const assertions = `
+assert(frame and change and spawn)
+frame(); assert(pointed.X==20)
+attrs.L2LearningOpen=true; pointed=nil; frame(); assert(pointed==nil)
+attrs.L2LearningOpen=nil; attrs.L2GuideTarget=nil; frame(); assert(pointed==nil)
+spawn(char); attrs.L2GuideTarget=Vector3.new(30,0,0); frame(); assert(pointed.X==30)
+progress.Value=1; attrs.L1GuideTarget=Vector3.new(10,0,0); change(); frame(); assert(pointed.X==10)
+print("PASS arrow: distant targets absent, L2 direction, panel hide, missing guide, respawn, L1 direction")
+`;
+const target = path.join(root, 'local-rbxl/bridge/test-arrow-streaming.luau');
+fs.mkdirSync(path.dirname(target), {recursive: true});
+fs.writeFileSync(target, mock + '\n' + fs.readFileSync(path.join(root, 'studio-sync/src/ArrowGuideScript.client.luau'), 'utf8') + '\n' + assertions);
+process.stdout.write(cp.execFileSync(path.join(root, 'local-rbxl/luau-0.745/luau.exe'), [target], {encoding: 'utf8'}));

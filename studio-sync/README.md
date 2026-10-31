@@ -76,3 +76,7 @@ Plugin kini menyediakan inspect_workspace (inventaris model/folder/teks/prompt, 
 Perbaikan berikut30Oktober (perlu reloadplugin): resolve memeriksa keunikan endpoint seluruhpath, sehingga sibling Sign yang berbeda keturunannya dapat dibedakan. move_instance mendukung newName hanya nilaiyang disetujui objectMoves, menolak namatujuanbertabrakan. inspect_workspace memberi objectSummaries terbatas objekL2/targetmoves (parts/unanchored/script/prompt/pivot). Baru tescontroller, bukan bukti ujiStudio.
 
 Targetsourcekelima: Level2FlowHandler existing, menambahkan3prompt/modal kosongruntime sambilmempertahankanflowbaseline. Saveverification mengikuti5target project.json. Promptruntime bukan instancepermanenEdit; Playperluujiuser.
+
+Pembaruan 31 Oktober 2026: plugin otomatis mencoba koneksi setiap detik. Tombol Reconnect selalu mengaktifkan koneksi dan pairing ulang; bukan toggle pause. Kegagalan transport membersihkan sesi untuk pemulihan otomatis. Setelah pembaruan plugin, Save dan buka ulang Studio satu kali; bridge server tetap harus berjalan melalui MULAI.
+
+Level2 lengkap31Oktober:8source existing dikelola, termasuk Level2BoardHandler/Level2QuizHandler(shim) dan Level2ScoreHandler. Builder scripts/build-level2.cjs membaca template+storyboard+bankisi; janganedit generatedsource tanpa memperbarui template. Tes scripts/test-level2.cjs memakai compiler/runtime Luau lokal. PanduanQA docs/development/2026-10-31-LEVEL2.md. SaveStudio dan Playtetapoleh pengguna.

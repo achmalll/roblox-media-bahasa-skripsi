@@ -1,0 +1,2 @@
+-- L2-02 is owned by Level2FlowHandler. Original GUI/assets retained in WORKING.
+-- No legacy bindings: prevents duplicate term panels and competing movement locks.

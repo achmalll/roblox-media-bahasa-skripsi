@@ -18,6 +18,11 @@ event.OnServerEvent:Connect(function(player, newLevel)
 		local score = scores and scores:FindFirstChild("Level1Score")
 		if not score or score.Value < 75 then return end
 	end
+	if newLevel == 3 then
+		local scores = player:FindFirstChild("PlayerScores")
+		local score = scores and scores:FindFirstChild("Level2Score")
+		if not score or score.Value < 75 or progress.Value < 2 then return end
+	end
 	if newLevel > progress.Value then
 		progress.Value = newLevel
 	end

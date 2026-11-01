@@ -1,3 +1,9 @@
+## Cek ulang USB setelah tersambung — 1 November 2026
+
+Pengguna meminta pemeriksaan ulang setelah flashdisk muncul. D terdeteksi Disk1 KingstonDataTraveler3.0 USB7736072192byte Online/Healthy; repo awal bersih HEAD722b868, WORKINGhashb1a4ec89... cocok. Fetch/fastforward ke d2b7cefa6fa0757a3c367f96a08eeb914ccf251f berhasil dengan maintenance.auto=false/gc.auto=0 hanya pada perintah (tidak mengubah config global). ls-remote cocok, git fsck --full --no-dangling PASS, workingtreebersih, SETUP/helper/AGENTS/audittersedia. KegagalanpembaruanUSBsebelumnya kiniteratasi untuksalinanrepo; bukanbuktigangguanputus-sambunghardwaretelahsembuh. Tidakrepair/format/reset/repackmanual atauStudio/Play. WORKINGtetapb1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5 /2844243byte.
+
+Catatanverifikasiini disimpan/pushdarilaptop, kemudianDdisamakanlagi danmetadatarootUSBdiselaraskan. WorkflowtetapGitHub+clonelokalPC,USBcadangan. Sourcegamebaru tetapmenunggusync11/Save/QA/cloud, tidakdiklaimterpasangdarihasilgitfsck. Hashfinalseluruhclonedilaporkansetelahverifikasiakhir.
+
 ## Backup USB terputus saat penutupan setup — 1 November 2026
 
 Implementasi setup/audit c76cb5390b518165d93d2e5a0e7217a72395aacc sudah dipush dan ls-remote cocok; clone laptop bersih saat diverifikasi. Upaya memperbarui D sesudahnya gagal karena drive hilang lagi: fetch sempat menunjukkan origin/main menuju c76cb53, lalu Git melaporkan .git/objects Function not implemented, cwd hilang dan packed-refs tidak terbaca. Fast-forward/HEAD WORKING tree D final tidak terverifikasi. Ini gangguan I/O pada cadangan USB; jangan menganggap D sudah sama atau menyimpulkan pasti korup hanya dari akses saat drive putus.

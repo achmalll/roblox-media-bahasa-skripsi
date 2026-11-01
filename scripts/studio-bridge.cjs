@@ -46,6 +46,10 @@ function createBridge(root, options = {}) {
   function checkCommand(command) {
     if (!command || typeof command.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(command.id)) throw Error('Invalid command ID');
     if (command.op === 'inspect_workspace') return;
+    if (command.op === 'replace_news_board') {
+      if (config.newsBoardReplacement !== true) throw Error('News board replacement outside project scope');
+      return;
+    }
     if (command.op === 'create_folder') {
       if (command.name !== 'Level2Development') throw Error('Folder outside project scope');
       return;

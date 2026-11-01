@@ -54,6 +54,10 @@ async function main() {
     assert.equal((await post('/poll', {})).body.command.id, 'hold-fixture');
     assert.throws(() => bridge.enqueue({ id: 'forbidden', op: 'set_property', className: 'Part', instancePath: ['Workspace'], property: 'Name', before: 0, value: 1 }));
     bridge.enqueue({ id: 'inspect-fixture', op: 'inspect_workspace' });
+    bridge.config.newsBoardReplacement = false;
+    assert.throws(() => bridge.enqueue({ id: 'news-forbidden', op: 'replace_news_board' }));
+    bridge.config.newsBoardReplacement = true;
+    bridge.enqueue({ id: 'news-allowed', op: 'replace_news_board' });
     bridge.enqueue({ id: 'folder-fixture', op: 'create_folder', name: 'Level2Development' });
     assert.throws(() => bridge.enqueue({ id: 'wrong-folder', op: 'create_folder', name: 'OtherFolder' }));
     bridge.enqueue({ id: 'move-fixture', op: 'move_instance', ...fixtureConfig.objectMoves[0] });

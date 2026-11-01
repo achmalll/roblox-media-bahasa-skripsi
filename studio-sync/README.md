@@ -86,3 +86,9 @@ Level2 lengkap31Oktober:8source existing dikelola, termasuk Level2BoardHandler/L
 ## 1 November 2026 — recorder offline dan 11 source
 
 Source mencakup handler L3 existing (flow/quiz/score) dan recorder yang dibuild ke LevelProgressHandler. Jalankan build-level2.cjs lalu build-recording.cjs setelah mengedit template. Lihat [rekap belajar](../docs/LEARNING-RECORDS.md). WORKING masih checkpoint 31 Oktober; source baru belum sync/Save/Play/cloud. Restart bridge dan cek11source saat sesi Studio berikut, kemudian verifikasi Save. Tidak melakukan patch biner.
+
+## Penggantian papan berita dengan duplikat istilah — 1 November 2026
+
+Operasi `replace_news_board` hanya aktif bila `newsBoardReplacement=true` dalam project.json. Target hardcoded: clone Model `Workspace/Space 2/Infoboard` menjadi `Workspace/Space 2/L2_PapanBerita`. Caption existing diperbarui, Script/prompt bawaan clone dibuang agar tidak menggandakan interaksi; source flow memasang prompt berita sendiri. Model baru mempertahankan orientasi papan istilah dan dasar pada ketinggian dasar mesh berita lama. Mesh asli dipindah utuh ke `ServerStorage/L2NewsBoardOriginal`; tidak dihapus. Operasi menolak cadangan yang sudah ada tanpa model hasil bertanda, serta idempoten jika model hasil sudah ada. Waypoint Undo dicatat. Tidak tersedia clone/hapus/path generik.
+
+Plugin perlu reload setelah pemasangan. Jalankan hanya di Edit; baca receipt `applied` dan inventaris setelah operasi, lalu pengguna Save dan verifikasi disk. Keberhasilan source sync bukan bukti objek hasil clone sudah ada. Source label pelat/raycast runtime sebelumnya telah dicabut; penggantian objek membutuhkan operasi ini, tidak dilakukan oleh Play otomatis.

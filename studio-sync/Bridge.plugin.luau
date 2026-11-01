@@ -85,6 +85,45 @@ end
 
 local function execute(command)
 	assert(not testing(), "Play active: edits paused")
+	if command.op == "replace_news_board" then
+		assert(config.newsBoardReplacement == true, "News board replacement outside scope")
+		local room=resolve({"Workspace","Space 2"})
+		local original=resolve({"Workspace","Space 2","L2_PapanBerita"})
+		if original:IsA("Model") and original:GetAttribute("ClonedFromTermsBoard") then
+			return {status="already_applied",name=original.Name}
+		end
+		assert(original:IsA("MeshPart"), "Expected original news MeshPart")
+		local template=resolve({"Workspace","Space 2","Infoboard"})
+		assert(template:IsA("Model") and template.Archivable, "Terms board cannot be cloned")
+		local backupService=game:GetService("ServerStorage")
+		assert(not backupService:FindFirstChild("L2NewsBoardOriginal"), "News board backup already exists; inspect before replacing")
+		local copy=template:Clone()
+		assert(copy and copy:FindFirstChild("Surface"), "Terms board surface missing")
+		local captions={Title="Berita Cloud AI Pad",["Animation 1"]="Baca berita",["Animation 2"]="Tahan E untuk membaca",["Animation 3"]="Tiga bagian bacaan"}
+		for name,value in pairs(captions) do
+			local row=copy:FindFirstChild(name)
+			local label=row and row:FindFirstChildWhichIsA("TextLabel",true)
+			assert(label, "Terms board caption missing: "..name)
+			label.Text=value
+		end
+		for _,item in ipairs(copy:GetDescendants()) do
+			if item:IsA("LuaSourceContainer") or item:IsA("ProximityPrompt") then item:Destroy()
+			elseif item:IsA("BasePart") then item.Anchored=true end
+		end
+		local cf,size=copy:GetBoundingBox()
+		local function halfHeight(frame,extent)
+			return (math.abs(frame.RightVector.Y)*extent.X+math.abs(frame.UpVector.Y)*extent.Y+math.abs(frame.LookVector.Y)*extent.Z)/2
+		end
+		local bottom=original.Position.Y-halfHeight(original.CFrame,original.Size)
+		local target=Vector3.new(original.Position.X,bottom+halfHeight(cf,size),original.Position.Z)
+		copy:PivotTo(CFrame.new(target-cf.Position)*copy:GetPivot())
+		copy.Name="L2_PapanBerita"; copy:SetAttribute("ClonedFromTermsBoard",true)
+		History:SetWaypoint("Before Codex news board replacement")
+		original.Name="L2NewsBoardOriginal"; original.Parent=backupService
+		copy.Parent=room
+		History:SetWaypoint("Codex news board replacement")
+		return {status="applied",name=copy.Name,backup="ServerStorage/L2NewsBoardOriginal",position={target.X,target.Y,target.Z},source="Workspace/Space 2/Infoboard"}
+	end
 	if command.op == "inspect_workspace" then
 		local items = {}
 		local function pathOf(inst)

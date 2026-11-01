@@ -184,11 +184,12 @@ local timeLabel = control("TextLabel", "Time", "0:00 / 0:00", .08,.54,.84,.06)
 timeLabel.TextSize = 16
 timeLabel.TextXAlignment = Enum.TextXAlignment.Right
 local play = control("TextButton", "PlayPause", "Putar", .30,.63,.40,.11)
-local nextButton = control("TextButton", "Next", "", .20,.79,.60,.11)
-local back = control("TextButton", "Previous", "Kembali ke audio 2", .20,.915,.60,.055)
+local nextButton = control("TextButton", "Next", "", .52,.79,.40,.11)
+local back = control("TextButton", "Previous", "Kembali ke audio 2", .08,.79,.40,.11)
 back.TextSize = 16
-back.BackgroundTransparency = 1
-back.TextColor3 = Color3.fromRGB(71,32,3)
+back.BackgroundTransparency = 0
+back.BackgroundColor3 = Color3.fromRGB(125,102,90)
+back.TextColor3 = Color3.new(1,1,1)
 local close = control("TextButton", "Close", "×", .88,.04,.065,.085)
 close.TextSize = 22
 local function hideAll()
@@ -507,7 +508,7 @@ local cardPanel = Instance.new("ScrollingFrame")
 cardPanel.Name = "Cards"
 cardPanel.BackgroundTransparency = 1
 cardPanel.BorderSizePixel = 0
-cardPanel.Size = UDim2.new(0.52, -12, 1, -90)
+cardPanel.Size = UDim2.new(0.52, -12, 1, -238)
 cardPanel.Position = UDim2.new(0, 0, 0, 90)
 cardPanel.CanvasSize = UDim2.new(0, 0, 0, 0)
 cardPanel.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -517,44 +518,47 @@ local cardLayout = Instance.new("UIListLayout")
 cardLayout.Padding = UDim.new(0, 9)
 cardLayout.Parent = cardPanel
 
-local slotPanel = Instance.new("ScrollingFrame")
+local slotPanel = Instance.new("Frame")
 slotPanel.Name = "Slots"
 slotPanel.BackgroundTransparency = 1
 slotPanel.BorderSizePixel = 0
-slotPanel.CanvasSize = UDim2.new()
-slotPanel.AutomaticCanvasSize = Enum.AutomaticSize.Y
-slotPanel.ScrollBarThickness = 4
-slotPanel.Size = UDim2.new(0.48, -12, 1, -90)
+slotPanel.Size = UDim2.new(0.48, -12, 1, -238)
 slotPanel.Position = UDim2.new(0.52, 12, 0, 90)
 slotPanel.Parent = activity
 
 local feedback = Instance.new("TextLabel")
 feedback.Name = "Feedback"
-feedback.BackgroundTransparency = 1
-feedback.Size = UDim2.new(1, -12, 0, 110)
-feedback.AutomaticSize = Enum.AutomaticSize.Y
-feedback.Position = UDim2.new(0, 0, 0, 376)
+feedback.BackgroundTransparency = 0
+feedback.BackgroundColor3 = Color3.fromRGB(255,247,237)
+feedback.Size = UDim2.new(1, 0, 0, 82)
+feedback.AutomaticSize = Enum.AutomaticSize.None
+feedback.Position = UDim2.new(0, 0, 1, -138)
 feedback.Font = Enum.Font.GothamBold
 feedback.TextWrapped = true
-feedback.TextSize = 25
+feedback.TextSize = 21
 feedback.TextXAlignment = Enum.TextXAlignment.Left
 feedback.TextYAlignment = Enum.TextYAlignment.Top
 feedback.TextColor3 = Color3.fromRGB(90, 55, 40)
-feedback.Text = ""
-feedback.Parent = slotPanel
+feedback.Text = "BELUM SELESAI — Isi kedua slot, lalu tekan Periksa jawaban."
+feedback.Parent = activity
+Instance.new("UICorner",feedback).CornerRadius=UDim.new(0,10)
+local feedbackPadding=Instance.new("UIPadding",feedback)
+feedbackPadding.PaddingLeft=UDim.new(0,12); feedbackPadding.PaddingRight=UDim.new(0,12)
+feedbackPadding.PaddingTop=UDim.new(0,6); feedbackPadding.PaddingBottom=UDim.new(0,6)
 
 local checkButton = Instance.new("TextButton")
 checkButton.Name = "Periksa"
 checkButton.Size = UDim2.new(0.72, 0, 0, 46)
-checkButton.Position = UDim2.new(0.04, 0, 0, 314)
-checkButton.Size = UDim2.new(.92, 0, 0, 50)
+checkButton.AnchorPoint=Vector2.new(1,1)
+checkButton.Position = UDim2.new(1, 0, 1, 0)
+checkButton.Size = UDim2.new(.44, 0, 0, 48)
 checkButton.BackgroundColor3 = Color3.fromRGB(190, 105, 70)
 checkButton.TextColor3 = Color3.new(1, 1, 1)
 checkButton.Font = Enum.Font.GothamBold
 checkButton.TextSize = 18
 checkButton.Text = "Periksa"
 checkButton.AutoButtonColor = true
-checkButton.Parent = slotPanel
+checkButton.Parent = activity
 Instance.new("UICorner", checkButton).CornerRadius = UDim.new(0, 12)
 local mainSlot
 local supportingSlot
@@ -576,10 +580,11 @@ local function refreshCards()
 		end
 	end
 	local ready = slots.main ~= nil and slots.supporting ~= nil
-	checkButton.Active = ready
-	checkButton.AutoButtonColor = ready
+	checkButton.Visible = not latihanCompleted
+	checkButton.Active = ready and not latihanCompleted
+	checkButton.AutoButtonColor = ready and not latihanCompleted
 	checkButton.BackgroundColor3 = ready and Color3.fromRGB(190, 105, 70) or Color3.fromRGB(150, 140, 135)
-	checkButton.Text = ready and "Periksa jawaban" or "Isi kedua slot untuk memeriksa"
+	checkButton.Text = latihanCompleted and "Latihan selesai" or (ready and "Periksa jawaban" or "Isi kedua slot dahulu")
 	if mainSlot then mainSlot.Text = "1. Pesan utama\n" .. (slots.main and ("Kartu " .. slots.main .. " • " .. cardById[slots.main].text) or "Pilih kartu, lalu klik tempat ini") end
 	if supportingSlot then supportingSlot.Text = "2. Informasi pendukung\n" .. (slots.supporting and ("Kartu " .. slots.supporting .. " • " .. cardById[slots.supporting].text) or "Pilih kartu, lalu klik tempat ini") end
 end
@@ -589,12 +594,12 @@ end
 local function makeSlot(name, label, key)
 	local slot = Instance.new("TextButton")
 	slot.Name = name
-	slot.Size = UDim2.new(1, -6, 0, 144)
-	slot.Position = key == "main" and UDim2.new(0, 0, 0, 0) or UDim2.new(0, 0, 0, 156)
+	slot.Size = UDim2.new(1, -6, .5, -6)
+	slot.Position = key == "main" and UDim2.new(0, 0, 0, 0) or UDim2.new(0, 0, .5, 6)
 	slot.BackgroundColor3 = Color3.fromRGB(245, 226, 207)
 	slot.TextColor3 = Color3.fromRGB(75, 52, 42)
 	slot.Font = Enum.Font.Gotham
-	slot.TextSize = 21
+	slot.TextSize = 20
 	slot.TextWrapped = true
 	slot.Text = label .. "\nBelum terisi — pilih kartu di kiri, lalu klik tempat ini"
 	slot.Parent = slotPanel
@@ -604,6 +609,7 @@ local function makeSlot(name, label, key)
 	padding.PaddingLeft = UDim.new(0, 14)
 	padding.PaddingRight = UDim.new(0, 14)
 	slot.MouseButton1Click:Connect(function()
+		if latihanCompleted then return end
 		if selectedCard then
 			-- Satu kartu hanya boleh berada pada satu slot.
 			if slots.main == selectedCard then slots.main = nil end
@@ -620,7 +626,7 @@ local function makeSlot(name, label, key)
 			else
 				supportingSlot.Text = "Informasi pendukung\nBelum terisi — pilih kartu di kiri, lalu klik tempat ini"
 			end
-			feedback.TextColor3 = Color3.fromRGB(40, 115, 65)
+			feedback.TextColor3 = Color3.fromRGB(90, 55, 40)
 			feedback.Text = slots.main and slots.supporting and "Kedua slot terisi. Tekan Periksa jawaban." or "Kartu ditempatkan. Isi satu slot lagi."
 			slot.BackgroundColor3 = Color3.fromRGB(213, 235, 209)
 			game:GetService("TweenService"):Create(slot, TweenInfo.new(.3), {BackgroundColor3 = Color3.fromRGB(245, 226, 207)}):Play()
@@ -659,6 +665,7 @@ for _, card in ipairs(cards) do
 	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	cardButtons[card.id] = button
 	button.MouseButton1Click:Connect(function()
+		if latihanCompleted then return end
 		if slots.main == card.id then slots.main = nil end
 		if slots.supporting == card.id then slots.supporting = nil end
 		selectedCard = card.id
@@ -685,7 +692,7 @@ latihanPrompt.Triggered:Connect(function(triggeredPlayer)
 			return
 		end
 		hideAll()
-		resetLatihan()
+		refreshCards() -- Keep choices and feedback when reopening this session.
 		level1Gui.Enabled = true
 		overlay.Visible = true
 		GuiAnimation.Show(latihanFrame)
@@ -719,12 +726,15 @@ checkButton.MouseButton1Click:Connect(function()
 	if correct then
 		latihanCompleted = true
 		feedback.TextColor3 = Color3.fromRGB(40, 140, 60)
-		feedback.Text = "Tepat. Pesan utama merangkum peran sistem operasi; informasi pendukung merinci sumber daya yang dikelolanya. Latihan selesai."
+		feedback.BackgroundColor3 = Color3.fromRGB(220,240,218)
+		checkButton.Visible=false
+		feedback.Text = "SELESAI — Tepat. Pesan utama merangkum peran sistem operasi; informasi pendukung merinci sumber daya yang dikelolanya. Latihan selesai."
 		checkButton.Active = false
 		checkButton.AutoButtonColor = false
 	else
 		feedback.TextColor3 = Color3.fromRGB(180, 70, 45)
-		feedback.Text = "Periksa kembali penempatannya: mana yang merangkum seluruh pembahasan dan mana yang memberi rincian khusus?"
+		feedback.BackgroundColor3=Color3.fromRGB(255,233,215)
+		feedback.Text = "BELUM TEPAT — Periksa kembali penempatannya: mana yang merangkum seluruh pembahasan dan mana yang memberi rincian khusus?"
 	end
 end)
 
@@ -1007,13 +1017,13 @@ do
 			evaluationTitle.Text = "Evaluasi " .. currentQuestion .. "/4 — Tingkat 1: Jawaban"
 			evaluationStem.Text = q.stem
 			selectedSummary.Visible = false
-			status.Text = "Pilih satu jawaban, lalu kunci jawaban tersebut."
-			setSubmit(selectedAnswer ~= nil, selectedAnswer and "Kunci jawaban" or "Pilih jawaban terlebih dahulu")
+			status.Text = "Pilih satu jawaban, lalu lanjutkan ke alasan."
+			setSubmit(selectedAnswer ~= nil, selectedAnswer and "Lanjut ke alasan" or "Pilih jawaban terlebih dahulu")
 		else
 			evaluationTitle.Text = "Evaluasi " .. currentQuestion .. "/4 — Tingkat 2: Alasan"
 			evaluationStem.Text = "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?"
 			selectedSummary.Visible = true
-			selectedSummary.Text = "Jawaban terkunci: " .. q.options[selectedAnswer]
+			selectedSummary.Text = "Jawaban yang dipilih: " .. q.options[selectedAnswer]
 			status.Text = "Pilih satu alasan, lalu kirim kedua jawaban."
 			setSubmit(selectedReason ~= nil, selectedReason and "Kirim jawaban" or "Pilih alasan terlebih dahulu")
 		end
@@ -1043,7 +1053,7 @@ do
 			button.MouseButton1Click:Connect(function()
 				if currentTier == 1 then selectedAnswer = index else selectedReason = index end
 				for i, other in pairs(optionButtons) do other.BackgroundColor3 = i == index and Color3.fromRGB(103, 151, 199) or Color3.fromRGB(232, 210, 196) end
-				setSubmit(true, currentTier == 1 and "Kunci jawaban" or "Kirim jawaban")
+				setSubmit(true, currentTier == 1 and "Lanjut ke alasan" or "Kirim jawaban")
 			end)
 		end
 	end

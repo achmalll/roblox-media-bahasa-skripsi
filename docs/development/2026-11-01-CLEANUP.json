@@ -212,5 +212,38 @@
       "TERMINAL.cmd",
       "MULAI.cmd"
     ]
+  },
+  "locationVerification": {
+    "date": "2026-11-01",
+    "referenceCommit": "26c440f13527863771dd6c1493985d243de3388e",
+    "remoteMainMatches": true,
+    "remoteCurrentTreeObsoletePathsAbsent": true,
+    "locations": [
+      {
+        "location": "laptop-main",
+        "head": "26c440f13527863771dd6c1493985d243de3388e",
+        "obsoletePathsAbsent": true,
+        "workingHashMatches": true,
+        "clean": true
+      },
+      {
+        "location": "laptop-recovery",
+        "head": "26c440f13527863771dd6c1493985d243de3388e",
+        "obsoletePathsAbsent": true,
+        "workingHashMatches": true,
+        "clean": true
+      },
+      {
+        "location": "flashdisk",
+        "head": "26c440f13527863771dd6c1493985d243de3388e",
+        "obsoletePathsAbsent": true,
+        "workingHashMatches": true,
+        "clean": true
+      }
+    ],
+    "oldLaptopUntrackedMigrationBuildsRemoved": 3,
+    "oldLaptopEmptySourceDirectoriesRemoved": 2,
+    "historicalSnapshotsPurged": false,
+    "gitHistoryRewritten": false
   }
 }

@@ -2,7 +2,7 @@
 
 # Codex ↔ Studio lokal, versi 1
 
-Untuk paketflashdisk, [PAKAI-FLASHDISK.md](../PAKAI-FLASHDISK.md) dan `MULAI-PORTABLE.cmd` menyiapkan Git/Node dari `../tools`. Resolver menolak Node tanpa ZSTD dan memilih runtimeportable lebih dahulu. Bridge tetap berjalan perPC; helper memasangplugin dan memeriksa identitasclone, tidak otomatis Play/Save/publish. `SELESAI-PORTABLE.cmd` memverifikasiSave, cadangan, reviewcommit/push dan penghentianPID terverifikasi.
+Setup runtime/plugin/bridge melalui SETUP.cmd dari clone lokal PC. Runtime Node ditemukan/disiapkan helper tanpa PATH global. Penutupan opsional melalui scripts/selesai-sesi.ps1; launcher/panduan USB lama telah dihapus.
 
 ## Instruksi untuk AI pada sesi baru
 
@@ -22,7 +22,7 @@ Status 28 Oktober 2026: implementasi dan uji nyata satu PC berhasil. Script yang
 
 Clone tidak dapat otomatis mendaftarkan plugin ke aplikasi desktop. Setup per PC tetap diperlukan, tetapi ditangani helper; tidak perlu mengedit path/kode game. Node, Studio/login, izin plugin dan kebijakan warnet tidak dibawa Git. Jika runtime Node tidak ditemukan, helper berhenti dengan pesan; runtime belum dibundel atau diunduh otomatis. Pengujian PC kedua belum dilakukan. Server harus dijalankan kembali setelah logout/reboot.
 
-`install-studio-bridge.ps1` hanya memperbarui file plugin milik bridge ini, mencadangkan versi lama bila berbeda. `start-studio-bridge.ps1` menguji /health agar tidak menjalankan dua server untuk clone yang sama. Ia menolak port yang dipakai clone berbeda. Jangan menjalankan default.project.json/migration-v2 sebagai live sync bersamaan.
+`install-studio-bridge.ps1` hanya memperbarui file plugin milik bridge ini, mencadangkan versi lama bila berbeda. `start-studio-bridge.ps1` menguji /health agar tidak menjalankan dua server untuk clone yang sama. Ia menolak port yang dipakai clone berbeda. Paket migrasi lama telah dihapus; jangan menimpa WORKING dari ekspor/arsip lama.
 
 ## Edit rutin
 

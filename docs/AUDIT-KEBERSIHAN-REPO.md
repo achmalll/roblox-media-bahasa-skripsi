@@ -1,6 +1,8 @@
+**Dilaksanakan 1 November 2026 atas instruksi pengguna:** 712 file/23.118.211 byte dihapus dari tree aktif. Riwayat Git tetap menyimpan versi sebelumnya pada commit 43e16a1. Hasil dan tanggal helper: [laporan pembersihan](development/2026-11-01-CLEANUP.json). Tabel di bawah adalah snapshot audit sebelum penghapusan. portable-runtime/warnet-common tetap aktif; selesai-portable diganti nama selesai-sesi.
+
 # Audit file dan kandidat pengarsipan — 1 November 2026
 
-Permintaan: optimalkan repo untuk workflow clone lokal + bridge dan beri daftar file yang tidak lagi menjadi jalur aktif. **Belum ada penghapusan atau pemindahan file game/aset/arsip dalam audit ini.** Tidak dipakai workflow sekarang berbeda dari aman dihapus permanen.
+Permintaan: optimalkan repo untuk workflow clone lokal + bridge dan beri daftar file yang tidak lagi menjadi jalur aktif. **Saat audit awal belum ada penghapusan; pelaksanaan berikutnya tercatat di atas.** Tidak dipakai workflow sekarang berbeda dari aman dihapus permanen.
 
 Dasar inventaris: tree Git `722b868`, 969 file tracked, 56.077.896 byte (56,08 MB desimal). Ukuran berdasarkan blob Git, bukan newline CRLF hasil checkout. Cache `local-rbxl/`, runtime portable di luar repo, dan ukuran riwayat `.git` tidak termasuk. File setup/dokumen yang ditambahkan sesi audit ini juga belum masuk hitungan dasar tersebut. Angka dan identitas blob dicatat di [inventaris](development/2026-11-01-REPO-INVENTORY.json).
 
@@ -49,4 +51,4 @@ Menghapus file pada commit baru tidak menghapus blob dari riwayat `.git`. Untuk 
 3. Konsolidasikan panduan lama ke satu pintu aktif. Sebagian sudah diberi penunjuk; README kini merujuk setup baru dan audit ini.
 4. Jalankan tes setup/bridge serta verifikasi bahwa WORKING tidak berubah. Uji fresh clone dan bootstrap di PC warnet sebelum menyatakan optimasi operasional selesai.
 
-Daftar ini adalah hasil audit dan usulan. Penghapusan/pemisahan aset masih membutuhkan keputusan cakupan tersendiri; permintaan pengguna saat ini hanya meminta daftar, sehingga source/aset historis tetap utuh.
+Daftar ini mendokumentasikan audit awal. Sesudahnya pengguna secara eksplisit mengizinkan penghapusan paket lama, master AUP, launcher/panduan/helper lama; daftar tersebut telah dilaksanakan. WORKING, source aktif, MP3, rancangan dan bukti penelitian tetap utuh.

@@ -23,6 +23,6 @@ Di kos: edit dan tes offline dari clone laptop. Di warnet: clone/update ke path 
 
 ## Arsip dan ukuran repo
 
-src/, src copy/, migration-v2/ dan konfigurasi Rojo lama merupakan arsip migrasi, bukan source aktif. Jangan build/default Rojo untuk menimpa WORKING. Panduan warnet/portable lama dipertahankan sebagai riwayat/fallback; ikuti KERJA-WARNET-LOKAL untuk sesi baru.
+Paket Rojo/Argon (src, src copy, migration-v2, konfigurasi dan helper), master audio AUP, panduan/launcher lama dan dua helper satu kali Oktober telah dihapus atas permintaan pengguna 1 November. MP3, WORKING, source aktif, setup/bridge, pencadangan dan bukti penelitian tetap tersedia. Riwayat Git tidak diubah.
 
-[Audit file dan kandidat pengarsipan](docs/AUDIT-KEBERSIHAN-REPO.md) memisahkan aset aktif, authoring, arsip dan cache. Audit ini tidak menghapus/memindahkan data. Snapshot rancangan, baseline penelitian dan bukti Play tidak boleh dibuang karena sekadar terlihat lama.
+[Audit dan hasil pembersihan](docs/AUDIT-KEBERSIHAN-REPO.md) mencatat scope, ukuran dan commit sebelum penghapusan. Penutupan opsional memakai scripts/selesai-sesi.ps1; portable-runtime.ps1 dan warnet-common.ps1 tetap menjadi dependensi aktif.

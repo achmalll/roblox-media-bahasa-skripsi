@@ -1,3 +1,13 @@
+## Pembersihan paket lama atas instruksi pengguna — 1 November 2026
+
+Pengguna secara eksplisit meminta hapus src,src copy,migration-v2,configRojo/Argon/TOML,helpermigrasi/inventarisbaca,masterAUP,dokumenmigrasi,panduan/launcherlamadanhelpermulai/selesaiwarnet; helpersatukalijikabukanhariini ikutdihapus. Riwayatcloneawaldangkal sempat menampilkanbatas53f9018hariini; fetchdeepen50membuktikanedit-papan-informasi-l1 berasal3892b14(28Okt) danstudio-fix-l1-kiosk bdf3069(30Okt), jadi keduanyadihapus. Helpersetup1November,sourceaktif,MP3,WORKING,rancangan/buktipenelitiantetaputuh. Penghapusandari treeaktifdiotorisasi,bukanrewritehistory; parent43e16a1menyimpanversilama termasuk21srccopyyangtidakidentik.
+
+Total712file/23.118.211byteworkingtree dihapus. Dependensiyangmasihaktif portable-runtime/warnet-common/rbxl-local/rbxl-prompt-hold/cadangkan/verifikasi/bridge dipertahankan. Helperpenutupanaktifselesai-portable digantinama selesai-sesi.ps1, referensidefault.projectyangsudahdihapusdibersihkan. Panduanaktif/AGENTS/README/bridgeREADMEdan3filetautanoperasionaldiselaraskan; teksriwayatlama tidakdiubahmenjadihasilbaru. Auditdiberistatuspelaksanaan; laporan docs/development/2026-11-01-CLEANUP.json.
+
+PASS8suiteNode (L2,panah,recordstore/runtime,skor/progress,CSV,setupstate,HTTPbridge); parsersemuaPowerShellretained danruntimehelpertestPASS; guardpenutupannama baru menolaksourcebelumSave sebelumbackup/commit/push,HEADtidakberubah. SeluruhtautanMarkdownretained tidakputus. WORKINGtetapb1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5; sourcegame/studio-sync aktif tidakdiubah. TidakStudio/Play/cloud. Sourcebaru11masihmenunggusyncSaveQA, bukanjadiaktifdarihapusarsip.
+
+Commit/push dari clone laptop setelah reviewdeletionscope, verifikasiversiremote; salinanD diperbaruihanyabilaterhubung/bersih. Riwayat.git/baseline/cadanganluarclone tidakdihapus; clone--depth1 untukPCwarnetmengambil treebarutanpariwayatlengkap. Penghematanyangdilaporkanadalahcheckoutaktif,bukanklaimukuranfullGitclonepasti berkurang23MB.
+
 ## Cek ulang USB setelah tersambung — 1 November 2026
 
 Pengguna meminta pemeriksaan ulang setelah flashdisk muncul. D terdeteksi Disk1 KingstonDataTraveler3.0 USB7736072192byte Online/Healthy; repo awal bersih HEAD722b868, WORKINGhashb1a4ec89... cocok. Fetch/fastforward ke d2b7cefa6fa0757a3c367f96a08eeb914ccf251f berhasil dengan maintenance.auto=false/gc.auto=0 hanya pada perintah (tidak mengubah config global). ls-remote cocok, git fsck --full --no-dangling PASS, workingtreebersih, SETUP/helper/AGENTS/audittersedia. KegagalanpembaruanUSBsebelumnya kiniteratasi untuksalinanrepo; bukanbuktigangguanputus-sambunghardwaretelahsembuh. Tidakrepair/format/reset/repackmanual atauStudio/Play. WORKINGtetapb1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5 /2844243byte.
@@ -264,7 +274,7 @@ MCP bawaan Studio menjadi pilihan koneksi AI; koneksi aktual belum terverifikasi
 
 Pada workspace skripsi lengkap (dua tingkat di atas root clone): `docs/CONTEXT.md`, `docs/AGENTS.md`, `docs/ROADMAP_OKTOBER_NOVEMBER_2026.md`, `docs/pengembangan/HANDOFF-DEVELOPMENT.md` dan folder storyboard aktif. Naskah akademik resmi berada pada Google Docs tab Production sesuai konteks akademik; bukan otomatis file Word lokal.
 
-Mulai saat duduk di PC warnet dari [PANDUAN-WARNET-3-JAM.md](PANDUAN-WARNET-3-JAM.md). Panduan, catatan tahap 0 dan script cadangan/cek PC disertakan dalam commit setup pendamping setelah `e3360cb`. Kit ZIP offline tetap merupakan artefak lokal di luar clone, tidak otomatis tersedia melalui GitHub. Brief ini dapat dipakai mandiri untuk diskusi awal.
+Mulai saat duduk di PC warnet dari [PANDUAN-WARNET-3-JAM.md](KERJA-WARNET-LOKAL.md). Panduan, catatan tahap 0 dan script cadangan/cek PC disertakan dalam commit setup pendamping setelah `e3360cb`. Kit ZIP offline tetap merupakan artefak lokal di luar clone, tidak otomatis tersedia melalui GitHub. Brief ini dapat dipakai mandiri untuk diskusi awal.
 
 ## 8. Cara memakai brief di chat baru
 

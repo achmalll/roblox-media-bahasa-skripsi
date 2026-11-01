@@ -11,7 +11,7 @@ Diperbarui 27 Oktober 2026. Ini peta sumber, akses dan urutan baca; bukan keputu
 | [LOG-PENGEMBANGAN.md](LOG-PENGEMBANGAN.md) | Rincian perubahan, uji, bukti dan pekerjaan terbuka; baca entri terakhir dahulu | Sebelum melanjutkan pekerjaan |
 | [Indeks rancangan](desain/README.md) | Flow global, tautan storyboard dan gambar acuan | Ketika membahas/mengerjakan game |
 | Storyboard aktivitas yang dikerjakan | Urutan objek, isi panel, respons, syarat lanjut dan cabang salah/ulang | Hanya bagian yang relevan, tidak semua gambar sekaligus |
-| [Panduan warnet tiga jam](../PANDUAN-WARNET-3-JAM.md) | Instalasi/login, clone/pull, MCP, jadwal kerja dan penutupan sesi | Saat masuk PC baru |
+| [Panduan warnet tiga jam](../KERJA-WARNET-LOKAL.md) | Instalasi/login, clone/pull, MCP, jadwal kerja dan penutupan sesi | Saat masuk PC baru |
 
 Untuk tugas pertama, baca storyboard Level1 bagian00 (denah),05A (objek papan) dan05B (panel penguatan), beserta bagian audio sebelum/sesudahnya agar gating tidak salah. Untuk tahap berikutnya baru buka latihan/evaluasi dan level yang terkait.
 

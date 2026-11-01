@@ -2,7 +2,7 @@
 
 Target aktif: demo progres game dan draf isi Bab IV untuk bimbingan 3 November. Development minggu ini; 2 November tetap untuk penulisan Bab IV. Sumber keputusan: CONTEXT, HANDOFF-DEVELOPMENT dan sprint aktif ROADMAP pada folder docs skripsi. Catatan ini membedakan pemeriksaan file, rancangan, dan hasil Play.
 
-**Pembaruan penyimpanan 27 Oktober:** perubahan WORKING dan penghapusan model progress bar sudah masuk commit `e3360cb`. Panduan/helper dicatat pada commit pendamping. Laporan/JSON di bawah merupakan snapshot pemeriksaan sebelum commit, sehingga status Git lama dipertahankan sebagai riwayat. Untuk langkah operasional terbaru, buka [panduan warnet tiga jam](../../../PANDUAN-WARNET-3-JAM.md). Play lengkap dan koneksi MCP belum dinyatakan lulus.
+**Pembaruan penyimpanan 27 Oktober:** perubahan WORKING dan penghapusan model progress bar sudah masuk commit `e3360cb`. Panduan/helper dicatat pada commit pendamping. Laporan/JSON di bawah merupakan snapshot pemeriksaan sebelum commit, sehingga status Git lama dipertahankan sebagai riwayat. Untuk langkah operasional terbaru, buka [panduan warnet tiga jam](../../../KERJA-WARNET-LOKAL.md). Play lengkap dan koneksi MCP belum dinyatakan lulus.
 
 ## 1. Hasil pemeriksaan sesi ini
 

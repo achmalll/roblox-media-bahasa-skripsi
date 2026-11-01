@@ -1,0 +1,204 @@
+{
+  "date": "2026-11-01",
+  "beforeCommit": "43e16a14eb0c8ea3ed616e5e9e162c4adc297151",
+  "trackedFilesBefore": 979,
+  "authorizedByUser": true,
+  "historyRewritten": false,
+  "workingSha256Before": "b1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5",
+  "oneTimeHelperHistory": {
+    "editPapan": "3892b14, 2026-10-28",
+    "kiosk": "bdf3069, 2026-10-30"
+  },
+  "removed": [
+    {
+      "path": "src",
+      "files": 512,
+      "bytes": 232933
+    },
+    {
+      "path": "src copy",
+      "files": 81,
+      "bytes": 20800
+    },
+    {
+      "path": "migration-v2",
+      "files": 97,
+      "bytes": 4581308
+    },
+    {
+      "path": "default.project.json",
+      "files": 1,
+      "bytes": 550
+    },
+    {
+      "path": "migration-v2.syncback.project.json",
+      "files": 1,
+      "bytes": 3400
+    },
+    {
+      "path": "rokit.toml",
+      "files": 1,
+      "bytes": 68
+    },
+    {
+      "path": "scripts/build-migration-v2.ps1",
+      "files": 1,
+      "bytes": 1136
+    },
+    {
+      "path": "scripts/syncback-migration-v2.ps1",
+      "files": 1,
+      "bytes": 1336
+    },
+    {
+      "path": "scripts/inventaris-baca-saja.luau",
+      "files": 1,
+      "bytes": 2833
+    },
+    {
+      "path": "assets/audio-male.aup4",
+      "files": 1,
+      "bytes": 18219008
+    },
+    {
+      "path": "MIGRASI_ROJO_STATUS.md",
+      "files": 1,
+      "bytes": 4535
+    },
+    {
+      "path": "MIGRASI_ROJO_V2.md",
+      "files": 1,
+      "bytes": 3614
+    },
+    {
+      "path": "ALUR_SINKRONISASI.md",
+      "files": 1,
+      "bytes": 2142
+    },
+    {
+      "path": "WARNET-CEPAT.md",
+      "files": 1,
+      "bytes": 9610
+    },
+    {
+      "path": "PANDUAN-WARNET-3-JAM.md",
+      "files": 1,
+      "bytes": 17121
+    },
+    {
+      "path": "PAKAI-FLASHDISK.md",
+      "files": 1,
+      "bytes": 7823
+    },
+    {
+      "path": "MULAI-PORTABLE.cmd",
+      "files": 1,
+      "bytes": 208
+    },
+    {
+      "path": "TERMINAL-PORTABLE.cmd",
+      "files": 1,
+      "bytes": 128
+    },
+    {
+      "path": "SELESAI-PORTABLE.cmd",
+      "files": 1,
+      "bytes": 225
+    },
+    {
+      "path": "scripts/mulai-portable.ps1",
+      "files": 1,
+      "bytes": 3188
+    },
+    {
+      "path": "scripts/terminal-portable.ps1",
+      "files": 1,
+      "bytes": 501
+    },
+    {
+      "path": "scripts/mulai-warnet.ps1",
+      "files": 1,
+      "bytes": 932
+    },
+    {
+      "path": "scripts/selesai-warnet.ps1",
+      "files": 1,
+      "bytes": 1863
+    },
+    {
+      "path": "scripts/edit-papan-informasi-l1.luau",
+      "files": 1,
+      "bytes": 2106
+    },
+    {
+      "path": "scripts/studio-fix-l1-kiosk.commandbar.luau",
+      "files": 1,
+      "bytes": 843
+    }
+  ],
+  "removedFiles": 712,
+  "removedBytes": 23118211,
+  "gameSourceChanged": false,
+  "notes": "Delete from active tree per explicit user instruction. Restore via parent Git history if needed; no separate archive copy created.",
+  "activeHelperRename": {
+    "from": "scripts/selesai-portable.ps1",
+    "to": "scripts/selesai-sesi.ps1",
+    "reason": "Retain active save/backup/handoff/push guard with session-based name"
+  },
+  "operationalLinksRedirected": [
+    "KONTEKS-AI.md",
+    "docs/ACUAN-DESAIN.md",
+    "docs/development/2026-10-27/TAHAP-0.md"
+  ],
+  "tests": [
+    {
+      "command": "node scripts/test-level2.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-arrow-streaming.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-learning-records.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-recording-runtime.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-score-recording.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-record-export.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-setup-state.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node scripts/test-studio-bridge.cjs",
+      "result": "PASS"
+    }
+  ],
+  "brokenMarkdownLinks": [],
+  "workingSha256After": "b1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5",
+  "additionalChecks": [
+    {
+      "check": "Retained PowerShell parse",
+      "result": "PASS"
+    },
+    {
+      "check": "test-setup-runtime.ps1",
+      "result": "PASS"
+    },
+    {
+      "check": "Renamed finish guard rejects unsaved source before backup/commit/push; HEAD unchanged",
+      "result": "PASS"
+    }
+  ],
+  "trackedFilesAfter": 268
+}

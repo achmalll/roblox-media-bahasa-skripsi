@@ -1,8 +1,0 @@
-{
-  "className": "UIListLayout",
-  "properties": {
-    "HorizontalAlignment": "Center",
-    "Padding": [0, 20],
-    "SortOrder": "LayoutOrder"
-  }
-}

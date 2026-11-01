@@ -12,7 +12,7 @@ Jika pengguna berada di kos/laptop ringan atau meminta offline, jalankan -CheckO
 Setelah membaca konteks, jika permintaan pengguna menyentuh implementasi, inspeksi, sinkronisasi, atau pengujian game Roblox, lakukan bootstrap berikut sebelum mengubah game:
 
 1. Jalankan `CONNECT-STUDIO.cmd` dari root clone. Helper ini memasang/memperbarui plugin lokal dan menyalakan bridge untuk clone aktif; jangan menganggap clone saja sudah memasang plugin pada PC baru.
-   Pada paketflashdisk, `MULAI.cmd` di folderinduk atau `MULAI-PORTABLE.cmd` di rootrepo menyiapkan PATH portable dan bootstrap yang sama; baca `PAKAI-FLASHDISK.md`. Sebelum memanggil Git atau Node di setiap shelltool baru, dot-source `scripts/portable-runtime.ps1` pada shell yang sama, atau gunakan path runtimeportable secara eksplisit. Environment dari launcher tidak otomatis masuk ke aplikasiCodex yang sudah berjalan. Pada FAT32 pengecualianownership hanya untuk clone ini, bukan trustglobal `*`.
+   SETUP.cmd adalah pintu utama clone lokal. Sebelum memanggil Git/Node di shell baru, dot-source scripts/portable-runtime.ps1 pada shell yang sama atau gunakan Get-ProjectNode/path runtime eksplisit. Nama helper runtime dipertahankan untuk kompatibilitas, bukan instruksi bekerja dari USB. Konfigurasi trust hanya pada proses/repo ini, tidak global *.
 2. Buka `places/RobloxLearningMedia-WORKING.rbxl` di Roblox Studio bila belum terbuka, lalu verifikasi bridge menunjukkan clone/workspace yang sama, status online, mode Edit, dan source terkelola sinkron. Ikuti `studio-sync/README.md` sebagai prosedur operasional dan batas keamanan.
 3. Jika plugin baru dipasang/diperbarui, muat ulang Studio. Jika Node/izin/plugin belum tersedia, laporkan hambatan yang tepat; jangan beralih ke patch biner WORKING atau mengklaim sinkronisasi aktif.
 4. Jangan otomatis menjalankan Play, Save, publish, atau mengubah objek hanya karena bootstrap berhasil. Tindakan tersebut tetap mengikuti cakupan permintaan pengguna dan harus diverifikasi terpisah.
@@ -21,7 +21,7 @@ Bootstrap ini berlaku per PC/sesi untuk pekerjaan Roblox. Untuk diskusi, brief, 
 
 ## Sesi warnet dan handoff harian
 
-Baca LANJUTKAN.md terlebih dahulu untuk alur pengguna/AI, kondisi aman dan satu target berikut. AI harus mencari acuan sendiri dari repo, menjelaskan selesai/belum/target secara singkat, lalu memberi langkahStudio konkret. Pengguna mengendalikan Play/Stop/Save; jangan mengambilalih UI tanpa permintaan. Sebelum selesai, AI wajib menulis konteks, entri log bertanggal hariitu dan memperbarui LANJUTKAN.md, termasuk sesi tanpa fiturbaru. Jangan membiarkan pengguna harus merakit ulang brief sendiri. Kartu langkah/prompt otomatis dari MULAI berada di local-rbxl/portable/SESI-MULAI.txt dan tidak dibawaGit sebagai hasiluji.
+Baca LANJUTKAN.md terlebih dahulu untuk alur pengguna/AI, kondisi aman dan satu target berikut. AI harus mencari acuan sendiri dari repo, menjelaskan selesai/belum/target secara singkat, lalu memberi langkahStudio konkret. Pengguna mengendalikan Play/Stop/Save; jangan mengambilalih UI tanpa permintaan. Sebelum selesai, AI wajib menulis konteks, entri log bertanggal hariitu dan memperbarui LANJUTKAN.md, termasuk sesi tanpa fiturbaru. Jangan membiarkan pengguna harus merakit ulang brief sendiri. Laporan setup aktual berada di local-rbxl/setup/latest.json. Launcher USB lama telah dihapus; penutupan opsional memakai scripts/selesai-sesi.ps1.
 
 ## Baca sebelum menjawab atau bekerja
 

@@ -1,8 +1,0 @@
-{
-  "className": "SoundService",
-  "keepUnknowns": true,
-  "properties": {
-    "DefaultListenerLocation": "Camera",
-    "RespectFilteringEnabled": true
-  }
-}

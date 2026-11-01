@@ -1,3 +1,9 @@
+## Backup USB terputus saat penutupan setup — 1 November 2026
+
+Implementasi setup/audit c76cb5390b518165d93d2e5a0e7217a72395aacc sudah dipush dan ls-remote cocok; clone laptop bersih saat diverifikasi. Upaya memperbarui D sesudahnya gagal karena drive hilang lagi: fetch sempat menunjukkan origin/main menuju c76cb53, lalu Git melaporkan .git/objects Function not implemented, cwd hilang dan packed-refs tidak terbaca. Fast-forward/HEAD WORKING tree D final tidak terverifikasi. Ini gangguan I/O pada cadangan USB; jangan menganggap D sudah sama atau menyimpulkan pasti korup hanya dari akses saat drive putus.
+
+Penulisan ke D dihentikan, tidak reset/repack/repair/format lanjutan. BACA-DULU/STATUS-PAKET rootD belum diperbarui pada upaya ini. Sumber sesi berikut adalah GitHub terbaru atau clone laptop session-backups/development-20261101/repo. Source/aset/arsip game tidak dihapus. Workflow aktif memang clone lokal PC warnet; cadangan USB tidak menjadi prasyarat melanjutkan. Target Save11/QA/cloud tetap belum dilakukan.
+
 ## Setup otomatis AI PC baru dan audit kebersihan — 1 November 2026
 
 Pengguna meminta AI nol konteks pada clone baru langsung menjalankan workflow ketika disuruh setup/lanjut warnet, serta daftar file tidak aktif untuk optimasi. Dibuat SETUP.cmd dan scripts/setup-warnet.ps1 (Prepare/Status/VerifySaved/CheckOnly), setup-state.cjs dan setup-runtime.ps1. Prepare memeriksa Git, fastforward hanya aman, memilih NodeZSTD atau mengunduh Node22.23.4 resmi+SHA256 lokalrepo, memasang plugin/bridge dan membuka WORKING dengan CLI resmi bila diminta di PCwarnet/tidakadaStudio berjalan. Login/izin/PlayStopSave tetap pengguna; di kos gunakanCheckOnly. Tidak menjalankan Prepare/OpenStudio pada laptop nyata sesiini.

@@ -1,3 +1,15 @@
+## Audit laptop — 1 November 2026
+
+Permintaan pengguna: cek progres warnet di D:\roblox tanpa membuka Studio karena laptop berat. Audit file dan tes offline saja; bootstrap/Studio tidak dinyalakan sesuai cakupan pengguna. Repo kerja D:\roblox\roblox-media-bahasa-skripsi, HEAD fea24b5deb657c9f34ed5152edf2ae7fd3a230b6, working tree awal bersih. git ls-remote origin refs/heads/main berhasil dan menunjukkan 274aabdd073ab9ccc2d64ce7e60f209f02b12573: checkpoint terakhir belum ada di main GitHub saat audit. Tidak commit/push/pull.
+
+verify-studio-save.cjs PASS: 8 source terkelola cocok byte persis dengan WORKING, SHA256 b1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5, 2844243 byte, 9 prompt disk semuanya 1 detik. Ini cocok checkpoint penutupan 31 Oktober: perbaikan SurfaceGui Front/Back pada papan berita, UI evaluasi L2 dan Belajar lagi sudah tersimpan, bukan tertinggal di editor warnet. test-level2.cjs PASS (50/75/100, alasan, retry/bestscore, isolasi pemain, prasyarat/input buruk, flow dan bank isi); test-arrow-streaming.cjs PASS; compile --null dengan compiler Luau lokal PASS untuk 8 source. Tes memakai harness, bukan Play Roblox. Tidak ada proses RobloxStudioBeta; health localhost:34873 tidak merespons; status online=true lastSeen 31 Oktober 13:43:12Z adalah snapshot lama, bukan koneksi aktif.
+
+Checkpoint L1 diterima pengguna pada 30 Oktober dan akses L2 sudah diimplementasikan; jangan mengulang target unlockL2 dari konteks laptop 29 Oktober. L2 lengkap ada dalam source dan file game; QA visual akhir (orientasi/keterbacaan papan, UI evaluasi dan alur gagal -> Belajar lagi -> berita -> Coba lagi) tetap belum dilakukan pada sesi ini. Tidak menyatakan Level3 telah disesuaikan rancangan baru atau semua fitur siap eksperimen.
+
+Cadangan prioritas laptop: C:\Users\Hp\OneDrive\Desktop\skripsi\roblox\session-backups\audit-20261101-fea24b5 berisi WORKING, 8 source, template L2, konfigurasi dan handoff sebelum audit; setiap salinan cocok SHA256 pada manifest.json. Ini cadangan prioritas, bukan seluruh repo/riwayat Git. Clone laptop lama masih HEAD2906ec5 dengan default.project.json berubah lokal, dipertahankan. Tidak mengubah source/game/biner, materi, skor atau data penelitian. Perubahan sesi hanya laporan/konteks/log/handoff dan cache tes/verifikasi lokal.
+
+Langkah berikut: source dapat disunting offline (L2 melalui template lalu builder), compile/tes lalu tandai belum terpasang jika WORKING belum di-Save melalui Studio. Sinkronisasi live/objek/QA visual memerlukan Studio; jangan patch biner untuk melewati Save. Untuk sesi PC kuat berikutnya gunakan clone D terbaru, bootstrap satu clone, cek Edit/8source, Play QA visual oleh pengguna lalu Stop/Save dan verify. Checkpoint fea24b5 perlu diamankan ke GitHub melalui push jika pengguna meminta; audit ini tidak mengirim perubahan remote.
+
 # Log perubahan dan serah-terima development
 
 ## 29 Oktober 2026 — alur masuk warnet dan pencatatan harian

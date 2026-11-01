@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-01",
+  "baseCommit": "722b868",
+  "scope": "Setup helpers/controller only; no actual Studio launch/Play/Save/publish/cloud or game-source edits",
+  "checks": [
+    {
+      "command": "node scripts/test-setup-state.cjs",
+      "result": "PASS",
+      "cases": "wrong clone/place/config; offline/stale; Play/unknown mode; conflict; missing/duplicate/changed source; saved vs editor; no Play/cloud proof"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-setup-runtime.ps1",
+      "result": "PASS",
+      "cases": "Windows PS5.1 parser; package descriptor; unsafe/duplicate name; correct/wrong SHA256; documented Studio CLI args with spaces"
+    },
+    {
+      "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-setup-integration.ps1",
+      "result": "PASS",
+      "cases": "path with spaces; real start/stop/restart; isolated AppData/plugin stub; config changed; Status read-only; VerifySaved code2 before alignment/code0 after; no editor proof; binary unchanged"
+    },
+    {
+      "command": "node scripts/test-studio-bridge.cjs",
+      "result": "PASS",
+      "cases": "config fingerprint + existing HTTP protocol regression cases"
+    },
+    {
+      "command": "Install-ProjectNode -RepoRoot <isolated fixture>",
+      "result": "PASS",
+      "cases": "real official ZIP downloaded, SHA256 matched SHASUMS; node --version v22.23.4 and ZSTD executed; no global installation",
+      "provenance": {
+        "version": "22.23.4",
+        "source": "https://nodejs.org/dist/v22.23.4/node-v22.23.4-win-x64.zip",
+        "zipSha256": "cbc74b5e0982c9dbb41525fd8fb5dcd32fbee237863f7829072f4639a1ce5f20",
+        "installedUtc": "2026-11-01T02:09:26.9516135Z"
+      }
+    }
+  ],
+  "working": {
+    "sha256": "b1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5",
+    "changed": false
+  },
+  "failuresFixed": [
+    "Initial PS5 native pipeline awaited handles inherited by detached Node; subprocess capture now waits bounded helper process only",
+    "Start-Process async ExitCode was null in fixture; explicit Process.Start provides reliable exit code"
+  ],
+  "notTested": [
+    "Actual Studio launch/plugin permission on a fresh warnet PC",
+    "Live editor sync/Save/Play/cloud tests remain pending"
+  ],
+  "filesRemoved": false
+}

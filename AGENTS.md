@@ -1,3 +1,10 @@
+# Jalur kerja AI proyek Roblox
+
+## Jalur otomatis untuk permintaan setup atau lanjut warnet
+
+Aturan aktif 1 November 2026: jika pengguna berkata setup/siapkan PC warnet/mulai atau lanjut sesi di PC baru, anggap itu instruksi menjalankan workflow, bukan sekadar memberi panduan. Baca KERJA-WARNET-LOKAL.md dan entri terbaru LANJUTKAN/KONTEKS/log; jalankan scripts/setup-warnet.ps1 -Mode Prepare -OpenStudio dari clone lokal. Teruskan berdasarkan laporan tahap sampai editor sinkron, pengguna Save dan seluruh source disk terverifikasi, lalu pandu Play target dan penutupan sesi. Minta tindakan login/izin/Play/Stop/Save hanya saat benar-benar diperlukan; AI yang mencari sumber, menyiapkan alat dan membandingkan file. Jangan berhenti setelah bridge start atau meminta pengguna menyusun brief sendiri.
+
+Jika pengguna berada di kos/laptop ringan atau meminta offline, jalankan -CheckOnly dan kerjakan source/tes tanpa Studio. Permintaan menyiapkan helper masa depan bukan izin membuka Studio sekarang. Jangan auto Play/Save/publish. Git/Studio/Codex yang sudah ada dipakai; Node resmi yang diperlukan disiapkan helper. Jangan memasang Rojo/Argon dari manifest arsip. Bootstrap langsung CONNECT-STUDIO di bawah adalah fallback; SETUP adalah pintu utama dan memanggil helper yang sama. Tidak menghapus arsip/file penelitian dari permintaan audit/list.
 # Petunjuk untuk AI pada repository ini
 
 ## Bootstrap wajib untuk pekerjaan Roblox

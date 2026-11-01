@@ -17,7 +17,7 @@ function Initialize-PortableEnvironment {
     $env:GIT_CONFIG_COUNT = [string]($taskCount + 1)
 }
 function Get-ProjectNode {
-    $taskCandidates = @((Join-Path $script:PortableRepoRoot '../tools/node/node.exe'))
+    $taskCandidates = @((Join-Path $script:PortableRepoRoot 'local-rbxl/runtime/node/node.exe'), (Join-Path $script:PortableRepoRoot '../tools/node/node.exe'))
     $taskNode = Get-Command node -ErrorAction SilentlyContinue
     if ($taskNode) { $taskCandidates += $taskNode.Source }
     $taskRuntimeRoot = Join-Path $env:LOCALAPPDATA 'OpenAI/Codex/runtimes/cua_node'

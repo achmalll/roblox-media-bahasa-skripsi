@@ -1,26 +1,28 @@
-**Alur aktif per 1 November 2026:** kerja dari repo di disk lokal PC, GitHub untuk sinkronisasi, USB hanya transfer/cadangan. Mulai dari [KERJA-WARNET-LOKAL.md](KERJA-WARNET-LOKAL.md) dan [LANJUTKAN.md](LANJUTKAN.md). Petunjuk kerja langsung dari flashdisk/target fitur lama di bawah adalah riwayat.
+# Media pembelajaran Bahasa Indonesia di Roblox
 
-Catatan 1 November 2026: [rekap belajar per pemain](docs/LEARNING-RECORDS.md) dan perbaikan panah sudah disiapkan serta diuji offline. Source terbaru menunggu sinkronisasi11source/Save/QA dan uji DataStore nyata; file WORKING tetap checkpoint31Oktober.
+Proyek implementasi skripsi. **Pintu masuk PC warnet baru: buka clone lokal di Codex dan ketik "Setup warnet dan lanjutkan workflow repo".** AI wajib mengikuti AGENTS.md dan [workflow otomatis](KERJA-WARNET-LOKAL.md). SETUP.cmd menyiapkan tahap awal yang sama; AI terus memeriksa editor dan file sesudahnya.
 
-# Media pembelajaran Roblox untuk skripsi Achmal
+## Pegangan aktif
 
-**Masuk warnet:** klik MULAI pada flashdisk, buka Studio/Codex dan kirim prompt yang tampil. AI membaca [LANJUTKAN.md](LANJUTKAN.md); setiap akhir sesi wajib memperbarui brief, loghariitu dan targetsesiberikut.
+| File/folder | Fungsi |
+| --- | --- |
+| AGENTS.md | Instruksi AI baru; route setup/lanjut/offline |
+| KERJA-WARNET-LOKAL.md | Prosedur satu pintu dan tabel tahap/tindakan otomatis |
+| LANJUTKAN.md, KONTEKS-AI.md | Target dan status terkini; baca entri paling atas dahulu |
+| places/RobloxLearningMedia-WORKING.rbxl | File game kanonis; dibuka/simpan dari disk lokal PC |
+| studio-sync/src/, templates/, recording/ | Source aktif, template generated dan recorder server |
+| studio-sync/project.json | Daftar source/properti terkelola bridge; sekarang11source |
+| scripts/ | Setup, bridge, verifikasi file, builder, tes dan ekspor rekap |
+| docs/desain/ | Snapshot rancangan dan bank isi penelitian; baca bagian relevan |
+| docs/LOG-PENGEMBANGAN.md | Bukti dan serah-terima tiap sesi |
+| docs/LEARNING-RECORDS.md | Skema jawaban/waktu per pemain, aktivasi dan batas pengujian |
 
+Source terbaru dan GitHub tidak otomatis berarti isi WORKING sudah terbaru. Saat pembaruan1November, delapan source baru menunggu bridge/Edit -> Save -> verifikasi11 -> Play/cloud. Helper melaporkan kondisi aktual tanpa mengklaim QA yang belum dilakukan.
 
-**Kerja langsung dari flashdisk:** baca [PAKAI-FLASHDISK.md](PAKAI-FLASHDISK.md). Jalankan `MULAI.cmd` pada folderinduk paket, atau `MULAI-PORTABLE.cmd` pada repo. Proyek dan Git dibawa terus; runtime portable di foldertools tidak ikut cloneGitHub. Studio/Codex tetap tersedia pada PC.
+Di kos: edit dan tes offline dari clone laptop. Di warnet: clone/update ke path pendek disk internal, setup, uji/Save/verifikasi dan push sebelum pulang. USB hanya transfer/cadangan. GitHub menyimpan commit yang sudah dipush; repo tidak membawa aplikasi, login, atau izin plugin PC.
 
-> **Mulai di PC/clone baru:** AI atau pengembang yang akan mengerjakan Roblox harus membaca `AGENTS.md` dan `KONTEKS-AI.md`, lalu menjalankan `CONNECT-STUDIO.cmd`. Setelah Roblox Studio membuka `places/RobloxLearningMedia-WORKING.rbxl`, pastikan bridge online dan source sinkron sesuai `studio-sync/README.md`. Clone saja belum memasang plugin Studio; helper memasangnya secara lokal. Jangan menjalankan Play/Save/publish tanpa kebutuhan tugas.
+## Arsip dan ukuran repo
 
-File utama pengembangan: `places/RobloxLearningMedia-WORKING.rbxl`. Buka dan simpan file ini langsung di Roblox Studio. `RobloxLearningMedia-BACKUP.rbxl` milik penelitian pendahulu tetap berada di folder lokal induk dan tidak dimasukkan ke repository.
+src/, src copy/, migration-v2/ dan konfigurasi Rojo lama merupakan arsip migrasi, bukan source aktif. Jangan build/default Rojo untuk menimpa WORKING. Panduan warnet/portable lama dipertahankan sebagai riwayat/fallback; ikuti KERJA-WARNET-LOKAL untuk sesi baru.
 
-**Bridge Codex ↔ Studio (28 Oktober 2026):** jalankan `CONNECT-STUDIO.cmd` untuk setup/aktivasi lokal dari repo. [Panduan dan batas cakupan](studio-sync/README.md). Source `Level1Handler` dapat disinkronkan ke editor tanpa patch biner yang terbuka; Studio tetap menyimpan WORKING. Clone saja belum memuat plugin di PC baru.
-
-Untuk sprint menuju 3 November, baca [pemeriksaan tahap 0 dan setup pindah warnet](docs/development/2026-10-27/TAHAP-0.md). Cadangan tambahan WORKING dapat dibuat dengan `scripts/cadangkan-sesi.ps1`; cadangan tidak menggantikan Save di Studio atau push Git.
-
-Untuk PC warnet baru, ikuti [panduan sesi tiga jam dan koneksi AI](PANDUAN-WARNET-3-JAM.md). Pemeriksaan awal satu perintah tersedia pada `scripts/cek-warnet.ps1`.
-
-Untuk AI memahami flow, mulai dari [brief](KONTEKS-AI.md), [peta sumber dan link Docs rancangan](docs/ACUAN-DESAIN.md), lalu [snapshot storyboard/gambar](docs/desain/README.md). Setiap perubahan wajib memperbarui brief dan [log pengembangan](docs/LOG-PENGEMBANGAN.md), sesuai [AGENTS.md](AGENTS.md).
-
-Repository GitHub ini **private** dan menyimpan place utuh agar pekerjaan di laptop dan beberapa komputer warnet dapat disinkronkan. **Mulai dari [panduan laptop dan warnet](WARNET-CEPAT.md)** untuk clone, perintah sebelum/sesudah edit, Save to File, commit/push, dan pemulihan jika pindah PC atau internet terputus.
-
-`default.project.json`, `src/`, dan `src copy/` berasal dari percobaan Rojo/Argon lama dan dipertahankan sebagai arsip. Migrasi ulang memakai Rojo 7.7.0 berada pada `migration-v2/` dengan konfigurasi `migration-v2.syncback.project.json`. Build sudah berhasil dan cocok secara statis untuk seluruh script serta teks GUI, tetapi masih harus diuji Play di Studio sebelum menggantikan WORKING sebagai sumber utama. Baca `MIGRASI_ROJO_V2.md`. Fitur penelitian baru belum diimplementasikan pada baseline ini.
+[Audit file dan kandidat pengarsipan](docs/AUDIT-KEBERSIHAN-REPO.md) memisahkan aset aktif, authoring, arsip dan cache. Audit ini tidak menghapus/memindahkan data. Snapshot rancangan, baseline penelitian dan bukti Play tidak boleh dibuang karena sekadar terlihat lama.

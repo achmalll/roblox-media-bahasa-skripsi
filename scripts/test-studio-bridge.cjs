@@ -21,6 +21,7 @@ async function main() {
     return { status: r.status, body: await r.json() };
   }
   try {
+    assert.equal((await post('/health', {})).body.configSha256, require('node:crypto').createHash('sha256').update(JSON.stringify(fixtureConfig)).digest('hex'));
     assert.equal((await post('/pair', { projectKey: 'wrong', sessionId: 'test' })).status, 409);
     assert.equal((await post('/pair', {}, { Origin: 'https://example.com' })).status, 403);
     const paired = await post('/pair', { projectKey: bridge.config.projectKey, sessionId: 'fixture' });

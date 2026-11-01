@@ -1,3 +1,5 @@
+**Pintu utama PC baru (1 November 2026):** gunakan [workflow setup](../KERJA-WARNET-LOKAL.md) / SETUP.cmd. AI menjalankan Prepare, memantau Status, menunggu Save pengguna dan VerifySaved. CONNECT-STUDIO di bawah adalah fallback. Health kini memuat configSha256; konfigurasi berbeda memerlukan restart bridge milik clone tersebut dengan receipt proses, ditangani setup otomatis. Snapshot online lama atau helper sukses bukan bukti editor/Save/Play.
+
 # Codex ↔ Studio lokal, versi 1
 
 Untuk paketflashdisk, [PAKAI-FLASHDISK.md](../PAKAI-FLASHDISK.md) dan `MULAI-PORTABLE.cmd` menyiapkan Git/Node dari `../tools`. Resolver menolak Node tanpa ZSTD dan memilih runtimeportable lebih dahulu. Bridge tetap berjalan perPC; helper memasangplugin dan memeriksa identitasclone, tidak otomatis Play/Save/publish. `SELESAI-PORTABLE.cmd` memverifikasiSave, cadangan, reviewcommit/push dan penghentianPID terverifikasi.

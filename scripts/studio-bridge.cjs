@@ -8,6 +8,7 @@ const keyOf = v => JSON.stringify(v.instancePath) + ':' + (v.property || 'Source
 function createBridge(root, options = {}) {
   root = path.resolve(root);
   const config = JSON.parse(fs.readFileSync(path.join(root, 'studio-sync/project.json'), 'utf8'));
+  const configSha256 = hash(Buffer.from(JSON.stringify(config)));
   const port = options.port ?? config.port;
   const stateDir = path.join(root, 'local-rbxl/bridge');
   fs.mkdirSync(path.join(stateDir, 'requests'), { recursive: true });
@@ -110,7 +111,7 @@ function createBridge(root, options = {}) {
       if (req.method !== 'POST' || req.headers.origin || req.headers['x-codex-bridge'] !== 'rbxl-v1' || ![`127.0.0.1:${port}`, `localhost:${port}`].includes(req.headers.host)) return reply(403, { error: 'Loopback native client only' });
       let body = ''; for await (const chunk of req) { body += chunk; if (body.length > 4 * 1024 * 1024) return reply(413, { error: 'Body too large' }); }
       const data = JSON.parse(body || '{}');
-      if (req.url === '/health') return reply(200, { projectKey: config.projectKey, workspaceRoot: root, online: publicStatus().online });
+      if (req.url === '/health') return reply(200, { projectKey: config.projectKey, workspaceRoot: root, configSha256, online: publicStatus().online });
       if (req.url === '/pair') {
         if (data.projectKey !== config.projectKey || typeof data.sessionId !== 'string') return reply(409, { error: 'Wrong project/session' });
         if (session && session !== data.sessionId && Date.now() - lastSeen < 12000) return reply(409, { error: 'Another Studio session is connected' });

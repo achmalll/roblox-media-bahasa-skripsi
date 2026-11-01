@@ -1,28 +1,60 @@
-# Alur aktif: kerja dari disk lokal PC warnet
+# Satu pintu sesi warnet: cukup minta "Setup warnet"
 
-Keputusan pengguna 1 November 2026: GitHub menjadi sumber perpindahan versi antar-PC; setiap sesi dikerjakan dari clone di disk internal PC. Flashdisk hanya untuk transfer/cadangan karena sudah terputus di warnet dan laptop. Ini menggantikan alur 29 Oktober yang menjadikan flashdisk sebagai folder kerja aktif.
+Alur aktif sejak 1 November 2026: kerja di clone pada disk internal PC; GitHub untuk perpindahan versi; USB hanya transfer/cadangan. Sesudah Git/Codex/Studio terpasang dan repo di-clone ke path pendek (misalnya C:/RobloxWork/roblox-media-bahasa-skripsi), buka folder itu di Codex dan kirim:
 
-## Saat tiba
+> Setup warnet dan lanjutkan workflow repo sampai siap diuji. Baca aturan dan status sendiri; saya mengendalikan login, izin plugin, Play/Stop/Save.
 
-1. Siapkan Roblox Studio, Codex dan akses Git pada PC itu. Jika sudah terpasang dan berfungsi, pakai yang ada; PC warnet yang direset mungkin memerlukan pemasangan/login lagi. Membawa repo tidak membawa instalasi, sesi login atau izin plugin PC.
-2. Clone repo GitHub terbaru ke folder lokal pendek yang diizinkan, misalnya C:/RobloxWork/roblox-media-bahasa-skripsi. Jika clone lokal lama masih ada, AI cek status lalu perbarui secara aman. Alternatif saat jaringan lambat: salin repo lengkap termasuk .git dari cadangan USB ke disk lokal, verifikasi hash, lalu cek pembaruan GitHub. Jangan membuka proyek atau WORKING langsung dari USB.
-3. Buka folder repo lokal itu di Codex. AI baca AGENTS.md, LANJUTKAN.md dan KONTEKS-AI.md; cari acuan dan kondisi aktual sendiri. Pengguna tidak perlu merakit brief dari arsip.
-4. Jalankan CONNECT-STUDIO dari clone lokal untuk memasang plugin dan bridge PC tersebut. Bridge memerlukan Node yang mendukung ZSTD; jika runtime tidak tersedia di PC/Codex, salin folder tools/node dari paket cadangan ke folder tools di samping repo. Clone Git saja tidak memuat runtime portable yang berada di luar repo.
-5. Buka places/RobloxLearningMedia-WORKING.rbxl **dari clone lokal yang sama**. Pastikan hanya satu clone/Studio yang terhubung, timestamp bridge segar dan mode Edit. Pengguna tetap mengendalikan Play/Stop/Save.
+Tidak perlu menempelkan seluruh riwayat chat. AI di PC baru wajib mengikuti prosedur ini dari AGENTS.md. Jika user sedang di kos atau meminta kerja offline, gunakan CheckOnly; jangan membuka Studio laptop otomatis.
 
-Prompt pengguna setelah membuka repo lokal:
+## Yang dilakukan AI secara otomatis
 
-> Baca AGENTS.md, LANJUTKAN.md dan KONTEKS-AI.md. Saya bekerja dari clone lokal PC warnet, USB hanya cadangan. Cek progres aktual dan lanjutkan target terakhir; bantu setup bridge dan pencatatan sesi. Jangan ulang fitur yang sudah selesai. Saya yang menjalankan Play/Stop/Save.
+1. Baca AGENTS.md, panduan ini, entri paling atas LANJUTKAN.md/KONTEKS-AI.md dan log terbaru. Riwayat lama dibaca hanya bila relevan. Cek Git aktual dan file WORKING; jangan mengambil target lama dari arsip.
+2. Jalankan dari root clone lokal:
 
-## Sebelum pulang
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/setup-warnet.ps1 -Mode Prepare -OpenStudio
+```
 
-1. Stop dan Save WORKING lokal. AI verifikasi source yang tersimpan, catat Play aktual dan batas yang belum diuji; source sinkron editor belum membuktikan file sudah tersimpan.
-2. AI perbarui konteks, log bertanggal sesi dan LANJUTKAN; review cakupan, commit dan push. Pastikan HEAD remote cocok, bukan hanya ada commit lokal.
-3. Salin cadangan sesi ke USB bila tersedia, lalu verifikasi hash salinan. USB bukan satu-satunya tempat menyimpan progres. Jika penyalinan USB gagal tetapi push terverifikasi, catat kegagalan dan gunakan GitHub/laptop untuk sesi berikut.
-4. Tutup aplikasi yang memakai USB sebelum eject. Pada PC warnet yang datanya dihapus setelah sesi, jangan meninggalkan satu-satunya perubahan belum push di disk lokal.
+Pengguna boleh menjalankan SETUP.cmd untuk tahap yang sama. Helper memperbarui main secara fast-forward bila repo bersih dan tidak akan mengganti file yang sedang terbuka di Studio; perubahan lokal/branch lain tidak di-reset. Node22.23.4 yang mendukung ZSTD dipakai jika tersedia, atau disiapkan otomatis dari ZIP resmi + SHA256 dalam local-rbxl/runtime/node (tanpa admin/PATH global). Lalu plugin dipasang dan bridge clone ini disiapkan. Fingerprint konfigurasi yang berubah memicu restart bridge dengan receipt PID/root/exe/starttime terverifikasi; bridge clone lain tidak dimatikan. Studio dibuka pada WORKING lokal bila belum ada Studio berjalan. Jendela yang sudah ada tidak ditutup/ditimpa otomatis.
+3. Baca laporan local-rbxl/setup/latest.json. **Jangan berhenti hanya setelah helper sukses**, dan jangan menyatakan game siap dari status Git saja. Lanjutkan menurut tahap di bawah. Login, izin plugin/localhost dan tindakan Studio yang membutuhkan pengguna disampaikan satu per satu, bukan meminta pengguna mempelajari setup sendiri.
+4. Untuk membaca ulang status, gunakan:
 
-## Target development saat panduan ini dibuat
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/setup-warnet.ps1 -Mode Status
+```
 
-Source recorder/panah sudah di GitHub; WORKING masih checkpoint 31 Oktober, belum membawa delapan perubahan source baru. Target awal PC kuat: sinkronisasi11source -> user Save -> verifikasi11source -> QA panah/Level2 -> uji tulis-baca recorder pada experience uji. Baca docs/LEARNING-RECORDS.md. Latihan Level3 baru belum diimplementasikan. Akses Level2 sudah ada; jangan mengulang target integrasi Level1 dari panduan lama.
+Status/CheckOnly tidak download, memasang plugin, menyalakan bridge/Studio, pull, atau menulis WORKING. Pemeriksaan membaca health localhost dan snapshot terbaru; EACCES sandbox berarti akses tool ditolak, bukan bukti file hilang. AI gunakan izin tool yang sesuai bila diperlukan. Jangan mencetak token/config akun.
 
-Tidak ada perubahan game, runtime, pengaturan cloud atau instalasi PC warnet oleh pembaruan panduan ini.
+| Tahap laporan | Tindakan AI berikut |
+| --- | --- |
+| setup_failed | Baca error; perbaiki prasyarat yang dapat ditangani, lanjutkan pekerjaan independen. Jangan reset perubahan lokal. |
+| locate_or_install_studio | Cari instalasi nonstandar; jika belum ada bantu instalasi resmi sesuai izin PC. Login tetap pengguna. Codex CLI tidak wajib untuk aplikasi desktop. |
+| wrong_clone / bridge_config_changed | Periksa identitas clone. Restart hanya bridge milik clone yang terverifikasi; jalankan Prepare lagi setelah penyebab teratasi. |
+| restart_studio_after_save | Plugin diperbarui saat Studio sudah berjalan; pengguna Save/tutup sesi lama dan buka ulang WORKING yang benar. |
+| awaiting_studio / stale_status | Periksa login/plugin/izin dan file yang dibuka. Poll ulang setelah tindakan; online kemarin tidak dianggap online sekarang. |
+| awaiting_edit | Pengguna Stop Play/Run dahulu; antrean bridge menunggu Edit. |
+| source_conflict | Simpan kedua versi dan selesaikan konflik; jangan menimpa sepihak. |
+| syncing_editor | Pantau sampai seluruh source terkelola sinkron dan readback baru; baca receipt/error bila macet. Jumlah mengikuti project.json (sekarang11), bukan angka lama di panduan. |
+| awaiting_save | Beri path WORKING tepat kepada pengguna untuk Save, lalu verifikasi file disk. Bila tetap berbeda, cek jendela Studio duplikat/path Save, bukan menganggap user belum menekan Save. |
+| ready_for_play | Source editor segar dan file disk cocok; baru pandu checklist Play. Ini belum bukti QA/cloud lulus. |
+
+Sesudah pengguna Save:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/setup-warnet.ps1 -Mode VerifySaved
+node scripts/verify-studio-save.cjs
+```
+
+VerifySaved keluar dengan kode2 bila source disk masih berbeda; jangan menganggap setup selesai. Node dipilih melalui dot-source scripts/portable-runtime.ps1 dan Get-ProjectNode bila PATH Node lama. AI membandingkan seluruh source; pengguna tidak perlu mengecek 11 script satu per satu. Jangan patch biner untuk melewati Save.
+
+## Uji dan tutup sesi
+
+Pengguna Play; AI pandu uji target dari LANJUTKAN/brief, baca Output/bukti aktual, perbaiki satu masalah lalu ulang bagian relevan. Pengguna Stop/Save setelah perubahan; AI verifikasi lagi. Bedakan editor sinkron, Savedisk, Play dan cloud. AI menulis KONTEKS-AI.md, entri log hari itu dan LANJUTKAN.md; review scope perubahan, commit/push yang sudah diotorisasi, dan cocokkan HEAD dengan remote. Helper lama selesai-portable meminta konfirmasi interaktif; AI boleh menjalankan Git langsung sesuai otorisasi sesi agar tidak meminta YA berulang. Jangan memakai selesai-warnet.ps1 lama yang hanya mengurus WORKING untuk menutup perubahan source/dokumen lengkap.
+
+Jika PC direset setelah sesi, tidak boleh meninggalkan satu-satunya progres belum push di disk lokal. Cadangan USB opsional dan hash salinan diperiksa; git push terverifikasi tetap pegangan utama. Hentikan bridge clone ini dengan stop-studio-bridge.ps1 saat tidak dipakai. Tidak auto publish atau mengubah pengaturan cloud dari permintaan setup.
+
+## Target saat ini
+
+Source recorder/panah sudah di GitHub, WORKING masih checkpoint31Oktober; delapan perubahan menunggu pemasangan. Mulai dari sync11 -> user Save -> verify11 -> Play panah/L2 -> uji tulis-baca recorder pada experience uji sesuai docs/LEARNING-RECORDS.md. LatihanL3 baru belum dibuat; aksesL2 sudah ada. Jangan mengulang fitur lama. Rojo/Argon, default.project.json, src/ dan migration-v2/ adalah arsip; tidak perlu memasang tooling migrasi untuk workflow aktif ini.
+
+API/prasyarat resmi: [Node22.23.4](https://nodejs.org/en/download/archive/v22.23.4), [Roblox Studio setup](https://create.roblox.com/docs/studio/setup). Repo tidak membawa login atau izin PC; helper tidak menjanjikan dapat melewati batas instalasi/koneksi yang ditetapkan warnet.

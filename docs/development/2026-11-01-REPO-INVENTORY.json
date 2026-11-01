@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-01",
+  "baseCommit": "722b868",
+  "method": "Git tree blob lengths/identities; excludes current edits, cache and .git history",
+  "trackedFiles": 969,
+  "trackedBytes": 56077896,
+  "groups": {
+    "(root)": {
+      "files": 20,
+      "bytes": 201927
+    },
+    "assets": {
+      "files": 7,
+      "bytes": 22849250
+    },
+    "docs": {
+      "files": 199,
+      "bytes": 25038924
+    },
+    "migration-v2": {
+      "files": 97,
+      "bytes": 4581308
+    },
+    "places": {
+      "files": 1,
+      "bytes": 2844243
+    },
+    "scripts": {
+      "files": 33,
+      "bytes": 107288
+    },
+    "src copy": {
+      "files": 81,
+      "bytes": 20800
+    },
+    "src": {
+      "files": 512,
+      "bytes": 232933
+    },
+    "studio-sync": {
+      "files": 19,
+      "bytes": 201223
+    }
+  },
+  "legacy": {
+    "files": 690,
+    "bytes": 4835041
+  },
+  "srcCopy": {
+    "files": 81,
+    "identicalContentAlsoInSrc": 60,
+    "nonIdenticalPaths": [
+      "src copy/ServerStorage/AchievementTools/BronzeMedal/BronzeMedal/Model/MeshPart/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/BronzeMedal/BronzeMedal/Model/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/BronzeMedal/BronzeMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/BronzeMedal/Handle/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/BronzeMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/GoldMedal/GoldMedal/Model/MeshPart/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/GoldMedal/GoldMedal/Model/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/GoldMedal/GoldMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/GoldMedal/Handle/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/GoldMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/PlatinumMedal/Handle/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/PlatinumMedal/PlatinumMedal/Model/MeshPart/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/PlatinumMedal/PlatinumMedal/Model/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/PlatinumMedal/PlatinumMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/PlatinumMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/SilverMedal/Handle/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/SilverMedal/SilverMedal/Model/MeshPart/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/SilverMedal/SilverMedal/Model/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/SilverMedal/SilverMedal/init.meta.json",
+      "src copy/ServerStorage/AchievementTools/SilverMedal/init.meta.json",
+      "src copy/StarterGui/FlowGui/space3Frame/Title/TextLabel/init.meta.json"
+    ]
+  },
+  "largest": [
+    {
+      "path": "assets/audio-male.aup4",
+      "bytes": 18219008,
+      "blob": "adc832afa57740f26938ebb0bfde15399923ea3c"
+    },
+    {
+      "path": "places/RobloxLearningMedia-WORKING.rbxl",
+      "bytes": 2844243,
+      "blob": "542de2b8ca94b05856b15afd74c78ae056c8dd80"
+    },
+    {
+      "path": "docs/desain/ringkasan-visual/hifi-bukti-level2.png",
+      "bytes": 1683426,
+      "blob": "2baec01df403e8ffaff7afeb071fa084c43b6f1f"
+    },
+    {
+      "path": "docs/desain/ringkasan-visual/hifi-editor-level3.png",
+      "bytes": 1673449,
+      "blob": "dee79069841c6c9ac3de42f9da7d3c266e92c3a0"
+    },
+    {
+      "path": "docs/desain/ringkasan-visual/hifi-audio-level1.png",
+      "bytes": 1498988,
+      "blob": "049a3fc8c2670e7b5d9520e9d97cdb0d2384a866"
+    },
+    {
+      "path": "assets/audio-female-full.mp3",
+      "bytes": 1269867,
+      "blob": "755f11ed745a20674f8eaaf635cdfd58c7349513"
+    },
+    {
+      "path": "assets/audio-female-3.mp3",
+      "bytes": 1208640,
+      "blob": "57cd15c2298383213da9414ea21fdf16df18cd17"
+    },
+    {
+      "path": "migration-v2/src/Workspace/Space 2.rbxm",
+      "bytes": 1171595,
+      "blob": "4ffbd50f8a2f3dc51b92a9641f35a63556de17ab"
+    },
+    {
+      "path": "assets/audio-female-2.mp3",
+      "bytes": 1076160,
+      "blob": "170a8b95ac3d875b3af135801e48115d8d19c188"
+    },
+    {
+      "path": "migration-v2/src/Workspace/Open Space (Space 1).rbxm",
+      "bytes": 1043465,
+      "blob": "cd15773e8a2edf7dc6bc64c1d88bc4ad6863eb08"
+    },
+    {
+      "path": "migration-v2/src/Workspace/Gedung Tengah.rbxm",
+      "bytes": 921544,
+      "blob": "5f15ee199516ac83c09eb7b801830a3b018f01d1"
+    },
+    {
+      "path": "migration-v2/src/Workspace/Halaman depan.rbxm",
+      "bytes": 595117,
+      "blob": "ac4a623348b5ef5ec83a37b1adb44146a4268aae"
+    },
+    {
+      "path": "assets/audio-male-1.mp3",
+      "bytes": 445965,
+      "blob": "f870683c091a9ee322a2f36398553590bf1cb07b"
+    },
+    {
+      "path": "assets/audio-male-2.mp3",
+      "bytes": 358221,
+      "blob": "d4daa77d1f1b1c5b1f47b2b7268a9b04ef974770"
+    },
+    {
+      "path": "migration-v2/src/Workspace/Space 3.rbxm",
+      "bytes": 292439,
+      "blob": "8d65d34e1154b6477f109ff61ee3ccfc9a556adb"
+    },
+    {
+      "path": "assets/audio-male-3.mp3",
+      "bytes": 271389,
+      "blob": "ff1ff9abb7f09db309884523720614a445b58d87"
+    }
+  ],
+  "filesRemoved": false
+}

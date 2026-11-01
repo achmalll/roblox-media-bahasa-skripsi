@@ -200,5 +200,17 @@
       "result": "PASS"
     }
   ],
-  "trackedFilesAfter": 268
+  "trackedFilesAfter": 268,
+  "usbVerification": {
+    "cleanupCommit": "9aaf3a06faef7aca1cbe163fa0626948d6520f48",
+    "initialLocalDeletions": 593,
+    "allLocalDeletionsWithinAuthorizedScope": true,
+    "fastForwardSucceeded": true,
+    "workingHashMatches": true,
+    "oldRootLaunchersRemoved": [
+      "SELESAI.cmd",
+      "TERMINAL.cmd",
+      "MULAI.cmd"
+    ]
+  }
 }

@@ -85,6 +85,171 @@ end
 
 local function execute(command)
 	assert(not testing(), "Play active: edits paused")
+	if command.op == "fix_male_guide_pants" then
+		assert(config.level2StationGuides and config.level3FurnitureLayout,"Guide clothing outside scope")
+		local source=resolve({"Workspace","Space 2","Budi",""}):FindFirstChildOfClass("Pants")
+		assert(source and source.PantsTemplate~="","Original male guide pants missing")
+		local targets={}
+		for _,path in ipairs({
+			{"Workspace","Level2Development","L2_NPC_SimpulanBukti"},
+			{"Workspace","Level3Development","L3_NPC_BatasSimpulan"},
+			{"Workspace","Level3Development","L3_NPC_EvaluasiPria"},
+		}) do
+			local model=resolve(path)
+			local pants=model:FindFirstChildOfClass("Pants")
+			assert(pants,"Male guide pants missing: "..model.Name)
+			table.insert(targets,{pants=pants,name=model.Name,before=pants.PantsTemplate})
+		end
+		History:SetWaypoint("Before Codex male guide pants fix")
+		local changes={}
+		for _,target in ipairs(targets) do
+			target.pants.PantsTemplate=source.PantsTemplate
+			assert(target.pants.PantsTemplate==source.PantsTemplate,"Pants readback failed")
+			table.insert(changes,{name=target.name,before=target.before,after=target.pants.PantsTemplate})
+		end
+		History:SetWaypoint("Codex male guide pants fix")
+		return {status="applied",changes=changes,source="Workspace/Space 2/Budi/Pants"}
+	end
+	if command.op == "stage_level2_guides" then
+		assert(config.level2StationGuides == true,"Level 2 guides outside scope")
+		local root=resolve({"Workspace","Level2Development"})
+		local first=resolve({"Workspace","Level2Development","L2_MejaBukti"})
+		local second=resolve({"Workspace","Level2Development","L2_PapanPasangan"})
+		local female=resolve({"Workspace","Level3Development","L3_NPC_FungsiGagasan"})
+		local male=resolve({"Workspace","Level3Development","L3_NPC_BatasSimpulan"})
+		assert(first:IsA("Model") and second:IsA("Model"),"Station model changed")
+		assert(female:IsA("Model") and male:IsA("Model"),"Guide template changed")
+		local names={"L2_NPC_BuktiTeks","L2_NPC_SimpulanBukti"}
+		if root:GetAttribute("StationGuidesV1") then
+			for _,name in ipairs(names) do assert(root:FindFirstChild(name),"Guide missing; inspect before retry") end
+			return {status="already_applied",guides=2}
+		end
+		local floorCf,floorSize=first:GetBoundingBox()
+		local function halfHeight(cf,size)
+			return (math.abs(cf.RightVector.Y)*size.X+math.abs(cf.UpVector.Y)*size.Y+math.abs(cf.LookVector.Y)*size.Z)/2
+		end
+		local floorY=floorCf.Position.Y-halfHeight(floorCf,floorSize)
+		local pending={}
+		for i,entry in ipairs({{template=female,station=first,side=-1},{template=male,station=second,side=1}}) do
+			assert(not root:FindFirstChild(names[i]),"Guide already exists; inspect before retry")
+			local rig=entry.template:Clone(); assert(rig,"Guide cannot be cloned")
+			local hum=rig:FindFirstChildOfClass("Humanoid"); assert(hum,"Guide Humanoid missing")
+			for _,item in ipairs(rig:GetDescendants()) do
+				if item:IsA("LuaSourceContainer") or item:IsA("ProximityPrompt") then item:Destroy()
+				elseif item:IsA("BasePart") then item.Anchored=true; item.CanCollide=false; item.CanTouch=false end
+			end
+			hum.Sit=false; hum.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
+			local cf,size=entry.station:GetBoundingBox()
+			local right=Vector3.new(cf.RightVector.X,0,cf.RightVector.Z)
+			if right.Magnitude<.1 then right=Vector3.new(1,0,0) else right=right.Unit end
+			local forward=Vector3.new(cf.LookVector.X,0,cf.LookVector.Z)
+			if forward.Magnitude<.1 then forward=Vector3.new(0,0,-1) else forward=forward.Unit end
+			local position=cf.Position+right*(entry.side*(size.X/2+2.5))+forward*1.5
+			local bodyCf,bodySize=rig:GetBoundingBox()
+			local bottom=bodyCf.Position.Y-halfHeight(bodyCf,bodySize)
+			local pivot=rig:GetPivot()
+			rig:PivotTo(CFrame.new(position.X,floorY+pivot.Position.Y-bottom,position.Z)*CFrame.lookAt(Vector3.zero,forward).Rotation)
+			rig.Name=names[i]; rig:SetAttribute("Level2StationGuide",true)
+			table.insert(pending,rig)
+		end
+		History:SetWaypoint("Before Codex Level 2 station guides")
+		for _,rig in ipairs(pending) do rig.Parent=root end
+		root:SetAttribute("StationGuidesV1",true)
+		History:SetWaypoint("Codex Level 2 station guides")
+		return {status="applied",guides=2,names=names,scope="Appearance only; existing practice prompts unchanged"}
+	end
+	if command.op == "stage_level3_furniture" then
+		assert(config.level3FurnitureLayout == true, "Level 3 furniture outside scope")
+		local root=resolve({"Workspace","Level3Development"})
+		if root:GetAttribute("FurnitureLayoutV1") then return {status="already_applied"} end
+		local oldBoard=resolve({"Workspace","Level3Development","latihan 1"})
+		local secondBoard=resolve({"Workspace","Level3Development","latihan 2"})
+		local reading=resolve({"Workspace","Level3Development","meja baca"})
+		local evaluation=resolve({"Workspace","Level3Development","Evaluasi"})
+		assert(oldBoard:IsA("MeshPart") and secondBoard:IsA("Model"), "Level 3 board layout changed")
+		local female=resolve({"Workspace","Space 3",""})
+		local male=resolve({"Workspace","Space 2","Budi",""})
+		assert(female:IsA("Model") and female:FindFirstChildOfClass("Humanoid"), "Female guide rig missing")
+		assert(male:IsA("Model") and male:FindFirstChildOfClass("Humanoid"), "Male guide rig missing")
+		local backup=game:GetService("ServerStorage")
+		assert(not backup:FindFirstChild("L3OriginalBoard1"), "Original board backup already exists")
+		local function bounds(object)
+			local parts={}
+			if object:IsA("BasePart") then table.insert(parts,object) end
+			for _,item in ipairs(object:GetDescendants()) do if item:IsA("BasePart") then table.insert(parts,item) end end
+			assert(#parts>0,"Furniture has no parts")
+			local low=Vector3.new(math.huge,math.huge,math.huge)
+			local high=Vector3.new(-math.huge,-math.huge,-math.huge)
+			for _,part in ipairs(parts) do
+				for _,x in ipairs({-1,1}) do for _,y in ipairs({-1,1}) do for _,z in ipairs({-1,1}) do
+					local point=part.CFrame:PointToWorldSpace(part.Size*Vector3.new(x,y,z)/2)
+					low=Vector3.new(math.min(low.X,point.X),math.min(low.Y,point.Y),math.min(low.Z,point.Z))
+					high=Vector3.new(math.max(high.X,point.X),math.max(high.Y,point.Y),math.max(high.Z,point.Z))
+				end end end
+			end
+			return (low+high)/2,high-low,low.Y
+		end
+		local function captions(board,title,first,second,third)
+			for name,value in pairs({Title=title,["Animation 1"]=first,["Animation 2"]=second,["Animation 3"]=third}) do
+				local row=board:FindFirstChild(name)
+				local label=row and row:FindFirstChildWhichIsA("TextLabel",true)
+				assert(label,"Board caption missing: "..name); label.Text=value
+			end
+		end
+		local first=secondBoard:Clone()
+		assert(first,"Board cannot be cloned")
+		captions(first,"Latihan 1","Fungsi gagasan","Susun tiga gagasan","Tahan E untuk berlatih")
+		for _,item in ipairs(first:GetDescendants()) do
+			if item:IsA("LuaSourceContainer") or item:IsA("ProximityPrompt") then item:Destroy()
+			elseif item:IsA("BasePart") then item.Anchored=true end
+		end
+		local oldCenter,_,floor=bounds(oldBoard)
+		local center,_,copyFloor=bounds(first)
+		first:PivotTo(CFrame.new(oldCenter.X-center.X,floor-copyFloor,oldCenter.Z-center.Z)*first:GetPivot())
+		first.Name="latihan 1"
+		local pending={}
+		local function guide(name,template,object,side,front)
+			assert(not root:FindFirstChild(name),"Guide already exists: "..name)
+			local rig=template:Clone(); assert(rig,"NPC cannot be cloned")
+			local hum=rig:FindFirstChildOfClass("Humanoid")
+			for _,item in ipairs(rig:GetDescendants()) do
+				if item:IsA("LuaSourceContainer") or item:IsA("ProximityPrompt") then item:Destroy()
+				elseif item:IsA("BasePart") then item.Anchored=true; item.CanCollide=false; item.CanTouch=false
+				elseif item:IsA("Shirt") then item.ShirtTemplate="http://www.roblox.com/asset/?id=10285081830"
+				elseif item:IsA("Pants") then item.PantsTemplate=template==male and "http://www.roblox.com/asset/?id=11766474738" or "http://www.roblox.com/asset/?id=10297918623"
+				elseif item:IsA("Motor6D") then item.Transform=CFrame.identity end
+			end
+			hum.Sit=false; hum.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
+			local c,size,bottom=bounds(object)
+			local position=c+Vector3.new(side*(size.X/2+2.5),0,front*(size.Z/2+2.5))
+			local rigCenter,_,rigBottom=bounds(rig)
+			local facing=Vector3.new(c.X,position.Y,c.Z)-position
+			if facing.Magnitude<.1 then facing=Vector3.new(0,0,-1) end
+			local pivot=rig:GetPivot()
+			local rotation=CFrame.lookAt(Vector3.zero,facing.Unit).Rotation
+			rig:PivotTo(CFrame.new(position.X,bottom+(pivot.Position.Y-rigBottom),position.Z)*rotation)
+			rig.Name=name; rig:SetAttribute("Level3StationGuide",true)
+			table.insert(pending,rig)
+		end
+		guide("L3_NPC_PemanduBaca",female,reading,0,-1)
+		guide("L3_NPC_FungsiGagasan",female,first,-1,0)
+		guide("L3_NPC_BatasSimpulan",male,secondBoard,1,0)
+		guide("L3_NPC_EvaluasiPria",male,evaluation,-1,0)
+		guide("L3_NPC_EvaluasiWanita",female,evaluation,1,0)
+		-- Validate the existing second board's labels before any live mutation.
+		for _,name in ipairs({"Title","Animation 1","Animation 2","Animation 3"}) do
+			local row=secondBoard:FindFirstChild(name)
+			assert(row and row:FindFirstChildWhichIsA("TextLabel",true),"Second board caption missing")
+		end
+		History:SetWaypoint("Before Codex Level 3 furniture")
+		oldBoard.Name="L3OriginalBoard1"; oldBoard.Parent=backup
+		first.Parent=root
+		captions(secondBoard,"Latihan 2","Batas simpulan","Empat ronde bukti","Tahan E untuk berlatih")
+		for _,rig in ipairs(pending) do rig.Parent=root end
+		root:SetAttribute("FurnitureLayoutV1",true)
+		History:SetWaypoint("Codex Level 3 furniture")
+		return {status="applied",guides=5,board="Workspace/Level3Development/latihan 1",backup="ServerStorage/L3OriginalBoard1",scope="Furniture only; learning interactions not implemented"}
+	end
 	if command.op == "replace_news_board" then
 		assert(config.newsBoardReplacement == true, "News board replacement outside scope")
 		local room=resolve({"Workspace","Space 2"})

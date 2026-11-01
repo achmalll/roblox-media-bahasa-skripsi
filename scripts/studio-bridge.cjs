@@ -46,6 +46,18 @@ function createBridge(root, options = {}) {
   function checkCommand(command) {
     if (!command || typeof command.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(command.id)) throw Error('Invalid command ID');
     if (command.op === 'inspect_workspace') return;
+    if (command.op === 'fix_male_guide_pants') {
+      if (config.level2StationGuides !== true || config.level3FurnitureLayout !== true) throw Error('Guide clothing outside project scope');
+      return;
+    }
+    if (command.op === 'stage_level2_guides') {
+      if (config.level2StationGuides !== true) throw Error('Level 2 guides outside project scope');
+      return;
+    }
+    if (command.op === 'stage_level3_furniture') {
+      if (config.level3FurnitureLayout !== true) throw Error('Level 3 furniture outside project scope');
+      return;
+    }
     if (command.op === 'replace_news_board') {
       if (config.newsBoardReplacement !== true) throw Error('News board replacement outside project scope');
       return;

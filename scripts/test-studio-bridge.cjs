@@ -58,6 +58,18 @@ async function main() {
     assert.throws(() => bridge.enqueue({ id: 'news-forbidden', op: 'replace_news_board' }));
     bridge.config.newsBoardReplacement = true;
     bridge.enqueue({ id: 'news-allowed', op: 'replace_news_board' });
+    bridge.config.level3FurnitureLayout = false;
+    assert.throws(() => bridge.enqueue({ id: 'l3-layout-forbidden', op: 'stage_level3_furniture' }));
+    bridge.config.level3FurnitureLayout = true;
+    bridge.enqueue({ id: 'l3-layout-allowed', op: 'stage_level3_furniture' });
+    bridge.config.level2StationGuides = false;
+    assert.throws(() => bridge.enqueue({ id: 'l2-guides-forbidden', op: 'stage_level2_guides' }));
+    bridge.config.level2StationGuides = true;
+    bridge.enqueue({ id: 'l2-guides-allowed', op: 'stage_level2_guides' });
+    bridge.config.level2StationGuides = false;
+    assert.throws(() => bridge.enqueue({ id: 'male-pants-forbidden', op: 'fix_male_guide_pants' }));
+    bridge.config.level2StationGuides = true;
+    bridge.enqueue({ id: 'male-pants-allowed', op: 'fix_male_guide_pants' });
     bridge.enqueue({ id: 'folder-fixture', op: 'create_folder', name: 'Level2Development' });
     assert.throws(() => bridge.enqueue({ id: 'wrong-folder', op: 'create_folder', name: 'OtherFolder' }));
     bridge.enqueue({ id: 'move-fixture', op: 'move_instance', ...fixtureConfig.objectMoves[0] });

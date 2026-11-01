@@ -1,6 +1,8 @@
 {
   "projectKey": "roblox-media-bahasa-skripsi",
   "newsBoardReplacement": true,
+  "level3FurnitureLayout": true,
+  "level2StationGuides": true,
   "port": 34873,
   "scripts": [
     {

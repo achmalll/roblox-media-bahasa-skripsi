@@ -1,3 +1,5 @@
+**Alur aktif per 1 November 2026:** kerja dari repo di disk lokal PC, GitHub untuk sinkronisasi, USB hanya transfer/cadangan. Mulai dari [KERJA-WARNET-LOKAL.md](KERJA-WARNET-LOKAL.md) dan [LANJUTKAN.md](LANJUTKAN.md). Petunjuk kerja langsung dari flashdisk/target fitur lama di bawah adalah riwayat.
+
 # Proyek kerja di flashdisk + cadangan GitHub
 
 29 Oktober 2026. Satu repository utama dibawa pada flashdisk; `.git`, WORKING, source, audio, rancangan dan konteks ikut berpindah. Commit/push tetap dilakukan setiap selesai sesi. Tidak perlu clone ulang di setiap PC.

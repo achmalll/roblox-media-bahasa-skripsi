@@ -1,3 +1,9 @@
+## Alur warnet berubah — 1 November 2026
+
+Pengguna menetapkan repo disalin/clone ke disk lokal tiap PC warnet; GitHub untuk perpindahan versi, flashdisk hanya transfer/cadangan. Alur portable kerja langsung USB 29 Oktober menjadi riwayat. Panduan aktif KERJA-WARNET-LOKAL.md: siapkan apps/login perPC -> clone/update lokal pendek -> bootstrap bridge clone lokal -> buka WORKING lokal -> uji/Save/verifikasi -> konteks/log -> commit/push dan cocokkan HEAD -> cadangan USB opsional. Jika apps sudah ada tidak wajib instal ulang. Repo tidak membawa sesi akun/izin plugin/runtime portable di luar repo.
+
+Target fitur tetap sync11source/Save/QA dan uji recorder cloud; tidak mengubah game/WORKING atau menjalankan Studio. Panduan lama diberi penunjuk terbaru agar target unlockL2/kerjaUSB tidak dipakai ulang. Implementasi tetap f2ee8de; catatan final sebelumnya88a33fb. Pembaruan ini hanya dokumentasi alur kerja, diperiksa diff--check dan tautanlokal.
+
 ## Verifikasi akhir dan flashdisk — 1 November 2026
 
 - Implementasi f2ee8dea2e6f3ce5abf1d22af1330cad138e4e55 sudah dipush; HEAD clone laptop, D dan ls-remote GitHub main cocok. Kedua working tree bersih sebelum catatan ini. D difast-forward sesudah stash arsip perubahan sementara; stash berlabel ARSIP/jangan apply ulang dipertahankan, salinan15file berhash juga ada di laptop. STATUS-PAKET.json rootD disegarkan; tidak ada bridge cloneD dibiarkan berjalan. WORKING tetap b1a4ec89... dan fitur baru menunggu sync/Save11source serta QA/cloud.

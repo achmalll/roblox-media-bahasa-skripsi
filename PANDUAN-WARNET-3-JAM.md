@@ -1,3 +1,5 @@
+**Alur aktif per 1 November 2026:** kerja dari repo di disk lokal PC, GitHub untuk sinkronisasi, USB hanya transfer/cadangan. Mulai dari [KERJA-WARNET-LOKAL.md](KERJA-WARNET-LOKAL.md) dan [LANJUTKAN.md](LANJUTKAN.md). Petunjuk kerja langsung dari flashdisk/target fitur lama di bawah adalah riwayat.
+
 # Masuk warnet dari nol: Studio + AI + proyek, sesi 3 jam
 
 **Sesi terbaru:** mulai dari [LANJUTKAN.md](LANJUTKAN.md) dan prompt yang ditampilkan MULAI. Setup dan papan/audio sudah berkembang dari sesi pertama; target saat ini integrasi hasilLevel1→aksesLevel2, bukan mengulang pembuatanpapan. Rincian setup di bawah tetap rujukan jika dibutuhkan. AI wajib mengurus konteks/loghariitu/handoff sebelum pengguna menjalankan SELESAI.

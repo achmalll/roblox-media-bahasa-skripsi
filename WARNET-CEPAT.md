@@ -1,3 +1,5 @@
+**Alur aktif per 1 November 2026:** kerja dari repo di disk lokal PC, GitHub untuk sinkronisasi, USB hanya transfer/cadangan. Mulai dari [KERJA-WARNET-LOKAL.md](KERJA-WARNET-LOKAL.md) dan [LANJUTKAN.md](LANJUTKAN.md). Petunjuk kerja langsung dari flashdisk/target fitur lama di bawah adalah riwayat.
+
 # Panduan kerja Roblox: laptop, PC warnet, dan pindah warnet
 
 Diperbarui: 25 Oktober 2026.

@@ -18,7 +18,7 @@ local arrow
 local currentTarget
 local function panelOpen()
 	if player:GetAttribute("L2LearningOpen") then return true end
-	for _, name in ipairs({"Level1Gui", "FlowGui", "Welcome GUI"}) do
+	for _, name in ipairs({"Level1Gui", "FlowGui", "Welcome GUI", "Level3Gui", "Level3Board"}) do
 		local gui = player.PlayerGui:FindFirstChild(name)
 		if gui and gui.Enabled then
 			for _, child in ipairs(gui:GetChildren()) do
@@ -65,6 +65,7 @@ hideArrowEvent.Event:Connect(function()
 
 	if arrow then
 		arrow:Destroy()
+		arrow = nil
 	end
 
 end)
@@ -101,10 +102,10 @@ end)
 RunService.RenderStepped:Connect(function()
 
 	if not arrow then return end
-	if not character then return end
+	if not character then setArrowVisible(false); return end
 
 	local root = character:FindFirstChild("HumanoidRootPart")
-	if not root then return end
+	if not root then setArrowVisible(false); return end
 
 	-- Preserve the original follow position at the character root.
 	local position = root.Position

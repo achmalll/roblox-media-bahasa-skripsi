@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "contentRevision": "aacce0f5c6598d551fc6049a3780d7f1f965ee59fb74291390f3d0ef764630f9",
+  "levels": {
+    "1": {
+      "questions": [
+        {
+          "stem": "Berdasarkan narasi audio yang disampaikan, sistem operasi dapat diartikan sebagai …",
+          "options": [
+            "A. Perangkat keras utama yang berfungsi menjalankan aplikasi",
+            "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer",
+            "C. Program tambahan yang digunakan untuk mempercepat kinerja komputer",
+            "D. Sistem jaringan yang menghubungkan komputer dengan internet",
+            "E. Media penyimpanan data yang digunakan oleh pengguna"
+          ],
+          "reasons": [
+            "A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.",
+            "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.",
+            "C. Narasi membatasi tugas OS pada pengaturan jaringan dan akses internet.",
+            "D. Narasi menyamakan OS dengan perangkat penyimpanan data milik pengguna."
+          ],
+          "answer": 2,
+          "reason": 2
+        },
+        {
+          "stem": "Salah satu peran utama sistem operasi menurut narasi audio adalah …",
+          "options": [
+            "A. Menggantikan fungsi perangkat keras komputer",
+            "B. Menyimpan seluruh data pengguna secara permanen",
+            "C. Menjadi penghubung antara pengguna dan aplikasi",
+            "D. Mengendalikan jaringan internet secara langsung",
+            "E. Menjalankan aplikasi tanpa bantuan perangkat keras"
+          ],
+          "reasons": [
+            "A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.",
+            "B. Narasi menyebut OS sebagai pengganti seluruh perangkat keras komputer.",
+            "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.",
+            "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."
+          ],
+          "answer": 3,
+          "reason": 1
+        },
+        {
+          "stem": "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah …",
+          "options": [
+            "A. Mendesain ulang perangkat keras komputer agar seluruh aplikasi berjalan tanpa sistem operasi",
+            "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu",
+            "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis",
+            "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna",
+            "E. Menginstal sebanyak mungkin aplikasi agar kinerja komputer meningkat secara maksimal"
+          ],
+          "reasons": [
+            "A. Audio mengaitkan penambahan jumlah aplikasi dengan peningkatan kinerja komputer.",
+            "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.",
+            "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.",
+            "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."
+          ],
+          "answer": 2,
+          "reason": 3
+        },
+        {
+          "stem": "Dalam narasi audio, apa yang terjadi jika sistem operasi tidak mampu menjalankan peran penghubung pengguna dan aplikasi dengan baik?",
+          "options": [
+            "A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara",
+            "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan",
+            "C. Perangkat keras akan meningkatkan kinerjanya secara mandiri",
+            "D. Sistem operasi akan digantikan secara otomatis oleh aplikasi lain",
+            "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu"
+          ],
+          "reasons": [
+            "A. Audio menyebut aplikasi mengambil alih seluruh tugas OS secara otomatis.",
+            "B. Audio menyebut perangkat keras menambah kemampuannya sendiri saat OS terganggu.",
+            "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.",
+            "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."
+          ],
+          "answer": 5,
+          "reason": 4
+        }
+      ],
+      "practice": {
+        "slots": [
+          {
+            "id": "A",
+            "text": "Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer."
+          },
+          {
+            "id": "B",
+            "text": "Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output."
+          },
+          {
+            "id": "C",
+            "text": "Rekaman menjelaskan langkah memasang sistem operasi."
+          },
+          {
+            "id": "D",
+            "text": "Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer."
+          }
+        ],
+        "slotOrder": [
+          "main",
+          "supporting"
+        ]
+      }
+    },
+    "2": {
+      "questions": [
+        {
+          "number": 1,
+          "stem": "Berdasarkan teks, bagaimana perbedaan cara kerja sistem operasi Android dan Windows pada Cloud AI Pad?",
+          "options": [
+            "A. Android dijalankan secara lokal, sedangkan Windows dijalankan melalui cloud",
+            "B. Android dan Windows sama-sama dijalankan melalui cloud",
+            "C. Windows dijalankan secara lokal, sedangkan Android melalui cloud",
+            "D. Keduanya dijalankan secara native di perangkat tablet",
+            "E. Android dan Windows hanya dapat digunakan secara bergantian melalui restart"
+          ],
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Teks menghubungkan tombol AI dengan lokasi eksekusi kedua sistem operasi.",
+            "B. Teks menyebut Windows dijalankan lokal dan Android diakses melalui cloud.",
+            "C. Teks menyebut Android dijalankan lokal dan Windows diakses melalui cloud.",
+            "D. Teks menyebut Android dan Windows dijalankan langsung pada perangkat tablet."
+          ],
+          "key1": "Kunci tier 1: A. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "key2": "Kunci tier 2: C. Bukti penjelas: Teks menyebut Android lokal dan Windows melalui cloud.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Benar. Android lokal dan Windows melalui cloud sesuai informasi teks."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Hanya Windows yang dinyatakan melalui cloud; Android dinyatakan lokal."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Letak kedua sistem tertukar: Android lokal, Windows melalui cloud."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Teks tidak menyatakan keduanya native di tablet; Windows diakses melalui cloud."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Teks tidak menyebut restart sebagai syarat perpindahan kedua sistem."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A memakai tombol AI, padahal soal menanyakan lokasi eksekusi OS."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B menukar posisi Android dan Windows dalam teks."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C tepat: teks membedakan Android lokal dan Windows cloud."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D mengabaikan bahwa Windows diakses melalui cloud."
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "stem": "Berdasarkan teks, mengapa pendekatan dual sistem operasi yang diterapkan pada Cloud AI Pad dianggap sebagai inovasi yang signifikan dalam industri tablet saat ini?",
+          "options": [
+            "A. Karena tablet Cloud AI Pad merupakan satu-satunya perangkat yang pernah menggunakan sistem operasi Android",
+            "B. Karena penggunaan dua sistem operasi dalam satu perangkat masih jarang ditemui dan mampu menjawab kebutuhan fleksibilitas sekaligus produktivitas pengguna",
+            "C. Karena Cloud AI Pad menggantikan sistem operasi Windows dengan sistem operasi buatan China secara penuh",
+            "D. Karena tablet ini menggunakan satu sistem operasi dengan dua antarmuka yang berbeda secara tampilan",
+            "E. Karena Cloud AI Pad menjalankan Linux dan Windows secara bersamaan untuk pertama kalinya"
+          ],
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Teks menekankan fleksibilitas Android dan produktivitas Windows dalam pendekatan ganda.",
+            "B. Teks menekankan penggunaan Android pada tablet untuk pertama kalinya dalam industri.",
+            "C. Teks menekankan dua antarmuka sebagai bukti adanya dua sistem operasi berbeda.",
+            "D. Teks menekankan penggantian Windows dengan Linux sebagai pembaruan utama perangkat tablet."
+          ],
+          "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "key2": "Kunci tier 2: A. Bukti penjelas: Teks menyebut satu perangkat memberi fleksibilitas Android dan produktivitas Windows dengan pendekatan ganda yang jarang ditemui.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Teks tidak mengatakan Cloud AI Pad satu-satunya perangkat yang pernah memakai Android."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Benar. Alasan dalam teks adalah pendekatan ganda yang jarang ditemui serta fleksibilitas dan produktivitas."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Teks menyebut Windows melalui cloud, bukan penggantian Windows oleh OS China."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Dua antarmuka dari satu OS tidak sama dengan dua sistem yang dijelaskan teks."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Pasangan yang dibahas adalah Android dan Windows, bukan Linux dan Windows."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A tepat: bukti mencakup dua lingkungan, fleksibilitas, produktivitas, dan kelangkaan pendekatan ganda."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B mengklaim pemakaian Android pertama kali, yang tidak dinyatakan teks."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C menyamakan tampilan antarmuka dengan jumlah OS tanpa bukti."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D mengganti Windows dengan Linux, berbeda dari isi teks."
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "stem": "Apa keunggulan penggunaan konsep dual sistem operasi pada Cloud AI Pad dibandingkan tablet pada umumnya?",
+          "options": [
+            "A. Tablet dapat menjalankan semua sistem operasi",
+            "B. Pengguna dapat memanfaatkan fleksibilitas Android dan produktivitas Windows dalam satu perangkat",
+            "C. Tablet dapat berfungsi tanpa perangkat keras tambahan",
+            "D. Sistem operasi tidak lagi memerlukan pembaruan perangkat lunak",
+            "E. Semua aplikasi dapat berjalan tanpa koneksi internet"
+          ],
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Teks menjelaskan seluruh aplikasi kedua sistem dapat digunakan tanpa koneksi internet.",
+            "B. Teks mengaitkan dua sistem dalam satu perangkat dengan kebutuhan harian dan produktivitas.",
+            "C. Teks menjelaskan kedua sistem dapat berfungsi tanpa komponen fisik pada perangkat tablet.",
+            "D. Teks menjelaskan pembaruan kedua sistem tidak lagi diperlukan untuk mendukung produktivitas pengguna."
+          ],
+          "key1": "Kunci tier 1: B. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "key2": "Kunci tier 2: B. Bukti penjelas: Teks mengaitkan Android dan Windows dalam satu perangkat dengan kebutuhan sehari-hari dan produktivitas.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Teks hanya menyebut Android dan Windows; kemampuan menjalankan semua OS tidak dinyatakan."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Benar. Kedua lingkungan dalam satu perangkat mendukung fleksibilitas dan produktivitas."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Teks tidak menyimpulkan perangkat dapat berfungsi tanpa perangkat keras tambahan."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Tidak ada pernyataan bahwa dua OS menghapus kebutuhan pembaruan."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Windows melalui cloud bergantung koneksi; klaim semua aplikasi tanpa internet terlalu luas."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A menjanjikan semua aplikasi offline, melebihi informasi teks."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B tepat: fungsi kedua lingkungan dihubungkan dengan kebutuhan sehari-hari dan produktivitas."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C menyatakan perangkat tidak membutuhkan komponen fisik, yang tidak dijelaskan teks."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D menghapus kebutuhan pembaruan tanpa dukungan teks."
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "stem": "Berdasarkan teks, Cloud AI Pad menjalankan Android secara lokal dan Windows melalui cloud. Analisislah implikasi dari pendekatan ini terhadap ketergantungan pengguna pada koneksi internet dalam penggunaan perangkat!",
+          "options": [
+            "A. Pengguna tidak membutuhkan koneksi internet sama sekali karena kedua sistem berjalan secara lokal",
+            "B. Pengguna sepenuhnya bergantung pada internet karena kedua sistem berjalan melalui cloud",
+            "C. Android berjalan lokal tanpa bergantung cloud untuk menjalankan OS, sedangkan akses Windows cloud bergantung koneksi; aplikasi Android tertentu tetap dapat memerlukan internet",
+            "D. Koneksi internet hanya diperlukan saat memperbarui sistem operasi Android",
+            "E. Ketergantungan pada internet tidak relevan karena fitur AI menggantikan fungsi koneksi"
+          ],
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Teks menyebut eksekusi Android lokal menjamin semua aplikasinya selalu dapat berjalan offline.",
+            "B. Teks menyebut tombol AI menggantikan kebutuhan koneksi saat pengguna mengakses layanan Windows cloud.",
+            "C. Teks menyebut Android dan Windows sama-sama berjalan lokal tanpa bergantung pada layanan cloud.",
+            "D. Teks membedakan Android lokal dari Windows cloud, tanpa menjamin semua aplikasi Android offline."
+          ],
+          "key1": "Kunci tier 1: C. Opsi C merupakan usulan koreksi baseline untuk ditelaah ahli.",
+          "key2": "Kunci tier 2: D. Bukti penjelas: Eksekusi Android lokal dibedakan dari akses Windows cloud yang bergantung koneksi, tanpa menjamin semua aplikasi Android offline.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Windows melalui cloud sehingga kedua sistem tidak sepenuhnya lokal atau bebas internet."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Android dinyatakan lokal sehingga tidak benar bahwa kedua OS berjalan melalui cloud."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Benar. OS Android berjalan lokal, sementara Windows cloud bergantung koneksi. Aplikasi Android tertentu tetap dapat memerlukan internet."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Kebutuhan koneksi Windows cloud tidak terbatas pada pembaruan Android."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Tombol AI tidak dinyatakan menggantikan koneksi untuk layanan cloud."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A menyamakan OS lokal dengan seluruh layanan selalu offline."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B memberi fungsi pengganti internet kepada tombol AI tanpa dukungan teks."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C menempatkan Windows secara lokal, padahal teks menyebut cloud."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D tepat: kebutuhan koneksi dibedakan menurut lokasi eksekusi, tanpa menggeneralisasikan semua aplikasi Android."
+            }
+          ]
+        }
+      ],
+      "practice": {
+        "evidence": [
+          "Salah satu inovasi terbaru yang menarik perhatian dunia teknologi datang dari operator telekomunikasi asal China, China Unicom, yang meluncurkan tablet terbaru bernama Cloud AI Pad.",
+          "Sistem operasi Android dijalankan secara lokal langsung di perangkat tablet.",
+          "Di sisi lain, sistem operasi Windows dijalankan melalui teknologi komputasi awan atau cloud, sehingga pengguna dapat menikmati pengalaman kerja layaknya menggunakan komputer berbasis Windows tanpa harus menginstalnya secara langsung di perangkat.",
+          "Selain keunggulan sistem operasi ganda, Cloud AI Pad juga dilengkapi dengan fitur kecerdasan buatan (artificial intelligence) yang terintegrasi langsung ke dalam perangkat melalui tombol khusus AI pada keyboard."
+        ],
+        "conclusions": [
+          "Pada tablet dalam berita, dua OS tidak berarti keduanya dipasang langsung di perangkat.",
+          "Keunggulan yang ditawarkan adalah dua lingkungan yang saling melengkapi kebutuhan pengguna."
+        ],
+        "pairEvidence": [
+          "Sistem operasi Android dijalankan secara lokal langsung di perangkat tablet. Di sisi lain, sistem operasi Windows dijalankan melalui teknologi komputasi awan atau cloud, sehingga pengguna dapat menikmati pengalaman kerja layaknya menggunakan komputer berbasis Windows tanpa harus menginstalnya secara langsung di perangkat.",
+          "Namun, dengan konsep yang diterapkan oleh China Unicom ini, pengguna Cloud AI Pad dapat beralih antara platform Android yang fleksibel untuk kebutuhan sehari-hari dan Windows yang mendukung produktivitas kerja profesional, semuanya dalam satu perangkat yang sama."
+        ],
+        "slotOrder": "choices[i] is evidence slot assigned to conclusion i"
+      }
+    },
+    "3": {
+      "questions": [
+        {
+          "stem": "1. Menurut abstrak, faktor utama yang mendorong pergeseran dari model process-centric menuju data-centric adalah ...",
+          "options": [
+            "A. Meningkatnya kebutuhan antarmuka grafis pada sistem operasi",
+            "B. Perkembangan bahasa pemrograman tingkat tinggi",
+            "C. Tuntutan kompatibilitas perangkat lunak lintas platform",
+            "D. Tren perangkat keras seperti peningkatan kecepatan interkoneksi dan penyimpanan persisten",
+            "E. Dominasi sistem operasi berbasis mobile"
+          ],
+          "answer": 4
+        },
+        {
+          "stem": "2. Keunggulan utama pendekatan data-centric yang diperkenalkan melalui sistem Twizzler dibandingkan pendekatan tradisional adalah ...",
+          "options": [
+            "A. Penggunaan kernel yang lebih kompleks untuk mengatur data",
+            "B. Penggunaan model RPC yang lebih ketat dan terstruktur",
+            "C. Penghapusan sepenuhnya peran kernel dalam sistem operasi",
+            "D. Ketergantungan penuh pada teknologi virtualisasi",
+            "E. Penyederhanaan jalur akses data dan pengurangan kebutuhan serialisasi"
+          ],
+          "answer": 5
+        },
+        {
+          "stem": "3. Berdasarkan isi abstrak, mengapa model pemrograman tradisional dianggap kurang sesuai dengan perkembangan perangkat keras modern?",
+          "options": [
+            "A. Karena model tradisional menimbulkan overhead dan keterbatasan yang menghambat pemanfaatan perangkat keras modern secara optimal",
+            "B. Karena perangkat keras modern tidak lagi membutuhkan sistem operasi",
+            "C. Karena perangkat keras modern hanya mendukung sistem operasi berbasis cloud",
+            "D. Karena semua aplikasi modern menggunakan bahasa pemrograman baru",
+            "E. Karena sistem operasi modern tidak memerlukan kernel"
+          ],
+          "answer": 1
+        },
+        {
+          "stem": "4. Pendekatan data-centric yang diimplementasikan dalam Twizzler terbukti meningkatkan performa melalui penyederhanaan lapisan perangkat lunak. Evaluasilah apakah pendekatan ini layak dijadikan standar baru dalam pengembangan sistem operasi modern, berdasarkan argumen yang disajikan dalam abstrak!",
+          "options": [
+            "A. Tidak layak, karena Twizzler hanya diuji pada studi kasus terbatas dan belum terbukti skalabilitasnya secara luas",
+            "B. Layak, karena pendekatan data-centric mengurangi keterlibatan kernel, menghilangkan serialisasi, dan terbukti meningkatkan performa pada berbagai kasus yang diuji",
+            "C. Tidak layak, karena model process-centric masih lebih andal untuk sistem operasi yang melayani pengguna umum",
+            "D. Layak, namun hanya untuk sistem operasi berbasis cloud dan tidak relevan untuk perangkat lokal",
+            "E. Tidak layak, karena abstrak tidak menyebutkan perbandingan langsung dengan sistem operasi komersial yang ada"
+          ],
+          "answer": 2
+        }
+      ],
+      "practiceStatus": "new practice not implemented yet"
+    }
+  }
+}

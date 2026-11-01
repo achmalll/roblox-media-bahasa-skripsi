@@ -1,6 +1,15 @@
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
+-- Research records are server-timed; no player names or free text are sent.
+local recordHttp = game:GetService("HttpService")
+local function recordLearning(op, fields)
+ local remote=game:GetService("ReplicatedStorage"):FindFirstChild("LearningRecordEvent")
+ if not remote then return end
+ fields=fields or {}; fields.op=op; fields.level=1; fields.id=fields.id or recordHttp:GenerateGUID(false)
+ remote:FireServer(fields)
+end
+
 local playerGui = player:WaitForChild("PlayerGui")
 local PlayerControl = require(player.PlayerScripts:WaitForChild("PlayerControlHandler"))
 local GuiAnimation = require(player.PlayerScripts:WaitForChild("GuiAnimationHandler"))
@@ -282,9 +291,10 @@ nextButton.MouseButton1Click:Connect(function()
 	if not completed[activeClip] then return end
 	if activeClip == 2 then openAudio(3) else closeAudio() end
 end)
-introFrame.mulaibtn.MouseButton1Click:Connect(function() openAudio(1) end)
+introFrame.mulaibtn.MouseButton1Click:Connect(function() recordLearning("start"); openAudio(1) end)
 introFrame:WaitForChild("close").MouseButton1Click:Connect(closeAudio)
 local function tutor1()
+	recordLearning("start")
 	if not guideVisited then
 		explainPrerequisite("Baca papan panduan dahulu sebelum mulai belajar.")
 		return
@@ -704,6 +714,7 @@ checkButton.MouseButton1Click:Connect(function()
 		feedback.Text = "Isi kedua tempat terlebih dahulu."
 		return
 	end
+	recordLearning("practice", {activity="slots", choices={slots.main,slots.supporting}})
 	local correct = slots.main == "A" and slots.supporting == "B"
 	if correct then
 		latihanCompleted = true
@@ -932,6 +943,7 @@ do
 	local currentQuestion, currentTier, selectedAnswer, selectedReason = 1, 1, nil, nil
 	local evaluationMode = "tier"
 	local answerCorrect, reasonCorrect = 0, 0
+	local attemptId, recordedAnswers, recordedReasons
 	local optionButtons = {}
 	local function setSubmit(enabled, text)
 		submit.Active = enabled
@@ -958,7 +970,7 @@ do
 		selectedSummary.Visible = false
 		evaluationTitle.Text = answerCorrect >= 3 and "Level 1 selesai" or "Level 1 belum tuntas"
 		evaluationStem.Text = "Nilai jawaban: " .. (answerCorrect * 25) .. " / 100\nJawaban tepat: " .. answerCorrect .. " dari 4 • Alasan tepat: " .. reasonCorrect .. " dari 4"
-		if not review then game:GetService("ReplicatedStorage"):WaitForChild("UpdateLevel1Score"):FireServer(answerCorrect * 25) end
+		if not review then game:GetService("ReplicatedStorage"):WaitForChild("UpdateLevel1Score"):FireServer({id=attemptId,answers=recordedAnswers,reasons=recordedReasons}) end
 		retry.Visible = answerCorrect < 3
 		retry.Active = true
 		retry.AutoButtonColor = true
@@ -1060,6 +1072,8 @@ do
 		elseif currentTier == 2 and selectedReason then
 			readingArea.CanvasPosition = Vector2.zero
 			local q = evaluationQuestions[currentQuestion]
+			recordedAnswers[currentQuestion], recordedReasons[currentQuestion] = selectedAnswer, selectedReason
+			recordLearning("evaluation_item", {id=attemptId..":"..currentQuestion,attemptId=attemptId,question=currentQuestion,answer=selectedAnswer,reason=selectedReason})
 			local answerOK, reasonOK = selectedAnswer == q.answer, selectedReason == q.reason
 			if answerOK then answerCorrect += 1 end
 			if reasonOK then reasonCorrect += 1 end
@@ -1077,6 +1091,7 @@ do
 		if resultProgressConnection then resultProgressConnection:Disconnect(); resultProgressConnection = nil end
 		currentQuestion, currentTier, selectedAnswer, selectedReason = 1, 1, nil, nil
 		answerCorrect, reasonCorrect = 0, 0
+		attemptId, recordedAnswers, recordedReasons = recordHttp:GenerateGUID(false), {}, {}
 		evaluationMode = "tier"
 		quizFrame.Visible = false
 		evaluationFrame.Visible = true

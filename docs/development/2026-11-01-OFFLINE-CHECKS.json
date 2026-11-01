@@ -1,0 +1,188 @@
+{
+  "date": "2026-11-01",
+  "scope": "Actual source executed offline in Luau with mocked Roblox services; bridge HTTP fixture. No Studio/Play/publish/real DataStore calls",
+  "working": {
+    "sha256": "b1a4ec89ed23536d077b60c8249a3f73fc623ac345bb048be96c19978156acc5",
+    "bytes": 2844243,
+    "changed": false
+  },
+  "contentRevision": "aacce0f5c6598d551fc6049a3780d7f1f965ee59fb74291390f3d0ef764630f9",
+  "checks": [
+    {
+      "command": "node scripts/test-learning-records.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-recording-runtime.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-score-recording.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-level2.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-arrow-streaming.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-record-export.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    },
+    {
+      "command": "node scripts/test-studio-bridge.cjs",
+      "exitCode": 0,
+      "result": "PASS in immediately preceding final test run"
+    }
+  ],
+  "sources": [
+    {
+      "file": "studio-sync/src/Level1Handler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level1Handler"
+      ],
+      "compiled": true,
+      "sourceSha256": "25a64c871bd1d3b4bbde684d97712e145a2214bbe6956145c7e050ba029facf6",
+      "savedSha256": "a0aecd7410e47b4e49d89a0789bae6e3b3bcf01cc4d64d2bc4583a0e5cd80ee4",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/ArrowGuideScript.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "ArrowGuideScript"
+      ],
+      "compiled": true,
+      "sourceSha256": "39c0b120c9466c39a29191f2062c4019ce9e5638826234949917bd107b665c9c",
+      "savedSha256": "6e29d56057987beaba30a9b23982f6b05c8af984fe2f4bae264c08a575aee938",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/Level1ScoreHandler.server.luau",
+      "instancePath": [
+        "ServerScriptService",
+        "Level1ScoreHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "62e394cdcd006bbb8ffb3c41254ad41ef5753b8f6906a8f17b4e00f160e39088",
+      "savedSha256": "be3be043d85cd7ecb0afd633a49153fdfa6dbb325278c786088762c8b2e07d25",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/LevelProgressHandler.server.luau",
+      "instancePath": [
+        "ServerScriptService",
+        "LevelProgressHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "6dcf9be0be34489e3b547c0ba36179e493bed18466e16c548bf9c5fa557e7f61",
+      "savedSha256": "bbae4bd2201c696e45731174cf34a5134d9c915f7e1d3e0fdb0227091b291169",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/Level2FlowHandler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2FlowHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "37408150a44f3ebc41cef6a38d6dba6a6c5b04c3e8ea0d1b0b589adbc5605070",
+      "savedSha256": "95b91d23e86af4797f37b77845ed2dd4f3effdef9b97ecc48e93b887bcc33db5",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/Level2BoardHandler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2BoardHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "97c371ca009708e5d7ce33e7b4ddf0fb58ae90874b83757c8cf843d6ffb4f185",
+      "savedSha256": "97c371ca009708e5d7ce33e7b4ddf0fb58ae90874b83757c8cf843d6ffb4f185",
+      "savedMatchesSource": true
+    },
+    {
+      "file": "studio-sync/src/Level2QuizHandler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2QuizHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "cfa6eb0887ed24e579709f90246e60c4a50f7da73b6aae4f975ecb8566554426",
+      "savedSha256": "cfa6eb0887ed24e579709f90246e60c4a50f7da73b6aae4f975ecb8566554426",
+      "savedMatchesSource": true
+    },
+    {
+      "file": "studio-sync/src/Level2ScoreHandler.server.luau",
+      "instancePath": [
+        "ServerScriptService",
+        "Level2ScoreHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "cbe1861dd4997c0c46d4ca8614f1b16170e9a682f2ff3b440dad0a03fbbda71f",
+      "savedSha256": "cbe1861dd4997c0c46d4ca8614f1b16170e9a682f2ff3b440dad0a03fbbda71f",
+      "savedMatchesSource": true
+    },
+    {
+      "file": "studio-sync/src/Level3ScoreHandler.server.luau",
+      "instancePath": [
+        "ServerScriptService",
+        "Level3ScoreHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "998e70edc9cd9708780501ac162f8e849361207c4d2d47d47edfca036ae3efad",
+      "savedSha256": "aae384819440bddfdbc1b2c563b5af62072a01d7877e09ae26610146379f463e",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/Level3FlowHandler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level3FlowHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "2d594f633f68f7c0fa911bee04d455b88afa9071bd5721c540050d34e13fddf8",
+      "savedSha256": "d67b02fab9b85424d48bcddc1460c030d8dd575cca8e21454a60fa5674ea0f51",
+      "savedMatchesSource": false
+    },
+    {
+      "file": "studio-sync/src/Level3QuizHandler.client.luau",
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level3QuizHandler"
+      ],
+      "compiled": true,
+      "sourceSha256": "35991d0dc57f9cef7cbae1e9986e75d64d367283e5176387a63965256fe03ae6",
+      "savedSha256": "d569d583dc8b1673a397e9271651062a342e5eb5d50fb466fdf6841ee5239ecf",
+      "savedMatchesSource": false
+    }
+  ],
+  "needsStudioSyncAndSave": true,
+  "realCloudWriteReadTested": false,
+  "visualQATested": false,
+  "initialFixtureRestriction": "Default sandbox rejected localhost 34874 with EACCES; rerun outside sandbox PASS",
+  "reportCorrection": "Initial report-only generator assumed inventory exposed class index; corrected to unique class Name/source lookup, no game mutation",
+  "arrowRegressions": [
+    "Level3 panels",
+    "missing character root",
+    "HideArrowEvent destroys without retaining render reference"
+  ],
+  "sourceWhitespace": "Removed inherited trailing whitespace in newly managed baseline L3 source/progress template; rebuilt and verified"
+}

@@ -46,19 +46,56 @@
       "file": "studio-sync/src/Level2FlowHandler.client.luau"
     },
     {
-      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "Level2BoardHandler"],
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2BoardHandler"
+      ],
       "className": "LocalScript",
       "file": "studio-sync/src/Level2BoardHandler.client.luau"
     },
     {
-      "instancePath": ["StarterPlayer", "StarterPlayerScripts", "Level2QuizHandler"],
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level2QuizHandler"
+      ],
       "className": "LocalScript",
       "file": "studio-sync/src/Level2QuizHandler.client.luau"
     },
     {
-      "instancePath": ["ServerScriptService", "Level2ScoreHandler"],
+      "instancePath": [
+        "ServerScriptService",
+        "Level2ScoreHandler"
+      ],
       "className": "Script",
       "file": "studio-sync/src/Level2ScoreHandler.server.luau"
+    },
+    {
+      "instancePath": [
+        "ServerScriptService",
+        "Level3ScoreHandler"
+      ],
+      "className": "Script",
+      "file": "studio-sync/src/Level3ScoreHandler.server.luau"
+    },
+    {
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level3FlowHandler"
+      ],
+      "className": "LocalScript",
+      "file": "studio-sync/src/Level3FlowHandler.client.luau"
+    },
+    {
+      "instancePath": [
+        "StarterPlayer",
+        "StarterPlayerScripts",
+        "Level3QuizHandler"
+      ],
+      "className": "LocalScript",
+      "file": "studio-sync/src/Level3QuizHandler.client.luau"
     }
   ],
   "properties": [

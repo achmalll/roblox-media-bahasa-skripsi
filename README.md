@@ -1,3 +1,5 @@
+Catatan 1 November 2026: [rekap belajar per pemain](docs/LEARNING-RECORDS.md) dan perbaikan panah sudah disiapkan serta diuji offline. Source terbaru menunggu sinkronisasi11source/Save/QA dan uji DataStore nyata; file WORKING tetap checkpoint31Oktober.
+
 # Media pembelajaran Roblox untuk skripsi Achmal
 
 **Masuk warnet:** klik MULAI pada flashdisk, buka Studio/Codex dan kirim prompt yang tampil. AI membaca [LANJUTKAN.md](LANJUTKAN.md); setiap akhir sesi wajib memperbarui brief, loghariitu dan targetsesiberikut.

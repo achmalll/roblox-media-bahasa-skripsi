@@ -80,3 +80,7 @@ Targetsourcekelima: Level2FlowHandler existing, menambahkan3prompt/modal kosongr
 Pembaruan 31 Oktober 2026: plugin otomatis mencoba koneksi setiap detik. Tombol Reconnect selalu mengaktifkan koneksi dan pairing ulang; bukan toggle pause. Kegagalan transport membersihkan sesi untuk pemulihan otomatis. Setelah pembaruan plugin, Save dan buka ulang Studio satu kali; bridge server tetap harus berjalan melalui MULAI.
 
 Level2 lengkap31Oktober:8source existing dikelola, termasuk Level2BoardHandler/Level2QuizHandler(shim) dan Level2ScoreHandler. Builder scripts/build-level2.cjs membaca template+storyboard+bankisi; janganedit generatedsource tanpa memperbarui template. Tes scripts/test-level2.cjs memakai compiler/runtime Luau lokal. PanduanQA docs/development/2026-10-31-LEVEL2.md. SaveStudio dan Playtetapoleh pengguna.
+
+## 1 November 2026 — recorder offline dan 11 source
+
+Source mencakup handler L3 existing (flow/quiz/score) dan recorder yang dibuild ke LevelProgressHandler. Jalankan build-level2.cjs lalu build-recording.cjs setelah mengedit template. Lihat [rekap belajar](../docs/LEARNING-RECORDS.md). WORKING masih checkpoint 31 Oktober; source baru belum sync/Save/Play/cloud. Restart bridge dan cek11source saat sesi Studio berikut, kemudian verifikasi Save. Tidak melakukan patch biner.

@@ -4,6 +4,15 @@ local Http = game:GetService("HttpService")
 local Input = game:GetService("UserInputService")
 local DATA = nil -- GENERATED_CONTENT
 local player = Players.LocalPlayer
+-- Research records are server-timed; no player names or free text are sent.
+local recordHttp = game:GetService("HttpService")
+local function recordLearning(op, fields)
+ local remote=game:GetService("ReplicatedStorage"):FindFirstChild("LearningRecordEvent")
+ if not remote then return end
+ fields=fields or {}; fields.op=op; fields.level=2; fields.id=fields.id or recordHttp:GenerateGUID(false)
+ remote:FireServer(fields)
+end
+
 local pg = player:WaitForChild("PlayerGui")
 local controls = require(player:WaitForChild("PlayerScripts"):WaitForChild("PlayerControlHandler"))
 local event = game:GetService("ReplicatedStorage"):WaitForChild("UpdateLevel2Score")
@@ -237,6 +246,8 @@ evidence=function(feedback)
   button(sc,"Ke Latihan 2",dismiss)
  else
   button(sc,"Periksa",function()
+   local choices={}; for i=1,4 do if state.selected[i] then table.insert(choices,i) end end
+   recordLearning("practice",{activity="evidence",choices=choices,help=state.help1})
    if state.selected[2] and state.selected[3] then state.done1=true; evidence()
    else
     state.errors1+=1
@@ -285,6 +296,7 @@ pairView=function(feedback)
  local right=left:Clone(); right.Position=UDim2.fromScale(.51,.91); right.Parent=body
  local check=button(left,state.done2 and "Ke kios evaluasi" or "Periksa",function()
   if state.done2 then dismiss(); return end
+  recordLearning("practice",{activity="pairs",choices={state.slots[1],state.slots[2]},help=state.help2})
   if state.slots[1]==1 and state.slots[2]==2 then state.done2=true; pairView()
   else
    state.errors2+=1
@@ -368,7 +380,9 @@ question=function()
  end
  evaluationAction(attempt.tier==1 and "Kunci jawaban" or "Kirim jawaban",function()
   if attempt.tier==1 then attempt.answers[attempt.index]=attempt.selection; attempt.tier=2; attempt.selection=nil
-  else attempt.reasons[attempt.index]=attempt.selection; attempt.feedback=true end
+  else attempt.reasons[attempt.index]=attempt.selection; attempt.feedback=true
+   recordLearning("evaluation_item",{id=attempt.id..":"..attempt.index,attemptId=attempt.id,question=attempt.index,answer=attempt.answers[attempt.index],reason=attempt.reasons[attempt.index]})
+  end
   question()
  end,attempt.selection~=nil)
 end
@@ -455,6 +469,7 @@ local function bind(s)
   local reason=prerequisite(s.key)
   if reason then alert(reason); refreshGuide(); return end
   notice.Visible=false; noticeVersion+=1
+  recordLearning("start")
   activePrompt=p; gui.Enabled=true; player:SetAttribute("L2LearningOpen",true); controls.Lock(); prompts(false); render(s.key)
  end)
  print("[L2 Learning] Bound: "..table.concat(s.path,"/"))

@@ -2,7 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_pro
 const root=path.resolve(__dirname,'..');
 const prelude=`
 local callback,removed
-local remote={OnServerEvent={Connect=function(_,fn) callback=fn end}}
+local remote={FireClient=function() end,OnServerEvent={Connect=function(_,fn) callback=fn end}}
 local players={PlayerRemoving={Connect=function(_,fn) removed=fn end}}
 local kiosk={GetDescendants=function() return {} end,DescendantAdded={Connect=function() end}}
 workspace={WaitForChild=function() return {WaitForChild=function() return kiosk end} end}
@@ -11,7 +11,7 @@ game={GetService=function(_,name) if name=="Players" then return players end; re
 local function folder(v) v.FindFirstChild=function(self,name) return self[name] end; return v end
 local function player(level) return folder({UserId=1,leaderstats=folder({LevelProgress={Value=level}}),PlayerScores=folder({Level1Score={Value=0},Level2Score={Value=100},Level3Score={Value=0}})}) end
 `;
-for(const [level,answers] of [[1,'2,3,2,5'],[3,'4,5,1,2']]) {
+for(const [level,answers] of [[1,'2,3,2,5'],[3,'4,5,1,3']]) {
  const tests=`
 local p=player(${level})
 callback(p,100); assert(p.PlayerScores.Level${level}Score.Value==0)

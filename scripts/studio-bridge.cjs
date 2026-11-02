@@ -46,6 +46,21 @@ function createBridge(root, options = {}) {
   function checkCommand(command) {
     if (!command || typeof command.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(command.id)) throw Error('Invalid command ID');
     if (command.op === 'inspect_workspace') return;
+    if (command.op === 'archive_aula_photo_seating') {
+      if (config.aulaPhotoSpot !== true) throw Error('Photo seating outside scope');
+      if (command.apply === true && (!Array.isArray(command.beforeCenter) || command.beforeCenter.length !== 3 || command.beforeCenter.some(v=>!Number.isFinite(v)) || !Number.isInteger(command.beforeSeats) || command.beforeSeats<10 || command.beforeSeats>60)) throw Error('Invalid seating preflight');
+      return;
+    }
+    if (command.op === 'polish_aula_photo') {
+      if (config.aulaPhotoSpot !== true) throw Error('Photo polish outside scope');
+      return;
+    }
+    if (command.op === 'inspect_aula_photo') return;
+    if (command.op === 'stage_aula_photo') {
+      if (config.aulaPhotoSpot !== true) throw Error('Aula photo outside project scope');
+      if (!Array.isArray(command.frame) || command.frame.length !== 12 || command.frame.some(v => !Number.isFinite(v))) throw Error('Invalid photo frame');
+      return;
+    }
     if (command.op === 'fix_male_guide_pants') {
       if (config.level2StationGuides !== true || config.level3FurnitureLayout !== true) throw Error('Guide clothing outside project scope');
       return;

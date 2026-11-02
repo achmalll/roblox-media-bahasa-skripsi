@@ -42,7 +42,11 @@ rootPresent=false; frame(); assert(body.LocalTransparencyModifier==1,"Missing ch
 rootPresent=true; spawn(char); frame(); assert(body.LocalTransparencyModifier==0)
 hide(); pointed=nil; frame(); assert(pointed==nil)
 spawn(char); frame(); assert(pointed.X==10)
-print("PASS arrow: streaming, L1/L2 targets, all panels including L3, missing root, respawn, destroyed-arrow cleanup")
+progress.Value=3; attrs.L3GuideTarget=Vector3.new(45,0,0); frame(); assert(pointed.X==45)
+attrs.L3LearningOpen=true; pointed=nil; frame(); assert(pointed==nil and body.LocalTransparencyModifier==1)
+attrs.L3LearningOpen=nil; frame(); assert(pointed.X==45)
+attrs.L3GuideTarget=nil; frame(); assert(body.LocalTransparencyModifier==1)
+print("PASS arrow: streaming, L1/L2/L3 targets, all panels including L3, missing root, respawn, destroyed-arrow cleanup")
 `;
 const target = path.join(root, 'local-rbxl/bridge/test-arrow-streaming.luau');
 fs.mkdirSync(path.dirname(target), {recursive: true});

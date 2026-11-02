@@ -1,28 +1,38 @@
--- Validate choices on server; recordings observe this same payload.
+-- Existing UpdateLevel3Score remote; validate choices and calculate both scores on server.
 local Players=game:GetService("Players")
 local event=game:GetService("ReplicatedStorage"):WaitForChild("UpdateLevel3Score")
-local keys={4,5,1,2}
-local seen={}
-local function integer(v,max) return typeof(v)=="number" and v==v and v%1==0 and v>=1 and v<=max end
+local answerKeys = {4,5,1,3}
+local reasonKeys = {3,1,2,4}
+local cache={}
+local function integer(value,maximum)
+ return typeof(value)=="number" and value==value and value%1==0 and value>=1 and value<=maximum
+end
 event.OnServerEvent:Connect(function(player,payload)
- if typeof(payload)~="table" or typeof(payload.id)~="string" or #payload.id<1 or #payload.id>64 then return end
- local previous=seen[player]; if previous and previous.id==payload.id then return end
- if typeof(payload.answers)~="table" or #payload.answers~=4 then return end
- local scores=player:FindFirstChild("PlayerScores")
+ if typeof(payload)~="table" or typeof(payload.id)~="string" or #payload.id>64 or #payload.id<1 then return end
+ local previous=cache[player]
+ if previous and previous.id==payload.id then event:FireClient(player,previous); return end
  local stats=player:FindFirstChild("leaderstats")
+ local scores=player:FindFirstChild("PlayerScores")
  local progress=stats and stats:FindFirstChild("LevelProgress")
+ local level2=scores and scores:FindFirstChild("Level2Score")
  local saved=scores and scores:FindFirstChild("Level3Score")
- if not progress or not saved then return end
- local previousScore=scores:FindFirstChild("Level2Score")
- if progress.Value<3 or not previousScore or previousScore.Value<75 then return end
- local score=0
- for i=1,4 do
-  if not integer(payload.answers[i],5) then return end
-  if payload.answers[i]==keys[i] then score+=25 end
+ if not progress or not saved or not level2 then return end
+ if progress.Value<3 or level2.Value<75 then
+  event:FireClient(player,{id=payload.id,error="Selesaikan Level 2 dengan nilai minimal 75 terlebih dahulu."}); return
  end
- seen[player]={id=payload.id}
+ if typeof(payload.answers)~="table" or typeof(payload.reasons)~="table" then return end
+ if #payload.answers~=4 or #payload.reasons~=4 then return end
+ local score,reasons=0,0
+ for i=1,4 do
+  if not integer(payload.answers[i],5) or not integer(payload.reasons[i],4) then return end
+  if payload.answers[i]==answerKeys[i] then score+=25 end
+  if payload.reasons[i]==reasonKeys[i] then reasons+=1 end
+ end
  saved.Value=math.max(saved.Value,score)
  if saved.Value>=75 then progress.Value=math.max(progress.Value,4) end
- print("[L3 Server] Result",player.UserId,"score",score,"best",saved.Value)
+ local response={id=payload.id,score=score,reasons=reasons,best=saved.Value,unlocked=progress.Value>=4}
+ cache[player]=response
+ event:FireClient(player,response)
+ print("[L3 Server] Result",player.UserId,"score",score,"reasons",reasons,"progress",progress.Value)
 end)
-Players.PlayerRemoving:Connect(function(player) seen[player]=nil end)
+Players.PlayerRemoving:Connect(function(player) cache[player]=nil end)

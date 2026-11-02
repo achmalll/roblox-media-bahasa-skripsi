@@ -83,8 +83,139 @@ local function allowed(list, command, withProperty)
 	return false
 end
 
+local function aulaBounds(hall)
+ local low=Vector3.new(math.huge,math.huge,math.huge)
+ local high=Vector3.new(-math.huge,-math.huge,-math.huge)
+ local count=0
+ for _,p in ipairs(hall:GetDescendants()) do if p:IsA("BasePart") then
+  count+=1
+  for _,x in ipairs({-1,1}) do for _,y in ipairs({-1,1}) do for _,z in ipairs({-1,1}) do
+   local v=p.CFrame:PointToWorldSpace(p.Size*Vector3.new(x,y,z)/2)
+   low=Vector3.new(math.min(low.X,v.X),math.min(low.Y,v.Y),math.min(low.Z,v.Z))
+   high=Vector3.new(math.max(high.X,v.X),math.max(high.Y,v.Y),math.max(high.Z,v.Z))
+  end end end
+ end end
+ assert(count>0,"Aula has no geometry")
+ return CFrame.new((low+high)/2),high-low
+end
+
 local function execute(command)
 	assert(not testing(), "Play active: edits paused")
+	if command.op == "archive_aula_photo_seating" then
+		assert(config.aulaPhotoSpot==true,"Photo seating outside scope")
+		local hall=resolve({"Workspace","Gedung Tengah"})
+		local photo=resolve({"Workspace","Gedung Tengah","AulaPhotoSpot"})
+		local storage=game:GetService("ServerStorage")
+		local saved=storage:FindFirstChild("AulaPhotoSeatingBackup")
+		if saved then
+			assert(saved:IsA("Model") and saved:GetAttribute("PhotoSeatingBackupV1")==true,"Unmanaged backup exists")
+			return {status="already_applied",backup="ServerStorage/AulaPhotoSeatingBackup"}
+		end
+		local candidates={}
+		for _,root in ipairs(hall:GetChildren()) do if root:IsA("Model") and root~=photo then
+			local seats=0; local unsafe=false
+			for _,o in ipairs(root:GetDescendants()) do
+				if o:IsA("Seat") or o:IsA("VehicleSeat") then seats+=1 end
+				if o:IsA("LuaSourceContainer") or o:IsA("Humanoid") then unsafe=true end
+			end
+			if seats>=10 and seats<=60 and not unsafe then
+				local cf,size=root:GetBoundingBox(); local offset=cf.Position-photo:GetPivot().Position
+				table.insert(candidates,{root=root,name=root.Name,seats=seats,center={cf.X,cf.Y,cf.Z},size={size.X,size.Y,size.Z},distance=Vector3.new(offset.X,0,offset.Z).Magnitude})
+			end
+		end end
+		table.sort(candidates,function(a,b) return a.distance<b.distance end)
+		local report={}
+		for _,c in ipairs(candidates) do table.insert(report,{name=c.name,seats=c.seats,center=c.center,size=c.size,distance=c.distance}) end
+		if command.apply~=true then return {status="read",candidates=report} end
+		local chosen=candidates[1]; assert(chosen and chosen.distance<50,"No nearby seating cluster")
+		assert(not candidates[2] or candidates[2].distance-chosen.distance>2,"Ambiguous seating cluster")
+		assert(type(command.beforeCenter)=="table" and #command.beforeCenter==3,"Preflight center required")
+		assert((Vector3.new(table.unpack(command.beforeCenter))-Vector3.new(table.unpack(chosen.center))).Magnitude<.05 and command.beforeSeats==chosen.seats,"Seating changed after inspection")
+		History:SetWaypoint("Before archiving aula photo seating")
+		chosen.root:SetAttribute("PhotoSeatingOriginalName",chosen.name)
+		chosen.root:SetAttribute("PhotoSeatingBackupV1",true)
+		chosen.root.Name="AulaPhotoSeatingBackup"; chosen.root.Parent=storage
+		History:SetWaypoint("Aula photo seating archived")
+		return {status="applied",backup="ServerStorage/AulaPhotoSeatingBackup",seats=chosen.seats,center=chosen.center,remainingCandidates=#candidates-1}
+	end
+	if command.op == "polish_aula_photo" then
+		assert(config.aulaPhotoSpot==true,"Photo polish outside scope")
+		local model=resolve({"Workspace","Gedung Tengah","AulaPhotoSpot"})
+		assert(model:GetAttribute("PhotoSpotV1")==true,"Unmanaged photo spot")
+		local face=resolve({"Workspace","Gedung Tengah","AulaPhotoSpot","PhotoBackdrop","PhotoMessage"})
+		local labels={}
+		for _,o in ipairs(face:GetChildren()) do if o:IsA("TextLabel") then table.insert(labels,o) end end
+		assert(#labels==4,"Photo labels changed")
+		table.sort(labels,function(a,b) return a.Position.Y.Scale<b.Position.Y.Scale end)
+		assert(labels[1].Text=="PERJALANAN BELAJARKU" and labels[2].Text=="Bahasa Indonesia • Roblox","Photo wording changed")
+		if model:GetAttribute("PhotoTypographyV2")==true then return {status="already_applied",visibleLabels=2} end
+		History:SetWaypoint("Before photo typography polish")
+		labels[1].Position=UDim2.fromScale(.055,.065); labels[1].Size=UDim2.fromScale(.89,.20); labels[1].TextSize=72
+		labels[2].Position=UDim2.fromScale(.07,.275); labels[2].Size=UDim2.fromScale(.86,.09); labels[2].TextSize=32
+		labels[3].Visible=false; labels[4].Visible=false
+		model:SetAttribute("PhotoTypographyV2",true)
+		History:SetWaypoint("Photo typography polished")
+		return {status="applied",visibleLabels=2,titleSize=72,avatarAreaClear=true}
+	end
+	if command.op == "inspect_aula_photo" then
+		local hall=resolve({"Workspace","Gedung Tengah"})
+		local cf,size=aulaBounds(hall)
+		local parts={}
+		for _,p in ipairs(hall:GetDescendants()) do if p:IsA("BasePart") then
+			table.insert(parts,{name=p.Name,parent=p.Parent.Name,frame={p.CFrame:GetComponents()},size={p.Size.X,p.Size.Y,p.Size.Z},collide=p.CanCollide})
+		end end
+		local entry=resolve({"Workspace","ApresiasiDoorBlock"})
+		local summary=resolve({"Workspace","SummaryProximity"})
+		return {status="read",bounds={frame={cf:GetComponents()},size={size.X,size.Y,size.Z}},entry={entry.Position.X,entry.Position.Y,entry.Position.Z},summary={summary.Position.X,summary.Position.Y,summary.Position.Z},parts=parts}
+	end
+	if command.op == "stage_aula_photo" then
+		assert(config.aulaPhotoSpot==true,"Aula photo outside scope")
+		local hall=resolve({"Workspace","Gedung Tengah"})
+		local existing=hall:FindFirstChild("AulaPhotoSpot")
+		if existing then
+			assert(existing:IsA("Model") and existing:GetAttribute("PhotoSpotV1")==true,"Unmanaged photo spot exists")
+			return {status="already_applied",parts=#existing:GetChildren(),frame={existing:GetPivot():GetComponents()}}
+		end
+		assert(type(command.frame)=="table" and #command.frame==12,"Invalid photo frame")
+		for _,n in ipairs(command.frame) do assert(type(n)=="number" and n==n and math.abs(n)<100000,"Invalid coordinate") end
+		local frame=CFrame.new(table.unpack(command.frame))
+		assert(math.abs(frame.UpVector.Y-1)<.001,"Photo frame must be upright")
+		local bounds,size=aulaBounds(hall); local rel=bounds:PointToObjectSpace(frame.Position)
+		assert(math.abs(rel.X)<size.X/2 and math.abs(rel.Z)<size.Z/2,"Photo spot outside aula")
+		local entry=resolve({"Workspace","ApresiasiDoorBlock"})
+		local summary=resolve({"Workspace","SummaryProximity"})
+		assert((frame.Position-entry.Position).Magnitude>12 and (frame.Position-summary.Position).Magnitude>12,"Photo spot blocks main activity")
+		local filter=OverlapParams.new(); filter.FilterType=Enum.RaycastFilterType.Include; filter.FilterDescendantsInstances={hall}
+		local touching=workspace:GetPartBoundsInBox(frame*CFrame.new(0,4,0),Vector3.new(16,7.5,9),filter)
+		assert(#touching==0,"Photo area occupied; inspect another position")
+		History:SetWaypoint("Before aula photo spot")
+		local model=Instance.new("Model"); model.Name="AulaPhotoSpot"
+		local function part(name,size,offset,color)
+			local p=Instance.new("Part"); p.Name=name; p.Size=size; p.CFrame=frame*offset
+			p.Anchored=true; p.CanCollide=false; p.CanTouch=false; p.Material=Enum.Material.SmoothPlastic; p.Color=color; p.Parent=model; return p
+		end
+		local cream=Color3.fromRGB(244,221,205); local brick=Color3.fromRGB(153,59,42); local gold=Color3.fromRGB(209,156,80)
+		part("PhotoFloor",Vector3.new(16,.12,9),CFrame.new(0,.06,0),cream)
+		local back=part("PhotoBackdrop",Vector3.new(16,9,.35),CFrame.new(0,4.5,4.3),brick)
+		part("LeftTrim",Vector3.new(.25,9,.5),CFrame.new(-7.7,4.5,4.1),gold)
+		part("RightTrim",Vector3.new(.25,9,.5),CFrame.new(7.7,4.5,4.1),gold)
+		part("TopTrim",Vector3.new(15.6,.25,.5),CFrame.new(0,8.7,4.1),gold)
+		local face=Instance.new("SurfaceGui"); face.Name="PhotoMessage"; face.Face=Enum.NormalId.Front; face.CanvasSize=Vector2.new(1200,675); face.Parent=back
+		local function label(value,y,height,textSize)
+			local t=Instance.new("TextLabel"); t.BackgroundTransparency=1; t.Position=UDim2.fromScale(.07,y); t.Size=UDim2.fromScale(.86,height)
+			t.Font=Enum.Font.GothamBold; t.TextSize=textSize; t.TextColor3=cream; t.TextWrapped=true; t.Text=value; t.Parent=face
+		end
+		label("PERJALANAN BELAJARKU",.08,.19,64)
+		label("Bahasa Indonesia • Roblox",.29,.10,32)
+		label("Tiga level, satu pencapaian.",.43,.10,36)
+		label("Pakai medalimu • Abadikan momenmu",.78,.10,30)
+		for i=-1,1 do
+			part("StandMarker"..i,Vector3.new(2,.04,2),CFrame.new(i*3,.14,0),gold)
+		end
+		model:SetAttribute("PhotoSpotV1",true); model.WorldPivot=frame; model.Parent=hall
+		History:SetWaypoint("Aula photo spot created")
+		return {status="applied",path="Workspace/Gedung Tengah/AulaPhotoSpot",parts=8,frame={frame:GetComponents()},medalChanged=false}
+	end
 	if command.op == "fix_male_guide_pants" then
 		assert(config.level2StationGuides and config.level3FurnitureLayout,"Guide clothing outside scope")
 		local source=resolve({"Workspace","Space 2","Budi",""}):FindFirstChildOfClass("Pants")

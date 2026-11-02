@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentRevision": "5fb6cf9e9d2aec33c080d7e1ce41f9644ce144e57066cb66b7300e424fd1ed52",
+  "contentRevision": "6571fa2dcf095666ef00c9801fb2de1c3727cfaad6e43d8184a7565ec76e00b9",
   "levels": {
     "1": {
       "questions": [
@@ -358,7 +358,8 @@
     "3": {
       "questions": [
         {
-          "stem": "1. Menurut abstrak, faktor utama yang mendorong pergeseran dari model process-centric menuju data-centric adalah ...",
+          "number": 1,
+          "stem": "Menurut abstrak, faktor utama yang mendorong pergeseran dari model process-centric menuju data-centric adalah …",
           "options": [
             "A. Meningkatnya kebutuhan antarmuka grafis pada sistem operasi",
             "B. Perkembangan bahasa pemrograman tingkat tinggi",
@@ -366,10 +367,57 @@
             "D. Tren perangkat keras seperti peningkatan kecepatan interkoneksi dan penyimpanan persisten",
             "E. Dominasi sistem operasi berbasis mobile"
           ],
-          "answer": 4
+          "key1": "Kunci tier 1: D. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Abstrak menekankan perubahan antarmuka grafis sebagai pendorong perubahan model sistem operasi.",
+            "B. Abstrak menekankan kemunculan bahasa pemrograman baru sebagai pendorong perubahan model sistem operasi.",
+            "C. Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten.",
+            "D. Abstrak menekankan penggantian seluruh server oleh perangkat mobile sebagai pendorong perubahan model."
+          ],
+          "key2": "Kunci tier 2: C. Bukti penjelas: Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Pendorong yang disebut abstrak adalah tren perangkat keras, bukan kebutuhan tampilan grafis."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Bahasa pemrograman baru bukan faktor utama yang disebut abstrak."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Kompatibilitas dibahas sebagai keterbatasan model lama, bukan tren utama yang ditanyakan."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Benar. Interkoneksi cepat dan penyimpanan persisten termasuk tren yang dibahas."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Dominasi OS mobile tidak menjadi pendorong yang dinyatakan abstrak."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A berfokus pada grafis yang tidak menjadi motivasi utama abstrak."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B berfokus pada bahasa pemrograman yang tidak menjadi tren utama pada teks."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C tepat: perubahan model dikaitkan dengan interkoneksi dan penyimpanan persisten."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D menambahkan penggantian semua server oleh mobile tanpa bukti."
+            }
+          ]
         },
         {
-          "stem": "2. Keunggulan utama pendekatan data-centric yang diperkenalkan melalui sistem Twizzler dibandingkan pendekatan tradisional adalah ...",
+          "number": 2,
+          "stem": "Keunggulan utama pendekatan data-centric yang diperkenalkan melalui sistem Twizzler dibandingkan pendekatan tradisional adalah …",
           "options": [
             "A. Penggunaan kernel yang lebih kompleks untuk mengatur data",
             "B. Penggunaan model RPC yang lebih ketat dan terstruktur",
@@ -377,10 +425,57 @@
             "D. Ketergantungan penuh pada teknologi virtualisasi",
             "E. Penyederhanaan jalur akses data dan pengurangan kebutuhan serialisasi"
           ],
-          "answer": 5
+          "key1": "Kunci tier 1: E. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Abstrak menjelaskan penyederhanaan akses data dan penghilangan kebutuhan serialisasi.",
+            "B. Abstrak menjelaskan penghapusan seluruh peran kernel dalam pengelolaan sistem komputer.",
+            "C. Abstrak menjelaskan pengetatan mekanisme RPC dalam pertukaran data antarprogram komputer.",
+            "D. Abstrak menjelaskan kewajiban virtualisasi untuk menjalankan setiap aplikasi dalam sistem."
+          ],
+          "key2": "Kunci tier 2: A. Bukti penjelas: Abstrak menjelaskan penyederhanaan jalur akses data dan hilangnya kebutuhan serialisasi dalam pendekatan yang dibahas.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Abstrak menekankan penyederhanaan akses data, bukan membuat kernel lebih kompleks."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "RPC yang kaku disebut sebagai beban model tradisional, bukan keunggulan pendekatan baru."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Mengurangi keterlibatan kernel pada jalur akses data tidak berarti seluruh fungsi kernel dihapus."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Ketergantungan penuh pada virtualisasi bukan keunggulan yang disebut abstrak."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Benar. Penyederhanaan akses data dan pengurangan kebutuhan serialisasi sesuai abstrak."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A tepat: akses data dan serialisasi merupakan perubahan yang dijelaskan."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B melebihkan pengurangan keterlibatan kernel menjadi penghapusan semua perannya."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C memilih RPC yang kaku, padahal kekakuan itu disebut sebagai beban tradisional."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D mensyaratkan virtualisasi pada semua aplikasi tanpa dukungan abstrak."
+            }
+          ]
         },
         {
-          "stem": "3. Berdasarkan isi abstrak, mengapa model pemrograman tradisional dianggap kurang sesuai dengan perkembangan perangkat keras modern?",
+          "number": 3,
+          "stem": "Mengapa model pemrograman tradisional dianggap kurang sesuai dengan perkembangan perangkat keras modern?",
           "options": [
             "A. Karena model tradisional menimbulkan overhead dan keterbatasan yang menghambat pemanfaatan perangkat keras modern secara optimal",
             "B. Karena perangkat keras modern tidak lagi membutuhkan sistem operasi",
@@ -388,21 +483,226 @@
             "D. Karena semua aplikasi modern menggunakan bahasa pemrograman baru",
             "E. Karena sistem operasi modern tidak memerlukan kernel"
           ],
-          "answer": 1
+          "key1": "Kunci tier 1: A. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Abstrak menyatakan perangkat modern dapat bekerja tanpa menggunakan sistem operasi.",
+            "B. Abstrak mengaitkan lapisan kompatibilitas dan overhead dengan keterbatasan perangkat baru.",
+            "C. Abstrak menyatakan perangkat modern hanya dapat bekerja melalui layanan berbasis cloud.",
+            "D. Abstrak menyatakan antarmuka lama selalu optimal untuk memanfaatkan kemampuan perangkat modern."
+          ],
+          "key2": "Kunci tier 2: B. Bukti penjelas: Abstrak mengaitkan lapisan kompatibilitas dan overhead model lama dengan keterbatasan pemanfaatan perangkat baru.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Benar. Lapisan kompatibilitas dan overhead membatasi pemanfaatan perangkat keras modern."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Abstrak mengusulkan perubahan pendekatan OS, bukan menghapus kebutuhan OS."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Pembahasan perangkat keras modern tidak dibatasi pada perangkat berbasis cloud."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Abstrak tidak mengaitkan masalah utama dengan semua aplikasi memakai bahasa baru."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Abstrak mengkritik jalur akses dan overhead, bukan menyatakan kernel tidak diperlukan."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A mengubah kritik model lama menjadi klaim semua perangkat tanpa OS."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B tepat: keterbatasan dijelaskan melalui lapisan kompatibilitas dan overhead."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C membatasi perangkat modern pada cloud tanpa dukungan abstrak."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D bertentangan dengan kritik terhadap antarmuka lama dalam teks."
+            }
+          ]
         },
         {
-          "stem": "4. Pendekatan data-centric yang diimplementasikan dalam Twizzler terbukti meningkatkan performa melalui penyederhanaan lapisan perangkat lunak. Evaluasilah apakah pendekatan ini layak dijadikan standar baru dalam pengembangan sistem operasi modern, berdasarkan argumen yang disajikan dalam abstrak!",
+          "number": 4,
+          "stem": "Berdasarkan evaluasi yang dijelaskan dalam abstrak, kesimpulan manakah yang paling dapat dipertanggungjawabkan?",
           "options": [
-            "A. Tidak layak, karena Twizzler hanya diuji pada studi kasus terbatas dan belum terbukti skalabilitasnya secara luas",
-            "B. Layak, karena pendekatan data-centric mengurangi keterlibatan kernel, menghilangkan serialisasi, dan terbukti meningkatkan performa pada berbagai kasus yang diuji",
-            "C. Tidak layak, karena model process-centric masih lebih andal untuk sistem operasi yang melayani pengguna umum",
-            "D. Layak, namun hanya untuk sistem operasi berbasis cloud dan tidak relevan untuk perangkat lokal",
-            "E. Tidak layak, karena abstrak tidak menyebutkan perbandingan langsung dengan sistem operasi komersial yang ada"
+            "A. Twizzler harus mengganti semua OS modern.",
+            "B. Kinerja Twizzler selalu unggul pada seluruh aplikasi.",
+            "C. Studi kasus dan beberapa aplikasi menunjukkan kegunaan serta peningkatan kinerja pada konteks yang diuji.",
+            "D. Seluruh peran kernel sudah tidak diperlukan.",
+            "E. Semua komputer telah memakai Twizzler."
           ],
-          "answer": 2
+          "key1": "Kunci tier 1: C. Soal dan kunci merupakan usulan pengganti baseline untuk ditelaah ahli.",
+          "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
+          "reasons": [
+            "A. Abstrak melaporkan pengujian seluruh aplikasi dan mesin sehingga hasilnya dapat digeneralisasikan.",
+            "B. Abstrak menetapkan Twizzler sebagai standar wajib yang harus diterapkan pada seluruh komputer.",
+            "C. Abstrak membuktikan seluruh OS komersial lebih lambat daripada Twizzler dalam setiap kondisi.",
+            "D. Abstrak melaporkan kasus dan aplikasi tertentu sehingga kesimpulannya belum berlaku universal."
+          ],
+          "key2": "Kunci tier 2: D. Bukti penjelas: Abstrak melaporkan studi kasus dan aplikasi tertentu sehingga generalisasi universal belum dapat disimpulkan.",
+          "feedback": [
+            {
+              "label": "Tier 1 pilihan A",
+              "message": "Studi kasus belum membenarkan kewajiban mengganti semua OS modern."
+            },
+            {
+              "label": "Tier 1 pilihan B",
+              "message": "Hasil pada beberapa aplikasi tidak berarti selalu unggul pada seluruh aplikasi."
+            },
+            {
+              "label": "Tier 1 pilihan C",
+              "message": "Benar. Kesimpulan dibatasi pada kegunaan dan peningkatan kinerja dalam konteks yang diuji."
+            },
+            {
+              "label": "Tier 1 pilihan D",
+              "message": "Pengurangan keterlibatan kernel pada akses data tidak menghapus seluruh peran kernel."
+            },
+            {
+              "label": "Tier 1 pilihan E",
+              "message": "Abstrak tidak menyatakan semua komputer telah menggunakan Twizzler."
+            },
+            {
+              "label": "Tier 2 pilihan A",
+              "message": "Alasan A memperluas pengujian beberapa kasus menjadi seluruh aplikasi dan mesin."
+            },
+            {
+              "label": "Tier 2 pilihan B",
+              "message": "Alasan B menambahkan penetapan standar wajib yang tidak disimpulkan abstrak."
+            },
+            {
+              "label": "Tier 2 pilihan C",
+              "message": "Alasan C mengklaim perbandingan universal dengan semua OS komersial tanpa bukti."
+            },
+            {
+              "label": "Tier 2 pilihan D",
+              "message": "Alasan D tepat: bukti studi kasus membatasi cakupan kesimpulan yang dapat ditarik."
+            }
+          ]
         }
       ],
-      "practiceStatus": "new practice not implemented yet"
+      "practice": {
+        "cards": [
+          "Lapisan kompatibilitas dan overhead membatasi pemanfaatan perangkat keras modern.",
+          "Pendekatan data-centric dirancang untuk memudahkan berbagi data dan mengurangi beban akses data.",
+          "Twizzler dievaluasi melalui studi kasus dan aplikasi yang di-porting."
+        ],
+        "rounds": [
+          {
+            "id": 1,
+            "title": "Kendala dalam bacaan",
+            "paragraph": 1,
+            "skill": "Menemukan akibat yang dinyatakan teks dan membedakannya dari akibat yang dibesar-besarkan.",
+            "instruction": "Coret akibat yang berlebihan. Tunjuk kalimat tentang keterbatasan programmer.",
+            "sourceIds": [
+              1,
+              3
+            ],
+            "parts": [
+              "Lapisan kompatibilitas dan overhead membatasi programmer dalam mengekspresikan bagian penting program,",
+              "meskipun tuntutan throughput lebih tinggi dan latensi lebih rendah meningkat;",
+              "akibatnya peningkatan perangkat keras tidak memberi manfaat apa pun."
+            ],
+            "keyPart": 3,
+            "keyEvidence": 2,
+            "final": "Lapisan kompatibilitas dan overhead membatasi programmer dalam mengekspresikan bagian penting program, meskipun tuntutan throughput lebih tinggi dan latensi lebih rendah meningkat.",
+            "hint": "Bacaan menjelaskan keterbatasan, bukan ketiadaan seluruh manfaat perangkat keras.",
+            "wrongEvidence": "Kalimat yang dipilih menjelaskan dasar perancangan sistem. Cari akibat lapisan kompatibilitas terhadap programmer.",
+            "proof": "programmer menjadi terbatas",
+            "evidence": [
+              "Sistem operasi dibangun dan dirancang berdasarkan dua kekuatan utama, yaitu kapabilitas perangkat keras dan tuntutan perangkat lunak.",
+              "Akibatnya, programmer menjadi terbatas dalam mengekspresikan bagian-bagian penting dari program mereka karena adanya lapisan kompatibilitas dan overhead yang terus dipertahankan, meskipun tuntutan terhadap throughput yang lebih tinggi dan latency yang lebih rendah terus meningkat."
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Peluang bukan hasil yang sudah terjadi",
+            "paragraph": 2,
+            "skill": "Membedakan status peluang kajian dari klaim bahwa perubahan telah berlaku menyeluruh.",
+            "instruction": "Coret klaim perubahan yang sudah pasti terjadi. Tunjuk kalimat tentang peluang pergeseran model.",
+            "sourceIds": [
+              1,
+              2
+            ],
+            "parts": [
+              "Peralihan ke data-centric telah terjadi pada seluruh sistem operasi;",
+              "abstrak menyebut peluang mengkaji pergeseran model pemrograman",
+              "seiring pertemuan berbagai tren perangkat keras."
+            ],
+            "keyPart": 1,
+            "keyEvidence": 1,
+            "final": "Abstrak menyebut peluang mengkaji pergeseran model pemrograman seiring pertemuan berbagai tren perangkat keras.",
+            "hint": "Perhatikan status pernyataan: peluang untuk mengkaji tidak sama dengan perubahan menyeluruh yang telah selesai.",
+            "wrongEvidence": "Kalimat itu menjelaskan latar perkembangan perangkat keras. Cari kalimat yang menyatakan status peluang dan arah pergeseran model.",
+            "proof": "terdapat peluang untuk mengkaji",
+            "evidence": [
+              "Saat ini, terdapat peluang untuk mengkaji bagaimana pertemuan berbagai tren dapat menggeser model pemrograman dari sudut pandang tradisional yang berpusat pada proses (process-centric) menuju pendekatan yang berpusat pada data (data-centric), di mana data menjadi entitas utama dalam sistem.",
+              "Peluang ini muncul seiring dengan perkembangan perangkat keras yang secara langsung memengaruhi cara pandang terhadap jalur akses data serta tanggung jawab sistem operasi dan kernel."
+            ]
+          },
+          {
+            "id": 3,
+            "title": "Batas perubahan yang diusulkan",
+            "paragraph": 3,
+            "skill": "Menghubungkan dua perubahan yang disebut teks dan menolak generalisasi di luar cakupannya.",
+            "instruction": "Coret perubahan yang tidak didukung. Tunjuk kalimat yang menyebut kernel dan serialisasi.",
+            "sourceIds": [
+              2,
+              4
+            ],
+            "parts": [
+              "Pendekatan data-centric mengurangi keterlibatan kernel dalam jalur akses data,",
+              "menghilangkan seluruh kompleksitas dan biaya dalam setiap sistem operasi,",
+              "serta menghilangkan kebutuhan serialisasi pada model yang dijelaskan."
+            ],
+            "keyPart": 2,
+            "keyEvidence": 2,
+            "final": "Pendekatan data-centric mengurangi keterlibatan kernel dalam jalur akses data serta menghilangkan kebutuhan serialisasi pada model yang dijelaskan.",
+            "hint": "Teks menyebut perubahan tertentu, bukan penghapusan seluruh kompleksitas dan biaya pada setiap sistem.",
+            "wrongEvidence": "Kalimat itu menyebut tujuan memfasilitasi berbagi data. Cari kalimat yang memuat dua perubahan khusus: kernel dan serialisasi.",
+            "proof": "mengurangi keterlibatan kernel",
+            "evidence": [
+              "Pendekatan ini merumuskan ulang tujuan sistem operasi dan memungkinkan peninjauan kembali teknik pemrograman sistem klasik ke dalam model yang memfasilitasi berbagi data, alih-alih menghambatnya.",
+              "Sebaliknya, pendekatan data-centric ini mengurangi keterlibatan kernel dalam jalur akses data, menjadikan data bersifat mobile melalui referensi invarian yang tidak bergantung pada ruang alamat atau mesin, serta menghilangkan kebutuhan akan serialisasi."
+            ]
+          },
+          {
+            "id": 4,
+            "title": "Hasil penelitian dan batas simpulan",
+            "paragraph": 4,
+            "skill": "Membedakan hasil kinerja yang dilaporkan dari rekomendasi universal yang tidak didukung.",
+            "instruction": "Coret rekomendasi yang melampaui bukti. Tunjuk kalimat yang mendukung hasil kinerja.",
+            "sourceIds": [
+              2,
+              3
+            ],
+            "parts": [
+              "Pada banyak kasus yang dilaporkan,",
+              "Twizzler menunjukkan peningkatan performa;",
+              "karena itu seluruh sistem operasi wajib diganti."
+            ],
+            "keyPart": 3,
+            "keyEvidence": 2,
+            "final": "Pada banyak kasus yang dilaporkan, Twizzler menunjukkan peningkatan performa.",
+            "hint": "Hasil pada banyak kasus tidak menetapkan kewajiban mengganti seluruh sistem operasi.",
+            "wrongEvidence": "Kalimat itu menjelaskan pengujian melalui studi kasus. Cari kalimat yang secara khusus menyebut hasil peningkatan kinerja.",
+            "proof": "dalam banyak kasus",
+            "evidence": [
+              "Evaluasi terhadap Twizzler dilakukan melalui studi kasus yang menunjukkan perilaku sistem, efektivitas, dan kegunaan model pemrograman yang dikembangkan, dengan membangun sejumlah perangkat lunak baru khusus untuk Twizzler.",
+              "Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak."
+            ]
+          }
+        ]
+      }
     }
   }
 }

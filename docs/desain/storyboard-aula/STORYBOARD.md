@@ -1,5 +1,7 @@
 # Storyboard Aula — rancangan24Oktober2026
 
+**Keputusan pengguna 2 November 2026:** lanjutkan spot foto AU-06B saja; pencarian buku di luar aula dibatalkan. Pertahankan konsep medali existing. Spot foto berupa dekorasi latar “Perjalanan Belajarku”, warna krem–merah bata dan bingkai emas, tiga penanda berdiri, tanpa syarat/latihan/hadiah baru. Posisi akhir menunggu inventaris ruang aula aktual; tidak memindahkan bangku atau objek existing tanpa pemeriksaan. Ini catatan keputusan dan spesifikasi implementasi, bukan bukti pemasangan atau Play.
+
 Aula bangunan tersendiri, pintu tengah danNPC kiri. Sumber bentuk/wording foto 58–63 DocsAll dan pembacaan read-only SummaryHandler/GiveMedalHandler; pemeriksaan prasyarat/konfirmasi penerimaan adalah rancangan pengembangan.
 
 ## AU-00 — Denah gedung aula
@@ -117,3 +119,6 @@ Pakai medali dari hotbar, lalu ambil foto sendiri.
 Perilaku: Pilihan tambahan setelah alur utama selesai, bukan syarat kelulusan atau tugas baru. Sisi kanan mendapat latar foto sederhana dan penanda lantai; gunakan area kosong agar tidak menghalangi pintu atau jalur bangku. Denah mengusulkan sudut kanan belakang; penempatan perlu dicocokkan di Studio. Pemain berjalan sendiri dariNPC kiri ke kanan, memilih tool medali melalui hotbar, lalu memakai fitur tangkapan layar perangkat. Tidak membuka modal, tidak ada prompt E, upload, kamera khusus, skor atau hadiah tambahan. CukupPart latar/penanda dan medali yang sudahada. Tidak perlu sistem pose baru.
 
 ![AU-06B](AU-06B.png)
+
+## Keputusan implementasi 2 November 2026 — ruang foto
+Pengguna menyetujui pengosongan satu kelompok28kursi terdekatspotfoto. Modelutuh dicadangkan diServerStorage/AulaPhotoSeatingBackup, bangkulain/medalexistingdipertahankan. Spotfoto berada dikananbelakang, modelAulaPhotoSpot. Userreview sudahcocok danSave; verifikasidisktercatat docs/development/2026-11-02-AULA-FOTO.md. Tidakada bonusbuku atauQAPlayfotobaru.

@@ -1,5 +1,7 @@
 # Bonus luar aula — tiga buku dan sudut rahasia
 
+**Dibatalkan pengguna pada 2 November 2026.** Dokumen ini disimpan sebagai arsip rancangan. Bonus pencarian/koleksi buku tidak dikerjakan; tambahan setelah medali hanya spot foto aula opsional. Jangan menjadikan HUD atau pencarian tiga buku sebagai tugas lanjutan.
+
 Rancangan 24 Oktober 2026. Foto medali telah diterima pengguna; bonus ini mengikuti izin pengguna untuk pencarian buku dan sudut rahasia yang mudah dikembangkan. Urutan contoh A–B–C, bukan kewajiban.
 
 ## EX-00 — Denah bonus di luar aula

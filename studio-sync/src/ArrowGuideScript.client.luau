@@ -17,7 +17,7 @@ local character
 local arrow
 local currentTarget
 local function panelOpen()
-	if player:GetAttribute("L2LearningOpen") then return true end
+	if player:GetAttribute("L3LearningOpen") or player:GetAttribute("L2LearningOpen") then return true end
 	for _, name in ipairs({"Level1Gui", "FlowGui", "Welcome GUI", "Level3Gui", "Level3Board"}) do
 		local gui = player.PlayerGui:FindFirstChild(name)
 		if gui and gui.Enabled then
@@ -114,6 +114,8 @@ RunService.RenderStepped:Connect(function()
 	local isLevel1 = progress.Value == 1
 	if isLevel1 then
 		targetPosition = player:GetAttribute("L1GuideTarget")
+	elseif progress.Value == 3 then
+		targetPosition = player:GetAttribute("L3GuideTarget")
 	elseif progress.Value == 2 then
 		targetPosition = player:GetAttribute("L2GuideTarget")
 	end
@@ -130,7 +132,7 @@ RunService.RenderStepped:Connect(function()
 	
 	local distance = (root.Position - targetPosition).Magnitude
 
-	if distance < ((isLevel1 or progress.Value == 2) and 3 or 30) then
+	if distance < ((isLevel1 or progress.Value == 2 or progress.Value == 3) and 3 or 30) then
 		arrow.Arrow.Transparency = 1
 	else
 		arrow.Arrow.Transparency = 0

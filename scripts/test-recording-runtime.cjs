@@ -73,9 +73,16 @@ page=disk["LearningRecords_v1/u1/session1:000001"]
 assert(page.events[4].data.correct and not page.events[5].data.correct and page.events[5].data.help)
 assert(not page.levels["2"].completed)
 created.OnServerEvent:Fire(c,{level=3,id="start3",op="start"})
+created.OnServerEvent:Fire(c,{level=3,id="functions",op="practice",activity="functions",choices={1,2,3}})
+created.OnServerEvent:Fire(c,{level=3,id="editor",op="practice",activity="editor",round=2,choices={1,1}})
+created.OnServerEvent:Fire(c,{level=3,id="item3",op="evaluation_item",attemptId="pass3",question=4,answer=3,reason=4})
 tick=260
-rep.UpdateLevel3Score.OnServerEvent:Fire(c,{id="pass3",answers={4,5,1,2}})
+rep.UpdateLevel3Score.OnServerEvent:Fire(c,{id="pass3",answers={4,5,1,3},reasons={3,1,2,4}})
 assert(disk["LearningRecords_v1/u3/session3:000001"].levels["3"].completedSeconds==60)
+local l3=disk["LearningRecords_v1/u3/session3:000001"]
+assert(l3.events[1].data.correct and #l3.events[1].data.choices==3)
+assert(l3.events[2].data.correct and l3.events[2].data.round==2)
+assert(l3.events[3].data.reasonCorrect and l3.events[4].data.reasons[4]==4)
 -- Final write fails after departure: retain it until periodic retry succeeds.
 fail=true; ps.PlayerRemoving:Fire(a); assert(a.attrs.LearningRecordStatus=="failed")
 fail=false; autoTicks=1; background[1]()

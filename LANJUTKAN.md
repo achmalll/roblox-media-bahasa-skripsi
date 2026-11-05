@@ -589,3 +589,6 @@ Pengguna menyediakan kursi sudahbisa diduduki pada Workspace/Kursi Baru dan memi
 User bertanya apakah berikutnya testing panah. Pemeriksaan13:49:34Z: healthlocalhosttimeout; statusfilelama13:43:12Z,ArrowGuideScriptdanLevel2FlowHandlerpending_apply. JanganinstruksikanPlayversilamatanpakonfirmasipemasangan. BerikutuserbukaWORKINGlokalCdaribackuprepo, tetapEdit; AIaktifkanbridgecloneC/verifikasi8syncdanreceiptduaScript,userSave,AIverify,baruuserPlayNPCMulai->panahpapanberitakiri->E1detik->3bagian->panahmejabukti. Beluminstal/uji/Savenew/commit/push.
 
 Catatan commit PC baru,2November: percobaan commit awal ditolak Git karena identitas author belum disetel. Identitas yang sama pada5commit terakhir dipakai sebagai konfigurasi lokal repo (bukan global), lalu commit diulang. Tidak ada data/progres hilang; staging tetap utuh.
+
+## 5 November 2026 — target minor berikutnya
+Uji Roblox Player public menunjukkan teks pembuka/panduan terlalu kecil dan lebar Detail Maps tidak konsisten dengan halaman berikutnya. Belum ada patch. Berikutnya cek shared guide shell: satu lebar panel responsif, font desktop/mobile yang terbaca, posisi foto dan panah tetap, tanpa mengubah materi/alur. Pengguna mengizinkan catatan ini di-push ke remote; implementasi menunggu sesi berikutnya.

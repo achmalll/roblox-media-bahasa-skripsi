@@ -1054,3 +1054,9 @@ Cakupancommit9file: WORKING, KONTEKS/LANJUTKAN/log, bridgecontroller/test/plugin
 TARGET BESOK: lanjutimplementasiLEVEL3, bukanmenataulangNPCyangsudahclear. Baca storyboard-level3/STORYBOARD.md, LATIHAN-2-SPESIFIKASI.md, bank-ronde-editor.cjs danisi-sumber.json. RangkaianNPCpembukaexisting->mejabacaabstrak3bagian->Latihan1drag3fungsigagasan->Latihan2coretdraf+pilihbukti4ronde->evaluasi4soal2tier->pintutengah. Bankalasan/36feedbacksudahada; baselinecodeL3belummemakainya. FolderLevel3Developmentberisi meja baca/Evaluasi/latihan1/latihan2 dan5NPCbaru. Interaksiobjek/promptmateri/duaLatihan/2tier/rekamanL3baru BELUMdiimplementasikan; captionTahanEbelumberartifungsional. Recordercloudtetapbelumdiuji. JanganbukaulangL2clearataumengaktifkanbypasspintu tanpa kebutuhanuser. BootstrapperPC, cekEdit/sync, danuserPlayStopSave. Konteksakademikluarclone tidaktersedia.
 
 Catatan commit PC baru,2November: percobaan commit awal ditolak Git karena identitas author belum disetel. Identitas yang sama pada5commit terakhir dipakai sebagai konfigurasi lokal repo (bukan global), lalu commit diulang. Tidak ada data/progres hilang; staging tetap utuh.
+
+## 2026-11-05 — temuan public runtime, belum diperbaiki
+- Bukti: screenshot Roblox Player public `codex-clipboard-73f7c75e-f0c5-4739-8e7b-75b56fe0ab5f.png`, `...2589a9da...`, `...30805e41...` dari pengguna.
+- Temuan: teks welcome/panduan tampak kecil pada client public; panel Detail Maps lebih lebar daripada halaman panduan Level 1 setelah Next.
+- Keputusan: catat sebagai perbaikan minor berikutnya; jangan mengubah materi, foto, banner, panah, atau alur sebelum sesi implementasi. Target teknis adalah menyatukan ukuran shell panduan dan menetapkan tipografi responsif desktop/mobile.
+- Status: belum diimplementasikan, belum diuji ulang, belum ada perubahan source/place pada sesi pencatatan ini.

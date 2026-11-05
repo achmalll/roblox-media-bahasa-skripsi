@@ -71,7 +71,9 @@ remote.OnServerEvent:Connect(function(player,p)
   if p.level<=3 then data.reason=p.reason; data.reasonCorrect=p.reason==reasonKeys[p.level][p.question] end
   r:append(p.level,"evaluation_item",data,"item:"..p.level..":"..p.id)
  elseif p.op=="practice" then
-  if typeof(p.choices)~="table" or #p.choices<2 or #p.choices>3 then return end
+  local providedSource=p.level==3 and p.activity=="editor" and p.variant=="provided_source_v2"
+  if typeof(p.choices)~="table" or #p.choices<(providedSource and 1 or 2) or #p.choices>3 then return end
+  if providedSource and #p.choices~=1 then return end
   local a,b=p.choices[1],p.choices[2]; local correct
   if p.level==1 and p.activity=="slots" then
    if not (typeof(a)=="string" and typeof(b)=="string" and a:match("^[A-D]$") and b:match("^[A-D]$")) then return end
@@ -87,10 +89,10 @@ remote.OnServerEvent:Connect(function(player,p)
    if not integer(a,3) or not integer(b,3) or not integer(c,3) or a==b or a==c or b==c then return end
    correct=a==1 and b==2 and c==3
   elseif p.level==3 and p.activity=="editor" then
-   if not integer(p.round,4) or not integer(a,3) or not integer(b,2) then return end
-   correct=a==({3,1,2,3})[p.round] and b==({2,1,2,2})[p.round]
+   if not integer(p.round,4) or not integer(a,3) or (not providedSource and not integer(b,2)) then return end
+   correct=a==({3,1,2,3})[p.round] and (providedSource or b==({2,1,2,2})[p.round])
   else return end
-  r:append(p.level,"practice",{activity=p.activity,round=p.level==3 and p.round or nil,choices=p.activity=="functions" and {a,b,p.choices[3]} or {a,b},correct=correct,help=p.help==true,
+  r:append(p.level,"practice",{activity=p.activity,variant=providedSource and "provided_source_v2" or nil,evidenceProvided=providedSource or nil,round=p.level==3 and p.round or nil,choices=providedSource and {a} or (p.activity=="functions" and {a,b,p.choices[3]} or {a,b}),correct=correct,help=p.help==true,
    validation="client_report_server_checked"},"practice:"..p.level..":"..p.id)
  else return end
  status(player,r)

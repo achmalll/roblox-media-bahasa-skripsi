@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-05",
+  "title": "Pembelajaran Bahasa Indonesia",
+  "generator": "ImageGen",
+  "uploadedToRoblox": false,
+  "assets": [
+    {
+      "file": "assets/branding/pembelajaran-bahasa-indonesia-cover-v1.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2511884,
+      "sha256": "60dc10f969e6693aa9fb6a0b20a3606b2bc347eae0217ab09f127e08b5ec76cf"
+    },
+    {
+      "file": "assets/branding/pembelajaran-bahasa-indonesia-icon-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2385783,
+      "sha256": "737552183fe2ea04ec226c798554da62356ec170d3bb9e7a49be4a1ff7427a2b"
+    }
+  ]
+}

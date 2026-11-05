@@ -1,3 +1,5 @@
+Catatan revisi pengguna 5 November 2026: lihat [acuan UI terbaru](../REVISI-UI-2026-11-05.md) dan [status implementasi/QA](../../development/2026-11-05-RESPONSIVE-UI.md). Ketuk pilihan lalu tujuan menggantikan drag pada L2/L3; Latihan 2 L3 memakai kutipan sumber yang disediakan dan satu pilihan bagian draf. Gambar snapshot lama dipertahankan sebagai riwayat.
+
 # Storyboard usulan Level 2 — 24 Oktober 2026
 
 Acauan: foto25–39 tab [23 April] REVIEW ROBLOX dan tab Peta tujuan pembelajaran tiga level pada rancangan aktif. Materi/soal/kunci dipertahankan; latihan/penempatan baru belum diterima sebagai final.

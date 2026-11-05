@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentRevision": "6571fa2dcf095666ef00c9801fb2de1c3727cfaad6e43d8184a7565ec76e00b9",
+  "contentRevision": "92e526b2ac6df39066b02c4598399aac6348d9e4dc8ae7246c9c07424406d1bf",
   "levels": {
     "1": {
       "questions": [
@@ -701,7 +701,9 @@
               "Selain itu, aplikasi berukuran besar yang telah di-porting juga digunakan untuk menunjukkan kinerja Twizzler dan model pemrogramannya, yang dalam banyak kasus menunjukkan peningkatan performa semata-mata karena penyederhanaan lapisan perangkat lunak."
             ]
           }
-        ]
+        ],
+        "editorVariant": "provided_source_v2",
+        "editorChoices": "choices[1] is the selected draft part; source evidence is provided, not answered"
       }
     }
   }

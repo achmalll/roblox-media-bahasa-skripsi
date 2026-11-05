@@ -40,7 +40,7 @@ if (bank.questions.length !== 4 || bank.questions.some(q => q.options.length !==
 const json = JSON.stringify(data);
 if (json.includes(']==]')) throw Error('Unsafe long string delimiter');
 const client = read('studio-sync/templates/Level2FlowHandler.client.luau').replace('local DATA = nil -- GENERATED_CONTENT', 'local DATA = Http:JSONDecode([==[' + json + ']==])');
-fs.writeFileSync(path.join(root, 'studio-sync/src/Level2FlowHandler.client.luau'), client);
+fs.writeFileSync(path.join(root, 'studio-sync/src/Level2FlowHandler.client.luau'), require('./inline-responsive.cjs')(client));
 const server = read('studio-sync/templates/Level2ScoreHandler.server.luau')
   .replace('-- GENERATED_KEYS', 'local answerKeys = {' + bank.questions.map(q => key(q, 1)).join(',') + '}\nlocal reasonKeys = {' + bank.questions.map(q => key(q, 2)).join(',') + '}');
 fs.writeFileSync(path.join(root, 'studio-sync/src/Level2ScoreHandler.server.luau'), server);

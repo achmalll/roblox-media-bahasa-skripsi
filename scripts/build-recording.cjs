@@ -17,6 +17,6 @@ const data=JSON.parse(read('studio-sync/src/Level2FlowHandler.client.luau').matc
 const catalog={schemaVersion:1,contentRevision:revision,levels:{
  1:{questions:questions1,practice:{slots:[...l1.matchAll(/\{ id = "([A-D])", text = ("(?:[^"\\]|\\.)*") \}/g)].map(m=>({id:m[1],text:JSON.parse(m[2])})),slotOrder:['main','supporting']}},
  2:{questions:data.questions,practice:{evidence:data.evidence,conclusions:data.conclusions,pairEvidence:data.pairEvidence,slotOrder:'choices[i] is evidence slot assigned to conclusion i'}},
- 3:{questions:questions3,practice:{cards:data3.cards,rounds:data3.rounds}}}};
+ 3:{questions:questions3,practice:{cards:data3.cards,rounds:data3.rounds,editorVariant:'provided_source_v2',editorChoices:'choices[1] is the selected draft part; source evidence is provided, not answered'}}}};
 fs.writeFileSync(path.join(root,'docs/development/recording-content-v1.json'),JSON.stringify(catalog,null,2)+'\n');
 console.log('Built recorder into existing LevelProgressHandler; contentRevision '+revision);

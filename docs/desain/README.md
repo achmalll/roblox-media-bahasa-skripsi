@@ -1,3 +1,5 @@
+Catatan revisi pengguna 5 November 2026: lihat [acuan UI terbaru](REVISI-UI-2026-11-05.md) dan [status implementasi/QA](../development/2026-11-05-RESPONSIVE-UI.md). Ketuk pilihan lalu tujuan menggantikan drag pada L2/L3; Latihan 2 L3 memakai kutipan sumber yang disediakan dan satu pilihan bagian draf. Gambar snapshot lama dipertahankan sebagai riwayat.
+
 # Snapshot rancangan Roblox untuk dibaca AI
 
 Snapshot sumber lokal: **27 Oktober 2026**. Berisi155gambar:149low-fi +3userflow +3contohhi-fi, disertai storyboardteks dan bank isi. Seluruh salinan sumber dicatat pada [manifest](manifest-sumber.json) dengan SHA256. File sumber akademik di luar repo tidak diubah.

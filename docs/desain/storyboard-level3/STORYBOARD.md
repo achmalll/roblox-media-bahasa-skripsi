@@ -1,3 +1,5 @@
+Catatan revisi pengguna 5 November 2026: lihat [acuan UI terbaru](../REVISI-UI-2026-11-05.md) dan [status implementasi/QA](../../development/2026-11-05-RESPONSIVE-UI.md). Ketuk pilihan lalu tujuan menggantikan drag pada L2/L3; Latihan 2 L3 memakai kutipan sumber yang disediakan dan satu pilihan bagian draf. Gambar snapshot lama dipertahankan sebagai riwayat.
+
 # Storyboard Level 3 — fokus satu gedung, usulan24Oktober2026
 
 Acuan: tab peta aktif dan foto40–55 DocsAll. Fokus hanyaLevel3; arsip aula ditunda.

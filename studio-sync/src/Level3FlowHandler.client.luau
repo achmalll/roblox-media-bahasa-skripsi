@@ -1,3 +1,241 @@
+local UI = (function()
+-- Inlined into the three managed clients by build-responsive-ui.cjs.
+-- Keep readable type and scroll overflow instead of shrinking the entire interface.
+local UI = {}
+local TextService = game:GetService("TextService")
+local GuiService = game:GetService("GuiService")
+local cream = Color3.fromRGB(246,224,207)
+local ink = Color3.fromRGB(70,47,37)
+local autoConnections=setmetatable({},{__mode="k"})
+function UI.screen(gui)
+ gui.IgnoreGuiInset=true
+ gui.ScreenInsets=Enum.ScreenInsets.None
+ gui.ClipToDeviceSafeArea=false
+ gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+end
+function UI.font(width,heading)
+ return heading and (width<600 and 24 or 32) or (width<600 and 20 or 24)
+end
+function UI.height(label,width,padding)
+ local value=label.Text:gsub("<[^>]*>","")
+ return math.ceil(TextService:GetTextSize(value,label.TextSize,label.Font,Vector2.new(math.max(80,width),100000)).Y)+(padding or 0)
+end
+function UI.fit(frame,callback,maxHeight)
+ for _,c in ipairs(frame:GetChildren()) do
+  if c:IsA("UISizeConstraint") or c:IsA("UIAspectRatioConstraint") or c:IsA("UIScale") then c:Destroy() end
+ end
+ local gui=frame:FindFirstAncestorWhichIsA("ScreenGui")
+ if gui then UI.screen(gui) end
+ frame.AnchorPoint=Vector2.new(.5,.5); frame.Position=UDim2.fromScale(.5,.5)
+ local function resize()
+  if not frame.Parent then return end
+  local camera=workspace.CurrentCamera
+  if not camera then return end
+  local v=camera.ViewportSize
+  local top,bottom=GuiService:GetGuiInset()
+  -- ScreenInsets.None is only for the shade. Interactive panels stay inside
+  -- hardware cutouts and core UI, including landscape camera notches.
+  local ok,full,safe=pcall(function()
+   return GuiService:GetInsetArea(Enum.ScreenInsets.None),GuiService:GetInsetArea(Enum.ScreenInsets.CoreUISafeInsets)
+  end)
+  if ok then
+   top=Vector2.new(math.max(0,safe.Min.X-full.Min.X),math.max(0,safe.Min.Y-full.Min.Y))
+   bottom=Vector2.new(math.max(0,full.Max.X-safe.Max.X),math.max(0,full.Max.Y-safe.Max.Y))
+  end
+  local horizontal=math.max(12,top.X,bottom.X)
+  local vertical=math.max(12,top.Y,bottom.Y)+8
+  frame.Size=UDim2.fromOffset(math.min(1080,math.max(100,v.X-horizontal*2)),math.min(maxHeight or 800,math.max(100,v.Y-vertical*2)))
+  if callback then callback(frame.AbsoluteSize.X,frame.AbsoluteSize.Y) end
+ end
+ local cameraConnection
+ local function watchCamera()
+  if cameraConnection then cameraConnection:Disconnect() end
+  if workspace.CurrentCamera then cameraConnection=workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(resize) end
+  resize()
+ end
+ local connection=workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(watchCamera)
+ local frameConnection=frame:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+  if callback then callback(frame.AbsoluteSize.X,frame.AbsoluteSize.Y) end
+ end)
+ frame.Destroying:Connect(function()
+  connection:Disconnect(); frameConnection:Disconnect()
+  if cameraConnection then cameraConnection:Disconnect() end
+ end)
+ watchCamera()
+ return resize
+end
+function UI.scroll(parent,name)
+ local sc=Instance.new("ScrollingFrame")
+ sc.Name=name or "ReadingArea"; sc.BackgroundTransparency=1; sc.BorderSizePixel=0
+ sc.Size=UDim2.fromScale(1,1); sc.CanvasSize=UDim2.new(); sc.AutomaticCanvasSize=Enum.AutomaticSize.Y
+ sc.ScrollingDirection=Enum.ScrollingDirection.Y; sc.ScrollBarThickness=8; sc.ScrollBarImageColor3=Color3.fromRGB(153,59,42); sc.Active=true
+ sc.Parent=parent
+ local layout=Instance.new("UIListLayout",sc); layout.SortOrder=Enum.SortOrder.LayoutOrder; layout.Padding=UDim.new(0,14)
+ local pad=Instance.new("UIPadding",sc); pad.PaddingRight=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,18)
+ return sc
+end
+function UI.autoText(item,minHeight,padding)
+ if autoConnections[item] then for _,c in ipairs(autoConnections[item]) do c:Disconnect() end end
+ item.TextScaled=false; item.TextWrapped=true; item.TextTruncate=Enum.TextTruncate.None
+ item.AutomaticSize=Enum.AutomaticSize.None
+ local busy=false
+ local function resize()
+  if busy or not item.Parent then return end
+  busy=true
+  local width=item.AbsoluteSize.X
+  item.Size=UDim2.new(item.Size.X.Scale,item.Size.X.Offset,0,math.max(minHeight or 0,UI.height(item,width-(padding or 0),padding or 0)))
+  busy=false
+ end
+ autoConnections[item]={item:GetPropertyChangedSignal("AbsoluteSize"):Connect(resize),item:GetPropertyChangedSignal("Text"):Connect(resize),item:GetPropertyChangedSignal("TextSize"):Connect(resize)}
+ task.defer(resize)
+ return item
+end
+function UI.label(parent,value,size,bold)
+ local t=Instance.new("TextLabel"); t.Text=value; t.TextSize=size or 24
+ t.Font=bold and Enum.Font.GothamBold or Enum.Font.Gotham
+ t.BackgroundTransparency=1; t.TextColor3=ink; t.TextXAlignment=Enum.TextXAlignment.Left
+ t.TextYAlignment=Enum.TextYAlignment.Top; t.Size=UDim2.new(1,0,0,0)
+ t.LayoutOrder=#parent:GetChildren(); t.Parent=parent
+ return UI.autoText(t,0,4)
+end
+function UI.action(item,label)
+ if item:IsA("ImageButton") then item.Image="" end
+ item.BackgroundTransparency=0; item.BackgroundColor3=Color3.fromRGB(153,59,42)
+ local text=item:IsA("TextButton") and item or item:FindFirstChildWhichIsA("TextLabel")
+ if not text then text=Instance.new("TextLabel",item) end
+ text.Text=label; text.TextColor3=Color3.new(1,1,1); text.TextSize=20; text.Font=Enum.Font.GothamBold
+ text.TextScaled=false; text.TextWrapped=true; text.TextXAlignment=Enum.TextXAlignment.Center; text.TextYAlignment=Enum.TextYAlignment.Center
+ text.TextTruncate=Enum.TextTruncate.None
+ if text~=item then
+  for _,c in ipairs(text:GetChildren()) do if c:IsA("UIScale") or c:IsA("UISizeConstraint") or c:IsA("UIAspectRatioConstraint") then c:Destroy() end end
+  text.AnchorPoint=Vector2.zero; text.Rotation=0; text.AutomaticSize=Enum.AutomaticSize.None
+  text.BackgroundTransparency=1; text.Position=UDim2.new(); text.Size=UDim2.fromScale(1,1)
+ end
+ if not item:FindFirstChildOfClass("UICorner") then Instance.new("UICorner",item).CornerRadius=UDim.new(0,10) end
+end
+-- Reuse existing buttons and their event handlers while replacing legacy fixed text geometry.
+function UI.legacy(frame,heading,copy,actionNames)
+ local actions={}
+ for _,spec in ipairs(actionNames) do
+  local b=frame:FindFirstChild(spec[1])
+  if b then actions[b]=true; UI.action(b,spec[2]); b.Visible=true end
+ end
+ for _,c in ipairs(frame:GetChildren()) do if c:IsA("GuiObject") and not actions[c] then c.Visible=false end end
+ local sc=UI.scroll(frame,"ResponsiveContent")
+ local title=UI.label(frame,heading,32,true)
+ local copyLabel=UI.label(sc,copy,24)
+ local scrollHint=UI.label(sc,"Gulir ke bawah untuk membaca seluruh isi.",18)
+ scrollHint.LayoutOrder=-1; scrollHint.TextColor3=Color3.fromRGB(125,85,65)
+ frame.BackgroundColor3=cream
+ UI.fit(frame,function(w,h)
+  local footer={}
+  for _,spec in ipairs(actionNames) do
+   local b=frame:FindFirstChild(spec[1])
+   if b then
+    b.AnchorPoint=Vector2.zero
+    if spec[1]=="close" then
+     UI.action(b,"×"); b.Position=UDim2.new(1,-64,0,16); b.Size=UDim2.fromOffset(48,48)
+    else table.insert(footer,b) end
+   end
+  end
+  for i,b in ipairs(footer) do
+   b.Position=UDim2.new((i-1)/#footer,20,1,-72)
+   b.Size=UDim2.new(1/#footer,-40/#footer-8,0,56)
+  end
+  title.TextSize=h<300 and 22 or UI.font(w,true)
+  title.TextWrapped=h>=300; title.TextTruncate=h<300 and Enum.TextTruncate.AtEnd or Enum.TextTruncate.None
+  local titleHeight=h<300 and 44 or math.max(48,UI.height(title,w-100,4))
+  title.Position=UDim2.fromOffset(20,16); title.Size=UDim2.new(1,-88,0,titleHeight)
+  sc.Position=UDim2.fromOffset(20,titleHeight+30)
+  sc.Size=UDim2.new(1,-40,1,-(titleHeight+30+(next(footer) and 88 or 20)))
+  copyLabel.TextSize=UI.font(w); scrollHint.TextSize=18
+ end)
+ return sc
+end
+-- The guide's original photos, banner and arrow artwork are location cues.
+-- Preserve its desktop arrangement; only stack the photo on narrow portrait screens.
+function UI.guide(frame,heading,copy)
+ local body=frame:FindFirstChild("TextLabel")
+ local photo=frame:FindFirstChild("ImageLabel")
+ local banner=frame:FindFirstChild("Title ")
+ if not body then return end
+ local original={position=body.Position,size=body.Size,anchor=body.AnchorPoint}
+ local photoOriginal=photo and {position=photo.Position,size=photo.Size,anchor=photo.AnchorPoint,ratio=math.max(.5,photo.AbsoluteSize.X/math.max(1,photo.AbsoluteSize.Y))}
+ local bannerOriginal=banner and {position=banner.Position,size=banner.Size,anchor=banner.AnchorPoint}
+ local artwork={}
+ for _,name in ipairs({"prev","next","close"}) do
+  local b=frame:FindFirstChild(name)
+  if b then artwork[name]={button=b,position=b.Position,size=b.Size,anchor=b.AnchorPoint} end
+ end
+ local sc=UI.scroll(frame,"GuideReading")
+ -- Legacy label constraints can cap its height even inside a scrolling frame.
+ for _,c in ipairs(body:GetChildren()) do
+  if c:IsA("UISizeConstraint") or c:IsA("UIAspectRatioConstraint") or c:IsA("UIScale") or c:IsA("UIPadding") then c:Destroy() end
+ end
+ body.Parent=sc; body.Text=copy; body.AnchorPoint=Vector2.zero; body.Position=UDim2.new(); body.Size=UDim2.new(1,-14,0,0)
+ body.LayoutOrder=2; body.Visible=true; body.BackgroundTransparency=1; body.TextXAlignment=Enum.TextXAlignment.Left
+ body.TextYAlignment=Enum.TextYAlignment.Top; body.Font=Enum.Font.Gotham; body.LineHeight=1; body.RichText=false
+ UI.autoText(body,0,4)
+ local layout=sc:FindFirstChildOfClass("UIListLayout")
+ local narrow=false
+ local function alignReading()
+  layout.VerticalAlignment=not narrow and layout.AbsoluteContentSize.Y<=sc.AbsoluteSize.Y-18 and Enum.VerticalAlignment.Center or Enum.VerticalAlignment.Top
+ end
+ layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(alignReading)
+ sc:GetPropertyChangedSignal("AbsoluteSize"):Connect(alignReading)
+ local bannerText=banner and banner:FindFirstChildWhichIsA("TextLabel")
+ if bannerText then bannerText.Text=heading end
+ UI.fit(frame,function(w,h)
+  narrow=w<600
+  body.TextSize=h<500 and 20 or UI.font(w)
+  if narrow then
+   sc.AnchorPoint=Vector2.zero; sc.Position=UDim2.fromOffset(20,92); sc.Size=UDim2.new(1,-40,1,-172)
+   if photo then
+    photo.Parent=sc; photo.AnchorPoint=Vector2.zero; photo.Position=UDim2.new(); photo.LayoutOrder=1
+    photo.Size=UDim2.new(1,-12,0,math.min(300,(w-52)/photoOriginal.ratio)); photo.Visible=true
+   end
+  else
+   sc.AnchorPoint=Vector2.new(original.anchor.X,0)
+   sc.Position=UDim2.new(original.position.X.Scale,original.position.X.Offset,0,80)
+   sc.Size=UDim2.new(original.size.X.Scale,original.size.X.Offset,1,-160)
+   if photo then photo.Parent=frame; photo.Position=photoOriginal.position; photo.Size=photoOriginal.size; photo.AnchorPoint=photoOriginal.anchor; photo.Visible=true end
+  end
+  if banner then
+   banner.Visible=true
+   if narrow then banner.AnchorPoint=Vector2.new(.5,0); banner.Position=UDim2.new(.5,-12,0,10); banner.Size=UDim2.new(1,-100,0,68)
+   else banner.AnchorPoint=bannerOriginal.anchor; banner.Position=bannerOriginal.position; banner.Size=bannerOriginal.size end
+  end
+  for name,record in pairs(artwork) do
+   local b=record.button
+   if narrow or h<440 then
+    b.AnchorPoint=Vector2.zero; b.Size=UDim2.fromOffset(48,48)
+    b.Position=name=="close" and UDim2.new(1,-60,0,12) or (name=="prev" and UDim2.new(0,20,1,-64) or UDim2.new(1,-68,1,-64))
+   else b.AnchorPoint=record.anchor; b.Position=record.position; b.Size=record.size end
+  end
+  alignReading()
+ end,650)
+end
+-- Access notices stay until acknowledged and have room for a concrete next step.
+function UI.notice(gui,name)
+ UI.screen(gui)
+ local shade=Instance.new("Frame",gui); shade.Name=name; shade.Size=UDim2.fromScale(1,1)
+ shade.BackgroundColor3=Color3.new(0,0,0); shade.BackgroundTransparency=.35; shade.Visible=false; shade.Active=true
+ local panel=Instance.new("Frame",shade); panel.BackgroundColor3=cream
+ Instance.new("UICorner",panel).CornerRadius=UDim.new(0,16)
+ local sc=UI.scroll(panel)
+ UI.label(sc,"Belum bisa dibuka",28,true)
+ local message=UI.label(sc,"",22)
+ local close=Instance.new("TextButton",sc); close.Size=UDim2.new(1,0,0,52); close.LayoutOrder=100
+ UI.action(close,"Mengerti — kembali belajar")
+ close.Activated:Connect(function() shade.Visible=false end)
+ UI.fit(panel,function()
+  sc.Position=UDim2.fromOffset(20,20); sc.Size=UDim2.new(1,-40,1,-40)
+ end,420)
+ return function(value) message.Text=value; sc.CanvasPosition=Vector2.zero; shade.Visible=true end,function() shade.Visible=false end
+end
+return UI
+
+end)()
 -- Source template; build with scripts/build-level3.cjs. Session-local learning state.
 local Players = game:GetService("Players")
 local Http = game:GetService("HttpService")
@@ -59,7 +297,7 @@ end
 local cream,brown,brick=Color3.fromRGB(244,221,205),Color3.fromRGB(71,32,3),Color3.fromRGB(153,59,42)
 local gui=Instance.new("ScreenGui")
 gui.Name="Level3Learning"; gui.ResetOnSpawn=false; gui.DisplayOrder=60; gui.Enabled=false; gui.Parent=pg
-gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+UI.screen(gui)
 local overlay=Instance.new("TextButton")
 overlay.Text=""; overlay.Modal=true; overlay.AutoButtonColor=false; overlay.BackgroundColor3=Color3.new(0,0,0)
 overlay.BackgroundTransparency=.4; overlay.Size=UDim2.fromScale(1,1); overlay.Parent=gui
@@ -82,121 +320,101 @@ local render,news,evidence,pairView,exam,question,resultView
 local refreshGuide=function() end
 local noticeGui=Instance.new("ScreenGui")
 noticeGui.Name="L3StageNotice"; noticeGui.ResetOnSpawn=false; noticeGui.DisplayOrder=70; noticeGui.Parent=pg
-local notice=Instance.new("TextLabel")
-notice.AnchorPoint=Vector2.new(.5,0); notice.Position=UDim2.fromScale(.5,.1); notice.Size=UDim2.new(.8,0,0,100)
-notice.BackgroundColor3=cream; notice.TextColor3=brown; notice.TextSize=23; notice.Font=Enum.Font.GothamBold
-notice.TextWrapped=true; notice.Visible=false; notice.Parent=noticeGui
-Instance.new("UICorner",notice).CornerRadius=UDim.new(0,12)
-local noticeVersion=0
+local showNotice,hideNotice=UI.notice(noticeGui,"AccessNotice")
 local function alert(value)
- noticeVersion+=1; local version=noticeVersion
- notice.Text=value; notice.Visible=true
- task.delay(5,function() if noticeVersion==version then notice.Visible=false end end)
+ showNotice(value.."\n\nSelesaikan langkah tersebut, lalu kembali ke titik ini. Ikuti panah petunjuk; di HP, tahan tombol interaksi pada layar.")
 end
 local evaluationFooter,evaluationStatus,navigationFooter,practiceFeedback
 local evaluationButtons={}
+local readingList
+local readingPosition=Vector2.zero
+local function arrange()
+ local w,h=panel.AbsoluteSize.X,panel.AbsoluteSize.Y
+ title.TextSize=h<300 and 22 or UI.font(w,true)
+ title.TextWrapped=h>=300; title.TextTruncate=h<300 and Enum.TextTruncate.AtEnd or Enum.TextTruncate.None
+ local titleH=h<300 and 48 or math.max(48,UI.height(title,w-100,8))
+ title.Position=UDim2.fromOffset(16,12); title.Size=UDim2.new(1,-88,0,titleH)
+ close.Size=UDim2.fromOffset(48,48); close.Position=UDim2.new(1,-62,0,12)
+ local footer=navigationFooter or evaluationFooter
+ local footerH=footer and 64 or 0
+ body.Position=UDim2.fromOffset(16,titleH+26); body.Size=UDim2.new(1,-32,1,-(titleH+42+footerH))
+ if footer then footer.Position=UDim2.new(0,16,1,-68); footer.Size=UDim2.new(1,-32,0,52) end
+end
+UI.fit(panel,arrange)
+title:GetPropertyChangedSignal("Text"):Connect(arrange)
 local function clear(heading)
- if practiceFeedback then practiceFeedback:Destroy(); practiceFeedback=nil end
- evaluationButtons={}
+ readingPosition=readingList and title.Text==heading and readingList.CanvasPosition or Vector2.zero
  if navigationFooter then navigationFooter:Destroy(); navigationFooter=nil end
  if evaluationFooter then evaluationFooter:Destroy(); evaluationFooter=nil end
- if evaluationStatus then evaluationStatus:Destroy(); evaluationStatus=nil end
- panel.Size=UDim2.fromScale(.92,.9); panel.BackgroundColor3=cream
- stroke.Color=Color3.fromRGB(209,156,116); stroke.Thickness=3
- title.Position=UDim2.fromOffset(20,12); title.Size=UDim2.new(1,-100,0,65); title.TextSize=28; title.TextColor3=brown
- body.Position=UDim2.fromOffset(20,86); body.Size=UDim2.new(1,-40,1,-104)
+ practiceFeedback=nil; evaluationStatus=nil; evaluationButtons={}; readingList=nil
  drag=nil; dragBoard=nil; body:ClearAllChildren(); title.Text=heading
+ arrange()
 end
 local function list()
- local sc=Instance.new("ScrollingFrame")
- sc.Size=UDim2.fromScale(1,1); sc.BackgroundTransparency=1; sc.BorderSizePixel=0; sc.ScrollBarThickness=8
- sc.AutomaticCanvasSize=Enum.AutomaticSize.Y; sc.CanvasSize=UDim2.new(); sc.Parent=body
- local pad=Instance.new("UIPadding",sc); pad.PaddingRight=UDim.new(0,14); pad.PaddingBottom=UDim.new(0,12)
- local layout=Instance.new("UIListLayout",sc); layout.Padding=UDim.new(0,12); layout.SortOrder=Enum.SortOrder.LayoutOrder
- return sc
+ readingList=UI.scroll(body)
+ if panel.AbsoluteSize.Y<300 then local heading=UI.label(readingList,title.Text,22,true); heading.LayoutOrder=-30 end
+ local sc=readingList; local position=readingPosition
+ task.defer(function() if sc.Parent then sc.CanvasPosition=position end end)
+ return readingList
 end
 local function text(parent,value,size)
- local t=Instance.new("TextLabel")
- t.Text=value; t.Size=UDim2.new(1,0,0,0); t.AutomaticSize=Enum.AutomaticSize.Y; t.BackgroundTransparency=1
- t.TextSize=size or 24; t.Font=Enum.Font.Gotham
- t.TextColor3=evaluationFooter and Color3.fromRGB(70,47,37) or brown; t.TextWrapped=true
- t.TextXAlignment=Enum.TextXAlignment.Left; t.TextYAlignment=Enum.TextYAlignment.Top; t.LayoutOrder=#parent:GetChildren(); t.Parent=parent
- return t
+ return UI.label(parent,value,size or UI.font(panel.AbsoluteSize.X))
 end
 local function button(parent,label,callback,enabled)
  local b=Instance.new("TextButton")
- b.Text=label; b.Size=UDim2.new(1,0,0,56); b.AutomaticSize=Enum.AutomaticSize.Y; b.TextWrapped=true
- b.TextSize=23; b.Font=Enum.Font.GothamBold; b.TextColor3=Color3.new(1,1,1)
- b.BackgroundColor3=enabled==false and Color3.fromRGB(125,115,110) or brick
+ b.Text=label; b.Size=UDim2.new(1,0,0,56); b.TextWrapped=true
+ b.TextSize=UI.font(panel.AbsoluteSize.X); b.Font=Enum.Font.Gotham
+ b.TextColor3=brown; b.TextXAlignment=Enum.TextXAlignment.Left
+ b.BackgroundColor3=enabled==false and Color3.fromRGB(215,208,202) or Color3.fromRGB(255,247,237)
  b.Active=enabled~=false; b.AutoButtonColor=enabled~=false; b.LayoutOrder=#parent:GetChildren(); b.Parent=parent
  local pad=Instance.new("UIPadding",b)
- pad.PaddingTop=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,12); pad.PaddingLeft=UDim.new(0,12); pad.PaddingRight=UDim.new(0,12)
+ pad.PaddingTop=UDim.new(0,14); pad.PaddingBottom=UDim.new(0,14); pad.PaddingLeft=UDim.new(0,14); pad.PaddingRight=UDim.new(0,14)
  Instance.new("UICorner",b).CornerRadius=UDim.new(0,10)
+ UI.autoText(b,56,32)
  b.Activated:Connect(function() if enabled~=false then callback() end end)
  return b
 end
--- Fixed navigation: secondary action left, primary action right, reading stays scrollable.
+local function footerButton(parent,label,callback,enabled,right)
+ local b=Instance.new("TextButton",parent); UI.action(b,label)
+ b.Active=enabled~=false; b.AutoButtonColor=enabled~=false
+ b.BackgroundColor3=enabled==false and Color3.fromRGB(140,132,125) or (right and brick or Color3.fromRGB(125,102,90))
+ b.Size=UDim2.new(.49,-2,1,0); b.AnchorPoint=Vector2.new(right and 1 or 0,0); b.Position=UDim2.fromScale(right and 1 or 0,0)
+ b.TextSize=panel.AbsoluteSize.X<500 and 18 or 21
+ b.Activated:Connect(function() if enabled~=false then callback() end end)
+ return b
+end
 local function navigation(leftLabel,leftAction,rightLabel,rightAction,rightEnabled)
- body.Size=UDim2.new(1,-40,1,-180)
- navigationFooter=Instance.new("Frame")
- navigationFooter.BackgroundTransparency=1; navigationFooter.Position=UDim2.new(0,20,1,-76)
- navigationFooter.Size=UDim2.new(1,-40,0,56); navigationFooter.Parent=panel
- local function action(label,callback,right)
-  if not label then return end
-  local enabled=nil; if right then enabled=rightEnabled end
-  local b=button(navigationFooter,label,callback,enabled)
-  b.AutomaticSize=Enum.AutomaticSize.None; b.Size=UDim2.new(.44,0,1,0)
-  local cap=Instance.new("UISizeConstraint",b); cap.MaxSize=Vector2.new(280,56)
-  b.AnchorPoint=Vector2.new(right and 1 or 0,0); b.Position=UDim2.fromScale(right and 1 or 0,0)
-  b.TextSize=21
-  if not right then b.BackgroundColor3=Color3.fromRGB(125,102,90) end
- end
- action(leftLabel,leftAction,false); action(rightLabel,rightAction,true)
+ navigationFooter=Instance.new("Frame",panel); navigationFooter.BackgroundTransparency=1
+ if leftLabel then footerButton(navigationFooter,leftLabel,leftAction,true,false) end
+ if rightLabel then footerButton(navigationFooter,rightLabel,rightAction,rightEnabled,true) end
+ arrange()
 end
 local function practiceStatus(value,done,warning)
- body.Size=UDim2.new(1,-40,1,-282)
- practiceFeedback=Instance.new("TextLabel")
- practiceFeedback.Name="PracticeStatus"; practiceFeedback.Position=UDim2.new(0,20,1,-178)
- practiceFeedback.Size=UDim2.new(1,-40,0,90); practiceFeedback.TextWrapped=true
- practiceFeedback.Font=Enum.Font.GothamBold; practiceFeedback.TextSize=21
- practiceFeedback.TextColor3=Color3.fromRGB(40,55,35)
+ practiceFeedback=text(readingList or list(),value,UI.font(panel.AbsoluteSize.X))
+ if done or warning then local sc=readingList; task.defer(function() if sc and sc.Parent then sc.CanvasPosition=Vector2.zero end end) end
+ practiceFeedback.Name="PracticeStatus"; practiceFeedback.LayoutOrder=-20
+ practiceFeedback.Font=Enum.Font.GothamBold; practiceFeedback.BackgroundTransparency=0
  practiceFeedback.BackgroundColor3=done and Color3.fromRGB(220,240,218) or (warning and Color3.fromRGB(255,233,215) or Color3.fromRGB(250,239,230))
- practiceFeedback.Text=value; practiceFeedback.Parent=panel
+ local pad=Instance.new("UIPadding",practiceFeedback); pad.PaddingLeft=UDim.new(0,12); pad.PaddingRight=UDim.new(0,12); pad.PaddingTop=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,12)
+ UI.autoText(practiceFeedback,52,28)
  Instance.new("UICorner",practiceFeedback).CornerRadius=UDim.new(0,10)
- local pad=Instance.new("UIPadding",practiceFeedback); pad.PaddingLeft=UDim.new(0,12); pad.PaddingRight=UDim.new(0,12)
 end
--- Match Level 1: cream frame, large heading, scrollable reading area and fixed actions.
 local function evaluationClear(heading,statusText)
  clear(heading)
- panel.Size=UDim2.fromScale(.88,.92); panel.BackgroundColor3=Color3.fromRGB(246,224,207)
- stroke.Color=Color3.fromRGB(154,103,76); stroke.Thickness=2
- title.Position=UDim2.fromScale(.06,.025); title.Size=UDim2.fromScale(.80,.10)
- title.TextSize=32; title.TextColor3=Color3.fromRGB(70,47,37)
- body.Position=UDim2.fromScale(.07,.15); body.Size=UDim2.fromScale(.86,.57)
- evaluationStatus=Instance.new("TextLabel")
- evaluationStatus.Position=UDim2.fromScale(.07,.74); evaluationStatus.Size=UDim2.fromScale(.86,.11)
- evaluationStatus.BackgroundTransparency=1; evaluationStatus.TextWrapped=true; evaluationStatus.TextSize=24
- evaluationStatus.Font=Enum.Font.Gotham; evaluationStatus.TextColor3=Color3.fromRGB(100,70,55)
- evaluationStatus.Text=statusText or ""; evaluationStatus.Parent=panel
- evaluationFooter=Instance.new("Frame")
- evaluationFooter.BackgroundTransparency=1; evaluationFooter.Position=UDim2.fromScale(.07,.87)
- evaluationFooter.Size=UDim2.fromScale(.86,.08); evaluationFooter.Parent=panel
- local sc=list(); sc.ScrollBarThickness=6
- sc:FindFirstChildOfClass("UIListLayout").Padding=UDim.new(0,20)
+ local sc=list()
+ evaluationStatus=text(sc,statusText or "",UI.font(panel.AbsoluteSize.X)); evaluationStatus.LayoutOrder=-10
+ evaluationStatus.TextColor3=Color3.fromRGB(100,70,55)
+ evaluationFooter=Instance.new("Frame",panel); evaluationFooter.BackgroundTransparency=1
+ arrange()
  return sc
 end
 local function evaluationAction(label,callback,enabled)
- local b=button(evaluationFooter,label,callback,enabled)
- b.AutomaticSize=Enum.AutomaticSize.None; b.Size=UDim2.new(.46,-6,1,0); b.TextSize=24
- local cap=Instance.new("UISizeConstraint",b); cap.MaxSize=Vector2.new(280,80)
+ local b=footerButton(evaluationFooter,label,callback,enabled,true)
  table.insert(evaluationButtons,b)
- b.AnchorPoint=Vector2.new(1,0); b.Position=UDim2.fromScale(1,0)
  if #evaluationButtons==2 then
-  local secondary=evaluationButtons[1]
-  secondary.AnchorPoint=Vector2.new(0,0); secondary.Position=UDim2.fromScale(0,0)
+  local secondary=evaluationButtons[1]; secondary.AnchorPoint=Vector2.zero; secondary.Position=UDim2.new()
   secondary.BackgroundColor3=Color3.fromRGB(125,102,90)
  end
- if enabled==false then b.BackgroundColor3=Color3.fromRGB(150,140,135) end
  return b
 end
 local function prompts(enabled)
@@ -287,51 +505,103 @@ local function inside(point,o)
  local p,s=o.AbsolutePosition,o.AbsoluteSize
  return point.X>=p.X and point.Y>=p.Y and point.X<=p.X+s.X and point.Y<=p.Y+s.Y
 end
+local selectedFunctionCard
+-- Shuffle once per session; IDs and answer mapping stay stable for recording.
+local functionOrder={1,2,3}
+for i=#functionOrder,2,-1 do local j=math.random(i); functionOrder[i],functionOrder[j]=functionOrder[j],functionOrder[i] end
+if functionOrder[1]==1 and functionOrder[2]==2 then functionOrder={3,1,2} end
 evidence=function(feedback)
- clear("Latihan 1 — Fungsi gagasan")
- local labels={"Masalah","Pendekatan","Evaluasi"}
- local home=box(UDim2.fromScale(0,.12),UDim2.fromScale(1,.37),""); home.BackgroundTransparency=1
- box(UDim2.fromScale(0,0),UDim2.fromScale(1,.10),"Seret setiap kartu ke fungsi yang sesuai.")
- local targets={}
- for i=1,3 do
-  local heading=box(UDim2.fromScale((i-1)*.34,.52),UDim2.fromScale(.32,.09),labels[i]); heading.BackgroundTransparency=1; heading.Font=Enum.Font.GothamBold; heading.TextSize=22
-  targets[i]=box(UDim2.fromScale((i-1)*.34,.63),UDim2.fromScale(.32,.36),"Lepaskan kartu di sini")
-  targets[i].TextSize=17; targets[i].TextColor3=Color3.fromRGB(135,109,90)
-  for j=1,3 do if state.slots[j]==i then targets[i].Text="" end end
-  local border=Instance.new("UIStroke",targets[i]); border.ApplyStrokeMode=Enum.ApplyStrokeMode.Border; border.Color=Color3.fromRGB(196,159,127); border.Thickness=2
- end
- for i=1,3 do
-  local card=Instance.new("TextButton"); card.Text=DATA.cards[i]; card.TextWrapped=true; card.Font=Enum.Font.Gotham
-  card.TextScaled=true; local tc=Instance.new("UITextSizeConstraint",card); tc.MinTextSize=16; tc.MaxTextSize=22; card.TextSize=20; card.TextColor3=brown; card.BackgroundColor3=Color3.fromRGB(220,234,243)
-  card.Size=UDim2.fromScale(.30,.34); card.Position=UDim2.fromScale(((state.slots[i] or i)-1)*.34+.01,state.slots[i] and .64 or .14)
-  card.TextXAlignment=Enum.TextXAlignment.Left
-  local pad=Instance.new("UIPadding",card); pad.PaddingLeft=UDim.new(0,14); pad.PaddingRight=UDim.new(0,14); pad.PaddingTop=UDim.new(0,10); pad.PaddingBottom=UDim.new(0,10)
-  local outline=Instance.new("UIStroke",card); outline.ApplyStrokeMode=Enum.ApplyStrokeMode.Border; outline.Color=Color3.fromRGB(109,147,175); outline.Thickness=2
-  card.Parent=body; Instance.new("UICorner",card).CornerRadius=UDim.new(0,10)
-  card.InputBegan:Connect(function(input)
-   if state.done1 or drag then return end
-   if input.UserInputType~=Enum.UserInputType.MouseButton1 and input.UserInputType~=Enum.UserInputType.Touch then return end
-   drag={index=i,card=card,input=input,offset=Vector2.new(input.Position.X,input.Position.Y)-card.AbsolutePosition}; card.ZIndex=10
+ clear("Latihan 1 — Fungsi gagasan"); local sc=list()
+ text(sc,"Pilih satu kartu gagasan, lalu pilih fungsi yang sesuai. Kartu yang sudah terpasang akan berubah warna dan diberi tanda ✓. Ulangi sampai ketiga gagasan memiliki fungsi. Setelah selesai, tekan Periksa.",18)
+ local functionNames={"Masalah","Pendekatan","Evaluasi"}
+ local cardState={
+  idle={bg=Color3.fromRGB(253,249,242),border=Color3.fromRGB(211,204,196),thickness=1.5,badge={"Belum dipasangkan",Color3.fromRGB(150,140,130),Color3.fromRGB(243,238,231)}},
+  selected={bg=Color3.fromRGB(228,239,251),border=Color3.fromRGB(46,108,171),thickness=2.5,badge={"◉ Dipilih",Color3.fromRGB(46,108,171),Color3.fromRGB(215,232,249)}},
+  paired={bg=Color3.fromRGB(253,249,242),border=Color3.fromRGB(211,204,196),thickness=1.5},
+  correct={bg=Color3.fromRGB(233,246,235),border=Color3.fromRGB(88,158,96),thickness=2.5,dim=0.12},
+  wrong={bg=Color3.fromRGB(252,232,230),border=Color3.fromRGB(190,64,52),thickness=2,badge={"✗ Belum tepat — pilih fungsi lain",Color3.fromRGB(178,52,42),Color3.fromRGB(249,224,222)}},
+ }
+ local function gagasanCard(i,status,badgeText,badgeColor,badgeBg)
+  local st=cardState[status]
+  local card=Instance.new("TextButton")
+  card.Text=""; card.AutoButtonColor=not st.dim
+  card.Size=UDim2.new(1,0,0,0); card.AutomaticSize=Enum.AutomaticSize.Y
+  card.BackgroundColor3=st.bg; card.BorderSizePixel=0
+  card.LayoutOrder=#sc:GetChildren(); card.Parent=sc
+  Instance.new("UICorner",card).CornerRadius=UDim.new(0,12)
+  local stroke=Instance.new("UIStroke",card); stroke.Color=st.border; stroke.Thickness=st.thickness
+  local pad=Instance.new("UIPadding",card)
+  pad.PaddingTop=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,12); pad.PaddingLeft=UDim.new(0,14); pad.PaddingRight=UDim.new(0,14)
+  local layout=Instance.new("UIListLayout",card); layout.Padding=UDim.new(0,8)
+  local body=Instance.new("TextLabel")
+  body.Text=DATA.cards[i]; body.Font=Enum.Font.Gotham; body.TextSize=UI.font(panel.AbsoluteSize.X)
+  body.TextColor3=brown; body.TextTransparency=st.dim or 0
+  body.TextWrapped=true; body.TextXAlignment=Enum.TextXAlignment.Left; body.BackgroundTransparency=1
+  body.Size=UDim2.new(1,0,0,0); body.LayoutOrder=1; body.Parent=card
+  UI.autoText(body,0,0)
+  if badgeText then
+   local row=Instance.new("Frame")
+   row.BackgroundTransparency=1; row.Size=UDim2.new(1,0,0,24); row.LayoutOrder=2; row.Parent=card
+   local badge=Instance.new("TextLabel")
+   badge.Text=badgeText; badge.Font=Enum.Font.GothamBold; badge.TextSize=16
+   badge.TextColor3=badgeColor; badge.BackgroundColor3=badgeBg; badge.BorderSizePixel=0
+   badge.AnchorPoint=Vector2.new(1,0.5); badge.Position=UDim2.new(1,0,0.5,0)
+   badge.Size=UDim2.new(0,0,1,-2); badge.AutomaticSize=Enum.AutomaticSize.X
+   badge.TextXAlignment=Enum.TextXAlignment.Center; badge.TextYAlignment=Enum.TextYAlignment.Center
+   badge.Parent=row
+   local bpad=Instance.new("UIPadding",badge); bpad.PaddingLeft=UDim.new(0,10); bpad.PaddingRight=UDim.new(0,10)
+   Instance.new("UICorner",badge).CornerRadius=UDim.new(1,0)
+  end
+  card.Activated:Connect(function()
+   if not state.done1 then selectedFunctionCard=i; evidence() end
   end)
  end
- dragBoard={targets=targets,home=home}
+ for _,i in ipairs(functionOrder) do
+  local status
+  if state.done1 or (state.check1 and state.check1[i]) then status="correct"
+  elseif selectedFunctionCard==i then status="selected"
+  elseif state.check1 and state.check1[i]==false then status="wrong"
+  elseif state.slots[i] then status="paired"
+  else status="idle" end
+  local slotLabel=state.slots[i] and functionNames[state.slots[i]]
+  local badge
+  if status=="correct" then badge={"✓ Terpasang: "..slotLabel,Color3.fromRGB(42,122,52),Color3.fromRGB(219,240,224)}
+  elseif status=="paired" then badge={"Terpasang: "..slotLabel,Color3.fromRGB(125,102,90),Color3.fromRGB(241,233,226)} end
+  local badgeText,badgeColor,badgeBg
+  if badge then badgeText,badgeColor,badgeBg=badge[1],badge[2],badge[3]
+  elseif cardState[status].badge then badgeText,badgeColor,badgeBg=table.unpack(cardState[status].badge) end
+  gagasanCard(i,status,badgeText,badgeColor,badgeBg)
+ end
+ text(sc,"PILIH FUNGSI TUJUAN",22).Font=Enum.Font.GothamBold
+ for i,label in ipairs(functionNames) do
+  local b=button(sc,label,function()
+   if state.done1 then return end
+   if not selectedFunctionCard then evidence("Ketuk satu kartu gagasan dahulu, lalu ketuk fungsinya."); return end
+   for j=1,3 do
+    if state.slots[j]==i then
+     state.slots[j]=nil
+     if state.check1 then state.check1[j]=nil end
+    end
+   end
+   state.slots[selectedFunctionCard]=i
+   if state.check1 then state.check1[selectedFunctionCard]=nil end
+   selectedFunctionCard=nil; evidence()
+  end)
+  b.BackgroundColor3=Color3.fromRGB(255,247,237)
+  b.TextXAlignment=Enum.TextXAlignment.Center
+  local s=Instance.new("UIStroke",b); s.Color=Color3.fromRGB(211,204,196); s.Thickness=1.5
+ end
  navigation("Baca abstrak",function() news(function() evidence() end) end,state.done1 and "Ke Latihan 2" or "Periksa",function()
   if state.done1 then dismiss(); return end
   local correct=functionsCorrect(state.slots)
   recordLearning("practice",{activity="functions",choices={state.slots[1],state.slots[2],state.slots[3]},help=state.errors1>=2})
+  state.check1={state.slots[1]==1,state.slots[2]==2,state.slots[3]==3}
   if correct then state.done1=true; evidence() else
    state.errors1+=1
-   evidence(state.errors1>=2 and "Bantuan: kendala melatarbelakangi masalah; data-centric ialah usulan; studi kasus ialah cara evaluasi. Susun kembali dan Periksa." or "Tinjau fungsi setiap gagasan pada bagian 1, 2, dan 3 abstrak.")
+   evidence(state.errors1>=2 and "BELUM TEPAT — Kendala ialah masalah; data-centric ialah pendekatan; studi kasus ialah evaluasi. Pasangkan kembali." or "BELUM TEPAT — Tinjau fungsi setiap gagasan dalam abstrak, lalu pasangkan kembali.")
   end
  end,state.done1 or (state.slots[1]~=nil and state.slots[2]~=nil and state.slots[3]~=nil))
- practiceStatus(state.done1 and "SELESAI — Ketiga fungsi gagasan sesuai." or feedback or "Untuk mengganti pasangan, kembalikan kartu ke area atas.",state.done1,feedback~=nil)
- -- Reserve most of the panel for the actual drag board; keep the resting hint compact.
- panel.Size=UDim2.fromScale(.94,.94)
- local feedbackHeight=feedback and 80 or 42
- body.Size=UDim2.new(1,-40,1,-(194+feedbackHeight))
- practiceFeedback.Position=UDim2.new(0,20,1,-(88+feedbackHeight))
- practiceFeedback.Size=UDim2.new(1,-40,0,feedbackHeight); practiceFeedback.TextSize=18
- if not feedback and not state.done1 then practiceFeedback.BackgroundTransparency=1 end
+ practiceStatus(state.done1 and "SELESAI — Ketiga fungsi gagasan tepat." or feedback or (selectedFunctionCard and "Gagasan dipilih. Ketuk fungsi tujuannya di bawah." or "Ketuk satu kartu gagasan, lalu ketuk fungsi tujuannya di bawah."),state.done1,feedback~=nil)
 end
 Input.InputChanged:Connect(function(input)
  if not drag then return end
@@ -354,15 +624,13 @@ end)
 pairView=function(feedback)
  local r=DATA.rounds[state.round]
  local v=state.rounds[state.round] or {errors=0}; state.rounds[state.round]=v
+ -- A single provided source replaces the separate evidence-choice task.
+ v.evidence=r.keyEvidence
  clear("Latihan 2 — Ronde "..state.round.."/4: "..r.title); local sc=list()
- text(sc,r.instruction,25)
- text(sc,"SUMBER — pilih satu kalimat bukti",22).Font=Enum.Font.GothamBold
- for i,quote in ipairs(r.evidence) do
-  button(sc,(v.evidence==i and "✓ " or "")..quote,function()
-   if not v.done then v.evidence=v.evidence~=i and i or nil; pairView() end
-  end).BackgroundColor3=v.evidence==i and Color3.fromRGB(65,110,145) or Color3.fromRGB(125,102,90)
- end
- text(sc,"DRAF — pilih satu rentang yang harus dicoret",22).Font=Enum.Font.GothamBold
+ text(sc,"Baca kutipan sumber di bawah. Dari tiga bagian draf, ketuk SATU bagian yang tidak didukung kutipan atau membuat simpulan berlebihan. Bagian terpilih akan dicoret. Tekan Periksa; ketuk bagian lain untuk mengganti pilihan.")
+ text(sc,"KUTIPAN SUMBER — ABSTRAK TWIZZLER",22).Font=Enum.Font.GothamBold
+ text(sc,r.evidence[r.keyEvidence])
+ text(sc,"DRAF SIMPULAN — pilih bagian yang perlu dicoret",22).Font=Enum.Font.GothamBold
  for i,part in ipairs(r.parts) do
   local b=button(sc,(v.part==i and "CORET: " or "")..part,function()
    if not v.done then v.part=v.part~=i and i or nil; pairView() end
@@ -376,27 +644,41 @@ pairView=function(feedback)
    if state.round<4 then state.round+=1; pairView() else dismiss() end; return
   end
   local revision,proof=editorCorrect(r,v.part,v.evidence)
-  recordLearning("practice",{activity="editor",round=state.round,choices={v.part,v.evidence},help=v.errors>=2})
+  recordLearning("practice",{activity="editor",variant="provided_source_v2",round=state.round,choices={v.part},help=v.errors>=2})
   if revision and proof then
    v.done=true; state.done2=true
    for i=1,4 do if not state.rounds[i] or not state.rounds[i].done then state.done2=false end end
    pairView()
   else
    v.errors+=1
-   local f=(revision and "Revisi tepat. " or "Tinjau cakupan draf. "..r.hint.." ")..(proof and "Bukti tepat." or r.wrongEvidence)
+   local f="BELUM TEPAT — "..r.hint.." Baca kembali kutipan, lalu ganti bagian yang dicoret."
    if v.errors>=2 then f..=" Bantuan frasa: “"..r.proof.."”. Pilih kembali dan Periksa." end
    pairView(f)
   end
  end,v.done or (v.part~=nil and v.evidence~=nil))
- practiceStatus(v.done and "SELESAI — Revisi dan bukti sesuai." or feedback or "Pilih rentang draf dan bukti, lalu Periksa. Pilihan tersimpan saat panel ditutup.",v.done,feedback~=nil)
+ practiceStatus(v.done and "SELESAI — Bagian yang melampaui sumber sudah dicoret. Baca hasil revisi, lalu lanjutkan." or feedback or "Ketuk satu bagian draf yang perlu dicoret, lalu tekan Periksa.",v.done,feedback~=nil)
 end
 
 resultView=function()
  local sc=evaluationClear("Hasil Evaluasi Level 3",result.unlocked and "Gedung tengah terbuka. Tutup hasil dan ikuti panah." or "Nilai minimal 75. Pelajari kembali abstrak, lalu kembali ke kios untuk mencoba lagi.")
- text(sc,"Skor jawaban: "..result.score.." / 100",34).Font=Enum.Font.GothamBold
- text(sc,"Ketepatan alasan: "..result.reasons.." / 4 (terpisah dari skor kemajuan)")
- text(sc,"Nilai terbaik sesi: "..result.best.." / 100")
- text(sc,result.unlocked and "Akses gedung tengah sudah terbuka." or "Nilai minimal 75. Baca kembali materi dan coba lagi.")
+ local passed=result.score>=75
+ title.Text="Level 3 — "..(passed and "Lulus" or "Belum lulus")
+ evaluationStatus.Text=passed and "Selamat! Nilai jawabanmu memenuhi batas kelulusan 75." or "Nilai jawabanmu belum mencapai 75. Kamu dapat belajar kembali atau mencoba evaluasi lagi."
+ if passed then
+  local oldGui=pg:FindFirstChild("Level1Gui")
+  local oldQuiz=oldGui and oldGui:FindFirstChild("quizFrame")
+  local background=oldQuiz and oldQuiz:FindFirstChild("ResultBackground")
+  local success=background and background:FindFirstChild("ResultLulus")
+  local original=success and success:FindFirstChildWhichIsA("ImageLabel")
+  if original then local crown=original:Clone(); crown.Name="ResultCrown"; crown.BackgroundTransparency=1; crown.BorderSizePixel=0; crown.Size=UDim2.new(1,0,0,78); crown.ScaleType=Enum.ScaleType.Fit; crown.LayoutOrder=-20; crown.Visible=true; crown.Parent=sc end
+ end
+ local score=text(sc,result.score.." / 100",panel.AbsoluteSize.X<600 and 38 or 46)
+ score.Font=Enum.Font.GothamBold; score.TextXAlignment=Enum.TextXAlignment.Center; score.BackgroundTransparency=1; score.BorderSizePixel=0
+ UI.autoText(score,72,8)
+ text(sc,"Jawaban tepat: "..(result.score/25).." dari 4     •     Alasan tepat: "..result.reasons.." dari 4",20)
+ text(sc,"Kelulusan ditentukan oleh skor jawaban. Ketepatan alasan dicatat terpisah.",18)
+ text(sc,"Nilai terbaik sesi: "..result.best.." / 100",18)
+ if not passed and result.unlocked then text(sc,"Akses berikutnya tetap terbuka karena kamu sudah lulus pada percobaan sebelumnya.",18) end
  if result.unlocked then evaluationAction("Ke gedung tengah",dismiss)
  else
   evaluationAction("Belajar lagi",function()
@@ -479,7 +761,9 @@ if player.Character then resetCharacter(player.Character) end
 render=function(key)
  if key=="terms" then terms(); return end
  if key=="intro" then
-  clear("Level 3 — Keterampilan Membaca"); local sc=list(); text(sc,DATA.intro)
+  clear("Level 3 — Membaca Lanjutan"); local sc=list(); text(sc,"SELAMAT DATANG",20).TextColor3=brick
+  text(sc,"Baca abstrak, kenali fungsi gagasan, lalu periksa batas simpulan.",30).Font=Enum.Font.GothamBold
+  text(sc,"1. Baca tiga bagian abstrak Twizzler.\n\n2. Pasangkan tiga gagasan dengan fungsinya.\n\n3. Pada empat ronde, baca kutipan dan coret bagian draf yang melampaui sumber.\n\n4. Jawab empat soal evaluasi beserta alasannya. Nilai minimal 75 membuka aula apresiasi.")
   navigation(nil,nil,"Mulai",function()
    state.intro=true; dismiss()
   end); return
@@ -510,7 +794,7 @@ local function bind(s)
   if who and who~=player then return end; if gui.Enabled then return end
   local reason=prerequisite(s.key)
   if reason then alert(reason); refreshGuide(); return end
-  notice.Visible=false; noticeVersion+=1
+  hideNotice()
   recordLearning("start")
   activePrompt=p; gui.Enabled=true; player:SetAttribute("L3LearningOpen",true); controls.Lock(); prompts(false); render(s.key)
  end)

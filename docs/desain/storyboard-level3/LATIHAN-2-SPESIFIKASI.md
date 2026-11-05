@@ -1,3 +1,5 @@
+Catatan revisi pengguna 5 November 2026: lihat [acuan UI terbaru](../REVISI-UI-2026-11-05.md) dan [status implementasi/QA](../../development/2026-11-05-RESPONSIVE-UI.md). Ketuk pilihan lalu tujuan menggantikan drag pada L2/L3; Latihan 2 L3 memakai kutipan sumber yang disediakan dan satu pilihan bagian draf. Gambar snapshot lama dipertahankan sebagai riwayat.
+
 # Latihan 2 — empat ronde editor simpulan dan bukti
 
 Keputusan kerja24Oktober2026: pengguna meminta latihan tidak berhenti pada satu kasus. Rancangan aktif diperluas menjadi4ronde berbeda dalam satu panel, masih diLevel3 Membaca lanjutan dengan abstrak yang sama. Bukan empat gedung/levelutama baru, bukan validasi ahli, dan belum implementasiStudio. Latihan1 tetap drag tiga fungsi gagasan. Materi lengkap dan empat soal evaluasi tidak diubah.

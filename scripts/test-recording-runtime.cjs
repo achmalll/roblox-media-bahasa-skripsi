@@ -83,6 +83,15 @@ local l3=disk["LearningRecords_v1/u3/session3:000001"]
 assert(l3.events[1].data.correct and #l3.events[1].data.choices==3)
 assert(l3.events[2].data.correct and l3.events[2].data.round==2)
 assert(l3.events[3].data.reasonCorrect and l3.events[4].data.reasons[4]==4)
+-- Revised editor has one response; a provided quote must never become a fake player choice.
+created.OnServerEvent:Fire(c,{level=3,id="editor-v2-good",op="practice",activity="editor",variant="provided_source_v2",round=1,choices={3}})
+created.OnServerEvent:Fire(c,{level=3,id="editor-v2-wrong",op="practice",activity="editor",variant="provided_source_v2",round=1,choices={1}})
+created.OnServerEvent:Fire(c,{level=3,id="editor-v2-invalid",op="practice",activity="editor",variant="provided_source_v2",round=1,choices={3,2}})
+rep.UpdateLevel3Score.OnServerEvent:Fire(c,{id="pass3-v2",answers={4,5,1,3},reasons={3,1,2,4}})
+l3=disk["LearningRecords_v1/u3/session3:000001"]
+assert(l3.events[5].data.correct and #l3.events[5].data.choices==1 and l3.events[5].data.evidenceProvided)
+assert(l3.events[5].data.variant=="provided_source_v2" and not l3.events[6].data.correct)
+assert(#l3.events==7 and l3.events[7].kind=="evaluation")
 -- Final write fails after departure: retain it until periodic retry succeeds.
 fail=true; ps.PlayerRemoving:Fire(a); assert(a.attrs.LearningRecordStatus=="failed")
 fail=false; autoTicks=1; background[1]()

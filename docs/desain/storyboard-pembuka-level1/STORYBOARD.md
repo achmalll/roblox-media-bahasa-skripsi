@@ -1,3 +1,5 @@
+Catatan revisi pengguna 5 November 2026: lihat [acuan UI terbaru](../REVISI-UI-2026-11-05.md) dan [status implementasi/QA](../../development/2026-11-05-RESPONSIVE-UI.md). Ketuk pilihan lalu tujuan menggantikan drag pada L2/L3; Latihan 2 L3 memakai kutipan sumber yang disediakan dan satu pilihan bagian draf. Gambar snapshot lama dipertahankan sebagai riwayat.
+
 # Storyboard aktif — Pembuka sampai Level 1
 
 Koreksi 22 Oktober: tiga audio tetap terpisah. Full berarti progres0–100% untuk setiap klip, BUKAN narasi panjang gabungan. Tutor1 audio1; Tutor2 audio2/3. Konsep yang diterima dipertahankan.

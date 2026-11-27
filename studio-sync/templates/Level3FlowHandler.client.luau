@@ -24,7 +24,7 @@ local progress = player:WaitForChild("leaderstats"):WaitForChild("LevelProgress"
 local state = {intro=false,pages={},page=1,selected={},done1=false,done2=false,slots={},errors1=0,errors2=0,help1=false,help2=false,round=1,rounds={}}
 local attempt, result, activePrompt, drag, dragBoard
 local stations = {
- {path={"Space 3",""},key="intro",title="Pemandu Level 3",action="Bicara"},
+ {path={"Space 3",""},key="intro",title="Pemandu Tahap 3",action="Bicara"},
  {path={"Level3Development","meja baca"},key="news",title="Abstrak Twizzler",action="Baca abstrak"},
  {path={"Space 3","Infoboard"},key="terms",title="Istilah dalam abstrak",action="Lihat istilah"},
  {path={"Level3Development","latihan 1"},key="evidence",title="Latihan 1 — Fungsi gagasan",action="Buka latihan"},
@@ -32,9 +32,9 @@ local stations = {
  {path={"Level3Development","L3_NPC_PemanduBaca"},key="news",title="Pemandu abstrak",action="Baca abstrak"},
  {path={"Level3Development","L3_NPC_FungsiGagasan"},key="evidence",title="Fungsi gagasan",action="Buka latihan"},
  {path={"Level3Development","L3_NPC_BatasSimpulan"},key="pairs",title="Batas simpulan",action="Buka latihan"},
- {path={"Level3Development","L3_NPC_EvaluasiPria"},key="exam",title="Evaluasi Level 3",action="Buka evaluasi"},
- {path={"Level3Development","L3_NPC_EvaluasiWanita"},key="exam",title="Evaluasi Level 3",action="Buka evaluasi"},
- {path={"Level3Development","Evaluasi"},key="exam",title="Evaluasi Level 3",action="Buka evaluasi"},
+ {path={"Level3Development","L3_NPC_EvaluasiPria"},key="exam",title="Evaluasi Tahap 3",action="Buka evaluasi"},
+ {path={"Level3Development","L3_NPC_EvaluasiWanita"},key="exam",title="Evaluasi Tahap 3",action="Buka evaluasi"},
+ {path={"Level3Development","Evaluasi"},key="exam",title="Evaluasi Tahap 3",action="Buka evaluasi"},
 }
 local function find(path)
  local o=workspace
@@ -215,9 +215,9 @@ local function stage()
  return "exam"
 end
 local function prerequisite(key)
- if progress.Value<3 then return "Selesaikan Level 2 dengan nilai minimal 75 terlebih dahulu." end
+ if progress.Value<3 then return "Selesaikan Tahap 2 dengan nilai minimal 75 terlebih dahulu." end
  if key=="intro" or key=="terms" then return nil end
- if not state.intro then return "Temui pemandu Level 3 dan tekan Mulai terlebih dahulu." end
+ if not state.intro then return "Temui pemandu Tahap 3 dan pilih «Ke meja baca» terlebih dahulu." end
  if key=="news" then return nil end
  if not allRead() then return "Baca abstrak terlebih dahulu. Bagian "..unreadPage().."/3 belum dikunjungi. Ikuti panah ke meja abstrak." end
  if key=="evidence" then return nil end
@@ -251,7 +251,12 @@ end
 news=function(back)
  clear("Abstrak Twizzler — "..state.page.."/3"); state.pages[state.page]=true
  local page=state.page
- local sc=list(); text(sc,DATA.headings[page],26); text(sc,DATA.pages[page])
+ local sc=list()
+ if page==1 then
+  text(sc,"Sumber bacaan\nOperating Systems for Far Out Memories",UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+  text(sc,"Bacaan ini diadaptasi dari abstrak disertasi Daniel A. Bittman (2023), University of California, Santa Cruz.",16)
+ end
+ text(sc,DATA.headings[page],26); text(sc,DATA.pages[page])
  task.defer(function() if sc.Parent then sc.CanvasPosition=readingScroll[page] or Vector2.new() end end)
  sc:GetPropertyChangedSignal("CanvasPosition"):Connect(function() readingScroll[page]=sc.CanvasPosition end)
  local previous=state.page>1 and function() state.page-=1; news(back) end or back
@@ -273,35 +278,154 @@ local selectedFunctionCard
 local functionOrder={1,2,3}
 for i=#functionOrder,2,-1 do local j=math.random(i); functionOrder[i],functionOrder[j]=functionOrder[j],functionOrder[i] end
 if functionOrder[1]==1 and functionOrder[2]==2 then functionOrder={3,1,2} end
-evidence=function(feedback)
+evidence=function(feedback,focus)
  clear("Latihan 1 — Fungsi gagasan"); local sc=list()
- text(sc,"1. Ketuk satu gagasan dari abstrak.\n2. Ketuk fungsi yang sesuai: Masalah, Pendekatan, atau Evaluasi.\n3. Pasangkan ketiga gagasan, lalu tekan Periksa.")
- for _,i in ipairs(functionOrder) do
-  local label=state.slots[i] and ({"Masalah","Pendekatan","Evaluasi"})[state.slots[i]] or "Belum dipasangkan"
-  local b=button(sc,(selectedFunctionCard==i and "DIPILIH — " or "")..DATA.cards[i].."\nFungsi: "..label,function()
-   if not state.done1 then selectedFunctionCard=i; evidence() end
-  end)
-  b.BackgroundColor3=selectedFunctionCard==i and Color3.fromRGB(185,212,232) or Color3.fromRGB(220,234,243)
+ local matchBoard=Instance.new("Frame")
+ matchBoard.Name="PapanFungsiGagasan"
+ matchBoard.BackgroundTransparency=1
+ matchBoard.Size=UDim2.new(1,0,0,0)
+ matchBoard.LayoutOrder=#sc:GetChildren(); matchBoard.Parent=sc
+ local function column(name)
+  local frame=Instance.new("Frame")
+  frame.Name=name; frame.BackgroundTransparency=1; frame.Parent=matchBoard
+  local layout=Instance.new("UIListLayout",frame)
+  layout.SortOrder=Enum.SortOrder.LayoutOrder; layout.Padding=UDim.new(0,10)
+  return frame,layout
  end
- text(sc,"PILIH FUNGSI TUJUAN",22).Font=Enum.Font.GothamBold
- for i,label in ipairs({"Masalah","Pendekatan","Evaluasi"}) do
-  button(sc,label,function()
-   if state.done1 then return end
-   if not selectedFunctionCard then evidence("Ketuk satu gagasan dahulu, lalu ketuk fungsinya."); return end
-   for j=1,3 do if state.slots[j]==i then state.slots[j]=nil end end
-   state.slots[selectedFunctionCard]=i; selectedFunctionCard=nil; evidence()
+ local cards,cardLayout=column("KartuGagasan")
+ local targets,targetLayout=column("FungsiTujuan")
+ text(cards,"Kartu gagasan",20).Font=Enum.Font.GothamBold
+ local functionNames={"Masalah","Pendekatan","Evaluasi"}
+ local cardState={
+  idle={bg=Color3.fromRGB(253,249,242),border=Color3.fromRGB(211,204,196),thickness=1.5,badge={"Belum dipasangkan",Color3.fromRGB(150,140,130),Color3.fromRGB(243,238,231)}},
+  selected={bg=Color3.fromRGB(228,239,251),border=Color3.fromRGB(46,108,171),thickness=2.5,badge={"◉ Dipilih",Color3.fromRGB(46,108,171),Color3.fromRGB(215,232,249)}},
+  paired={bg=Color3.fromRGB(253,249,242),border=Color3.fromRGB(211,204,196),thickness=1.5},
+  correct={bg=Color3.fromRGB(233,246,235),border=Color3.fromRGB(88,158,96),thickness=2.5,dim=0.12},
+  wrong={bg=Color3.fromRGB(252,232,230),border=Color3.fromRGB(190,64,52),thickness=2,badge={"✗ Belum tepat — pilih fungsi lain",Color3.fromRGB(178,52,42),Color3.fromRGB(249,224,222)}},
+ }
+ local function gagasanCard(i,status,badgeText,badgeColor,badgeBg)
+  local st=cardState[status]
+  local card=Instance.new("TextButton")
+  card.Text=""; card.AutoButtonColor=not st.dim
+  card.Size=UDim2.new(1,0,0,0); card.AutomaticSize=Enum.AutomaticSize.Y
+  card.BackgroundColor3=st.bg; card.BorderSizePixel=0
+  card.LayoutOrder=#cards:GetChildren(); card.Parent=cards
+  Instance.new("UICorner",card).CornerRadius=UDim.new(0,12)
+  local stroke=Instance.new("UIStroke",card); stroke.Color=st.border; stroke.Thickness=st.thickness
+  local pad=Instance.new("UIPadding",card)
+  pad.PaddingTop=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,12); pad.PaddingLeft=UDim.new(0,14); pad.PaddingRight=UDim.new(0,14)
+  local layout=Instance.new("UIListLayout",card); layout.Padding=UDim.new(0,8)
+  local body=Instance.new("TextLabel")
+  body.Text=DATA.cards[i]; body.Font=Enum.Font.Gotham; body.TextSize=UI.font(panel.AbsoluteSize.X)
+  body.TextColor3=brown; body.TextTransparency=st.dim or 0
+  body.TextWrapped=true; body.TextXAlignment=Enum.TextXAlignment.Left; body.BackgroundTransparency=1
+  body.Size=UDim2.new(1,0,0,0); body.LayoutOrder=1; body.Parent=card
+  UI.autoText(body,0,0)
+  if badgeText then
+   local row=Instance.new("Frame")
+   row.BackgroundTransparency=1; row.Size=UDim2.new(1,0,0,24); row.LayoutOrder=2; row.Parent=card
+   local badge=Instance.new("TextLabel")
+   badge.Text=badgeText; badge.Font=Enum.Font.GothamBold; badge.TextSize=16
+   badge.TextColor3=badgeColor; badge.BackgroundColor3=badgeBg; badge.BorderSizePixel=0
+   badge.AnchorPoint=Vector2.new(1,0.5); badge.Position=UDim2.new(1,0,0.5,0)
+   badge.Size=UDim2.new(0,0,1,-2); badge.AutomaticSize=Enum.AutomaticSize.X
+   badge.TextXAlignment=Enum.TextXAlignment.Center; badge.TextYAlignment=Enum.TextYAlignment.Center
+   badge.Parent=row
+   local bpad=Instance.new("UIPadding",badge); bpad.PaddingLeft=UDim.new(0,10); bpad.PaddingRight=UDim.new(0,10)
+   Instance.new("UICorner",badge).CornerRadius=UDim.new(1,0)
+  end
+  card.Activated:Connect(function()
+   if not state.done1 then selectedFunctionCard=i; evidence(nil,"targets") end
   end)
+ end
+ for _,i in ipairs(functionOrder) do
+  local status
+  if state.done1 or (state.check1 and state.check1[i]) then status="correct"
+  elseif selectedFunctionCard==i then status="selected"
+  elseif state.check1 and state.check1[i]==false then status="wrong"
+  elseif state.slots[i] then status="paired"
+  else status="idle" end
+  local slotLabel=state.slots[i] and functionNames[state.slots[i]]
+  local badge
+  if status=="correct" then badge={"✓ Terpasang: "..slotLabel,Color3.fromRGB(42,122,52),Color3.fromRGB(219,240,224)}
+  elseif status=="paired" then badge={"Terpasang: "..slotLabel,Color3.fromRGB(125,102,90),Color3.fromRGB(241,233,226)} end
+  local badgeText,badgeColor,badgeBg
+  if badge then badgeText,badgeColor,badgeBg=badge[1],badge[2],badge[3]
+  elseif cardState[status].badge then badgeText,badgeColor,badgeBg=table.unpack(cardState[status].badge) end
+  gagasanCard(i,status,badgeText,badgeColor,badgeBg)
+ end
+ text(targets,state.done1 and "Hasil pasangan" or "Fungsi tujuan",20).Font=Enum.Font.GothamBold
+ for i,label in ipairs(functionNames) do
+  local assigned
+  for cardIndex=1,3 do
+   if state.slots[cardIndex]==i then assigned=cardIndex; break end
+  end
+  local canAssign=not state.done1 and selectedFunctionCard~=nil and selectedFunctionCard~=assigned
+  local checked=assigned and state.check1 and state.check1[assigned]
+  local status=assigned and "Terisi" or "Kosong"
+  local fill=assigned and Color3.fromRGB(218,235,249) or Color3.fromRGB(255,247,237)
+  local edge=assigned and Color3.fromRGB(46,108,171) or Color3.fromRGB(163,126,105)
+  if state.done1 or checked==true then
+   status="✓ Tepat"
+   fill=Color3.fromRGB(220,240,218); edge=Color3.fromRGB(51,127,68)
+  elseif checked==false then
+   status="Belum tepat"
+   fill=Color3.fromRGB(251,231,226); edge=Color3.fromRGB(172,63,48)
+  end
+  if canAssign then status..=assigned and " · Ganti pasangan" or " · Pasangkan di sini" end
+  local b=button(targets,label.."\n"..status,function()
+   if assigned then
+    state.slots[assigned]=nil
+    if state.check1 then state.check1[assigned]=nil end
+   end
+   state.slots[selectedFunctionCard]=i
+   if state.check1 then state.check1[selectedFunctionCard]=nil end
+   selectedFunctionCard=nil; evidence(nil,"cards")
+  end,canAssign)
+  b.BackgroundColor3=fill
+  b.Font=Enum.Font.GothamBold
+  b.TextXAlignment=Enum.TextXAlignment.Center
+  b.Selectable=canAssign
+  local stroke=Instance.new("UIStroke",b)
+  stroke.ApplyStrokeMode=Enum.ApplyStrokeMode.Border
+  stroke.Color=edge
+  stroke.Thickness=assigned and 2 or 1
  end
  navigation("Baca abstrak",function() news(function() evidence() end) end,state.done1 and "Ke Latihan 2" or "Periksa",function()
   if state.done1 then dismiss(); return end
   local correct=functionsCorrect(state.slots)
   recordLearning("practice",{activity="functions",choices={state.slots[1],state.slots[2],state.slots[3]},help=state.errors1>=2})
+  state.check1={state.slots[1]==1,state.slots[2]==2,state.slots[3]==3}
   if correct then state.done1=true; evidence() else
    state.errors1+=1
    evidence(state.errors1>=2 and "BELUM TEPAT — Kendala ialah masalah; data-centric ialah pendekatan; studi kasus ialah evaluasi. Pasangkan kembali." or "BELUM TEPAT — Tinjau fungsi setiap gagasan dalam abstrak, lalu pasangkan kembali.")
   end
  end,state.done1 or (state.slots[1]~=nil and state.slots[2]~=nil and state.slots[3]~=nil))
- practiceStatus(state.done1 and "SELESAI — Ketiga fungsi gagasan tepat." or feedback or (selectedFunctionCard and "Gagasan dipilih. Ketuk fungsi tujuannya di bawah." or "Ketuk gagasan, lalu ketuk fungsi. Tidak perlu menyeret kartu."),state.done1,feedback~=nil)
+ practiceStatus(state.done1 and "SELESAI — Ketiga fungsi gagasan tepat." or feedback or
+  (selectedFunctionCard and "Gagasan dipilih. Ketuk fungsi yang sesuai." or "Pilih kartu gagasan, lalu pilih fungsinya. Isi ketiga fungsi dan tekan Periksa."),
+  state.done1,feedback~=nil)
+ local function arrangeMatchBoard()
+  local wide=matchBoard.AbsoluteSize.X>=700
+  local cardHeight,targetHeight=cardLayout.AbsoluteContentSize.Y,targetLayout.AbsoluteContentSize.Y
+  cards.Size=UDim2.new(wide and .58 or 1,wide and -8 or 0,0,cardHeight)
+  targets.Size=UDim2.new(wide and .42 or 1,wide and -8 or 0,0,targetHeight)
+  targets.Position=wide and UDim2.new(.58,8,0,0) or UDim2.fromOffset(0,cardHeight+16)
+  matchBoard.Size=UDim2.new(1,0,0,wide and math.max(cardHeight,targetHeight) or cardHeight+targetHeight+16)
+ end
+ matchBoard:GetPropertyChangedSignal("AbsoluteSize"):Connect(arrangeMatchBoard)
+ cardLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeMatchBoard)
+ targetLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeMatchBoard)
+ arrangeMatchBoard()
+ if focus then
+  task.defer(function()
+   game:GetService("RunService").Heartbeat:Wait()
+   if not sc.Parent or matchBoard.AbsoluteSize.X>=700 then return end
+   if focus=="cards" then sc.CanvasPosition=Vector2.zero; return end
+   local targetY=targets.AbsolutePosition.Y-sc.AbsolutePosition.Y+sc.CanvasPosition.Y
+   local maxY=math.max(0,sc.AbsoluteCanvasSize.Y-sc.AbsoluteWindowSize.Y)
+   sc.CanvasPosition=Vector2.new(0,math.clamp(targetY,0,maxY))
+  end)
+ end
 end
 Input.InputChanged:Connect(function(input)
  if not drag then return end
@@ -327,19 +451,36 @@ pairView=function(feedback)
  -- A single provided source replaces the separate evidence-choice task.
  v.evidence=r.keyEvidence
  clear("Latihan 2 — Ronde "..state.round.."/4: "..r.title); local sc=list()
- text(sc,"Baca kutipan sumber di bawah. Dari tiga bagian draf, ketuk SATU bagian yang tidak didukung kutipan atau membuat simpulan berlebihan. Bagian terpilih akan dicoret. Tekan Periksa; ketuk bagian lain untuk mengganti pilihan.")
- text(sc,"KUTIPAN SUMBER — ABSTRAK TWIZZLER",22).Font=Enum.Font.GothamBold
- text(sc,r.evidence[r.keyEvidence])
- text(sc,"DRAF SIMPULAN — pilih bagian yang perlu dicoret",22).Font=Enum.Font.GothamBold
- for i,part in ipairs(r.parts) do
-  local b=button(sc,(v.part==i and "CORET: " or "")..part,function()
-   if not v.done then v.part=v.part~=i and i or nil; pairView() end
-  end)
-  b.RichText=true; if v.part==i then b.Text="<s>"..part.."</s>" end
-  b.BackgroundColor3=v.part==i and Color3.fromRGB(120,50,40) or Color3.fromRGB(125,102,90)
+ if v.done then
+  local revised=text(sc,"Simpulan hasil revisi\n"..r.final)
+  revised.Font=Enum.Font.GothamBold
+  revised.LayoutOrder=-10
+ else
+  text(sc,"Perbaiki simpulan agar sesuai dengan kutipan.",UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+  text(sc,"Baca kutipan acuan. Dari tiga bagian draf, ketuk satu bagian yang isinya tidak bisa dibuktikan dari kutipan. Dua bagian lain tetap dipakai. Lalu tekan Periksa coretan.")
  end
- if v.done then text(sc,"Hasil revisi: "..r.final) end
- navigation("Baca abstrak",function() news(function() pairView() end) end,v.done and (state.round==4 and "Ke kios evaluasi" or "Ronde berikutnya") or "Periksa",function()
+ text(sc,"Kutipan acuan — Abstrak Twizzler",20).Font=Enum.Font.GothamBold
+ text(sc,r.evidence[r.keyEvidence])
+ text(sc,v.done and "Draf sebelum revisi" or "Pilih satu bagian simpulan yang tidak sesuai dengan isi kutipan di atas untuk dicoret.",20).Font=Enum.Font.GothamBold
+ for i,part in ipairs(r.parts) do
+  local selected=v.part==i
+  local caption="Bagian "..i..(selected and (v.done and " — Dicoret" or " — Dipilih untuk dicoret") or "")
+  local b=button(sc,caption.."\n"..part,function()
+   if not v.done then v.part=v.part~=i and i or nil; pairView() end
+  end,not v.done)
+  if selected then
+   local escaped=part:gsub("&","&amp;"):gsub("<","&lt;"):gsub(">","&gt;")
+   b.RichText=true
+   b.Text="<b>"..caption.."</b>\n<s>"..escaped.."</s>"
+  end
+  b.BackgroundColor3=selected and Color3.fromRGB(222,237,249) or Color3.fromRGB(255,247,237)
+  b.Selectable=not v.done
+  local stroke=Instance.new("UIStroke",b)
+  stroke.ApplyStrokeMode=Enum.ApplyStrokeMode.Border
+  stroke.Color=selected and Color3.fromRGB(46,108,171) or Color3.fromRGB(211,180,154)
+  stroke.Thickness=selected and 2 or 1
+ end
+ navigation("Baca abstrak",function() news(function() pairView() end) end,v.done and (state.round==4 and "Ke kios evaluasi" or "Ronde berikutnya") or "Periksa coretan",function()
   if v.done then
    if state.round<4 then state.round+=1; pairView() else dismiss() end; return
   end
@@ -352,17 +493,19 @@ pairView=function(feedback)
   else
    v.errors+=1
    local f="BELUM TEPAT — "..r.hint.." Baca kembali kutipan, lalu ganti bagian yang dicoret."
-   if v.errors>=2 then f..=" Bantuan frasa: “"..r.proof.."”. Pilih kembali dan Periksa." end
+   if v.errors>=2 then f..=" Bantuan frasa: “"..r.proof.."”. Pilih kembali lalu tekan Periksa coretan." end
    pairView(f)
   end
  end,v.done or (v.part~=nil and v.evidence~=nil))
- practiceStatus(v.done and "SELESAI — Bagian yang melampaui sumber sudah dicoret. Baca hasil revisi, lalu lanjutkan." or feedback or "Ketuk satu bagian draf yang perlu dicoret, lalu tekan Periksa.",v.done,feedback~=nil)
+ if v.done or feedback or v.part then
+  practiceStatus(v.done and "Tepat! Baca simpulan hasil revisi, lalu lanjutkan." or feedback or "Satu bagian dipilih. Tekan Periksa coretan.",v.done,feedback~=nil)
+ end
 end
 
 resultView=function()
- local sc=evaluationClear("Hasil Evaluasi Level 3",result.unlocked and "Gedung tengah terbuka. Tutup hasil dan ikuti panah." or "Nilai minimal 75. Pelajari kembali abstrak, lalu kembali ke kios untuk mencoba lagi.")
+ local sc=evaluationClear("Hasil Evaluasi Tahap 3",result.unlocked and "Gedung tengah terbuka. Tutup hasil dan ikuti panah." or "Nilai minimal 75. Pelajari kembali abstrak, lalu kembali ke kios untuk mencoba lagi.")
  local passed=result.score>=75
- title.Text="Level 3 — "..(passed and "Lulus" or "Belum lulus")
+ title.Text="Tahap 3 — "..(passed and "Lulus" or "Belum lulus")
  evaluationStatus.Text=passed and "Selamat! Nilai jawabanmu memenuhi batas kelulusan 75." or "Nilai jawabanmu belum mencapai 75. Kamu dapat belajar kembali atau mencoba evaluasi lagi."
  if passed then
   local oldGui=pg:FindFirstChild("Level1Gui")
@@ -429,7 +572,7 @@ question=function()
 end
 exam=function()
  if result then resultView(); return end
- local sc=evaluationClear("Siap mengikuti evaluasi Level 3?","Jawaban benar bernilai 25. Nilai minimal untuk melanjutkan adalah 75.")
+ local sc=evaluationClear("Siap mengikuti evaluasi Tahap 3?","Jawaban benar bernilai 25. Nilai minimal untuk melanjutkan adalah 75.")
  text(sc,"Empat soal. Pilih jawaban, tekan Lanjut ke alasan, lalu pilih alasan. Penjelasan muncul setelah keduanya dikirim. Jawaban tepat bernilai 25; minimal 75 untuk melanjutkan. Alasan ditampilkan terpisah. Selama evaluasi materi dan bantuan tidak dibuka.")
  evaluationAction("Nanti dulu",dismiss)
  evaluationAction("Mulai evaluasi",function() state.reviewNews=false; attempt={id=Http:GenerateGUID(false),index=1,tier=1,answers={},reasons={}}; question() end)
@@ -461,10 +604,20 @@ if player.Character then resetCharacter(player.Character) end
 render=function(key)
  if key=="terms" then terms(); return end
  if key=="intro" then
-  clear("Level 3 — Membaca Lanjutan"); local sc=list(); text(sc,"SELAMAT DATANG",20).TextColor3=brick
-  text(sc,"Baca abstrak, kenali fungsi gagasan, lalu periksa batas simpulan.",30).Font=Enum.Font.GothamBold
-  text(sc,"1. Baca tiga bagian abstrak Twizzler.\n\n2. Pasangkan tiga gagasan dengan fungsinya.\n\n3. Pada empat ronde, baca kutipan dan coret bagian draf yang melampaui sumber.\n\n4. Jawab empat soal evaluasi beserta alasannya. Nilai minimal 75 membuka aula apresiasi.")
-  navigation(nil,nil,"Mulai",function()
+  clear("Tahap 3 — Membaca Teks Akademik"); local sc=list()
+  local nextStation=state.intro and stage() or "news"
+  local destinations={
+   news={"Meja baca Abstrak Twizzler","Ke meja berkursi di sisi kanan ruangan jika kamu menghadap ke dalam dari pintu masuk. Saat muncul «Baca abstrak», tahan E di PC atau tahan tombol interaksi di HP.","Ke meja baca"},
+   evidence={"Papan Fungsi Gagasan","Datangi papan Fungsi Gagasan untuk memasangkan tiga gagasan dengan fungsinya.","Ke papan gagasan"},
+   pairs={"Papan Batas Simpulan","Datangi papan Batas Simpulan. Baca kutipan dan tandai bagian simpulan yang melampaui sumber.","Ke papan simpulan"},
+   exam={"Kios Evaluasi Tahap 3","Datangi kios evaluasi untuk menjawab empat soal beserta alasannya.","Ke kios evaluasi"},
+  }
+  local destination=destinations[nextStation]
+  text(sc,"Berikutnya — "..destination[1],UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+  local arrowHint=progress.Value==3 and "Setelah panel tertutup, ikuti panah kuning. " or ""
+  text(sc,arrowHint..destination[2])
+  text(sc,"Alur Tahap 3: baca tiga bagian abstrak, kerjakan dua latihan, lalu ikuti evaluasi. Nilai minimal 75 membuka aula apresiasi.")
+  navigation(nil,nil,destination[3],function()
    state.intro=true; dismiss()
   end); return
  end

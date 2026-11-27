@@ -99,6 +99,11 @@
       ],
       "className": "LocalScript",
       "file": "studio-sync/src/Level3QuizHandler.client.luau"
+    },
+    {
+      "instancePath": ["StarterGui", "SummaryGui", "SummaryHandler"],
+      "className": "LocalScript",
+      "file": "studio-sync/src/SummaryHandler.client.luau"
     }
   ],
   "properties": [

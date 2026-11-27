@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentRevision": "92e526b2ac6df39066b02c4598399aac6348d9e4dc8ae7246c9c07424406d1bf",
+  "contentRevision": "597976da0ece3dea0bcebfce1cfe43f47879115f23740864b9337423fdf9438b",
   "levels": {
     "1": {
       "questions": [
@@ -9,15 +9,15 @@
           "options": [
             "A. Perangkat keras utama yang berfungsi menjalankan aplikasi",
             "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer",
-            "C. Program tambahan yang digunakan untuk mempercepat kinerja komputer",
-            "D. Sistem jaringan yang menghubungkan komputer dengan internet",
-            "E. Media penyimpanan data yang digunakan oleh pengguna"
+            "C. Aplikasi yang membantu pengguna menyelesaikan satu jenis tugas",
+            "D. Program yang khusus mengatur pertukaran data lewat jaringan",
+            "E. Utilitas yang khusus menata berkas pada media penyimpanan"
           ],
           "reasons": [
             "A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.",
             "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.",
-            "C. Narasi membatasi tugas OS pada pengaturan jaringan dan akses internet.",
-            "D. Narasi menyamakan OS dengan perangkat penyimpanan data milik pengguna."
+            "C. Narasi menjadikan pengaturan komunikasi jaringan sebagai dasar definisi OS.",
+            "D. Narasi menjadikan penataan berkas sebagai tugas yang mendefinisikan OS."
           ],
           "answer": 2,
           "reason": 2
@@ -25,15 +25,15 @@
         {
           "stem": "Salah satu peran utama sistem operasi menurut narasi audio adalah …",
           "options": [
-            "A. Menggantikan fungsi perangkat keras komputer",
+            "A. Menghubungkan aplikasi satu dengan aplikasi lain untuk bertukar data",
             "B. Menyimpan seluruh data pengguna secara permanen",
             "C. Menjadi penghubung antara pengguna dan aplikasi",
             "D. Mengendalikan jaringan internet secara langsung",
-            "E. Menjalankan aplikasi tanpa bantuan perangkat keras"
+            "E. Menerjemahkan kode program menjadi instruksi untuk prosesor"
           ],
           "reasons": [
             "A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.",
-            "B. Narasi menyebut OS sebagai pengganti seluruh perangkat keras komputer.",
+            "B. Narasi menjelaskan pertukaran data antarprogram sebagai fungsi penghubung OS.",
             "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.",
             "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."
           ],
@@ -43,14 +43,14 @@
         {
           "stem": "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah …",
           "options": [
-            "A. Mendesain ulang perangkat keras komputer agar seluruh aplikasi berjalan tanpa sistem operasi",
+            "A. Meningkatkan spesifikasi perangkat keras sebelum menjalankan aplikasi yang berat",
             "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu",
             "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis",
             "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna",
-            "E. Menginstal sebanyak mungkin aplikasi agar kinerja komputer meningkat secara maksimal"
+            "E. Memilih aplikasi dengan fitur lebih sedikit sebelum menjalankannya"
           ],
           "reasons": [
-            "A. Audio mengaitkan penambahan jumlah aplikasi dengan peningkatan kinerja komputer.",
+            "A. Audio menekankan pemilihan aplikasi dengan fitur lebih sedikit untuk menghemat sumber daya.",
             "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.",
             "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.",
             "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."
@@ -63,13 +63,13 @@
           "options": [
             "A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara",
             "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan",
-            "C. Perangkat keras akan meningkatkan kinerjanya secara mandiri",
-            "D. Sistem operasi akan digantikan secara otomatis oleh aplikasi lain",
-            "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu"
+            "C. Aplikasi tetap berjalan normal, tetapi pengguna harus mengatur menu secara manual",
+            "D. Aplikasi tetap berjalan normal selama perangkat keras masih berfungsi",
+            "E. Aplikasi tidak dapat berjalan dengan baik karena sistem operasi gagal menjalankan perannya sebagai penghubung antara pengguna dan aplikasi."
           ],
           "reasons": [
-            "A. Audio menyebut aplikasi mengambil alih seluruh tugas OS secara otomatis.",
-            "B. Audio menyebut perangkat keras menambah kemampuannya sendiri saat OS terganggu.",
+            "A. Audio membatasi dampak gangguan OS pada cara pengguna mengoperasikan menu.",
+            "B. Audio menyebut perangkat keras yang berfungsi cukup agar aplikasi berjalan dengan baik.",
             "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.",
             "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."
           ],
@@ -361,29 +361,29 @@
           "number": 1,
           "stem": "Menurut abstrak, faktor utama yang mendorong pergeseran dari model process-centric menuju data-centric adalah …",
           "options": [
-            "A. Meningkatnya kebutuhan antarmuka grafis pada sistem operasi",
-            "B. Perkembangan bahasa pemrograman tingkat tinggi",
+            "A. Peningkatan throughput dan penurunan latensi sebagai tuntutan aplikasi.",
+            "B. Penyederhanaan serialisasi dan pemindahan data melalui referensi.",
             "C. Tuntutan kompatibilitas perangkat lunak lintas platform",
             "D. Tren perangkat keras seperti peningkatan kecepatan interkoneksi dan penyimpanan persisten",
-            "E. Dominasi sistem operasi berbasis mobile"
+            "E. Penyederhanaan lapisan perangkat lunak pada aplikasi yang sudah di-porting."
           ],
           "key1": "Kunci tier 1: D. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
           "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
           "reasons": [
-            "A. Abstrak menekankan perubahan antarmuka grafis sebagai pendorong perubahan model sistem operasi.",
-            "B. Abstrak menekankan kemunculan bahasa pemrograman baru sebagai pendorong perubahan model sistem operasi.",
+            "A. Abstrak mengaitkan pergeseran terutama dengan target throughput dan latensi aplikasi.",
+            "B. Abstrak menyebut pengurangan serialisasi sebagai tren perangkat keras yang mendorong perubahan.",
             "C. Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten.",
-            "D. Abstrak menekankan penggantian seluruh server oleh perangkat mobile sebagai pendorong perubahan model."
+            "D. Abstrak menjadikan keberhasilan aplikasi yang di-porting sebagai alasan awal merancang model."
           ],
           "key2": "Kunci tier 2: C. Bukti penjelas: Abstrak mengaitkan perubahan model dengan interkoneksi cepat dan akses penyimpanan persisten.",
           "feedback": [
             {
               "label": "Tier 1 pilihan A",
-              "message": "Pendorong yang disebut abstrak adalah tren perangkat keras, bukan kebutuhan tampilan grafis."
+              "message": "Keduanya menjelaskan tuntutan kinerja. Pergeseran model dikaitkan dengan perubahan perangkat keras."
             },
             {
               "label": "Tier 1 pilihan B",
-              "message": "Bahasa pemrograman baru bukan faktor utama yang disebut abstrak."
+              "message": "Keduanya adalah ciri pendekatan yang diusulkan, setelah perubahan perangkat keras membuka peluang."
             },
             {
               "label": "Tier 1 pilihan C",
@@ -395,15 +395,15 @@
             },
             {
               "label": "Tier 1 pilihan E",
-              "message": "Dominasi OS mobile tidak menjadi pendorong yang dinyatakan abstrak."
+              "message": "Hal ini muncul sebagai penjelasan hasil evaluasi, setelah model dirancang."
             },
             {
               "label": "Tier 2 pilihan A",
-              "message": "Alasan A berfokus pada grafis yang tidak menjadi motivasi utama abstrak."
+              "message": "Target kinerja disebut sebagai tuntutan. Peluang pergeseran dikaitkan dengan interkoneksi dan penyimpanan persisten."
             },
             {
               "label": "Tier 2 pilihan B",
-              "message": "Alasan B berfokus pada bahasa pemrograman yang tidak menjadi tren utama pada teks."
+              "message": "Pengurangan serialisasi adalah bagian dari desain model yang diusulkan."
             },
             {
               "label": "Tier 2 pilihan C",
@@ -411,7 +411,7 @@
             },
             {
               "label": "Tier 2 pilihan D",
-              "message": "Alasan D menambahkan penggantian semua server oleh mobile tanpa bukti."
+              "message": "Porting dipakai ketika mengevaluasi implementasi, setelah model dirancang."
             }
           ]
         },
@@ -419,10 +419,10 @@
           "number": 2,
           "stem": "Keunggulan utama pendekatan data-centric yang diperkenalkan melalui sistem Twizzler dibandingkan pendekatan tradisional adalah …",
           "options": [
-            "A. Penggunaan kernel yang lebih kompleks untuk mengatur data",
+            "A. Pengelolaan akses data persisten melalui jalur kernel yang lebih terpusat.",
             "B. Penggunaan model RPC yang lebih ketat dan terstruktur",
             "C. Penghapusan sepenuhnya peran kernel dalam sistem operasi",
-            "D. Ketergantungan penuh pada teknologi virtualisasi",
+            "D. Pertukaran data antaraplikasi melalui penyalinan ke ruang alamat masing-masing.",
             "E. Penyederhanaan jalur akses data dan pengurangan kebutuhan serialisasi"
           ],
           "key1": "Kunci tier 1: E. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
@@ -431,13 +431,13 @@
             "A. Abstrak menjelaskan penyederhanaan akses data dan penghilangan kebutuhan serialisasi.",
             "B. Abstrak menjelaskan penghapusan seluruh peran kernel dalam pengelolaan sistem komputer.",
             "C. Abstrak menjelaskan pengetatan mekanisme RPC dalam pertukaran data antarprogram komputer.",
-            "D. Abstrak menjelaskan kewajiban virtualisasi untuk menjalankan setiap aplikasi dalam sistem."
+            "D. Abstrak menjelaskan pertukaran data dengan menyalin data ke ruang alamat setiap aplikasi."
           ],
           "key2": "Kunci tier 2: A. Bukti penjelas: Abstrak menjelaskan penyederhanaan jalur akses data dan hilangnya kebutuhan serialisasi dalam pendekatan yang dibahas.",
           "feedback": [
             {
               "label": "Tier 1 pilihan A",
-              "message": "Abstrak menekankan penyederhanaan akses data, bukan membuat kernel lebih kompleks."
+              "message": "Pendekatan yang diusulkan mengurangi keterlibatan kernel pada jalur akses data."
             },
             {
               "label": "Tier 1 pilihan B",
@@ -449,7 +449,7 @@
             },
             {
               "label": "Tier 1 pilihan D",
-              "message": "Ketergantungan penuh pada virtualisasi bukan keunggulan yang disebut abstrak."
+              "message": "Abstrak menjelaskan mobilitas data memakai referensi yang tidak bergantung pada ruang alamat."
             },
             {
               "label": "Tier 1 pilihan E",
@@ -469,7 +469,7 @@
             },
             {
               "label": "Tier 2 pilihan D",
-              "message": "Alasan D mensyaratkan virtualisasi pada semua aplikasi tanpa dukungan abstrak."
+              "message": "Abstrak justru menonjolkan penggunaan referensi yang tidak bergantung pada ruang alamat."
             }
           ]
         },
@@ -478,17 +478,17 @@
           "stem": "Mengapa model pemrograman tradisional dianggap kurang sesuai dengan perkembangan perangkat keras modern?",
           "options": [
             "A. Karena model tradisional menimbulkan overhead dan keterbatasan yang menghambat pemanfaatan perangkat keras modern secara optimal",
-            "B. Karena perangkat keras modern tidak lagi membutuhkan sistem operasi",
-            "C. Karena perangkat keras modern hanya mendukung sistem operasi berbasis cloud",
-            "D. Karena semua aplikasi modern menggunakan bahasa pemrograman baru",
-            "E. Karena sistem operasi modern tidak memerlukan kernel"
+            "B. Karena penyimpanan persisten memerlukan lebih banyak serialisasi daripada media penyimpanan lama.",
+            "C. Karena tuntutan latensi yang lebih rendah berasal dari penyimpanan persisten saja.",
+            "D. Karena keterbatasan utama terletak pada kurangnya dukungan bahasa pemrograman untuk aplikasi baru.",
+            "E. Karena perangkat baru memerlukan penambahan lapisan kompatibilitas untuk memanfaatkan kinerjanya."
           ],
           "key1": "Kunci tier 1: A. Batang, opsi, dan kunci mengikuti baseline Sanubari.",
           "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
           "reasons": [
-            "A. Abstrak menyatakan perangkat modern dapat bekerja tanpa menggunakan sistem operasi.",
+            "A. Abstrak menganggap masalah utama berasal dari dukungan bahasa untuk aplikasi baru.",
             "B. Abstrak mengaitkan lapisan kompatibilitas dan overhead dengan keterbatasan perangkat baru.",
-            "C. Abstrak menyatakan perangkat modern hanya dapat bekerja melalui layanan berbasis cloud.",
+            "C. Abstrak membatasi perubahan kebutuhan performa pada penyimpanan persisten.",
             "D. Abstrak menyatakan antarmuka lama selalu optimal untuk memanfaatkan kemampuan perangkat modern."
           ],
           "key2": "Kunci tier 2: B. Bukti penjelas: Abstrak mengaitkan lapisan kompatibilitas dan overhead model lama dengan keterbatasan pemanfaatan perangkat baru.",
@@ -499,23 +499,23 @@
             },
             {
               "label": "Tier 1 pilihan B",
-              "message": "Abstrak mengusulkan perubahan pendekatan OS, bukan menghapus kebutuhan OS."
+              "message": "Abstrak menjelaskan overhead model tradisional, tanpa menyatakan bahwa penyimpanan persisten menuntut lebih banyak serialisasi."
             },
             {
               "label": "Tier 1 pilihan C",
-              "message": "Pembahasan perangkat keras modern tidak dibatasi pada perangkat berbasis cloud."
+              "message": "Abstrak membahas beberapa tren, termasuk interkoneksi, penyimpanan persisten dan pemisahan komputasi dari memori."
             },
             {
               "label": "Tier 1 pilihan D",
-              "message": "Abstrak tidak mengaitkan masalah utama dengan semua aplikasi memakai bahasa baru."
+              "message": "Abstrak mengaitkan keterbatasan dengan lapisan kompatibilitas dan overhead, bukan dukungan bahasa."
             },
             {
               "label": "Tier 1 pilihan E",
-              "message": "Abstrak mengkritik jalur akses dan overhead, bukan menyatakan kernel tidak diperlukan."
+              "message": "Lapisan kompatibilitas yang dipertahankan justru ikut membatasi pemanfaatan perangkat keras modern."
             },
             {
               "label": "Tier 2 pilihan A",
-              "message": "Alasan A mengubah kritik model lama menjadi klaim semua perangkat tanpa OS."
+              "message": "Sumber mengaitkan masalah dengan kompatibilitas dan overhead model lama."
             },
             {
               "label": "Tier 2 pilihan B",
@@ -523,7 +523,7 @@
             },
             {
               "label": "Tier 2 pilihan C",
-              "message": "Alasan C membatasi perangkat modern pada cloud tanpa dukungan abstrak."
+              "message": "Penyimpanan persisten adalah salah satu tren. Penjelasan kendala mencakup model dan antarmuka lama."
             },
             {
               "label": "Tier 2 pilihan D",
@@ -535,29 +535,29 @@
           "number": 4,
           "stem": "Berdasarkan evaluasi yang dijelaskan dalam abstrak, kesimpulan manakah yang paling dapat dipertanggungjawabkan?",
           "options": [
-            "A. Twizzler harus mengganti semua OS modern.",
-            "B. Kinerja Twizzler selalu unggul pada seluruh aplikasi.",
+            "A. Hasil pada aplikasi yang diuji sudah cukup untuk menyimpulkan bahwa performa akan meningkat juga pada aplikasi serupa yang belum diuji.",
+            "B. Peningkatan kinerja terutama berasal dari peningkatan kecepatan perangkat keras selama pengujian.",
             "C. Studi kasus dan beberapa aplikasi menunjukkan kegunaan serta peningkatan kinerja pada konteks yang diuji.",
-            "D. Seluruh peran kernel sudah tidak diperlukan.",
-            "E. Semua komputer telah memakai Twizzler."
+            "D. Manfaat Twizzler hanya terlihat pada perangkat lunak yang dibuat khusus untuknya.",
+            "E. Penelitian baru mengusulkan rancangan Twizzler tanpa menguji aplikasi."
           ],
           "key1": "Kunci tier 1: C. Soal dan kunci merupakan usulan pengganti baseline untuk ditelaah ahli.",
           "reasonStem": "Alasan atau bukti manakah yang paling tepat mendukung jawaban pada tingkat pertama?",
           "reasons": [
-            "A. Abstrak melaporkan pengujian seluruh aplikasi dan mesin sehingga hasilnya dapat digeneralisasikan.",
-            "B. Abstrak menetapkan Twizzler sebagai standar wajib yang harus diterapkan pada seluruh komputer.",
-            "C. Abstrak membuktikan seluruh OS komersial lebih lambat daripada Twizzler dalam setiap kondisi.",
+            "A. Abstrak menganggap kemiripan aplikasi cukup untuk menerapkan hasil pada aplikasi yang belum diuji.",
+            "B. Abstrak mengaitkan peningkatan yang dilaporkan dengan pergantian perangkat keras selama pengujian.",
+            "C. Abstrak berhenti pada uraian desain tanpa pemeriksaan terhadap aplikasi.",
             "D. Abstrak melaporkan kasus dan aplikasi tertentu sehingga kesimpulannya belum berlaku universal."
           ],
           "key2": "Kunci tier 2: D. Bukti penjelas: Abstrak melaporkan studi kasus dan aplikasi tertentu sehingga generalisasi universal belum dapat disimpulkan.",
           "feedback": [
             {
               "label": "Tier 1 pilihan A",
-              "message": "Studi kasus belum membenarkan kewajiban mengganti semua OS modern."
+              "message": "Temuan berlaku pada konteks yang diuji. Aplikasi serupa tetap memerlukan bukti."
             },
             {
               "label": "Tier 1 pilihan B",
-              "message": "Hasil pada beberapa aplikasi tidak berarti selalu unggul pada seluruh aplikasi."
+              "message": "Abstrak mengaitkan peningkatan dalam banyak kasus dengan penyederhanaan lapisan perangkat lunak."
             },
             {
               "label": "Tier 1 pilihan C",
@@ -565,23 +565,23 @@
             },
             {
               "label": "Tier 1 pilihan D",
-              "message": "Pengurangan keterlibatan kernel pada akses data tidak menghapus seluruh peran kernel."
+              "message": "Abstrak juga melaporkan peningkatan kinerja dalam banyak kasus pada aplikasi yang di-porting."
             },
             {
               "label": "Tier 1 pilihan E",
-              "message": "Abstrak tidak menyatakan semua komputer telah menggunakan Twizzler."
+              "message": "Abstrak menjelaskan evaluasi melalui studi kasus dan aplikasi yang di-porting."
             },
             {
               "label": "Tier 2 pilihan A",
-              "message": "Alasan A memperluas pengujian beberapa kasus menjadi seluruh aplikasi dan mesin."
+              "message": "Abstrak melaporkan hasil pada studi kasus dan aplikasi yang diuji."
             },
             {
               "label": "Tier 2 pilihan B",
-              "message": "Alasan B menambahkan penetapan standar wajib yang tidak disimpulkan abstrak."
+              "message": "Dalam banyak kasus, peningkatan dikaitkan dengan penyederhanaan lapisan perangkat lunak."
             },
             {
               "label": "Tier 2 pilihan C",
-              "message": "Alasan C mengklaim perbandingan universal dengan semua OS komersial tanpa bukti."
+              "message": "Abstrak menyebut evaluasi studi kasus dan aplikasi yang di-porting."
             },
             {
               "label": "Tier 2 pilihan D",

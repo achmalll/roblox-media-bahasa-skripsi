@@ -258,13 +258,13 @@ local progress = player:WaitForChild("leaderstats"):WaitForChild("LevelProgress"
 local state = {intro=false,pages={},page=1,selected={},done1=false,done2=false,slots={},errors1=0,errors2=0,help1=false,help2=false}
 local attempt, result, activePrompt, drag, dragBoard
 local stations = {
- {path={"Space 2","Budi"},key="intro",title="Pemandu Level 2",action="Bicara"},
+ {path={"Space 2","Budi"},key="intro",title="Pemandu Tahap 2",action="Bicara"},
  {path={"Space 2","L2_PapanBerita"},key="news",title="Berita Cloud AI Pad",action="Baca berita"},
  {path={"Space 2","Infoboard"},key="terms",title="Istilah dalam bacaan",action="Lihat istilah"},
  {path={"Level2Development","L2_PapanBukti"},key="evidence",title="Latihan 1 — Bukti Teks",action="Buka latihan"},
  {path={"Level2Development","L2_PapanPasangan"},key="pairs",title="Latihan 2 — Simpulan dan Bukti",action="Buka latihan"},
  {path={"Kursi Baru"},key="pairs",title="Latihan 2 — Simpulan dan Bukti",action="Buka latihan"},
- {path={"Level2Development","L2_KiosEvaluasi"},key="exam",title="Evaluasi Level 2",action="Buka evaluasi"},
+ {path={"Level2Development","L2_KiosEvaluasi"},key="exam",title="Evaluasi Tahap 2",action="Buka evaluasi"},
 }
 local function find(path)
  local o=workspace
@@ -379,8 +379,10 @@ end
 local function navigation(leftLabel,leftAction,rightLabel,rightAction,rightEnabled)
  navigationFooter=Instance.new("Frame",panel); navigationFooter.BackgroundTransparency=1
  if leftLabel then footerButton(navigationFooter,leftLabel,leftAction,true,false) end
- if rightLabel then footerButton(navigationFooter,rightLabel,rightAction,rightEnabled,true) end
+ local rightButton
+ if rightLabel then rightButton=footerButton(navigationFooter,rightLabel,rightAction,rightEnabled,true) end
  arrange()
+ return rightButton
 end
 local function practiceStatus(value,done,warning)
  practiceFeedback=text(readingList or list(),value,UI.font(panel.AbsoluteSize.X))
@@ -391,6 +393,7 @@ local function practiceStatus(value,done,warning)
  local pad=Instance.new("UIPadding",practiceFeedback); pad.PaddingLeft=UDim.new(0,12); pad.PaddingRight=UDim.new(0,12); pad.PaddingTop=UDim.new(0,12); pad.PaddingBottom=UDim.new(0,12)
  UI.autoText(practiceFeedback,52,28)
  Instance.new("UICorner",practiceFeedback).CornerRadius=UDim.new(0,10)
+ return practiceFeedback
 end
 local function evaluationClear(heading,statusText)
  clear(heading)
@@ -439,9 +442,9 @@ local function stage()
  return "exam"
 end
 local function prerequisite(key)
- if progress.Value<2 then return "Selesaikan Level 1 dengan nilai minimal 75 terlebih dahulu." end
+ if progress.Value<2 then return "Selesaikan Tahap 1 dengan nilai minimal 75 terlebih dahulu." end
  if key=="intro" or key=="terms" then return nil end
- if not state.intro then return "Temui pemandu Level 2 dan tekan Mulai terlebih dahulu." end
+ if not state.intro then return "Temui pemandu Tahap 2 dan pilih «Ke papan berita» terlebih dahulu." end
  if key=="news" then return nil end
  if not allRead() then return "Baca berita terlebih dahulu. Bagian "..unreadPage().."/3 belum dikunjungi. Ikuti panah ke papan berita." end
  if key=="evidence" then return nil end
@@ -474,7 +477,12 @@ local function terms(back,page)
 end
 news=function(back)
  clear("Berita Cloud AI Pad — "..state.page.."/3"); state.pages[state.page]=true
- local sc=list(); text(sc,DATA.headings[state.page],26); text(sc,DATA.pages[state.page])
+ local sc=list()
+ if state.page==1 then
+  text(sc,"China Bikin Tablet Dual-OS Android dan Windows, Merek Indonesia Pernah Bikin 2015",UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+  text(sc,"Diadaptasi dari Kompas Tekno — Reska K. Nistanto, 25 Desember 2025.",16)
+ end
+ text(sc,DATA.headings[state.page],26); text(sc,DATA.pages[state.page])
  local previous=state.page>1 and function() state.page-=1; news(back) end or back
  local nextLabel=state.page<3 and "Lanjut" or (back and "Kembali ke latihan" or (state.reviewNews and "Ke kios evaluasi" or "Ke meja bukti"))
  local nextAction=state.page<3 and function() state.page+=1; news(back) end or back or function() state.reviewNews=false; dismiss() end
@@ -485,9 +493,28 @@ local function selectedCount()
 end
 evidence=function(feedback)
  clear("Latihan 1 — Bukti Teks"); local sc=list()
- text(sc,"Misi: temukan dua bukti",28).Font=Enum.Font.GothamBold
- text(sc,"Ketuk tepat dua kalimat yang membuktikan bahwa cara menjalankan Android dan Windows berbeda. Ketuk lagi untuk membatalkan pilihan. Setelah dua pilihan terisi, tekan Periksa.")
- text(sc,"Bukti dipilih: "..selectedCount().." / 2",20)
+ local claim=Instance.new("Frame")
+ claim.Name="PernyataanAcuan"
+ claim.BackgroundColor3=Color3.fromRGB(255,233,193); claim.BorderSizePixel=0
+ claim.Size=UDim2.new(1,0,0,0); claim.AutomaticSize=Enum.AutomaticSize.Y
+ claim.LayoutOrder=#sc:GetChildren(); claim.Parent=sc
+ Instance.new("UICorner",claim).CornerRadius=UDim.new(0,12)
+ local claimPadding=Instance.new("UIPadding",claim)
+ claimPadding.PaddingLeft=UDim.new(0,14); claimPadding.PaddingRight=UDim.new(0,14)
+ claimPadding.PaddingTop=UDim.new(0,10); claimPadding.PaddingBottom=UDim.new(0,10)
+ local claimLayout=Instance.new("UIListLayout",claim)
+ claimLayout.SortOrder=Enum.SortOrder.LayoutOrder; claimLayout.Padding=UDim.new(0,3)
+ local caption=text(claim,"PERNYATAAN YANG PERLU DIDUKUNG",14)
+ caption.Font=Enum.Font.GothamBold; caption.TextColor3=brick
+ text(claim,"Cloud AI Pad menjalankan Android dan Windows dengan cara yang berbeda.",UI.font(panel.AbsoluteSize.X)).Font=Enum.Font.GothamBold
+ if not state.done1 then
+  text(sc,"Pilih dua kalimat di bawah yang mendukung pernyataan ini. Ambil satu tentang cara Android dijalankan dan satu tentang cara Windows dijalankan.",18)
+ end
+ local count=selectedCount()
+ text(sc,"Kalimat dari berita  ·  "..count.."/2 dipilih",18).Font=Enum.Font.GothamBold
+ if state.done1 or feedback then
+  practiceStatus(state.done1 and "Tepat! Android dijalankan lokal, sedangkan Windows melalui cloud." or ("COBA LAGI — "..feedback),state.done1,feedback~=nil)
+ end
  for i,v in ipairs(DATA.evidence) do
   local b=button(sc,(state.selected[i] and "✓ " or "")..v,function()
    if state.done1 then return end
@@ -515,7 +542,6 @@ evidence=function(feedback)
    end
   end,selectedCount()==2)
  end
- practiceStatus(state.done1 and "SELESAI — Kedua bukti tepat. Android dijalankan lokal, sedangkan Windows melalui cloud." or (feedback and ("COBA LAGI — "..feedback) or ("Bukti dipilih: "..selectedCount().." / 2. Pilih dua bukti, lalu tekan Periksa.")),state.done1,feedback~=nil)
 end
 local function box(pos,size,value)
  local b=Instance.new("TextLabel"); b.Position=pos; b.Size=size; b.Text=value; b.TextWrapped=true
@@ -531,51 +557,128 @@ local function choosePair(slots,index,value)
  slots[index]=value
 end
 -- PAIR_SELECTION_END
-local pairPage=1
 local conclusionOrder={2,1}
+local conclusionLetters={"A","B"}
 pairView=function(feedback)
- clear("Latihan 2 — Simpulan dan Bukti ("..(pairPage==1 and "A" or "B")..")"); local sc=list()
- local index=conclusionOrder[pairPage]
- local function badge(page)
-  return (page==pairPage and "▶ " or "")..(page==1 and "A " or "B ")..(state.slots[conclusionOrder[page]] and "●" or "○")
+ clear("Latihan 2 — Simpulan dan Bukti"); local sc=list()
+ text(sc,"Pasangkan setiap bukti dengan simpulan yang didukungnya.",UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+ local instructions=text(sc,"Baca Simpulan A dan B. Di bawah setiap bukti, pilih «Pasangkan ke A» atau «Pasangkan ke B». Gunakan setiap bukti sekali, lalu tekan Periksa pasangan.")
+ local function countStatus()
+  local count=(state.slots[1] and 1 or 0)+(state.slots[2] and 1 or 0)
+  return count==2 and "2/2 pasangan terisi. Tekan Periksa pasangan." or count.."/2 pasangan terisi."
  end
- local count=(state.slots[1] and 1 or 0)+(state.slots[2] and 1 or 0)
- text(sc,badge(1).."     "..badge(2).."     "..count.."/2 terisi",20).Font=Enum.Font.GothamBold
- local conclusion=text(sc,"SIMPULAN "..(pairPage==1 and "A" or "B").."\n"..DATA.conclusions[index],22)
- conclusion.Font=Enum.Font.GothamBold
- text(sc,"Pilih satu bukti yang mendukung simpulan ini.",20)
+ local status=practiceStatus(state.done2 and "Tepat! Kedua simpulan sudah dipasangkan dengan bukti yang sesuai." or feedback or countStatus(),state.done2,feedback~=nil)
+ if not state.done2 and not feedback then status.LayoutOrder=instructions.LayoutOrder+1 end
+ local assignmentLabels={}
+ local proofActions={}
+ local updateAssignments
+
+ local comparison=Instance.new("Frame")
+ comparison.Name="PerbandinganSimpulanBukti"
+ comparison.BackgroundTransparency=1
+ comparison.Size=UDim2.new(1,0,0,0)
+ comparison.LayoutOrder=#sc:GetChildren()
+ comparison.Parent=sc
+ local function column(name)
+  local frame=Instance.new("Frame")
+  frame.Name=name; frame.BackgroundTransparency=1; frame.Parent=comparison
+  local layout=Instance.new("UIListLayout",frame)
+  layout.Padding=UDim.new(0,10); layout.SortOrder=Enum.SortOrder.LayoutOrder
+  return frame,layout
+ end
+ local conclusions,leftLayout=column("Simpulan")
+ local proofs,rightLayout=column("Bukti")
+ text(conclusions,"Simpulan",20).Font=Enum.Font.GothamBold
+ text(proofs,"Bukti dari berita",20).Font=Enum.Font.GothamBold
+
+ local function card(parent,color)
+  local frame=Instance.new("Frame")
+  frame.BackgroundColor3=color; frame.BorderSizePixel=0
+  frame.LayoutOrder=#parent:GetChildren()
+  frame.Size=UDim2.new(1,0,0,0); frame.AutomaticSize=Enum.AutomaticSize.Y
+  frame.Parent=parent
+  local layout=Instance.new("UIListLayout",frame)
+  layout.Padding=UDim.new(0,6); layout.SortOrder=Enum.SortOrder.LayoutOrder
+  local padding=Instance.new("UIPadding",frame)
+  padding.PaddingLeft=UDim.new(0,12); padding.PaddingRight=UDim.new(0,12)
+  padding.PaddingTop=UDim.new(0,10); padding.PaddingBottom=UDim.new(0,10)
+  Instance.new("UICorner",frame).CornerRadius=UDim.new(0,10)
+  return frame
+ end
+ for order,index in ipairs(conclusionOrder) do
+  local claim=card(conclusions,Color3.fromRGB(243,222,193))
+  text(claim,"Simpulan "..conclusionLetters[order],18).Font=Enum.Font.GothamBold
+  text(claim,DATA.conclusions[index],18)
+  local label=text(claim,"",16)
+  label.TextColor3=state.done2 and Color3.fromRGB(34,100,53) or Color3.fromRGB(59,74,92)
+  label.Font=Enum.Font.GothamBold
+  assignmentLabels[index]=label
+ end
  for i,quote in ipairs(DATA.pairEvidence) do
-  local selected=state.slots[index]==i
-  local b=button(sc,(selected and "●  " or "○  ").."Bukti "..i..(selected and " — DIPILIH" or "").."\n"..quote,function()
-   if state.done2 then return end
-   local other=index==1 and 2 or 1
-   local used=state.slots[other]==i
-   choosePair(state.slots,index,i)
-   pairView(used and "Pilihan diperbarui. Periksa kembali kedua pasangan sebelum mengirim." or nil)
-  end)
-  b.TextSize=panel.AbsoluteSize.X<600 and 18 or 20
-  b.TextColor3=brown
-  b.BackgroundColor3=selected and Color3.fromRGB(210,231,248) or Color3.fromRGB(255,247,237)
-  local edge=Instance.new("UIStroke",b); edge.ApplyStrokeMode=Enum.ApplyStrokeMode.Border
-  edge.Color=selected and Color3.fromRGB(40,100,155) or Color3.fromRGB(209,180,155); edge.Thickness=selected and 3 or 1
- end
- local statusText=state.done2 and "✓ Kedua pasangan tepat. Latihan selesai." or feedback or (state.slots[index] and "● Bukti dipilih. Kamu dapat mengganti pilihan sebelum Periksa." or "○ Belum ada bukti yang dipilih untuk simpulan ini.")
- local statusLabel=text(sc,statusText,18); statusLabel.Font=Enum.Font.GothamBold
- statusLabel.TextColor3=state.done2 and Color3.fromRGB(40,115,65) or Color3.fromRGB(55,80,105)
- if pairPage==1 then
-  navigation("Baca berita",function() news(function() pairView() end) end,"Ke pasangan B →",function() pairPage=2; readingPosition=Vector2.zero; pairView() end,state.slots[index]~=nil)
- else
-  navigation("← Pasangan A",function() pairPage=1; readingPosition=Vector2.zero; pairView() end,state.done2 and "Ke kios evaluasi" or (count<2 and "Lengkapi pasangan A" or "Periksa pasangan"),function()
-   if state.done2 then dismiss(); return end
-   if count<2 then pairPage=1; pairView(); return end
-   recordLearning("practice",{activity="pairs",choices={state.slots[1],state.slots[2]},help=state.help2})
-   if state.slots[1]==1 and state.slots[2]==2 then state.done2=true; pairView() else
-    state.errors2+=1; if state.errors2>=2 then state.help2=true end
-    pairView("BELUM TEPAT — Tinjau pasangan A dan B. Cari bukti cara menjalankan OS untuk simpulan pemasangan, dan bukti kebutuhan pengguna untuk simpulan manfaat.")
+  local proof=card(proofs,Color3.fromRGB(255,247,237))
+  text(proof,"Bukti "..i,18).Font=Enum.Font.GothamBold
+  text(proof,quote,18)
+  if not state.done2 then
+   local actions=Instance.new("Frame")
+   actions.Name="PasangkanBukti"; actions.BackgroundTransparency=1
+   actions.LayoutOrder=#proof:GetChildren(); actions.Size=UDim2.new(1,0,0,50); actions.Parent=proof
+   proofActions[i]={}
+   for order,index in ipairs(conclusionOrder) do
+    local action=footerButton(actions,"",function()
+     if state.done2 then return end
+     choosePair(state.slots,index,i)
+     status.Text=countStatus()
+     status.BackgroundColor3=Color3.fromRGB(250,239,230)
+     updateAssignments()
+    end,true,order==2)
+    action.TextSize=16
+    proofActions[i][order]=action
    end
-  end,true)
+  end
  end
- if feedback or state.done2 then statusLabel.LayoutOrder=-15; task.defer(function() if sc.Parent then sc.CanvasPosition=Vector2.zero end end) end
+
+ local function arrangeComparison()
+  local wide=comparison.AbsoluteSize.X>=700
+  local leftHeight=leftLayout.AbsoluteContentSize.Y
+  local rightHeight=rightLayout.AbsoluteContentSize.Y
+  conclusions.Size=UDim2.new(wide and .40 or 1,wide and -8 or 0,0,leftHeight)
+  proofs.Position=wide and UDim2.new(.40,8,0,0) or UDim2.fromOffset(0,leftHeight+16)
+  proofs.Size=UDim2.new(wide and .60 or 1,wide and -8 or 0,0,rightHeight)
+  comparison.Size=UDim2.new(1,0,0,wide and math.max(leftHeight,rightHeight) or leftHeight+rightHeight+16)
+ end
+ comparison:GetPropertyChangedSignal("AbsoluteSize"):Connect(arrangeComparison)
+ leftLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeComparison)
+ rightLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeComparison)
+ arrangeComparison()
+
+ local check=navigation("Baca berita",function() news(function() pairView() end) end,state.done2 and "Ke kios evaluasi" or "Periksa pasangan",function()
+  if state.done2 then dismiss(); return end
+  if not state.slots[1] or not state.slots[2] then return end
+  recordLearning("practice",{activity="pairs",choices={state.slots[1],state.slots[2]},help=state.help2})
+  if state.slots[1]==1 and state.slots[2]==2 then
+   state.done2=true; pairView()
+  else
+   state.errors2+=1; if state.errors2>=2 then state.help2=true end
+   pairView("Belum tepat. Cari bukti tentang cara menjalankan sistem untuk simpulan tentang pemasangan, dan bukti tentang kebutuhan pengguna untuk simpulan tentang manfaat.")
+  end
+ end)
+ updateAssignments=function()
+  for index,label in pairs(assignmentLabels) do
+   local assigned=state.slots[index]
+   label.Text=assigned and ("Dipasangkan dengan Bukti "..assigned) or "Belum dipasangkan"
+  end
+  for evidenceIndex,actions in ipairs(proofActions) do
+   for order,action in ipairs(actions) do
+    local selected=state.slots[conclusionOrder[order]]==evidenceIndex
+    action.Text=(selected and "Terpasang ke " or "Pasangkan ke ")..conclusionLetters[order]
+    action.BackgroundColor3=selected and Color3.fromRGB(40,94,137) or Color3.fromRGB(113,75,53)
+   end
+  end
+  local ready=state.done2 or (state.slots[1]~=nil and state.slots[2]~=nil)
+  check.Active=ready; check.AutoButtonColor=ready; check.Selectable=ready
+  check.BackgroundColor3=ready and brick or Color3.fromRGB(140,132,125)
+ end
+ updateAssignments()
 end
 local function inside(point,o)
  local p,s=o.AbsolutePosition,o.AbsoluteSize
@@ -601,9 +704,9 @@ Input.InputEnded:Connect(function(input)
  pairView()
 end)
 resultView=function()
- local sc=evaluationClear("Hasil Evaluasi Level 2",result.unlocked and "Level 3 terbuka. Tutup hasil dan ikuti panah." or "Nilai minimal 75. Pelajari kembali berita, lalu kembali ke kios untuk mencoba lagi.")
+ local sc=evaluationClear("Hasil Evaluasi Tahap 2",result.unlocked and "Tahap 3 terbuka. Tutup hasil dan ikuti panah." or "Nilai minimal 75. Pelajari kembali berita, lalu kembali ke kios untuk mencoba lagi.")
  local passed=result.score>=75
- title.Text="Level 2 — "..(passed and "Lulus" or "Belum lulus")
+ title.Text="Tahap 2 — "..(passed and "Lulus" or "Belum lulus")
  evaluationStatus.Text=passed and "Selamat! Nilai jawabanmu memenuhi batas kelulusan 75." or "Nilai jawabanmu belum mencapai 75. Kamu dapat belajar kembali atau mencoba evaluasi lagi."
  if passed then
   local oldGui=pg:FindFirstChild("Level1Gui")
@@ -620,7 +723,7 @@ resultView=function()
  text(sc,"Kelulusan ditentukan oleh skor jawaban. Ketepatan alasan dicatat terpisah.",18)
  text(sc,"Nilai terbaik sesi: "..result.best.." / 100",18)
  if not passed and result.unlocked then text(sc,"Akses berikutnya tetap terbuka karena kamu sudah lulus pada percobaan sebelumnya.",18) end
- if result.unlocked then evaluationAction("Lanjut ke Level 3",dismiss)
+ if result.unlocked then evaluationAction("Lanjut ke Tahap 3",dismiss)
  else
   evaluationAction("Belajar lagi",function()
    beginReview(); dismiss()
@@ -670,7 +773,7 @@ question=function()
 end
 exam=function()
  if result then resultView(); return end
- local sc=evaluationClear("Siap mengikuti evaluasi Level 2?","Jawaban benar bernilai 25. Nilai minimal untuk melanjutkan adalah 75.")
+ local sc=evaluationClear("Siap mengikuti evaluasi Tahap 2?","Jawaban benar bernilai 25. Nilai minimal untuk melanjutkan adalah 75.")
  text(sc,"Empat soal. Pilih jawaban, tekan Lanjut ke alasan, lalu pilih alasan. Penjelasan muncul setelah keduanya dikirim. Jawaban tepat bernilai 25; minimal 75 untuk melanjutkan. Alasan ditampilkan terpisah. Selama evaluasi materi dan bantuan tidak dibuka.")
  evaluationAction("Nanti dulu",dismiss)
  evaluationAction("Mulai evaluasi",function() state.reviewNews=false; attempt={id=Http:GenerateGUID(false),index=1,tier=1,answers={},reasons={}}; question() end)
@@ -702,10 +805,20 @@ if player.Character then resetCharacter(player.Character) end
 render=function(key)
  if key=="terms" then terms(); return end
  if key=="intro" then
-  clear("Level 2 — Keterampilan Membaca"); local sc=list(); text(sc,"SELAMAT DATANG",20).TextColor3=brick
-  text(sc,"Baca berita, temukan bukti, lalu tarik simpulan.",30).Font=Enum.Font.GothamBold
-  text(sc,"1. Baca tiga bagian berita Cloud AI Pad.\n\n2. Pilih dua bukti teks, lalu pasangkan simpulan dengan bukti.\n\n3. Jawab empat soal evaluasi beserta alasannya. Raih nilai minimal 75 untuk membuka Level 3.")
-  navigation(nil,nil,"Mulai",function()
+  clear("Tahap 2 — Membaca Berita"); local sc=list()
+  local nextStation = state.intro and stage() or "news"
+  local destinations = {
+   news = {"Papan berita Cloud AI Pad", "Berjalan ke papan bacaan di sebelah pemandu. Saat muncul <b>Baca berita</b>, tahan E di PC atau tahan tombol interaksi di HP.", "Ke papan berita"},
+   evidence = {"Latihan 1 — Bukti Teks", "Datangi meja Bukti Teks untuk memilih dua kalimat bukti.", "Ke meja bukti"},
+   pairs = {"Latihan 2 — Simpulan dan Bukti", "Datangi papan Simpulan dan Bukti untuk memasangkan simpulan dengan kalimat pendukungnya.", "Ke papan latihan"},
+   exam = {"Kios Evaluasi Tahap 2", "Datangi kios evaluasi untuk menjawab empat soal beserta alasannya.", "Ke kios evaluasi"},
+  }
+  local destination = destinations[nextStation]
+  text(sc,"Berikutnya: "..destination[1],UI.font(panel.AbsoluteSize.X,true)).Font=Enum.Font.GothamBold
+  local arrowHint = progress.Value==2 and "Setelah panel ini tertutup, ikuti panah kuning. " or ""
+  text(sc,arrowHint..destination[2]).RichText=true
+  text(sc,"Alur Tahap 2: baca tiga bagian berita, kerjakan dua latihan, lalu ikuti evaluasi. Nilai minimal 75 membuka Tahap 3.")
+  navigation(nil,nil,destination[3],function()
    state.intro=true; dismiss()
   end); return
  end
@@ -716,6 +829,9 @@ local function bind(s)
  if s.prompt and s.prompt:IsDescendantOf(obj) then return end
  if s.key=="exam" then
   for _,clothing in ipairs(obj:GetDescendants()) do
+   if clothing:IsA("TextLabel") and clothing.Text=="EVALUASI LEVEL 2\n4 soal\nTahan E — Buka evaluasi" then
+    clothing.Text="EVALUASI TAHAP 2\n4 soal\nTahan E — Buka evaluasi"
+   end
    if clothing:IsA("Shirt") then clothing.ShirtTemplate="http://www.roblox.com/asset/?id=10285081830"
    elseif clothing:IsA("Pants") then clothing.PantsTemplate="http://www.roblox.com/asset/?id=10297918623" end
   end

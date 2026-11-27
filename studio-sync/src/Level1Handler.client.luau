@@ -288,47 +288,6 @@ UI.legacy=function(frame,heading,copy,actions)
  end)
  return sc
 end
--- Welcome panel only: same cream/brown artwork, concise centered copy and a proportional CTA.
-function UI.welcome(frame,heading,paragraphs,actions)
- local buttons={}
- for _,spec in ipairs(actions) do local b=frame:FindFirstChild(spec[1]); if b then buttons[b]=spec[2] end end
- local banner=frame:FindFirstChild("Title ")
- for _,c in ipairs(frame:GetChildren()) do if c:IsA("GuiObject") and not buttons[c] and c~=banner then c.Visible=false end end
- local sc=UI.scroll(frame,"WelcomeContent")
- local layout=sc:FindFirstChildOfClass("UIListLayout")
- layout.Padding=UDim.new(0,18); layout.HorizontalAlignment=Enum.HorizontalAlignment.Center
- local labels={}
- for i,line in ipairs(paragraphs) do
-  local l=UI.label(sc,line,18)
-  l.LayoutOrder=i; l.TextXAlignment=Enum.TextXAlignment.Center; l.Size=UDim2.new(1,-56,0,0)
-  local cap=Instance.new("UISizeConstraint",l); cap.MaxSize=Vector2.new(560,math.huge)
-  labels[i]=l
- end
- local function alignContent()
-  layout.VerticalAlignment=layout.AbsoluteContentSize.Y<sc.AbsoluteSize.Y-20 and Enum.VerticalAlignment.Center or Enum.VerticalAlignment.Top
- end
- layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(alignContent)
- if banner then
-  banner.Visible=true
-  local headingText=banner:FindFirstChildWhichIsA("TextLabel")
-  if headingText then headingText.Text=heading end
- end
- UI.fit(frame,function(w,h)
-  local head=math.min(76,h*.2)
-  if banner then banner.AnchorPoint=Vector2.new(.5,0); banner.Position=UDim2.fromScale(.5,0); banner.Size=UDim2.new(.78,0,0,head) end
-  local body=w<600 and 16 or 18
-  for _,l in ipairs(labels) do l.TextSize=body end
-  sc.Position=UDim2.fromOffset(28,head+16); sc.Size=UDim2.new(1,-56,1,-(head+96))
-  alignContent()
-  for b,text in pairs(buttons) do
-   UI.action(b,text)
-   b.AnchorPoint=Vector2.new(.5,1); b.Position=UDim2.new(.5,0,1,-20)
-   b.Size=UDim2.fromOffset(math.min(w-56,320),52)
-  end
- end)
- return sc
-end
-
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
@@ -380,16 +339,20 @@ local guideTargets = { tutor1 = spacePart }
 local flowGui = playerGui:WaitForChild("FlowGui")
 local guideBoard = workspace:WaitForChild("Halaman depan"):WaitForChild("papanInformasi")
 local guidePrompt = guideBoard:FindFirstChildWhichIsA("ProximityPrompt", true)
+if guidePrompt then
+	guidePrompt.ObjectText = "Papan Panduan Permainan"
+	guidePrompt.ActionText = "Baca panduan"
+end
 guideTargets.guide = guidePrompt and guidePrompt.Parent or (guideBoard:IsA("BasePart") and guideBoard or guideBoard:FindFirstChildWhichIsA("BasePart", true))
 local function currentStage()
-	if reviewingInfo then return "info", "Baca kembali papan informasi Level 1" end
+	if reviewingInfo then return "info", "Baca kembali papan informasi Tahap 1" end
 	if not guideVisited then return "guide", "Baca papan panduan permainan" end
 	if not completed[1] then return "tutor1", "Temui Tutor 1 — dengarkan audio 1" end
-	if not infoVisited then return "info", "Baca papan informasi Level 1" end
+	if not infoVisited then return "info", "Baca papan informasi Tahap 1" end
 	if not completed[2] then return "tutor2", "Temui Tutor 2 — dengarkan audio 2" end
 	if not completed[3] then return "tutor2", "Lanjutkan audio 3 di Tutor 2" end
 	if not latihanCompleted then return "latihan", "Selesaikan latihan dua kartu" end
-	return "kiosk", evaluationPassed and "Evaluasi lulus — akses Level 2 menunggu verifikasi" or "Kerjakan evaluasi di kios Level 1"
+	return "kiosk", evaluationPassed and "Evaluasi lulus — akses Tahap 2 menunggu verifikasi" or "Kerjakan evaluasi di kios Tahap 1"
 end
 local noticeGui = Instance.new("ScreenGui")
 noticeGui.Name = "L1StageNotice"
@@ -401,13 +364,13 @@ local function explainPrerequisite(message)
  local _,destination=currentStage()
  showNotice(message.."\n\nLangkah berikutnya: "..destination..".\nIkuti panah petunjuk. Di PC, tahan E; di HP, tahan tombol interaksi pada layar.")
 end
-UI.legacy(introFrame,"Level 1 — Keterampilan Menyimak","Selamat datang di Level 1! Di sini, kamu akan berlatih menyimak informasi tentang pengertian dan peran sistem operasi. Dengarkan audio pertama bersama Tutor 1, baca papan informasi, lalu lanjutkan audio kedua dan ketiga bersama Tutor 2.\n\nPerhatikan pesan utama dan rincian penting dalam audio. Informasi tersebut akan membantumu memasangkan kartu dalam latihan, kemudian menjawab empat soal evaluasi beserta alasannya.\n\nRaih nilai minimal 75 untuk membuka Level 2. Tekan Mulai ketika kamu siap mendengarkan audio pertama.",{{"mulaibtn","Mulai — dengarkan audio 1"},{"close","Tutup"}})
+UI.legacy(introFrame,"Tahap 1 — Menyimak","Selamat datang di Tahap 1! Di sini, kamu akan berlatih menyimak informasi tentang pengertian dan peran sistem operasi. Dengarkan audio pertama bersama Tutor 1, baca papan informasi, lalu lanjutkan audio kedua dan ketiga bersama Tutor 2.\n\nPerhatikan pesan utama dan rincian penting dalam audio. Informasi tersebut akan membantumu memasangkan kartu dalam latihan, kemudian menjawab empat soal evaluasi beserta alasannya.\n\nRaih nilai minimal 75 untuk membuka Tahap 2. Tekan Mulai ketika kamu siap mendengarkan audio pertama.",{{"mulaibtn","Mulai — dengarkan audio 1"},{"close","Tutup"}})
 local guideCopy={
- mapsFrame={"Panduan Petualangan Bahasa","Jelajahi kampus melalui tiga level. Ikuti panah kuning menuju kegiatan berikutnya.\n\nPC: bergerak dengan WASD, arahkan kamera dengan mouse, lalu tahan E di dekat objek.\nHP: gunakan kontrol gerak dan kamera pada layar, lalu tahan tombol interaksi yang muncul.\n\nDi panel pembelajaran, ketuk pilihan dan gulir untuk membaca. Tutup panel untuk melanjutkan perjalanan."},
- space1Frame={"Level 1 — Menyimak","Di Level 1, kamu akan berlatih menyimak tiga bagian audio tentang sistem operasi. Temui Tutor 1 untuk audio pertama, baca papan informasi, lalu lanjutkan audio kedua dan ketiga bersama Tutor 2.\n\nGunakan informasi yang kamu dengar untuk menentukan pesan utama dan informasi pendukung dalam latihan. Perhatikan perbedaan antara inti pembahasan dan rincian penjelasnya.\n\nSetelah latihan selesai, kerjakan empat soal evaluasi beserta alasannya. Nilai minimal 75 membuka akses ke Level 2."},
- space2Frame={"Level 2 — Membaca","Di Level 2, kamu akan membaca berita Cloud AI Pad yang membahas penggunaan Android dan Windows dalam satu perangkat. Ikuti pemandu menuju papan berita dan baca ketiga bagiannya. Papan istilah tersedia untuk membantu memahami kosakata.\n\nSelanjutnya, pilih dua kalimat bukti dan pasangkan simpulan dengan bukti yang mendukungnya. Gunakan isi berita sebagai dasar, bukan perkiraan pribadi.\n\nTerakhir, kerjakan empat soal evaluasi beserta alasannya. Nilai minimal 75 membuka akses ke Level 3."},
- space3Frame={"Level 3 — Membaca Lanjutan","Di Level 3, kamu akan membaca tiga bagian abstrak ilmiah tentang Twizzler dan pendekatan data-centric. Perhatikan masalah yang dibahas, pendekatan yang diusulkan, serta cara peneliti mengevaluasinya. Papan istilah dapat membantu memahami istilah teknis.\n\nDalam latihan, pasangkan gagasan dengan fungsinya. Kemudian, selesaikan empat ronde dengan membaca kutipan sumber dan mencoret bagian draf yang melampaui informasi di dalamnya.\n\nUji pemahamanmu melalui empat soal evaluasi beserta alasannya. Nilai minimal 75 membuka aula apresiasi."},
- hall4Frame={"Aula Apresiasi","Aula apresiasi menjadi tujuan akhir setelah kamu menyelesaikan ketiga level pembelajaran. Masuklah ke gedung tengah dan datangi titik rekap untuk melihat nilai setiap level serta total nilai yang kamu peroleh.\n\nLanjutkan untuk melihat penghargaan dan mengambil medali sesuai hasil belajarmu. Ikuti panduan perlengkapan untuk memakai medali pada avatar.\n\nSebagai penutup perjalanan, kamu dapat berfoto di spot foto aula sambil mengenakan medali. Kegiatan foto ini bersifat opsional."},
+ mapsFrame={"Peta dan urutan belajar","Kamu berada di pintu masuk kampus. Ikuti panah kuning untuk menuju kegiatan berikutnya.\n\n1. Menyimak\n2. Membaca Berita\n3. Membaca Teks Akademik\n\nDi setiap tahap, buka materi, kerjakan latihan, lalu ikuti evaluasi. Setelah Tahap 3, lanjut ke Aula Apresiasi.\n\nDi PC, gunakan WASD dan tahan E di dekat NPC atau papan. Di HP, geser joystick dan tahan ikon tangan saat muncul. Papan Panduan Permainan ini bisa dibuka lagi dari pintu masuk."},
+ space1Frame={"Tahap 1 — Menyimak","Temui Tutor 1 untuk mendengarkan audio pertama. Baca Papan Informasi, lalu temui Tutor 2 untuk mendengarkan audio kedua dan ketiga.\n\nDari audio, pilih kartu untuk pesan utama dan informasi pendukung. Setelah latihan selesai, ikuti evaluasi di kios. Nilai minimal 75 membuka Tahap 2."},
+ space2Frame={"Tahap 2 — Membaca Berita","Temui pemandu, lalu buka Papan Berita Cloud AI Pad di sebelahnya. Baca ketiga bagian. Gunakan papan istilah jika perlu.\n\nPilih dua kalimat bukti, lalu pasangkan simpulan dengan bukti yang mendukungnya. Setelah kedua latihan selesai, ikuti evaluasi di kios. Nilai minimal 75 membuka Tahap 3."},
+ space3Frame={"Tahap 3 — Membaca Teks Akademik","Temui pemandu, lalu ikuti panah ke meja baca di sisi kanan dari pintu masuk gedung. Buka tiga bagian abstrak Twizzler. Gunakan papan istilah jika perlu.\n\nPasangkan gagasan dengan fungsinya, lalu coret bagian draf yang tidak didukung kutipan. Setelah kedua latihan selesai, ikuti evaluasi di kios. Nilai minimal 75 membuka Aula Apresiasi."},
+ hall4Frame={"Aula Apresiasi","Masuk ke gedung tengah, lalu temui petugas penghargaan untuk melihat nilai tiap tahap dan mengambil medali.\n\nPilih ikon medali di bawah layar untuk memakainya. Kalau ingin berfoto, cari latar PERJALANAN BELAJARKU di dalam aula."},
 }
 for name,copy in pairs(guideCopy) do
  local frame=flowGui:WaitForChild(name)
@@ -705,24 +668,153 @@ else warn("L1 audio: expected two NPCs near Space1Answers; found", #candidates) 
 -- ===== Papan Informasi (L1_PapanInformasi) =====
 local papanInfoFrame = level1Gui:WaitForChild("papanInfoFrame")
 local papanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1_PapanInformasi"):WaitForChild("Animation 2"):WaitForChild("ProximityPrompt")
+papanPrompt.ObjectText = "Informasi Tahap 1"
 guideTargets.info = papanPrompt.Parent
+
+local stageOneSigns = {
+	["INFO LEVEL 1"] = "INFO TAHAP 1",
+	["EVALUASI LEVEL 1\n4 soal\nTekan E"] = "EVALUASI TAHAP 1\n4 soal\nTahan E",
+}
+local function relabelStageOneSign(item)
+	if not item:IsA("TextLabel") or not item:FindFirstAncestorWhichIsA("SurfaceGui") then return end
+	local text = stageOneSigns[item.Text]
+	if text then item.Text = text end
+end
+local stageOneObjects = workspace:WaitForChild("Level1Development")
+stageOneObjects.DescendantAdded:Connect(relabelStageOneSign)
+for _, item in ipairs(stageOneObjects:GetDescendants()) do relabelStageOneSign(item) end
 local infoOpened = false
 do
- local infoContent=UI.legacy(papanInfoFrame,"Kenali Sistem Operasi","LEVEL 1 — MATERI\n\nSistem operasi adalah perangkat lunak yang mengelola sumber daya komputer.\n\nSumber daya yang dikelola meliputi:",{{"TutupBtn","Selesai membaca — Tutor 2"}})
-local resources=Instance.new("Frame",infoContent)
- resources.BackgroundTransparency=1; resources.Size=UDim2.new(1,-12,0,156); resources.LayoutOrder=10
- local grid=Instance.new("UIGridLayout",resources); grid.CellPadding=UDim2.fromOffset(12,12); grid.SortOrder=Enum.SortOrder.LayoutOrder
- for i,name in ipairs({"Prosesor","Memori","Penyimpanan","Input dan output"}) do
-  local card=Instance.new("TextLabel",resources); card.LayoutOrder=i; card.Text=string.format("%02d  %s",i,name)
-  card.Font=Enum.Font.GothamBold; card.TextSize=20; card.TextWrapped=true; card.TextColor3=Color3.fromRGB(71,42,28); card.BackgroundColor3=Color3.fromRGB(255,247,237)
-  Instance.new("UICorner",card).CornerRadius=UDim.new(0,12)
- end
- local function resourceLayout()
-  local columns=resources.AbsoluteSize.X<480 and 1 or 2
-  grid.CellSize=UDim2.new(1/columns,-(columns==2 and 6 or 0),0,64)
-  resources.Size=UDim2.new(1,-12,0,(4/columns)*76-12)
- end
- resources:GetPropertyChangedSignal("AbsoluteSize"):Connect(resourceLayout); task.defer(resourceLayout)
+	local continueButton = papanInfoFrame:WaitForChild("TutupBtn")
+	for _, child in ipairs(papanInfoFrame:GetChildren()) do
+		if child:IsA("GuiObject") and child ~= continueButton then child.Visible = false end
+	end
+	continueButton.Visible = true
+	UI.action(continueButton, "Selesai membaca — Tutor 2")
+
+	local ink = Color3.fromRGB(72, 43, 31)
+	local accent = Color3.fromRGB(151, 61, 42)
+	local divider = Color3.fromRGB(222, 186, 157)
+	local scroll = UI.scroll(papanInfoFrame, "PapanInformasiContent")
+	local scrollLayout = scroll:FindFirstChildOfClass("UIListLayout")
+	scrollLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	local scrollPadding = scroll:FindFirstChildOfClass("UIPadding")
+	scrollPadding.PaddingLeft = UDim.new(0, 4)
+	scrollPadding.PaddingRight = UDim.new(0, 4)
+	scrollPadding.PaddingBottom = UDim.new(0, 8)
+
+	local sheet = Instance.new("Frame", scroll)
+	sheet.Name = "LembarMateri"
+	sheet.BackgroundColor3 = Color3.fromRGB(255, 247, 235)
+	sheet.BorderSizePixel = 0
+	sheet.AutomaticSize = Enum.AutomaticSize.Y
+	Instance.new("UICorner", sheet).CornerRadius = UDim.new(0, 18)
+	local sheetPadding = Instance.new("UIPadding", sheet)
+	local sheetLayout = Instance.new("UIListLayout", sheet)
+	sheetLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	sheetLayout.Padding = UDim.new(0, 9)
+
+	local context = UI.label(sheet, "MATERI LEVEL 1", 13, true)
+	context.TextColor3 = accent
+	local heading = UI.label(sheet, "Kenali Sistem Operasi", 30, true)
+	heading.TextColor3 = ink
+	local definition = UI.label(sheet, "Sistem operasi adalah perangkat lunak yang mengelola sumber daya komputer.", 20)
+	definition.TextColor3 = ink
+	local rule = Instance.new("Frame")
+	rule.Name = "PemisahMateri"
+	rule.Size = UDim2.new(1, 0, 0, 1)
+	rule.BackgroundColor3 = divider
+	rule.BorderSizePixel = 0
+	rule.LayoutOrder = #sheet:GetChildren()
+	rule.Parent = sheet
+	local subheading = UI.label(sheet, "Sumber daya yang dikelola", 17, true)
+	subheading.TextColor3 = accent
+
+	local resources = Instance.new("Frame")
+	resources.Name = "DaftarSumberDaya"
+	resources.BackgroundTransparency = 1
+	resources.LayoutOrder = #sheet:GetChildren()
+	resources.Parent = sheet
+	local grid = Instance.new("UIGridLayout", resources)
+	grid.SortOrder = Enum.SortOrder.LayoutOrder
+	grid.CellPadding = UDim2.fromOffset(14, 6)
+
+	local glyphs = {
+		-- x, y, width, height, optional angle for each visual mark.
+		{{10,10,16,16},{6,14,4,3},{6,20,4,3},{26,14,4,3},{26,20,4,3}},
+		{{6,12,24,11},{9,23,3,4},{16,23,3,4},{23,23,3,4}},
+		{{7,9,22,8},{7,19,22,8}},
+		{{7,11,21,3},{21,8,8,3,45},{21,14,8,3,-45},{8,22,21,3},{7,19,8,3,-45},{7,25,8,3,45}},
+	}
+	local resourceLabels = {}
+	for index, name in ipairs({"Prosesor", "Memori", "Penyimpanan", "Input dan output"}) do
+		local entry = Instance.new("Frame", resources)
+		entry.BackgroundTransparency = 1
+		entry.LayoutOrder = index
+		local icon = Instance.new("Frame", entry)
+		icon.Position = UDim2.fromOffset(0, 6)
+		icon.Size = UDim2.fromOffset(36, 36)
+		icon.BackgroundColor3 = Color3.fromRGB(245, 221, 197)
+		icon.BorderSizePixel = 0
+		Instance.new("UICorner", icon).CornerRadius = UDim.new(0, 8)
+		for _, piece in ipairs(glyphs[index]) do
+			local mark = Instance.new("Frame", icon)
+			mark.Position = UDim2.fromOffset(piece[1], piece[2])
+			mark.Size = UDim2.fromOffset(piece[3], piece[4])
+			mark.Rotation = piece[5] or 0
+			mark.BackgroundColor3 = accent
+			mark.BorderSizePixel = 0
+			Instance.new("UICorner", mark).CornerRadius = UDim.new(0, 1)
+		end
+		local item = Instance.new("TextLabel", entry)
+		item.BackgroundTransparency = 1
+		item.Position = UDim2.fromOffset(48, 0)
+		item.Size = UDim2.new(1, -48, 1, 0)
+		item.Text = name
+		item.Font = Enum.Font.GothamBold
+		item.TextColor3 = ink
+		item.TextSize = 19
+		item.TextWrapped = true
+		item.TextXAlignment = Enum.TextXAlignment.Left
+		resourceLabels[index] = item
+	end
+
+	local function alignSheet()
+		scrollLayout.VerticalAlignment = scrollLayout.AbsoluteContentSize.Y + 8 <= scroll.AbsoluteSize.Y
+			and Enum.VerticalAlignment.Center or Enum.VerticalAlignment.Top
+	end
+	scrollLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(alignSheet)
+	scroll:GetPropertyChangedSignal("AbsoluteSize"):Connect(alignSheet)
+
+	UI.fit(papanInfoFrame, function(width, height)
+		local compact = width < 600
+		local margin = compact and 12 or 24
+		local footer = height < 420 and 10 or 16
+		local scrollWidth = math.max(1, width - 2 * margin)
+		local sheetWidth = math.max(1, math.min(760, scrollWidth - 8))
+		local padding = compact and 16 or 28
+		local columns = sheetWidth >= 520 and 2 or 1
+		scroll.Position = UDim2.fromOffset(margin, 14)
+		scroll.Size = UDim2.fromOffset(scrollWidth, math.max(1, height - footer - 72))
+		sheet.Size = UDim2.fromOffset(sheetWidth, 0)
+		sheetPadding.PaddingLeft = UDim.new(0, padding)
+		sheetPadding.PaddingRight = UDim.new(0, padding)
+		sheetPadding.PaddingTop = UDim.new(0, padding)
+		sheetPadding.PaddingBottom = UDim.new(0, padding)
+		heading.TextSize = compact and 25 or 34
+		definition.TextSize = compact and 17 or 21
+		grid.FillDirectionMaxCells = columns
+		grid.CellSize = UDim2.new(1 / columns, columns == 2 and -7 or 0, 0, 48)
+		resources.Size = UDim2.new(1, 0, 0, (4 / columns) * 54 - 6)
+		for _, item in ipairs(resourceLabels) do item.TextSize = compact and 17 or 19 end
+
+		continueButton.AnchorPoint = Vector2.new(.5, 1)
+		continueButton.Position = UDim2.new(.5, 0, 1, -footer)
+		continueButton.Size = UDim2.fromOffset(math.min(scrollWidth, 320), 48)
+		local buttonText = continueButton:IsA("TextButton") and continueButton or continueButton:FindFirstChildWhichIsA("TextLabel")
+		if buttonText then buttonText.TextSize = compact and 16 or 18 end
+		alignSheet()
+	end, 540)
 end
 
 papanPrompt.Triggered:Connect(function(triggeredPlayer)
@@ -750,358 +842,246 @@ papanInfoFrame.TutupBtn.MouseButton1Click:Connect(function()
 end)
 
 -- ===== Papan Latihan (L1_PapanLatihan) =====
-local latihanFrame = level1Gui:WaitForChild("latihanFrame")
-latihanFrame.AnchorPoint = Vector2.new(.5, .5)
-latihanFrame.Position = UDim2.fromScale(.5, .5)
-latihanFrame.Size = UDim2.fromScale(.94, .92)
-local latihanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1_PapanLatihan"):WaitForChild("Animation 2"):WaitForChild("ProximityPrompt")
-guideTargets.latihan = latihanPrompt.Parent
+do
+	local latihanFrame = level1Gui:WaitForChild("latihanFrame")
+	local latihanPrompt = workspace:WaitForChild("Level1Development"):WaitForChild("L1_PapanLatihan"):WaitForChild("Animation 2"):WaitForChild("ProximityPrompt")
+	latihanPrompt.ObjectText = "Latihan Tahap 1"
+	guideTargets.latihan = latihanPrompt.Parent
+	local exit = latihanFrame:WaitForChild("TutupBtn")
 
--- Latihan 07B: pilih dua dari empat kartu dan tempatkan ke dua slot.
--- UI dibuat runtime agar tidak mengubah/menggandakan objek permanen di place.
-local oldActivity = latihanFrame:FindFirstChild("L1TwoSlotActivity")
-if oldActivity then oldActivity:Destroy() end
-local activity = Instance.new("ScrollingFrame")
-activity.Name = "L1TwoSlotActivity"
-activity.BorderSizePixel=0; activity.CanvasSize=UDim2.new(); activity.AutomaticCanvasSize=Enum.AutomaticSize.Y; activity.ScrollBarThickness=6; activity.ScrollingDirection=Enum.ScrollingDirection.Y
-local activityLayout=Instance.new("UIListLayout",activity); activityLayout.Padding=UDim.new(0,14); activityLayout.SortOrder=Enum.SortOrder.LayoutOrder
-local activityPad=Instance.new("UIPadding",activity); activityPad.PaddingRight=UDim.new(0,12); activityPad.PaddingBottom=UDim.new(0,20)
-activity.BackgroundTransparency = 1
-activity.Size = UDim2.new(1, -48, 1, -112)
-activity.Position = UDim2.new(0, 24, 0, 24)
-activity.Parent = latihanFrame
-
--- Pastikan UI latihan lama tidak menumpuk di bawah/di atas activity baru.
--- Objek permanen di Studio tetap dipertahankan; hanya disembunyikan saat runtime.
-for _, child in ipairs(latihanFrame:GetChildren()) do
-	if child:IsA("GuiObject") and child ~= activity and child.Name ~= "TutupBtn" then
-		child.Visible = false
+	for _, child in ipairs(latihanFrame:GetChildren()) do
+		if child:IsA("GuiObject") then child.Visible = false end
 	end
-end
 
-local title = Instance.new("TextLabel")
-title.BackgroundTransparency = 1
-title.Size = UDim2.new(1, 0, 0, 30)
-title.Font = Enum.Font.GothamBold
-title.TextSize = 28
-title.TextColor3 = Color3.fromRGB(70, 48, 38)
-title.Text = "Lengkapi informasi dari audio"
-title.Parent = activity
+	local activity = UI.scroll(latihanFrame, "L1TwoSlotActivity")
+	local title = UI.label(activity, "Lengkapi informasi dari audio", 24, true)
+	local instructions = UI.label(activity, "", 16)
+	local cardsHeading = UI.label(activity, "Kartu A–D", 16, true)
+	cardsHeading.LayoutOrder = 10
 
-local hint = Instance.new("TextLabel")
-hint.BackgroundTransparency = 1
-hint.Size = UDim2.new(1, 0, 0, 42)
-hint.Position = UDim2.new(0, 0, 0, 36)
-hint.TextWrapped = true
-hint.Font = Enum.Font.Gotham
-hint.TextSize = 19
-hint.TextColor3 = Color3.fromRGB(85, 65, 55)
-hint.Text = "Pilih satu kartu, lalu pilih tempat Pesan utama atau Informasi pendukung. Isi kedua tempat, kemudian tekan Periksa. Dua kartu tidak digunakan."
-hint.Parent = activity
+	local cards = {
+		{ id = "A", text = "Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer." },
+		{ id = "B", text = "Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output." },
+		{ id = "C", text = "Rekaman menjelaskan langkah memasang sistem operasi." },
+		{ id = "D", text = "Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer." },
+	}
+	local destinations = {
+		{ key = "main", label = "Pesan utama" },
+		{ key = "supporting", label = "Informasi pendukung" },
+	}
+	local selectedCard
+	local slots = {}
+	local cardButtons = {}
+	local slotButtons = {}
 
-local cards = {
-	{ id = "A", text = "Sistem operasi berperan penting dalam mengelola sumber daya dan mendukung penggunaan komputer." },
-	{ id = "B", text = "Sumber daya yang dikelola mencakup prosesor, memori, penyimpanan, serta perangkat input dan output." },
-	{ id = "C", text = "Rekaman menjelaskan langkah memasang sistem operasi." },
-	{ id = "D", text = "Sistem operasi merupakan perangkat keras yang mengelola sumber daya komputer." },
-}
-local cardById = {}
-for _, card in ipairs(cards) do cardById[card.id] = card end
-local selectedCard = nil
-local slots = { main = nil, supporting = nil }
-local cardButtons = {}
-
-local cardPanel = Instance.new("Frame")
-cardPanel.Name = "Cards"
-cardPanel.BackgroundTransparency = 1
-cardPanel.BorderSizePixel = 0
-cardPanel.Size = UDim2.new(0.52, -12, 1, -238)
-cardPanel.Position = UDim2.new(0, 0, 0, 90)
-cardPanel.Parent = activity
-local cardLayout = Instance.new("UIListLayout")
-cardLayout.Padding = UDim.new(0, 9)
-cardLayout.Parent = cardPanel
-
-local slotPanel = Instance.new("Frame")
-slotPanel.Name = "Slots"
-slotPanel.BackgroundTransparency = 1
-slotPanel.BorderSizePixel = 0
-slotPanel.Size = UDim2.new(0.48, -12, 1, -238)
-slotPanel.Position = UDim2.new(0.52, 12, 0, 90)
-slotPanel.Parent = activity
-
-local feedback = Instance.new("TextLabel")
-feedback.Name = "Feedback"
-feedback.BackgroundTransparency = 0
-feedback.BackgroundColor3 = Color3.fromRGB(255,247,237)
-feedback.Size = UDim2.new(1, 0, 0, 82)
-feedback.AutomaticSize = Enum.AutomaticSize.None
-feedback.Position = UDim2.new(0, 0, 1, -138)
-feedback.Font = Enum.Font.GothamBold
-feedback.TextWrapped = true
-feedback.TextSize = 21
-feedback.TextXAlignment = Enum.TextXAlignment.Left
-feedback.TextYAlignment = Enum.TextYAlignment.Top
-feedback.TextColor3 = Color3.fromRGB(90, 55, 40)
-feedback.Text = "BELUM SELESAI — Isi kedua slot, lalu tekan Periksa jawaban."
-feedback.Parent = activity
-Instance.new("UICorner",feedback).CornerRadius=UDim.new(0,10)
-local feedbackPadding=Instance.new("UIPadding",feedback)
-feedbackPadding.PaddingLeft=UDim.new(0,12); feedbackPadding.PaddingRight=UDim.new(0,12)
-feedbackPadding.PaddingTop=UDim.new(0,6); feedbackPadding.PaddingBottom=UDim.new(0,6)
-
-local checkButton = Instance.new("TextButton")
-checkButton.Name = "Periksa"
-checkButton.Size = UDim2.new(0.72, 0, 0, 46)
-checkButton.AnchorPoint=Vector2.new(1,1)
-checkButton.Position = UDim2.new(1, 0, 1, 0)
-checkButton.Size = UDim2.new(.44, 0, 0, 48)
-checkButton.BackgroundColor3 = Color3.fromRGB(190, 105, 70)
-checkButton.TextColor3 = Color3.new(1, 1, 1)
-checkButton.Font = Enum.Font.GothamBold
-checkButton.TextSize = 18
-checkButton.Text = "Periksa"
-checkButton.AutoButtonColor = true
-checkButton.Parent = activity
-Instance.new("UICorner", checkButton).CornerRadius = UDim.new(0, 12)
-local mainSlot
-local supportingSlot
-
-local function refreshCards()
-	for id, button in pairs(cardButtons) do
-		local used = slots.main == id or slots.supporting == id
-		local destination = slots.main == id and "PESAN UTAMA" or (slots.supporting == id and "INFORMASI PENDUKUNG" or nil)
-		button.BackgroundColor3 = used and Color3.fromRGB(226, 237, 224)
-			or (selectedCard == id and Color3.fromRGB(245, 219, 187) or Color3.fromRGB(255, 247, 237))
+	local function makeChoice(parent, name)
+		local button = Instance.new("TextButton")
+		button.Name = name
+		button.Font = Enum.Font.Gotham
 		button.TextColor3 = Color3.fromRGB(71, 42, 28)
-		button.SelectionStroke.Transparency = selectedCard == id and 0 or .8
-		if destination then
-			button.Text = id .. ". DITEMPATKAN → " .. destination .. "\n" .. cardById[id].text
-		elseif selectedCard == id then
-			button.Text = id .. ". DIPILIH — KETUK TEMPAT TUJUAN\n" .. cardById[id].text
-		else
-			button.Text = id .. ". " .. cardById[id].text
-		end
+		button.TextWrapped = true
+		button.BorderSizePixel = 0
+		button.Parent = parent
+		Instance.new("UICorner", button).CornerRadius = UDim.new(0, 10)
+		local padding = Instance.new("UIPadding", button)
+		padding.PaddingLeft = UDim.new(0, 10)
+		padding.PaddingRight = UDim.new(0, 10)
+		return button
 	end
-	local ready = slots.main ~= nil and slots.supporting ~= nil
-	checkButton.Visible = not latihanCompleted
-	checkButton.Active = ready and not latihanCompleted
-	checkButton.AutoButtonColor = ready and not latihanCompleted
-	checkButton.BackgroundColor3 = ready and Color3.fromRGB(190, 105, 70) or Color3.fromRGB(150, 140, 135)
-	checkButton.Text = latihanCompleted and "Latihan selesai" or (ready and "Periksa jawaban" or "Isi kedua slot dahulu")
-	if mainSlot then mainSlot.Text = "1. Pesan utama\n" .. (slots.main and ("Kartu " .. slots.main .. " • " .. cardById[slots.main].text) or "Pilih kartu, lalu klik tempat ini") end
-	if supportingSlot then supportingSlot.Text = "2. Informasi pendukung\n" .. (slots.supporting and ("Kartu " .. slots.supporting .. " • " .. cardById[slots.supporting].text) or "Pilih kartu, lalu klik tempat ini") end
-end
 
--- Deklarasikan lebih dahulu agar callback slot merujuk objek lokal yang benar.
+	local slotPanel = Instance.new("Frame")
+	slotPanel.Name = "Slots"
+	slotPanel.BackgroundTransparency = 1
+	slotPanel.Parent = latihanFrame
+	for _, destination in ipairs(destinations) do
+		local button = makeChoice(slotPanel, destination.key)
+		button.Font = Enum.Font.GothamBold
+		local border = Instance.new("UIStroke", button)
+		border.Name = "StatusBorder"
+		border.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		slotButtons[destination.key] = button
+	end
 
-local function makeSlot(name, label, key)
-	local slot = Instance.new("TextButton")
-	slot.Name = name
-	slot.Size = UDim2.new(1, -6, .5, -6)
-	slot.Position = key == "main" and UDim2.new(0, 0, 0, 0) or UDim2.new(0, 0, .5, 6)
-	slot.BackgroundColor3 = Color3.fromRGB(245, 226, 207)
-	slot.TextColor3 = Color3.fromRGB(75, 52, 42)
-	slot.Font = Enum.Font.Gotham
-	slot.TextSize = 20
-	slot.TextWrapped = true
-	slot.Text = label .. "\nBelum terisi — pilih kartu pada daftar kartu, lalu klik tempat ini"
-	slot.Parent = slotPanel
-	slot.BorderSizePixel = 0
-	Instance.new("UICorner", slot).CornerRadius = UDim.new(0, 12)
-	local padding = Instance.new("UIPadding", slot)
-	padding.PaddingLeft = UDim.new(0, 14)
-	padding.PaddingRight = UDim.new(0, 14)
-	slot.MouseButton1Click:Connect(function()
-		if latihanCompleted then return end
-		if selectedCard then
-			-- Satu kartu hanya boleh berada pada satu slot.
+	local feedback = Instance.new("TextLabel")
+	feedback.BackgroundTransparency = 1
+	feedback.Font = Enum.Font.GothamBold
+	feedback.TextSize = 16
+	feedback.TextWrapped = true
+	feedback.TextXAlignment = Enum.TextXAlignment.Left
+	feedback.Parent = latihanFrame
+	feedback.Name = "Feedback"
+	feedback.TextYAlignment = Enum.TextYAlignment.Center
+	local checkButton = Instance.new("TextButton")
+	checkButton.Name = "Periksa"
+	checkButton.Parent = latihanFrame
+	UI.action(checkButton, "Periksa jawaban")
+	Instance.new("UICorner", checkButton).CornerRadius = UDim.new(0, 10)
+	UI.action(exit, "Tutup latihan")
+
+	local function arrangeExercise(width, height)
+		local wide = width >= 740
+		local compact = height < 420
+		local margin = wide and 20 or 12
+		local gap = compact and 6 or 10
+		local innerWidth = math.max(1, width - 2 * margin)
+		local buttonHeight = 48
+		local targetHeight = compact and 48 or 60
+		if wide then targetHeight = compact and 60 or 96 end
+		local feedbackWidth = wide and innerWidth or math.max(1, innerWidth - 8)
+		local feedbackHeight = math.max(34, UI.height(feedback, feedbackWidth, 8))
+		local actionY = height - margin - buttonHeight
+		local feedbackY = actionY - gap - feedbackHeight
+		local targetY = wide and margin or feedbackY - gap - targetHeight
+		local targetWidth = wide and math.floor(innerWidth * .40) or innerWidth
+		local scrollWidth = wide and innerWidth - targetWidth - gap or innerWidth
+		local scrollBottom = wide and feedbackY or targetY
+
+		activity.Position = UDim2.fromOffset(margin, margin)
+		activity.Size = UDim2.fromOffset(scrollWidth, math.max(1, scrollBottom - margin - gap))
+		slotPanel.Position = UDim2.fromOffset(wide and margin + scrollWidth + gap or margin, targetY)
+		slotPanel.Size = UDim2.fromOffset(targetWidth, wide and 2 * targetHeight + gap or targetHeight)
+		for index, destination in ipairs(destinations) do
+			local button = slotButtons[destination.key]
+			local cellWidth = wide and targetWidth or math.floor((targetWidth - gap) / 2)
+			button.Position = UDim2.fromOffset(wide and 0 or (index - 1) * (cellWidth + gap), wide and (index - 1) * (targetHeight + gap) or 0)
+			button.Size = UDim2.fromOffset(cellWidth, targetHeight)
+			button.TextSize = wide and 16 or 14
+		end
+		feedback.Position = UDim2.fromOffset(margin, feedbackY)
+		feedback.Size = UDim2.fromOffset(innerWidth, feedbackHeight)
+		local actionWidth = wide and math.min(innerWidth, 360) or innerWidth
+		for _, button in ipairs({checkButton, exit}) do
+			button.AnchorPoint = Vector2.zero
+			button.Position = UDim2.fromOffset(math.floor((width - actionWidth) / 2), actionY)
+			button.Size = UDim2.fromOffset(actionWidth, buttonHeight)
+		end
+		title.TextSize = wide and 26 or 20
+		instructions.TextSize = wide and 18 or 16
+		local location = wide and "di sebelah kanan" or "di bawah"
+		instructions.Text = "Pilih satu kartu untuk Pesan utama dan satu untuk Informasi pendukung. Isi kedua tempat "..location..", lalu tekan Periksa jawaban."
+		for _, button in pairs(cardButtons) do button.TextSize = wide and 18 or 16 end
+	end
+
+	local function refresh(message, tone)
+		for _, card in ipairs(cards) do
+			local button = cardButtons[card.id]
+			local chosen = selectedCard == card.id
+			local destination = slots.main == card.id and "Pesan utama" or slots.supporting == card.id and "Informasi pendukung" or nil
+			local state = chosen and " · Dipilih" or destination and (" · " .. destination) or ""
+			button.Text = card.id .. state .. "\n" .. card.text
+			button.BackgroundColor3 = chosen and Color3.fromRGB(204, 226, 244) or Color3.fromRGB(255, 247, 237)
+			button.SelectionStroke.Transparency = chosen and 0 or .75
+			button.Active = not latihanCompleted
+			button.Selectable = not latihanCompleted
+		end
+		local filled = 0
+		for _, destination in ipairs(destinations) do
+			local button = slotButtons[destination.key]
+			local cardId = slots[destination.key]
+			if cardId then filled += 1 end
+			local border = button.StatusBorder
+			local status = "Kosong"
+			if latihanCompleted then
+				status = "✓ Tepat · Kartu " .. cardId
+				button.BackgroundColor3 = Color3.fromRGB(186, 224, 185)
+				border.Color = Color3.fromRGB(34, 106, 61)
+				border.Thickness = 3
+			elseif cardId then
+				status = "Terisi · Kartu " .. cardId
+				button.BackgroundColor3 = Color3.fromRGB(218, 237, 214)
+				border.Color = Color3.fromRGB(107, 154, 111)
+				border.Thickness = 1.5
+			else
+				if selectedCard then status = "Kosong · Taruh di sini" end
+				button.BackgroundColor3 = Color3.fromRGB(255, 247, 237)
+				border.Color = selectedCard and Color3.fromRGB(45, 92, 130) or Color3.fromRGB(160, 124, 103)
+				border.Thickness = selectedCard and 2 or 1.5
+			end
+			button.Text = destination.label .. "\n" .. status
+			button.Active = not latihanCompleted
+			button.Selectable = not latihanCompleted
+		end
+		feedback.Text = message or (filled == 2 and "2/2 terisi. Tekan Periksa jawaban." or filled .. "/2 terisi. Pilih kartu, lalu pilih tempatnya.")
+		feedback.TextColor3 = tone == "correct" and Color3.fromRGB(25, 92, 47)
+			or tone == "retry" and Color3.fromRGB(143, 54, 33) or Color3.fromRGB(70, 48, 38)
+		checkButton.Visible = not latihanCompleted
+		checkButton.Active = filled == 2 and not latihanCompleted
+		checkButton.Selectable = checkButton.Active
+		checkButton.AutoButtonColor = checkButton.Active
+		checkButton.BackgroundColor3 = checkButton.Active and Color3.fromRGB(153, 59, 42) or Color3.fromRGB(105, 93, 88)
+		exit.Visible = latihanCompleted
+		arrangeExercise(latihanFrame.AbsoluteSize.X, latihanFrame.AbsoluteSize.Y)
+	end
+
+	for index, card in ipairs(cards) do
+		local button = makeChoice(activity, "Kartu" .. card.id)
+		button.LayoutOrder = 10 + index
+		button.Size = UDim2.new(1, -3, 0, 54)
+		button.TextXAlignment = Enum.TextXAlignment.Left
+		local stroke = Instance.new("UIStroke", button)
+		stroke.Name = "SelectionStroke"
+		stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		stroke.Color = Color3.fromRGB(45, 92, 130)
+		stroke.Thickness = 2
+		UI.autoText(button, 54, 24)
+		cardButtons[card.id] = button
+		button.Activated:Connect(function()
+			if latihanCompleted then return end
+			selectedCard = selectedCard ~= card.id and card.id or nil
+			refresh(selectedCard and ("Kartu " .. selectedCard .. " dipilih. Pilih tempatnya.") or nil)
+		end)
+	end
+
+	for _, destination in ipairs(destinations) do
+		slotButtons[destination.key].Activated:Connect(function()
+			if latihanCompleted then return end
+			if not selectedCard then
+				refresh("Pilih kartu A–D terlebih dahulu.")
+				return
+			end
 			if slots.main == selectedCard then slots.main = nil end
 			if slots.supporting == selectedCard then slots.supporting = nil end
-			slots[key] = selectedCard
+			slots[destination.key] = selectedCard
 			selectedCard = nil
-			if slots.main then
-				mainSlot.Text = "Pesan utama — TERISI KARTU " .. slots.main .. "\n" .. cardById[slots.main].text
-			else
-				mainSlot.Text = "Pesan utama\nBelum terisi — pilih kartu pada daftar kartu, lalu klik tempat ini"
-			end
-			if slots.supporting then
-				supportingSlot.Text = "Informasi pendukung — TERISI KARTU " .. slots.supporting .. "\n" .. cardById[slots.supporting].text
-			else
-				supportingSlot.Text = "Informasi pendukung\nBelum terisi — pilih kartu pada daftar kartu, lalu klik tempat ini"
-			end
-			feedback.TextColor3 = Color3.fromRGB(90, 55, 40)
-			feedback.Text = slots.main and slots.supporting and "Kedua slot terisi. Tekan Periksa jawaban." or "Kartu ditempatkan. Isi satu slot lagi."
-			slot.BackgroundColor3 = Color3.fromRGB(213, 235, 209)
-			game:GetService("TweenService"):Create(slot, TweenInfo.new(.3), {BackgroundColor3 = Color3.fromRGB(245, 226, 207)}):Play()
-			refreshCards()
+			refresh()
+		end)
+	end
+
+	checkButton.Activated:Connect(function()
+		if latihanCompleted or not slots.main or not slots.supporting then return end
+		selectedCard = nil
+		recordLearning("practice", {activity="slots", choices={slots.main,slots.supporting}})
+		if slots.main == "A" and slots.supporting == "B" then
+			latihanCompleted = true
+			refresh("Tepat! Tutup latihan, lalu ikuti panah ke kios evaluasi.", "correct")
 		else
-			feedback.TextColor3 = Color3.fromRGB(170, 90, 50)
-			feedback.Text = "Pilih salah satu kartu pada daftar kartu terlebih dahulu."
+			refresh("Belum tepat. Cek mana yang merangkum isi audio dan mana yang memberi rincian.", "retry")
 		end
 	end)
-	return slot
-end
-mainSlot = makeSlot("PesanUtama", "Pesan utama", "main")
-supportingSlot = makeSlot("InformasiPendukung", "Informasi pendukung", "supporting")
 
-for _, card in ipairs(cards) do
-	local button = Instance.new("TextButton")
-	button.Name = "Kartu" .. card.id
-	button.Size = UDim2.new(1, -6, 0, 126)
-	button.BackgroundColor3 = Color3.fromRGB(226, 157, 103)
-	button.TextColor3 = Color3.new(1, 1, 1)
-	button.Font = Enum.Font.Gotham
-	button.TextSize = 21
-	button.TextXAlignment = Enum.TextXAlignment.Left
-	button.TextWrapped = true
-	button.Text = card.id .. ". " .. card.text
-	button.Parent = cardPanel
-	button.BorderSizePixel = 0
-	Instance.new("UICorner", button).CornerRadius = UDim.new(0, 12)
-	local padding = Instance.new("UIPadding", button)
-	padding.PaddingLeft = UDim.new(0, 16)
-	padding.PaddingRight = UDim.new(0, 16)
-	local stroke = Instance.new("UIStroke", button)
-	stroke.Name = "SelectionStroke"
-	stroke.Color = Color3.fromRGB(169, 90, 47)
-	stroke.Thickness = 2
-	stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	cardButtons[card.id] = button
-	button.MouseButton1Click:Connect(function()
-		if latihanCompleted then return end
-		if slots.main == card.id then slots.main = nil end
-		if slots.supporting == card.id then slots.supporting = nil end
-		selectedCard = card.id
-		feedback.Text = "Kartu " .. card.id .. " dipilih — sekarang klik slot tujuan pada daftar tujuan."
-		refreshCards()
-	end)
-end
-
--- Responsive activity: one continuous reading surface, no nested small card viewport.
-for i,item in ipairs({title,hint,cardPanel,slotPanel,feedback,checkButton}) do
- item.LayoutOrder=i; item.AnchorPoint=Vector2.zero; item.Position=UDim2.new(); item.Size=UDim2.new(1,0,0,52)
-end
-for _,container in ipairs({cardPanel,slotPanel}) do
- container.Size=UDim2.new(1,0,0,0); container.AutomaticSize=Enum.AutomaticSize.Y
- if not container:FindFirstChildOfClass("UIListLayout") then
-  local layout=Instance.new("UIListLayout",container); layout.Padding=UDim.new(0,12); layout.SortOrder=Enum.SortOrder.LayoutOrder
- end
-end
-for i,slot in ipairs({mainSlot,supportingSlot}) do
- slot.LayoutOrder=i; slot.AnchorPoint=Vector2.zero; slot.Position=UDim2.new(); slot.Size=UDim2.new(1,-6,0,100)
- slot.TextXAlignment=Enum.TextXAlignment.Left; UI.autoText(slot,100,36)
-end
-for i,card in ipairs(cards) do
- local b=cardButtons[card.id]; b.LayoutOrder=i; UI.autoText(b,80,40)
-end
-UI.autoText(title,36,4); UI.autoText(hint,56,4); UI.autoText(feedback,64,32)
-local workArea=Instance.new("Frame",activity)
-workArea.Name="ExerciseColumns"; workArea.BackgroundTransparency=1; workArea.LayoutOrder=3; workArea.Size=UDim2.new(1,0,0,0)
-cardPanel.Parent=workArea; slotPanel.Parent=workArea; feedback.LayoutOrder=4; checkButton.LayoutOrder=5
-local slotLayout=slotPanel:FindFirstChildOfClass("UIListLayout")
-local function arrangeExercise()
- local wide=activity.AbsoluteSize.X>=700
- local cardsHeight=cardLayout.AbsoluteContentSize.Y+8
- local slotsHeight=slotLayout.AbsoluteContentSize.Y+8
- cardPanel.Position=UDim2.new(); cardPanel.Size=UDim2.new(wide and .52 or 1,wide and -12 or 0,0,0)
- slotPanel.Position=wide and UDim2.new(.52,12,0,0) or UDim2.fromOffset(0,cardsHeight+16)
- slotPanel.Size=UDim2.new(wide and .48 or 1,wide and -12 or 0,0,0)
- workArea.Size=UDim2.new(1,0,0,wide and math.max(cardsHeight,slotsHeight) or cardsHeight+slotsHeight+16)
-end
-cardLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeExercise)
-slotLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(arrangeExercise)
--- TutupBtn stays disabled until the two-card exercise is finished; state drives color, label and clickability.
-local exitState={enabled=false}
-local function refreshExit()
- local exit=latihanFrame.TutupBtn
- if not exit then return end
- local label=exit:IsA("TextButton") and exit or exit:FindFirstChildWhichIsA("TextLabel")
- if exitState.enabled then
-  exit.BackgroundColor3=Color3.fromRGB(153,59,42)
-  exit.Active=true; exit.AutoButtonColor=true
-  if label then label.Text="Tutup latihan" end
- else
-  exit.BackgroundColor3=Color3.fromRGB(158,158,158)
-  exit.Active=false; exit.AutoButtonColor=false
-  if label then label.Text="Selesaikan latihan terlebih dahulu" end
- end
-end
-UI.fit(latihanFrame,function(w)
- activity.Position=UDim2.fromOffset(20,20); activity.Size=UDim2.new(1,-40,1,-100)
- title.TextSize=UI.font(w,true); hint.TextSize=UI.font(w); feedback.TextSize=UI.font(w)
- for _,b in pairs(cardButtons) do b.TextSize=UI.font(w) end
- mainSlot.TextSize=UI.font(w); supportingSlot.TextSize=UI.font(w)
- arrangeExercise()
- local exit=latihanFrame.TutupBtn; exit.AnchorPoint=Vector2.new(.5,1); exit.Position=UDim2.new(.5,0,1,-16); exit.Size=UDim2.new(1,-40,0,52); UI.action(exit,"Tutup latihan"); exit.Size=UDim2.new(.42,0,0,48); refreshExit()
-end)
-
-local function resetLatihan()
-	selectedCard = nil
-	slots.main = nil
-	slots.supporting = nil
-	feedback.Text = ""
-	mainSlot.Text = "Pesan utama\nBelum terisi — pilih kartu pada daftar kartu, lalu klik tempat ini"
-	supportingSlot.Text = "Informasi pendukung\nBelum terisi — pilih kartu pada daftar kartu, lalu klik tempat ini"
-	checkButton.Active = true
-	refreshCards()
-end
-
-latihanPrompt.Triggered:Connect(function(triggeredPlayer)
-	if triggeredPlayer == player then
+	UI.fit(latihanFrame, arrangeExercise, 620)
+	refresh()
+	latihanPrompt.Triggered:Connect(function(triggeredPlayer)
+		if triggeredPlayer ~= player then return end
 		if not (guideVisited and infoVisited and completed[1] and completed[2] and completed[3]) then
 			explainPrerequisite("Latihan terbuka setelah papan informasi dan ketiga audio selesai.")
 			return
 		end
 		hideAll()
-		refreshCards() -- Keep choices and feedback when reopening this session.
 		level1Gui.Enabled = true
 		overlay.Visible = true
 		GuiAnimation.Show(latihanFrame)
-		exitState.enabled=latihanCompleted; refreshExit()
 		PlayerControl.Lock()
-	end
-end)
+	end)
 
-latihanFrame.TutupBtn.MouseButton1Click:Connect(function()
-	if not exitState.enabled then return end
-	GuiAnimation.Hide(latihanFrame)
-	overlay.Visible = false
-	level1Gui.Enabled = false
-	PlayerControl.Unlock()
-end)
-
-local function updateSlotText()
-	local main = slots.main and cardById[slots.main].text or "(Ketuk kartu, lalu ketuk tempat ini)"
-	local supporting = slots.supporting and cardById[slots.supporting].text or "(Ketuk kartu, lalu ketuk tempat ini)"
-	mainSlot.Text = "Pesan utama\n" .. main
-	supportingSlot.Text = "Informasi pendukung\n" .. supporting
+	exit.Activated:Connect(function()
+		if not latihanCompleted then return end
+		GuiAnimation.Hide(latihanFrame)
+		overlay.Visible = false
+		level1Gui.Enabled = false
+		PlayerControl.Unlock()
+	end)
 end
-
-checkButton.MouseButton1Click:Connect(function()
-	updateSlotText()
-	if not slots.main or not slots.supporting then
-		feedback.TextColor3 = Color3.fromRGB(170, 90, 50)
-		feedback.Text = "Isi kedua tempat terlebih dahulu."
-		return
-	end
-	recordLearning("practice", {activity="slots", choices={slots.main,slots.supporting}})
-	local correct = slots.main == "A" and slots.supporting == "B"
-	if correct then
-		latihanCompleted = true
-		exitState.enabled = true; refreshExit()
-		feedback.TextColor3 = Color3.fromRGB(40, 140, 60)
-		feedback.BackgroundColor3 = Color3.fromRGB(220,240,218)
-		checkButton.Visible=false
-		feedback.Text = "SELESAI — Tepat. Pesan utama merangkum peran sistem operasi; informasi pendukung merinci sumber daya yang dikelolanya. Latihan selesai."
-		checkButton.Active = false
-		checkButton.AutoButtonColor = false
-	else
-		feedback.TextColor3 = Color3.fromRGB(180, 70, 45)
-		feedback.BackgroundColor3=Color3.fromRGB(255,233,215)
-		feedback.Text = "BELUM TEPAT — Periksa kembali penempatannya: mana yang merangkum seluruh pembahasan dan mana yang memberi rincian khusus?"
-	end
-end)
 
 -- ===== Kios Evaluasi Level 1 =====
 local kioskModel = workspace:WaitForChild("Level1Development"):WaitForChild("L1_KiosEvaluasi")
@@ -1127,7 +1107,7 @@ do
 		kioskPrompt = Instance.new("ProximityPrompt")
 		kioskPrompt.Name = "L1KioskPrompt"
 		kioskPrompt.ActionText = "Buka evaluasi"
-		kioskPrompt.ObjectText = "Evaluasi Level 1"
+		kioskPrompt.ObjectText = "Evaluasi Tahap 1"
 		kioskPrompt.KeyboardKeyCode = Enum.KeyCode.E
 		kioskPrompt.HoldDuration = 1
 		kioskPrompt.MaxActivationDistance = 16
@@ -1163,7 +1143,7 @@ do
 	kioskTitle.Font = Enum.Font.GothamBold
 	kioskTitle.TextSize = 30
 	kioskTitle.TextColor3 = Color3.fromRGB(70, 47, 37)
-	kioskTitle.Text = "Evaluasi Level 1"
+	kioskTitle.Text = "Evaluasi Tahap 1"
 	kioskTitle.ZIndex = 21
 	kioskTitle.Parent = kioskFrame
 
@@ -1322,10 +1302,10 @@ do
 	submitCorner.Parent = submit
 
 	local evaluationQuestions = {
-		{ stem = "Berdasarkan narasi audio yang disampaikan, sistem operasi dapat diartikan sebagai …", options = {"A. Perangkat keras utama yang berfungsi menjalankan aplikasi", "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer", "C. Program tambahan yang digunakan untuk mempercepat kinerja komputer", "D. Sistem jaringan yang menghubungkan komputer dengan internet", "E. Media penyimpanan data yang digunakan oleh pengguna"}, reasons = {"A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.", "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.", "C. Narasi membatasi tugas OS pada pengaturan jaringan dan akses internet.", "D. Narasi menyamakan OS dengan perangkat penyimpanan data milik pengguna."}, answer = 2, reason = 2, f1 = {"OS disebut perangkat lunak, bukan perangkat keras utama.", "Benar. OS adalah perangkat lunak yang mengelola sumber daya komputer.", "Narasi menjelaskan pengelolaan sumber daya, bukan program tambahan untuk mempercepat komputer.", "Jaringan internet tidak sama dengan OS yang dimaksud narasi.", "Penyimpanan adalah salah satu sumber daya yang dikelola, bukan pengertian OS."}, f2 = {"Alasan A mengubah OS menjadi perangkat keras; narasi menyebut perangkat lunak.", "Alasan B tepat: narasi merinci sumber daya yang dikelola perangkat lunak.", "Alasan C mempersempit isi menjadi internet, padahal narasi membahas berbagai sumber daya.", "Alasan D menyamakan pengelola dengan penyimpanan yang dikelola."} },
-		{ stem = "Salah satu peran utama sistem operasi menurut narasi audio adalah …", options = {"A. Menggantikan fungsi perangkat keras komputer", "B. Menyimpan seluruh data pengguna secara permanen", "C. Menjadi penghubung antara pengguna dan aplikasi", "D. Mengendalikan jaringan internet secara langsung", "E. Menjalankan aplikasi tanpa bantuan perangkat keras"}, reasons = {"A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.", "B. Narasi menyebut OS sebagai pengganti seluruh perangkat keras komputer.", "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.", "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."}, answer = 3, reason = 1, f1 = {"Penghubung tidak berarti menggantikan perangkat keras.", "Menyimpan seluruh data secara permanen bukan peran yang ditanyakan dalam narasi.", "Benar. Narasi menyebut OS sebagai penghubung pengguna dan aplikasi.", "Mengendalikan internet bukan peran penghubung yang dijelaskan narasi.", "Narasi tidak menyatakan aplikasi berjalan tanpa perangkat keras."}, f2 = {"Alasan A tepat: hubungan pengguna dan aplikasi dinyatakan dalam narasi.", "Alasan B tidak tepat karena menjadi penghubung tidak menghapus kebutuhan perangkat keras.", "Alasan C tidak menunjukkan hubungan pengguna dan aplikasi yang ditanyakan.", "Alasan D membatasi OS pada internet, berbeda dari peran yang dijelaskan."} },
-		{ stem = "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah …", options = {"A. Mendesain ulang perangkat keras komputer agar seluruh aplikasi berjalan tanpa sistem operasi", "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu", "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis", "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna", "E. Menginstal sebanyak mungkin aplikasi agar kinerja komputer meningkat secara maksimal"}, reasons = {"A. Audio mengaitkan penambahan jumlah aplikasi dengan peningkatan kinerja komputer.", "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.", "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.", "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."}, answer = 2, reason = 3, f1 = {"Merancang ulang perangkat keras bukan contoh pengelolaan sumber daya dalam audio.", "Benar. Pengelolaan prosesor dan memori sesuai peran OS yang dibahas.", "Pembaruan melalui internet berbeda dari alokasi sumber daya yang ditanyakan.", "Menambah kapasitas penyimpanan berbeda dari mengatur prosesor dan memori.", "Narasi tidak menyatakan semakin banyak aplikasi selalu meningkatkan kinerja."}, f2 = {"Alasan A tidak didukung: audio tidak menghubungkan banyaknya aplikasi dengan peningkatan kinerja.", "Alasan B menambah klaim bahwa perangkat tambahan otomatis mempercepat seluruh aplikasi.", "Alasan C tepat: pengelolaan sumber daya dihubungkan dengan kerja terpadu aplikasi dan sistem.", "Alasan D mengganti pengelolaan memori dengan internet, yang tidak dijelaskan audio."} },
-		{ stem = "Dalam narasi audio, apa yang terjadi jika sistem operasi tidak mampu menjalankan peran penghubung pengguna dan aplikasi dengan baik?", options = {"A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara", "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan", "C. Perangkat keras akan meningkatkan kinerjanya secara mandiri", "D. Sistem operasi akan digantikan secara otomatis oleh aplikasi lain", "E. Aplikasi tidak dapat berjalan dengan baik karena komunikasi antara pengguna dan perangkat terganggu"}, reasons = {"A. Audio menyebut aplikasi mengambil alih seluruh tugas OS secara otomatis.", "B. Audio menyebut perangkat keras menambah kemampuannya sendiri saat OS terganggu.", "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.", "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."}, answer = 5, reason = 4, f1 = {"Kegagalan penghubung dalam narasi mengganggu aplikasi, bukan mempercepatnya.", "Narasi tidak menyatakan kegagalan OS membuat akses perangkat keras menjadi tanpa hambatan.", "Kenaikan kemampuan perangkat keras secara mandiri tidak dinyatakan dalam audio.", "Pergantian OS oleh aplikasi secara otomatis tidak dinyatakan dalam audio.", "Benar. Akibat yang dinyatakan adalah aplikasi tidak dapat berjalan dengan baik."}, f2 = {"Alasan A tidak didukung: aplikasi tidak disebut mengambil alih seluruh tugas OS.", "Alasan B menambahkan kenaikan kemampuan perangkat keras yang tidak dinyatakan.", "Alasan C membalik akibat: kegagalan penghubung mengganggu, bukan mempercepat aplikasi.", "Alasan D tepat: kegagalan peran OS dikaitkan dengan aplikasi yang tidak berjalan baik."} },
+		{ stem = "Berdasarkan narasi audio yang disampaikan, sistem operasi dapat diartikan sebagai …", options = {"A. Perangkat keras utama yang berfungsi menjalankan aplikasi", "B. Perangkat lunak yang berfungsi mengelola sumber daya komputer", "C. Aplikasi yang membantu pengguna menyelesaikan satu jenis tugas", "D. Program yang khusus mengatur pertukaran data lewat jaringan", "E. Utilitas yang khusus menata berkas pada media penyimpanan"}, reasons = {"A. Narasi menyebut OS sebagai perangkat keras yang menjalankan aplikasi.", "B. Narasi menyebut OS sebagai perangkat lunak pengelola sumber daya.", "C. Narasi menjadikan pengaturan komunikasi jaringan sebagai dasar definisi OS.", "D. Narasi menjadikan penataan berkas sebagai tugas yang mendefinisikan OS."}, answer = 2, reason = 2, f1 = {"OS disebut perangkat lunak, bukan perangkat keras utama.", "Benar. OS adalah perangkat lunak yang mengelola sumber daya komputer.", "Audio menjelaskan OS sebagai pengelola sumber daya untuk berbagai aplikasi.", "Jaringan saja tidak mencakup sumber daya yang disebut dalam audio.", "Penyimpanan hanya salah satu sumber daya yang dikelola OS."}, f2 = {"Alasan A mengubah OS menjadi perangkat keras; narasi menyebut perangkat lunak.", "Alasan B tepat: narasi merinci sumber daya yang dikelola perangkat lunak.", "Definisi dalam audio mencakup prosesor, memori, penyimpanan, serta input dan output.", "Audio menyebut penyimpanan bersama sumber daya lain yang juga dikelola OS."} },
+		{ stem = "Salah satu peran utama sistem operasi menurut narasi audio adalah …", options = {"A. Menghubungkan aplikasi satu dengan aplikasi lain untuk bertukar data", "B. Menyimpan seluruh data pengguna secara permanen", "C. Menjadi penghubung antara pengguna dan aplikasi", "D. Mengendalikan jaringan internet secara langsung", "E. Menerjemahkan kode program menjadi instruksi untuk prosesor"}, reasons = {"A. Narasi menyebut OS sebagai penghubung antara pengguna dan aplikasi.", "B. Narasi menjelaskan pertukaran data antarprogram sebagai fungsi penghubung OS.", "C. Narasi menyebut OS sebagai tempat penyimpanan permanen seluruh data.", "D. Narasi menyebut OS sebagai pengelola layanan internet pada komputer."}, answer = 3, reason = 1, f1 = {"Audio menjelaskan hubungan pengguna dengan aplikasi.", "Menyimpan seluruh data secara permanen bukan peran yang ditanyakan dalam narasi.", "Benar. Narasi menyebut OS sebagai penghubung pengguna dan aplikasi.", "Mengendalikan internet bukan peran penghubung yang dijelaskan narasi.", "Audio tidak menyebut penerjemahan kode sebagai peran yang ditanyakan."}, f2 = {"Alasan A tepat: hubungan pengguna dan aplikasi dinyatakan dalam narasi.", "Pihak yang dihubungkan dalam audio adalah pengguna dan aplikasi.", "Alasan C tidak menunjukkan hubungan pengguna dan aplikasi yang ditanyakan.", "Alasan D membatasi OS pada internet, berbeda dari peran yang dijelaskan."} },
+		{ stem = "Implementasi nyata dari pemahaman fungsi sistem operasi dalam mengelola sumber daya komputer secara optimal adalah …", options = {"A. Meningkatkan spesifikasi perangkat keras sebelum menjalankan aplikasi yang berat", "B. Mengatur alokasi prosesor dan memori agar aplikasi dan sistem dapat bekerja secara terpadu", "C. Menghubungkan komputer ke jaringan internet agar semua perangkat lunak dapat diperbarui secara otomatis", "D. Menambahkan perangkat penyimpanan eksternal untuk memperbesar kapasitas data pengguna", "E. Memilih aplikasi dengan fitur lebih sedikit sebelum menjalankannya"}, reasons = {"A. Audio menekankan pemilihan aplikasi dengan fitur lebih sedikit untuk menghemat sumber daya.", "B. Audio mengaitkan pemasangan perangkat tambahan dengan percepatan seluruh aplikasi.", "C. Audio mengaitkan pengelolaan sumber daya dengan kerja terpadu aplikasi dan sistem.", "D. Audio mengaitkan penggunaan internet dengan penggantian fungsi pengelolaan memori komputer."}, answer = 2, reason = 3, f1 = {"Langkah ini menambah kemampuan perangkat. Contoh yang sesuai mengatur penggunaan sumber daya yang tersedia.", "Benar. Pengelolaan prosesor dan memori sesuai peran OS yang dibahas.", "Pembaruan melalui internet berbeda dari alokasi sumber daya yang ditanyakan.", "Menambah kapasitas penyimpanan berbeda dari mengatur prosesor dan memori.", "Memilih aplikasi berbeda dari mengatur alokasi prosesor dan memori."}, f2 = {"Contoh yang paling sesuai berkaitan dengan pengelolaan sumber daya komputer.", "Alasan B menambah klaim bahwa perangkat tambahan otomatis mempercepat seluruh aplikasi.", "Alasan C tepat: pengelolaan sumber daya dihubungkan dengan kerja terpadu aplikasi dan sistem.", "Alasan D mengganti pengelolaan memori dengan internet, yang tidak dijelaskan audio."} },
+		{ stem = "Dalam narasi audio, apa yang terjadi jika sistem operasi tidak mampu menjalankan peran penghubung pengguna dan aplikasi dengan baik?", options = {"A. Aplikasi akan berjalan lebih cepat karena tidak ada perantara", "B. Pengguna dapat langsung mengakses perangkat keras tanpa hambatan", "C. Aplikasi tetap berjalan normal, tetapi pengguna harus mengatur menu secara manual", "D. Aplikasi tetap berjalan normal selama perangkat keras masih berfungsi", "E. Aplikasi tidak dapat berjalan dengan baik karena sistem operasi gagal menjalankan perannya sebagai penghubung antara pengguna dan aplikasi."}, reasons = {"A. Audio membatasi dampak gangguan OS pada cara pengguna mengoperasikan menu.", "B. Audio menyebut perangkat keras yang berfungsi cukup agar aplikasi berjalan dengan baik.", "C. Audio menyebut kegagalan penghubung membuat aplikasi berjalan semakin cepat.", "D. Audio menyebut gangguan peran OS menghambat aplikasi berjalan dengan baik."}, answer = 5, reason = 4, f1 = {"Kegagalan penghubung dalam narasi mengganggu aplikasi, bukan mempercepatnya.", "Narasi tidak menyatakan kegagalan OS membuat akses perangkat keras menjadi tanpa hambatan.", "Audio menyebut dampak pada jalannya aplikasi, bukan sekadar cara mengatur menu.", "Dalam audio, fungsi sistem operasi tetap diperlukan agar aplikasi berjalan dengan baik.", "Benar. Akibat yang dinyatakan adalah aplikasi tidak dapat berjalan dengan baik."}, f2 = {"Audio mengaitkan peran OS dengan kemampuan aplikasi berjalan dengan baik.", "Audio juga menempatkan OS sebagai penghubung yang diperlukan agar aplikasi berjalan dengan baik.", "Alasan C membalik akibat: kegagalan penghubung mengganggu, bukan mempercepat aplikasi.", "Alasan D tepat: kegagalan peran OS dikaitkan dengan aplikasi yang tidak berjalan baik."} },
 	}
 	local currentQuestion, currentTier, selectedAnswer, selectedReason = 1, 1, nil, nil
 	local evaluationMode = "tier"
@@ -1383,7 +1363,7 @@ do
 		evaluationMode = "result"
 		for _, child in ipairs(options:GetChildren()) do if child:IsA("TextButton") then child:Destroy() end end
 		selectedSummary.Visible = false
-		evaluationTitle.Text = answerCorrect >= 3 and "Level 1 — Lulus" or "Level 1 — Belum lulus"
+		evaluationTitle.Text = answerCorrect >= 3 and "Tahap 1 — Lulus" or "Tahap 1 — Belum lulus"
 		evaluationStem.Text = (answerCorrect * 25) .. " / 100"
   resultDetails.Text="Jawaban tepat: "..answerCorrect.." dari 4     •     Alasan tepat: "..reasonCorrect.." dari 4\nKelulusan berdasarkan skor jawaban; alasan dicatat terpisah."
   resultDetails.Visible=true; resultCrown.Visible=answerCorrect>=3
@@ -1396,11 +1376,11 @@ do
 		submit.Position = UDim2.new(answerCorrect < 3 and .27 or .5, 0, .87, 0)
 		if answerCorrect >= 3 then
 			evaluationPassed = true
-			status.Text = "Nilai memenuhi syarat. Menunggu konfirmasi akses Level 2 dari server…"
+			status.Text = "Nilai memenuhi syarat. Menunggu konfirmasi akses Tahap 2 dari server…"
 			local progress = player:WaitForChild("leaderstats"):WaitForChild("LevelProgress")
 			local function confirmAccess()
 				if progress.Value >= 2 and evaluationMode == "result" then
-					status.Text = "Level 2 terbuka. Tutup hasil dan ikuti panah menuju gedung Level 2."
+					status.Text = "Tahap 2 terbuka. Tutup hasil dan ikuti panah menuju gedung Tahap 2."
 				end
 			end
 			resultProgressConnection = progress:GetPropertyChangedSignal("Value"):Connect(confirmAccess)
@@ -1408,7 +1388,7 @@ do
 		else
 			status.Text = "Nilai minimal untuk melanjutkan adalah 75. Pelajari kembali bagian yang belum dipahami, lalu kembali ke kios untuk mencoba evaluasi lagi."
 		end
-		setSubmit(true, answerCorrect >= 3 and "Lanjut ke Level 2" or "Belajar lagi")
+		setSubmit(true, answerCorrect >= 3 and "Lanjut ke Tahap 2" or "Belajar lagi")
 	end
 	renderEvaluation = function()
   resultDetails.Visible=false; resultCrown.Visible=false
@@ -1538,7 +1518,7 @@ do
 		kioskFrame.Visible = true
 		PlayerControl.Lock()
 		if latihanCompleted then
-			kioskMessage.Text = "Siap mengikuti evaluasi Level 1?\n\nAda 4 soal. Jawaban benar bernilai 25 dan nilai minimal untuk melanjutkan adalah 75."
+			kioskMessage.Text = "Siap mengikuti evaluasi Tahap 1?\n\nAda 4 soal. Jawaban benar bernilai 25 dan nilai minimal untuk melanjutkan adalah 75."
 			startEvaluation.Visible = true
 			startEvaluation.Position = UDim2.new(0.52, 0, 0.72, 0)
 			closeKiosk.Position = UDim2.new(0.08, 0, 0.72, 0)
@@ -1559,13 +1539,207 @@ do
 	end)
 end
 
+-- ===== Sambutan (01B): petunjuk visual sebelum masuk kampus =====
+local function showWelcome(frame)
+	local ink = Color3.fromRGB(68, 40, 23)
+	local paper = Color3.fromRGB(255, 246, 231)
+	local accent = Color3.fromRGB(255, 213, 113)
+	local outline = Color3.fromRGB(198, 147, 104)
+	local banner = frame:FindFirstChild("Title ")
+	local continue = frame:WaitForChild("lanjutButton")
+
+	for _, child in ipairs(frame:GetChildren()) do
+		if child:IsA("GuiObject") and child ~= continue and child ~= banner then
+			child.Visible = false
+		end
+	end
+	if banner then
+		for _, child in ipairs(banner:GetChildren()) do
+			if child:IsA("GuiObject") then child.Visible = false end
+		end
+		banner.Visible = true
+	end
+
+	local function shape(parent, width, height, x, y, color, radius)
+		local item = Instance.new("Frame")
+		item.BackgroundColor3 = color
+		item.BorderSizePixel = 0
+		item.Size = UDim2.fromOffset(width, height)
+		item.Position = UDim2.fromOffset(x, y)
+		item.Parent = parent
+		Instance.new("UICorner", item).CornerRadius = UDim.new(0, radius)
+		return item
+	end
+
+	local function label(parent, copy, size, bold)
+		local item = Instance.new("TextLabel")
+		item.BackgroundTransparency = 1
+		item.Font = bold and Enum.Font.GothamBold or Enum.Font.Gotham
+		item.TextColor3 = ink
+		item.Text = copy
+		item.TextSize = size
+		item.TextWrapped = true
+		item.TextXAlignment = Enum.TextXAlignment.Left
+		item.Parent = parent
+		return item
+	end
+
+	local function border(item, color)
+		local stroke = Instance.new("UIStroke", item)
+		stroke.Color = color
+		stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	end
+
+	local function key(parent, letter, x, y, size, highlight)
+		shape(parent, size, size, x, y + 2, outline, 5)
+		local cap = shape(parent, size, size, x, y, highlight and accent or paper, 5)
+		border(cap, outline)
+		local text = label(cap, letter, highlight and 19 or 14, true)
+		text.TextXAlignment = Enum.TextXAlignment.Center
+		text.Size = UDim2.fromScale(1, 1)
+	end
+
+	local heading = label(frame, "Panduan Bermain", 25, true)
+	heading.TextXAlignment = Enum.TextXAlignment.Center
+	if banner then heading.ZIndex = banner.ZIndex + 1 end
+	local scroll = UI.scroll(frame, "WelcomeContent")
+	scroll.ScrollBarThickness = 5
+	local layout = scroll:FindFirstChildOfClass("UIListLayout")
+	layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	layout.VerticalAlignment = Enum.VerticalAlignment.Top
+	layout.Padding = UDim.new(0, 10)
+	local scrollPadding = scroll:FindFirstChildOfClass("UIPadding")
+	scrollPadding.PaddingLeft = UDim.new(0, 8)
+	scrollPadding.PaddingRight = UDim.new(0, 8)
+	scrollPadding.PaddingTop = UDim.new(0, 2)
+	scrollPadding.PaddingBottom = UDim.new(0, 8)
+
+	local intro = UI.label(scroll, "Di setiap tahap, buka materi, kerjakan latihan, lalu ikuti evaluasi untuk lanjut.", 16)
+	intro.TextXAlignment = Enum.TextXAlignment.Center
+	intro.LayoutOrder = 1
+
+	local reopenHint = UI.label(scroll, "Baca ulang petunjuk di Papan Panduan Permainan dekat pintu masuk.", 15)
+	reopenHint.TextXAlignment = Enum.TextXAlignment.Center
+	reopenHint.LayoutOrder = 3
+
+	local controls = Instance.new("Frame")
+	controls.Name = "ControlGuide"
+	controls.BackgroundTransparency = 1
+	controls.LayoutOrder = 4
+	controls.Parent = scroll
+
+	local function controlCard(name, move, interact)
+		local card = shape(controls, 0, 0, 0, 0, paper, 14)
+		card.Name = name
+		border(card, outline)
+		local device = label(card, name, 17, true)
+		device.Position = UDim2.fromOffset(12, 10)
+		device.Size = UDim2.new(1, -24, 0, 22)
+		local moveIcon = shape(card, 86, 52, 10, 37, Color3.fromRGB(246, 226, 205), 9)
+		local interactIcon = shape(card, 86, 46, 10, 97, Color3.fromRGB(246, 226, 205), 9)
+		local moveText = label(card, move, 15)
+		local interactText = label(card, interact, 15)
+		moveText.Position = UDim2.fromOffset(106, 37)
+		interactText.Position = UDim2.fromOffset(106, 97)
+		moveText.Size = UDim2.new(1, -118, 0, 52)
+		interactText.Size = UDim2.new(1, -118, 0, 46)
+		return card, moveIcon, interactIcon
+	end
+
+	local pc, wasd, eKey = controlCard("PC", "Tekan WASD untuk bergerak", "Tahan E di dekat objek")
+	key(wasd, "W", 32, 2, 22, false)
+	key(wasd, "A", 7, 26, 22, false)
+	key(wasd, "S", 32, 26, 22, false)
+	key(wasd, "D", 57, 26, 22, false)
+	key(eKey, "E", 27, 6, 32, true)
+
+	local phone, joystick, prompt = controlCard("HP", "Geser joystick untuk bergerak", "Tahan ikon tangan saat muncul")
+	local joystickBase = shape(joystick, 38, 38, 24, 7, paper, 19)
+	border(joystickBase, outline)
+	shape(joystickBase, 17, 17, 10, 10, Color3.fromRGB(156, 94, 59), 9)
+	prompt.BackgroundColor3 = Color3.fromRGB(48, 52, 51)
+	local touchCircle = shape(prompt, 24, 24, 5, 11, Color3.fromRGB(101, 105, 103), 12)
+	local touchIcon = Instance.new("ImageLabel")
+	touchIcon.Name = "TouchPromptIcon"
+	touchIcon.BackgroundTransparency = 1
+	touchIcon.Image = "rbxasset://textures/ui/Controls/TouchTapIcon.png"
+	touchIcon.Size = UDim2.fromOffset(14, 17)
+	touchIcon.AnchorPoint = Vector2.new(.5, .5)
+	touchIcon.Position = UDim2.fromScale(.5, .5)
+	touchIcon.Parent = touchCircle
+	local hold = label(prompt, 'Tahan "E"', 11, true)
+	hold.TextColor3 = Color3.new(1, 1, 1)
+	hold.TextXAlignment = Enum.TextXAlignment.Center
+	hold.Position = UDim2.fromOffset(30, 0)
+	hold.Size = UDim2.new(1, -34, 1, 0)
+
+	local route = shape(scroll, 0, 0, 0, 0, Color3.fromRGB(255, 232, 168), 12)
+	route.Name = "FollowYellowArrow"
+	route.LayoutOrder = 2
+	local arrow = shape(route, 34, 34, 9, 15, ink, 8)
+	arrow.Name = "YellowArrow"
+	local yellow = Color3.fromRGB(255, 215, 72)
+	shape(arrow, 19, 4, 6, 15, yellow, 2)
+	shape(arrow, 13, 4, 16, 11, yellow, 2).Rotation = 45
+	shape(arrow, 13, 4, 16, 19, yellow, 2).Rotation = -45
+	local routeTitle = label(route, "Ikuti panah kuning", 16, true)
+	local routeSteps = label(route, "1. Menyimak → 2. Membaca Berita → 3. Membaca Teks Akademik → Aula", 14)
+	routeTitle.Position = UDim2.fromOffset(52, 8)
+	routeTitle.Size = UDim2.new(1, -62, 0, 20)
+	routeSteps.Position = UDim2.fromOffset(52, 30)
+	routeSteps.Size = UDim2.new(1, -62, 0, 32)
+	UI.action(continue, "Lanjut ke kampus")
+
+	local input = game:GetService("UserInputService")
+	local first = input.TouchEnabled and phone or pc
+	local second = input.TouchEnabled and pc or phone
+	UI.fit(frame, function(width, height)
+		local compact = height < 420
+		local margin = width < 600 and 12 or 22
+		local outerWidth = math.max(1, width - 2 * margin)
+		local contentWidth = math.max(1, math.min(720, outerWidth - 16))
+		local wide = contentWidth >= 570
+		local cardHeight = 152
+		local gap = 10
+		local cardWidth = wide and math.floor((contentWidth - gap) / 2) or contentWidth
+
+		heading.TextSize = compact and 19 or width < 600 and 21 or 26
+		local headHeight = math.max(46, UI.height(heading, outerWidth - 20, 14))
+		heading.Position = UDim2.fromOffset(margin + 10, 3)
+		heading.Size = UDim2.fromOffset(math.max(1, outerWidth - 20), headHeight)
+		if banner then
+			banner.AnchorPoint = Vector2.new(.5, 0)
+			banner.Position = UDim2.fromScale(.5, 0)
+			banner.Size = UDim2.fromOffset(outerWidth, headHeight + 8)
+		end
+
+		local footer = compact and 10 or 16
+		local scrollTop = headHeight + 12
+		scroll.Position = UDim2.fromOffset(margin, scrollTop)
+		scroll.Size = UDim2.fromOffset(outerWidth, math.max(1, height - scrollTop - footer - 56))
+		intro.Size = UDim2.new(0, contentWidth, 0, intro.Size.Y.Offset)
+		controls.Size = UDim2.fromOffset(contentWidth, wide and cardHeight or 2 * cardHeight + gap)
+		first.Size = UDim2.fromOffset(cardWidth, cardHeight)
+		second.Size = first.Size
+		first.Position = UDim2.fromOffset(0, 0)
+		second.Position = wide and UDim2.fromOffset(cardWidth + gap, 0) or UDim2.fromOffset(0, cardHeight + gap)
+		reopenHint.Size = UDim2.new(0, contentWidth, 0, reopenHint.Size.Y.Offset)
+		local routeTextHeight = UI.height(routeSteps, math.max(1, contentWidth - 62), 0)
+		routeSteps.Size = UDim2.new(1, -62, 0, routeTextHeight)
+		route.Size = UDim2.fromOffset(contentWidth, math.max(64, 38 + routeTextHeight))
+		continue.AnchorPoint = Vector2.new(.5, 1)
+		continue.Position = UDim2.new(.5, 0, 1, -footer)
+		continue.Size = UDim2.fromOffset(math.min(outerWidth, 320), 48)
+	end, 560)
+end
+
 -- Restore the existing welcome screen for players; never show it in Edit mode.
 task.spawn(function()
  local welcomeGui=playerGui:WaitForChild("Welcome GUI",15)
  if not welcomeGui then return end
  local frame=welcomeGui:WaitForChild("welcomeFrame",10)
  if not frame then return end
- UI.welcome(frame,"Selamat Datang di Pembelajaran Bahasa Indonesia!",{"Jelajahi kampus virtual sambil berlatih menyimak dan membaca materi Teknologi Informasi.","Ikuti panah kuning: selesaikan Level 1, Level 2, dan Level 3, lalu tuju aula apresiasi.","PC: gerak dengan WASD dan tahan E di dekat objek. HP: gunakan kontrol layar dan tahan tombol interaksi."},{{"lanjutButton","Lanjut ke kampus"}})
+ showWelcome(frame)
  UI.screen(welcomeGui); welcomeGui.ResetOnSpawn=false
  local shade=welcomeGui:FindFirstChild("BackgroundOverlay")
  if shade then shade.Position=UDim2.new(); shade.AnchorPoint=Vector2.zero; shade.Size=UDim2.fromScale(1,1) end
@@ -1581,7 +1755,7 @@ end)
 task.spawn(function()
  local progress=player:WaitForChild("leaderstats"):WaitForChild("LevelProgress")
  local lastNotice=0
- for _,spec in ipairs({{"Space2DoorBlock",2,"Level 2","Level 1"},{"Space3DoorBlock",3,"Level 3","Level 2"},{"ApresiasiDoorBlock",4,"aula apresiasi","Level 3"}}) do
+ for _,spec in ipairs({{"Space2DoorBlock",2,"Tahap 2","Tahap 1"},{"Space3DoorBlock",3,"Tahap 3","Tahap 2"},{"ApresiasiDoorBlock",4,"aula apresiasi","Tahap 3"}}) do
   local door=workspace:WaitForChild(spec[1],15)
   if door and door:IsA("BasePart") then
    door.Touched:Connect(function(hit)

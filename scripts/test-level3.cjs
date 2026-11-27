@@ -3,7 +3,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 const client=read('studio-sync/src/Level3FlowHandler.client.luau');
 const data=JSON.parse(client.match(/JSONDecode\(\[==\[([\s\S]*?)\]==\]\)/)[1]);
 const bank=require('../docs/desain/storyboard-level3/isi-sumber.json');
-assert.deepEqual(data.questions,bank.questions);assert.deepEqual(data.pages,[bank.material[0],bank.material[1]+'\n\n'+bank.material[2],bank.material[3]]);
+assert.deepEqual(data.questions,require("./level3-evaluation.cjs"));assert.deepEqual(data.pages,[bank.material[0],bank.material[1]+'\n\n'+bank.material[2],bank.material[3]]);
 const key=(q,t)=>q['key'+t].match(/: ([A-E])/)[1].charCodeAt(0)-64;
 let test=read('scripts/test-level2.cjs');
 const prelude=test.match(/const prelude = `([\s\S]*?)`;/)[1].replace('LevelProgress={Value=2}','LevelProgress={Value=3}').replace('Level1Score={Value=100},Level2Score={Value=0}','Level2Score={Value=100},Level3Score={Value=0}');
